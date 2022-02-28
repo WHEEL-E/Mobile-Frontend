@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-
 import { PatientHomeProps } from "../navigation/navigationUtils";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {

@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-
 import { GetStartedProps } from "../navigation/navigationUtils";
 
 const GetStartedScreen = (props: GetStartedProps) => {
@@ -10,13 +9,13 @@ const GetStartedScreen = (props: GetStartedProps) => {
       <View style={styles.buttons}>
         <Button
           title="GO TO SIGN-IN"
-          onPress={() => props.navigation.navigate("Sign in")}
+          onPress={() => props.navigation.navigate("SignIn")}
         />
       </View>
       <View style={styles.buttons}>
         <Button
           title="GO TO SIGN-UP"
-          onPress={() => props.navigation.navigate("Sign up")}
+          onPress={() => props.navigation.navigate("SignUp")}
         />
       </View>
     </View>

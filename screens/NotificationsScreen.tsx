@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { NewsProps } from "../navigation/navigationUtils";
 
-const NotificationsScreen = () => {
+const NotificationsScreen = (props: NewsProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Notifications Screen</Text>

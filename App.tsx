@@ -3,7 +3,6 @@ import * as Font from "expo-font";
 import { StyleSheet } from "react-native";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
-
 import TabsNavigator from "./navigation/TabsNavigation";
 // react-redux , redux is installed
 

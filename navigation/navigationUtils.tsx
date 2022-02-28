@@ -1,4 +1,7 @@
-import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabNavigationOptions,
+  BottomTabScreenProps,
+} from "@react-navigation/bottom-tabs";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export const bottomNavOptions: BottomTabNavigationOptions = {
@@ -8,18 +11,24 @@ export const bottomNavOptions: BottomTabNavigationOptions = {
 export const homeNavOptions: BottomTabNavigationOptions = { title: "Home" };
 
 export type RootStackParamList = {
-  "Get started": undefined;
+  GetStarted: undefined;
   Home: undefined;
   Profile: undefined;
-  "Sign in": undefined;
-  "Sign up": undefined;
-  "Patient home": undefined;
-  "Supervisor Home": undefined;
+  SignIn: undefined;
+  SignUp: undefined;
+  PatientHome: undefined;
+  SupervisorHome: undefined;
+};
+
+export type BottomTabParamList = {
+  News: undefined;
+  Main: undefined;
+  Notes: undefined;
 };
 
 export type GetStartedProps = NativeStackScreenProps<
   RootStackParamList,
-  "Get started"
+  "GetStarted"
 >;
 
 export type HomeProps = NativeStackScreenProps<RootStackParamList, "Home">;
@@ -31,14 +40,20 @@ export type ProfileProps = NativeStackScreenProps<
 
 export type PatientHomeProps = NativeStackScreenProps<
   RootStackParamList,
-  "Patient home"
+  "PatientHome"
 >;
 
 export type SupervisorHomeProps = NativeStackScreenProps<
   RootStackParamList,
-  "Supervisor Home"
+  "SupervisorHome"
 >;
 
-export type SignInProps = NativeStackScreenProps<RootStackParamList, "Sign in">;
+export type SignInProps = NativeStackScreenProps<RootStackParamList, "SignIn">;
 
-export type SignUpProps = NativeStackScreenProps<RootStackParamList, "Sign up">;
+export type SignUpProps = NativeStackScreenProps<RootStackParamList, "SignUp">;
+
+export type NewsProps = BottomTabScreenProps<BottomTabParamList, "News">;
+
+export type MainProps = BottomTabScreenProps<BottomTabParamList, "Main">;
+
+export type NotesProps = BottomTabScreenProps<BottomTabParamList, "Notes">;

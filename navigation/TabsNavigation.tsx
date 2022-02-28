@@ -1,11 +1,14 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import NotificationsScreen from "../screens/NotificationsScreen";
 import NotesScreen from "../screens/NotesScreen";
 import MainNavigator from "./MainNavigator";
-import { bottomNavOptions, homeNavOptions } from "./navigationUtils";
+import {
+  bottomNavOptions,
+  BottomTabParamList,
+  homeNavOptions,
+} from "./navigationUtils";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const TabsNavigator = () => {
   return (

@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-
 import { HomeProps } from "../navigation/navigationUtils";
 
 const HomeScreen = (props: HomeProps) => {
@@ -12,13 +11,13 @@ const HomeScreen = (props: HomeProps) => {
       <View style={styles.buttons}>
         <Button
           title="GO TO SUPERVISOR HOME SCREEN"
-          onPress={() => props.navigation.navigate("Supervisor Home")}
+          onPress={() => props.navigation.navigate("SupervisorHome")}
         />
       </View>
       <View style={styles.buttons}>
         <Button
           title="GO TO PATIENT HOME SCREEN"
-          onPress={() => props.navigation.navigate("Patient home")}
+          onPress={() => props.navigation.navigate("PatientHome")}
         />
       </View>
     </View>

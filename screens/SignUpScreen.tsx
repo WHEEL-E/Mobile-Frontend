@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-
 import { SignUpProps } from "../navigation/navigationUtils";
 
 const SignUpScreen = (props: SignUpProps) => {

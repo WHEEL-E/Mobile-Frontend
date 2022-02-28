@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { NotesProps } from "../navigation/navigationUtils";
 
-const NotesScreen = () => {
+const NotesScreen = (props: NotesProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Notes Screen</Text>

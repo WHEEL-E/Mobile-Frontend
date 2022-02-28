@@ -1,5 +1,4 @@
 import { createStackNavigator } from "@react-navigation/stack";
-
 import GetStartedScreen from "../screens/GetStartedScreen";
 import HomeScreen from "../screens/HomeScreen";
 import PatientHomeScreen from "../screens/PatientHomeScreen";
@@ -14,12 +13,12 @@ const Stack = createStackNavigator<RootStackParamList>();
 function MainNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Get started" component={GetStartedScreen} />
-      <Stack.Screen name="Sign in" component={SignInScreen} />
-      <Stack.Screen name="Sign up" component={SignUpScreen} />
+      <Stack.Screen name="GetStarted" component={GetStartedScreen} />
+      <Stack.Screen name="SignIn" component={SignInScreen} />
+      <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Patient home" component={PatientHomeScreen} />
-      <Stack.Screen name="Supervisor Home" component={SupervisorHomeScreen} />
+      <Stack.Screen name="PatientHome" component={PatientHomeScreen} />
+      <Stack.Screen name="SupervisorHome" component={SupervisorHomeScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
