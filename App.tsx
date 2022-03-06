@@ -1,12 +1,10 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
 import * as Font from "expo-font";
-// react-redux , redux is installed
-import { Ionicons } from "@expo/vector-icons";
-import { Provider } from "react-redux";
+import { StyleSheet } from "react-native";
 import AppLoading from "expo-app-loading";
+import { NavigationContainer } from "@react-navigation/native";
+import TabsNavigator from "./navigation/TabsNavigation";
+// react-redux , redux is installed
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -34,11 +32,9 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello Wheel.e!</Text>
-      <Ionicons name="heart" size={23} />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <TabsNavigator />
+    </NavigationContainer>
   );
 }
 
