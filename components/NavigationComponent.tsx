@@ -2,7 +2,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface navigationComponent {
+interface navigationComponentProps {
   onPress: () => void;
   iconName: any;
   title: string;
@@ -10,7 +10,7 @@ interface navigationComponent {
   color: string;
 }
 
-const NavigationComponent = (props: navigationComponent) => {
+const NavigationComponent = (props: navigationComponentProps) => {
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.container}>
       <View

@@ -8,7 +8,7 @@ import {
   BottomTabParamList,
   homeNavOptions,
 } from "./navigationUtils";
-import TabBar from "../components/NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,7 +16,8 @@ const TabsNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={bottomNavOptions}
-      tabBar={(props) => <TabBar navigation={props.navigation} />}
+      tabBar={(props) => <NavigationBar navigation={props.navigation} />}
+      initialRouteName="Main"
     >
       <Tab.Screen name="News" component={NotificationsScreen} />
       <Tab.Screen
