@@ -1,3 +1,4 @@
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import NotesScreen from "../screens/NotesScreen";
@@ -7,12 +8,16 @@ import {
   BottomTabParamList,
   homeNavOptions,
 } from "./navigationUtils";
+import TabBar from "../components/NavigationBar";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const TabsNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={bottomNavOptions}>
+    <Tab.Navigator
+      screenOptions={bottomNavOptions}
+      tabBar={(props) => <TabBar navigation={props.navigation} />}
+    >
       <Tab.Screen name="News" component={NotificationsScreen} />
       <Tab.Screen
         name="Main"
