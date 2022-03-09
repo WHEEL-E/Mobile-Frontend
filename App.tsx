@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import * as Font from "expo-font";
-import { StyleSheet } from "react-native";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import TabsNavigator from "./navigation/TabsNavigation";
@@ -37,16 +36,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 27,
-    fontFamily: "Cairo-Bold",
-  },
-});
