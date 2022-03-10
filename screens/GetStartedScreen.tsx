@@ -16,8 +16,6 @@ const GetStartedScreen = (props: GetStartedProps) => {
             borderWidth: 2,
             borderColor: "white",
             borderRadius: 30,
-          }}
-          containerStyle={{
             width: 300,
             marginHorizontal: 50,
             marginVertical: 10,
@@ -37,8 +35,6 @@ const GetStartedScreen = (props: GetStartedProps) => {
             borderWidth: 2,
             borderColor: "white",
             borderRadius: 30,
-          }}
-          containerStyle={{
             width: 300,
             marginHorizontal: 50,
             marginVertical: 10,

@@ -11,20 +11,20 @@ import {
 interface roundEdgedButtonProps {
   title: string;
   buttonStyle: object;
-  containerStyle: object;
   titleStyle: object;
-  onPress: any;
+  onPress: () => void;
 }
 
 const RoundEdgedButton = (props: roundEdgedButtonProps) => {
-  const { title, buttonStyle, containerStyle, titleStyle, onPress } = props;
-  // search for a better practice for the type
+  const { title, buttonStyle, titleStyle, onPress } = props;
   let TouchCmp: any = TouchableOpacity;
+
   if (Platform.OS === "android" && Platform.Version >= 21) {
     TouchCmp = TouchableNativeFeedback;
   }
+
   return (
-    <View style={containerStyle}>
+    <View>
       <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
         <Text style={titleStyle}>{title}</Text>
       </TouchCmp>
