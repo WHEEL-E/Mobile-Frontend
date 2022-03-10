@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { HomeProps } from "../navigation/navigationUtils";
-import MainButton from "../components/mainButton";
+import MainButton from "../components/UI/mainButton";
+import colors from "../constants/colors";
 
 const HomeScreen = (props: HomeProps) => {
   // Should contain the logic of choosing between patient homeScreen and supervisor homeScreen
@@ -11,18 +12,15 @@ const HomeScreen = (props: HomeProps) => {
       <Text style={styles.title}>go to Profile</Text>
       <View style={styles.buttons}>
         <MainButton
-          title="SUPERVISOR HOME SCREEN"
+          title="Supervisor Home Screen"
           buttonStyle={{
-            // NIT: use colors constants after PR approval and merge
-            backgroundColor: "#11698E",
+            backgroundColor: colors.darkGreen,
             borderWidth: 2,
             borderColor: "white",
             borderRadius: 30,
             justifyContent: "center",
             padding: 15,
-            height: 200,
-          }}
-          containerStyle={{
+            height: 150,
             width: 200,
             marginHorizontal: 50,
             marginVertical: 10,
@@ -31,24 +29,22 @@ const HomeScreen = (props: HomeProps) => {
             fontFamily: "Cairo-Bold",
             color: "white",
             fontSize: 20,
+            textAlign: "center",
           }}
           onPress={() => props.navigation.navigate("SupervisorHome")}
           icon={{ name: "ios-cart", size: 20, color: "white" }}
           image={{ url: require("../assets/hospital.png") }}
         />
         <MainButton
-          title="Patient HOME SCREEN"
+          title="Patient Home Screen"
           buttonStyle={{
-            // NIT: use colors constants after PR approval and merge
-            backgroundColor: "#11698E",
+            backgroundColor: colors.darkPink,
             borderWidth: 2,
             borderColor: "white",
             borderRadius: 30,
             justifyContent: "center",
             padding: 15,
-            height: 200,
-          }}
-          containerStyle={{
+            height: 150,
             width: 200,
             marginHorizontal: 50,
             marginVertical: 10,
@@ -57,6 +53,7 @@ const HomeScreen = (props: HomeProps) => {
             fontFamily: "Cairo-Bold",
             color: "white",
             fontSize: 20,
+            textAlign: "center",
           }}
           onPress={() => props.navigation.navigate("PatientHome")}
           icon={{ name: "ios-cart", size: 20, color: "white" }}
