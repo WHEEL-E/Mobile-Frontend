@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NewsProps } from "../navigation/navigationUtils";
-import SquareButton from "../components/squareButton";
+import SquareButton from "../components/UI/squareButton";
 
 const NotificationsScreen = (props: NewsProps) => {
   return (
@@ -11,8 +11,6 @@ const NotificationsScreen = (props: NewsProps) => {
         title="Notes"
         buttonStyle={{
           backgroundColor: "#11698E",
-        }}
-        containerStyle={{
           width: 300,
           marginHorizontal: 50,
           marginVertical: 10,
