@@ -13,7 +13,6 @@ import { Ionicons } from "@expo/vector-icons";
 interface MainButtonProps {
   title: string;
   buttonStyle: object;
-  containerStyle: object;
   titleStyle: object;
   onPress: any;
   icon: { name: any; size: number; color: string };
@@ -21,30 +20,21 @@ interface MainButtonProps {
 }
 
 const MainButton = (props: MainButtonProps) => {
-  const {
-    title,
-    buttonStyle,
-    containerStyle,
-    titleStyle,
-    onPress,
-    icon,
-    image,
-  } = props;
-  // search for a better practice for the type
+  const { title, buttonStyle, titleStyle, onPress, icon, image } = props;
   let TouchCmp: any = TouchableOpacity;
+
   if (Platform.OS === "android" && Platform.Version >= 21) {
     TouchCmp = TouchableNativeFeedback;
   }
-  //   <Ionicons name={icon.name} size={icon.size} color={icon.color} />
+  //  add in case of usage of icons instead of images
+  // <Ionicons name={icon.name} size={icon.size} color={icon.color} />
   return (
-    <View style={containerStyle}>
-      <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
-        <View style={styles.imageContainer}>
-          <Image source={image.url} style={styles.image} />
-        </View>
-        <Text style={titleStyle}>{title}</Text>
-      </TouchCmp>
-    </View>
+    <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
+      <View style={styles.imageContainer}>
+        <Image source={image.url} style={styles.image} />
+      </View>
+      <Text style={titleStyle}>{title}</Text>
+    </TouchCmp>
   );
 };
 
@@ -57,8 +47,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    width: 100,
-    height: 100,
+    width: 43,
+    height: 50,
     justifyContent: "center",
     alignItems: "center",
   },
