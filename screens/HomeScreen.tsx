@@ -34,6 +34,7 @@ const HomeScreen = (props: HomeProps) => {
           onPress={() => props.navigation.navigate("SupervisorHome")}
           icon={{ name: "ios-cart", size: 20, color: "white" }}
           image={{ url: require("../assets/hospital.png") }}
+          iconOrImage={false}
         />
         <MainButton
           title="Patient Home Screen"
@@ -58,6 +59,7 @@ const HomeScreen = (props: HomeProps) => {
           onPress={() => props.navigation.navigate("PatientHome")}
           icon={{ name: "ios-cart", size: 20, color: "white" }}
           image={{ url: require("../assets/hospital.png") }}
+          iconOrImage={false}
         />
       </View>
     </View>
