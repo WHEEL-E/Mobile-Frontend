@@ -14,9 +14,10 @@ interface MainButtonProps {
   title: string;
   buttonStyle: object;
   titleStyle: object;
-  onPress: any;
+  onPress: () => void;
   icon: { name: any; size: number; color: string };
   image: { url: any };
+  iconOrImage: boolean;
 }
 
 const MainButton = (props: MainButtonProps) => {
@@ -26,8 +27,17 @@ const MainButton = (props: MainButtonProps) => {
   if (Platform.OS === "android" && Platform.Version >= 21) {
     TouchCmp = TouchableNativeFeedback;
   }
-  //  add in case of usage of icons instead of images
-  // <Ionicons name={icon.name} size={icon.size} color={icon.color} />
+
+  if (props.iconOrImage) {
+    return (
+      <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
+        <View style={styles.imageContainer}>
+          <Ionicons name={icon.name} size={icon.size} color={icon.color} />
+        </View>
+        <Text style={titleStyle}>{title}</Text>
+      </TouchCmp>
+    );
+  }
   return (
     <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
       <View style={styles.imageContainer}>
