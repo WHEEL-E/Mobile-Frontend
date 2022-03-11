@@ -1,6 +1,8 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { HomeProps } from "../navigation/navigationUtils";
+import MainButton from "../components/UI/mainButton";
+import colors from "../constants/colors";
 
 const HomeScreen = (props: HomeProps) => {
   // Should contain the logic of choosing between patient homeScreen and supervisor homeScreen
@@ -9,15 +11,53 @@ const HomeScreen = (props: HomeProps) => {
     <View style={styles.container}>
       <Text style={styles.title}>go to Profile</Text>
       <View style={styles.buttons}>
-        <Button
-          title="GO TO SUPERVISOR HOME SCREEN"
+        <MainButton
+          title="Supervisor Home Screen"
+          buttonStyle={{
+            backgroundColor: colors.darkGreen,
+            borderWidth: 2,
+            borderColor: "white",
+            borderRadius: 30,
+            justifyContent: "center",
+            padding: 15,
+            height: 150,
+            width: 200,
+            marginHorizontal: 50,
+            marginVertical: 10,
+          }}
+          titleStyle={{
+            fontFamily: "Cairo-Bold",
+            color: "white",
+            fontSize: 20,
+            textAlign: "center",
+          }}
           onPress={() => props.navigation.navigate("SupervisorHome")}
+          icon={{ name: "ios-cart", size: 20, color: "white" }}
+          image={{ url: require("../assets/hospital.png") }}
         />
-      </View>
-      <View style={styles.buttons}>
-        <Button
-          title="GO TO PATIENT HOME SCREEN"
+        <MainButton
+          title="Patient Home Screen"
+          buttonStyle={{
+            backgroundColor: colors.darkPink,
+            borderWidth: 2,
+            borderColor: "white",
+            borderRadius: 30,
+            justifyContent: "center",
+            padding: 15,
+            height: 150,
+            width: 200,
+            marginHorizontal: 50,
+            marginVertical: 10,
+          }}
+          titleStyle={{
+            fontFamily: "Cairo-Bold",
+            color: "white",
+            fontSize: 20,
+            textAlign: "center",
+          }}
           onPress={() => props.navigation.navigate("PatientHome")}
+          icon={{ name: "ios-cart", size: 20, color: "white" }}
+          image={{ url: require("../assets/hospital.png") }}
         />
       </View>
     </View>
