@@ -18,7 +18,11 @@ function MainNavigator() {
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="PatientHome" component={PatientHomeScreen} />
-      <Stack.Screen name="SupervisorHome" component={SupervisorHomeScreen} />
+      <Stack.Screen
+        name="SupervisorHome"
+        component={SupervisorHomeScreen}
+        options={{ headerTransparent: true, title: "" }}
+      />
       <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
