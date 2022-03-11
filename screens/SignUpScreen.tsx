@@ -1,8 +1,13 @@
-import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SignUpProps } from "../navigation/navigationUtils";
+import InputField from "../components/UI/InputField";
 
 const SignUpScreen = (props: SignUpProps) => {
+  const [email, setEmail] = useState("");
+  const setEmailHandler = (enteredMail: string) => {
+    setEmail(enteredMail);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign up screen</Text>
@@ -12,6 +17,18 @@ const SignUpScreen = (props: SignUpProps) => {
           onPress={() => props.navigation.navigate("Home")}
         />
       </View>
+      <ScrollView>
+        <InputField
+          placeHolder="Email address"
+          fieldStyle={{
+            width: 320,
+            height: 60,
+          }}
+          autoComplete="email"
+          value={email}
+          onChangeText={setEmailHandler}
+        />
+      </ScrollView>
     </View>
   );
 };
