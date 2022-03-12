@@ -3,6 +3,7 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import TabsNavigator from "./navigation/TabsNavigation";
+import { MainNavigator } from "./navigation/MainNavigator";
 // react-redux , redux is installed
 
 const fetchFonts = () => {
@@ -32,7 +33,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <TabsNavigator />
+      <MainNavigator />
     </NavigationContainer>
   );
 }
