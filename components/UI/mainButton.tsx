@@ -17,7 +17,7 @@ interface MainButtonProps {
   onPress: () => void;
   icon: { name: any; size: number; color: string };
   image: { url: any };
-  iconOrImage: boolean;
+  hasIcon: boolean;
 }
 
 const MainButton = (props: MainButtonProps) => {
@@ -28,7 +28,7 @@ const MainButton = (props: MainButtonProps) => {
     TouchCmp = TouchableNativeFeedback;
   }
 
-  if (props.iconOrImage) {
+  if (props.hasIcon) {
     return (
       <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
         <View style={styles.imageContainer}>
