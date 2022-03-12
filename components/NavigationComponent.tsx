@@ -2,26 +2,38 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface navigationComponentProps {
+export interface navigationComponentProps {
   onPress: () => void;
   iconName: any;
-  title: string;
+  title: "Home" | "Notes" | "News";
   backgroundColor: string;
   color: string;
 }
 
-const NavigationComponent = (props: navigationComponentProps) => {
+export const NavigationComponent = (props: navigationComponentProps) => {
   return (
-    <TouchableOpacity onPress={props.onPress} style={styles.container}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={styles.container}
+      testID={props.title}
+    >
       <View
+        testID="view"
         style={{
           ...styles.iconBackground,
           backgroundColor: props.backgroundColor,
         }}
       >
-        <Ionicons name={props.iconName} size={24} color={props.color} />
+        <Ionicons
+          testID="icon"
+          name={props.iconName}
+          size={24}
+          color={props.color}
+        />
       </View>
-      <Text style={styles.title}>{props.title}</Text>
+      <Text testID="text" style={styles.title}>
+        {props.title}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -45,4 +57,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-export default NavigationComponent;
