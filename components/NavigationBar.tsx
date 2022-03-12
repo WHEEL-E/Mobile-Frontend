@@ -53,5 +53,4 @@ const styles = StyleSheet.create({
     fontFamily: "Cairo-Bold",
   },
 });
-
 export default NavigationBar;
