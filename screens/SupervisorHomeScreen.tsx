@@ -3,11 +3,11 @@ import { Button, StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SupervisorHomeProps } from "../navigation/navigationUtils";
 import MainButton from "../components/UI/mainButton";
 import colors from "../constants/colors";
+import RoundEdgedButton from "../components/UI/RoundEdgedButton";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
   // there's a dynamic rendering for the name of the user when we get it from the db
   const userName = "Alaa";
-
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -28,7 +28,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             titleStyle={styles.profileTitleStyle}
             onPress={() => props.navigation.navigate("Profile")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/hospital.png"), imageStyle: {} }}
             iconOrImage={true}
           />
           <MainButton
@@ -37,7 +37,10 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             titleStyle={styles.patientTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "ios-cart", size: 20, color: "white" }}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{
+              url: require("../assets/new-patient.png"),
+              imageStyle: { width: 100, height: 80 },
+            }}
             iconOrImage={false}
           />
         </View>
@@ -48,18 +51,23 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             titleStyle={styles.statusTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "", size: 20, color: "white" }}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{
+              url: require("../assets/health-record.png"),
+              imageStyle: { width: 70, height: 70 },
+            }}
             iconOrImage={false}
           />
-
           <MainButton
             title="Help"
             buttonStyle={styles.helpButtonStyle}
             titleStyle={styles.helpTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
-            icon={{ name: "", size: 20, color: "white" }}
-            image={{ url: require("../assets/hospital.png") }}
-            iconOrImage={false}
+            icon={{ name: "ios-help-circle", size: 30, color: "white" }}
+            image={{
+              url: require("../assets/hospital.png"),
+              imageStyle: {},
+            }}
+            iconOrImage={true}
           />
         </View>
       </View>
@@ -84,10 +92,10 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: "row",
-    margin: 10,
     width: 200,
     justifyContent: "space-evenly",
     alignItems: "center",
+    marginBottom: 15,
   },
   buttonColContainer: {
     flexDirection: "column",

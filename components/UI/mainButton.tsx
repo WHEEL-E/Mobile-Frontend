@@ -16,7 +16,7 @@ interface MainButtonProps {
   titleStyle: object;
   onPress: () => void;
   icon: { name: any; size: number; color: string };
-  image: { url: any };
+  image: { url: any; imageStyle: object };
   iconOrImage: boolean;
 }
 
@@ -41,7 +41,10 @@ const MainButton = (props: MainButtonProps) => {
   return (
     <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
       <View style={styles.imageContainer}>
-        <Image source={image.url} style={styles.image} />
+        <Image
+          source={image.url}
+          style={{ ...styles.image, ...image.imageStyle }}
+        />
       </View>
       <Text style={titleStyle}>{title}</Text>
     </TouchCmp>
