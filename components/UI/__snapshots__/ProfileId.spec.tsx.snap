@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`navigationBar makes sure image source is passed properly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "position": "absolute",
+      "top": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "red",
+        "borderColor": "#F2F3F7",
+        "borderRadius": 75,
+        "borderWidth": 5,
+        "height": 150,
+        "width": 150,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "aspectRatio": 1,
+          "borderRadius": 75,
+          "height": "100%",
+          "resizeMode": "cover",
+        }
+      }
+      testID="profileIdImage"
+    />
+  </View>
+  <Text
+    style={
+      Object {
+        "fontFamily": "Cairo-Bold",
+        "fontSize": 35,
+      }
+    }
+    testID="profileIdName"
+  >
+    testIdName
+  </Text>
+</View>
+`;
