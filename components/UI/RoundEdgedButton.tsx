@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacityComponent } from "react-native";
 import {
   StyleSheet,
   View,
@@ -17,17 +18,14 @@ interface roundEdgedButtonProps {
 
 const RoundEdgedButton = (props: roundEdgedButtonProps) => {
   const { title, buttonStyle, titleStyle, onPress } = props;
-  let TouchCmp: any = TouchableOpacity;
-
-  if (Platform.OS === "android" && Platform.Version >= 21) {
-    TouchCmp = TouchableNativeFeedback;
-  }
-
   return (
     <View>
-      <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
+      <TouchableOpacity
+        style={{ ...buttonStyle, ...styles.button }}
+        onPress={onPress}
+      >
         <Text style={titleStyle}>{title}</Text>
-      </TouchCmp>
+      </TouchableOpacity>
     </View>
   );
 };

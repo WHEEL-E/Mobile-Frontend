@@ -6,6 +6,8 @@ import {
   View,
   Image,
   ScrollView,
+  Platform,
+  TouchableOpacity,
 } from "react-native";
 import { GetStartedProps } from "../navigation/navigationUtils";
 import RoundEdgedButton from "../components/UI/RoundEdgedButton";
@@ -21,7 +23,7 @@ const GetStartedScreen = (props: GetStartedProps) => {
       <Text style={styles.slogan}>
         Hundrends of users depend on wheel.e to move around freely!{" "}
       </Text>
-      <View style={styles.buttons}>
+      <View>
         <RoundEdgedButton
           title="Get Started"
           buttonStyle={styles.buttonStyle}
@@ -34,12 +36,10 @@ const GetStartedScreen = (props: GetStartedProps) => {
         />
       </View>
       <View style={styles.signUpContainer}>
-        <Text>Not a member?</Text>
-        <Button
-          title="Sign Up"
-          onPress={() => props.navigation.navigate("SignUp")}
-          color={colors.darkGreen}
-        />
+        <Text>Not a member? </Text>
+        <TouchableOpacity onPress={() => props.navigation.navigate("SignUp")}>
+          <Text style={{ color: colors.darkGreen }}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -51,6 +51,13 @@ GetStartedScreen.navigationOptions = {
     borderBottomWidth: 0,
   },
 };
+/*
+        <Button
+          title="Get stated"
+          onPress={() => props.navigation.navigate("SignIn")}
+        ></Button>
+
+*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -83,7 +90,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    height: 432,
+    height: Platform.OS === "android" ? "75%" : "70%",
+    alignItems: "center",
   },
   slogan: {
     fontFamily: "Cairo-Light",
