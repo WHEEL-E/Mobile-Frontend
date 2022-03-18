@@ -30,7 +30,11 @@ export function SecondaryNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="PatientHome" component={PatientHomeScreen} />
-      <Stack.Screen name="SupervisorHome" component={SupervisorHomeScreen} />
+      <Stack.Screen
+        name="SupervisorHome"
+        component={SupervisorHomeScreen}
+        options={{ headerTransparent: true, title: "" }}
+      />
       <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );

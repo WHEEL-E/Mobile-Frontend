@@ -41,7 +41,10 @@ const MainButton = (props: MainButtonProps) => {
   return (
     <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
       <View style={styles.imageContainer}>
-        <Image source={image.url} style={styles.image} />
+        <Image
+          source={image.url}
+          style={{ ...styles.image, ...image.imageStyle }}
+        />
       </View>
       <Text style={titleStyle}>{title}</Text>
     </TouchCmp>
