@@ -1,6 +1,10 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "types": ["jest"],
+    "module": "commonjs",
+    "jsx": "react-native"
   }
+  // "include": ["./jest-setup.ts"]
 }

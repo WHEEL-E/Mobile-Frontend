@@ -7,15 +7,27 @@ import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import { RootStackParamList } from "./navigationUtils";
-
+import TabsNavigator from "./TabsNavigation";
 const Stack = createStackNavigator<RootStackParamList>();
 
-function MainNavigator() {
+export function MainNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="GetStarted" component={GetStartedScreen} />
+      <Stack.Screen
+        name="GetStarted"
+        component={GetStartedScreen}
+        options={{ headerTransparent: true, title: "" }}
+      />
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
+      <Stack.Screen name="Home" component={TabsNavigator} />
+    </Stack.Navigator>
+  );
+}
+// Not sure it's the best practice but it will do till now
+export function SecondaryNavigator() {
+  return (
+    <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="PatientHome" component={PatientHomeScreen} />
       <Stack.Screen
@@ -27,5 +39,3 @@ function MainNavigator() {
     </Stack.Navigator>
   );
 }
-
-export default MainNavigator;
