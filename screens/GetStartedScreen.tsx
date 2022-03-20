@@ -51,13 +51,7 @@ GetStartedScreen.navigationOptions = {
     borderBottomWidth: 0,
   },
 };
-/*
-        <Button
-          title="Get stated"
-          onPress={() => props.navigation.navigate("SignIn")}
-        ></Button>
 
-*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,

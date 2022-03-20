@@ -1,13 +1,5 @@
 import React from "react";
-import { TouchableOpacityComponent } from "react-native";
-import {
-  StyleSheet,
-  View,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-  Platform,
-  Text,
-} from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 
 interface roundEdgedButtonProps {
   title: string;
