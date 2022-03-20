@@ -141,7 +141,6 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
             "opacity": 1,
           }
         }
-        testID="squarebutton"
       >
         <Text
           style={
@@ -178,7 +177,6 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
             "opacity": 1,
           }
         }
-        testID="squarebutton"
       >
         <Text
           style={
@@ -215,7 +213,6 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
             "opacity": 1,
           }
         }
-        testID="squarebutton"
       >
         <Text
           style={
@@ -252,7 +249,6 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
             "opacity": 1,
           }
         }
-        testID="squarebutton"
       >
         <Text
           style={
@@ -353,7 +349,6 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
             "opacity": 1,
           }
         }
-        testID="squarebutton"
       >
         <Text
           style={
@@ -390,7 +385,6 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
             "opacity": 1,
           }
         }
-        testID="squarebutton"
       >
         <Text
           style={
@@ -425,7 +419,6 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
             "opacity": 1,
           }
         }
-        testID="mainButton"
       >
         <View
           style={

@@ -34,7 +34,7 @@ export const MainButton = (props: MainButtonProps) => {
       onPress={onPress}
     >
       <View style={styles.imageContainer}>
-        <Image source={image.url} style={styles.image} />
+        <Image source={image.url} style={{ ...styles.image }} />
       </View>
       <Text style={titleStyle}>{title}</Text>
     </TouchableOpacity>
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    width: "40%",
-    height: "40%",
+    width: "60%",
+    height: "60%",
     justifyContent: "center",
     alignItems: "center",
   },

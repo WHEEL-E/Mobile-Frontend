@@ -29,7 +29,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               backgroundColor: colors.darkGreen,
             }}
             onPress={() => {}}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/map.png") }}
             icon={{ name: "", size: 24, color: "black" }}
             hasIcon={false}
           />
@@ -79,7 +79,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               backgroundColor: colors.lightPurple,
             }}
             onPress={() => {}}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/health-state.png") }}
             icon={{ name: "", size: 24, color: "black" }}
             hasIcon={false}
           />
