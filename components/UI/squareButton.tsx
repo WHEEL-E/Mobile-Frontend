@@ -16,24 +16,18 @@ interface SquareButtonProps {
   onPress: () => void;
 }
 
-const SquareButton = (props: SquareButtonProps) => {
+export const SquareButton = (props: SquareButtonProps) => {
   const { title, buttonStyle, titleStyle, onPress } = props;
-  let TouchCmp: any = TouchableOpacity;
-
-  if (Platform.OS === "android" && Platform.Version >= 21) {
-    TouchCmp = TouchableNativeFeedback;
-  }
 
   return (
-    <View>
-      <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
-        <Text style={titleStyle}>{title}</Text>
-      </TouchCmp>
-    </View>
+    <TouchableOpacity
+      style={{ ...buttonStyle, ...styles.button }}
+      onPress={onPress}
+    >
+      <Text style={titleStyle}>{title}</Text>
+    </TouchableOpacity>
   );
 };
-
-export default SquareButton;
 
 const styles = StyleSheet.create({
   button: {

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { HomeProps } from "../navigation/navigationUtils";
-import MainButton from "../components/UI/mainButton";
+import { MainButton } from "../components/UI/mainButton";
 import colors from "../constants/colors";
 
 const HomeScreen = (props: HomeProps) => {

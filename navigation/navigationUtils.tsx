@@ -3,10 +3,13 @@ import {
   BottomTabScreenProps,
 } from "@react-navigation/bottom-tabs";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StackNavigationOptions } from "@react-navigation/stack";
 
 export const bottomNavOptions: BottomTabNavigationOptions = {
   headerShown: false,
 };
+
+export const mainStackOptions: StackNavigationOptions = { headerShown: false };
 
 export const homeNavOptions: BottomTabNavigationOptions = { title: "Home" };
 

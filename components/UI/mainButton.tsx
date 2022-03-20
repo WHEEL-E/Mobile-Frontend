@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-  Platform,
-  Text,
-  Image,
-} from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 interface MainButtonProps {
@@ -20,35 +12,34 @@ interface MainButtonProps {
   hasIcon: boolean;
 }
 
-const MainButton = (props: MainButtonProps) => {
+export const MainButton = (props: MainButtonProps) => {
   const { title, buttonStyle, titleStyle, onPress, icon, image } = props;
-  let TouchCmp: any = TouchableOpacity;
-
-  if (Platform.OS === "android" && Platform.Version >= 21) {
-    TouchCmp = TouchableNativeFeedback;
-  }
 
   if (props.hasIcon) {
     return (
-      <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
+      <TouchableOpacity
+        style={{ ...buttonStyle, ...styles.button }}
+        onPress={onPress}
+      >
         <View style={styles.imageContainer}>
           <Ionicons name={icon.name} size={icon.size} color={icon.color} />
         </View>
         <Text style={titleStyle}>{title}</Text>
-      </TouchCmp>
+      </TouchableOpacity>
     );
   }
   return (
-    <TouchCmp style={{ ...buttonStyle, ...styles.button }} onPress={onPress}>
+    <TouchableOpacity
+      style={{ ...buttonStyle, ...styles.button }}
+      onPress={onPress}
+    >
       <View style={styles.imageContainer}>
         <Image source={image.url} style={styles.image} />
       </View>
       <Text style={titleStyle}>{title}</Text>
-    </TouchCmp>
+    </TouchableOpacity>
   );
 };
-
-export default MainButton;
 
 const styles = StyleSheet.create({
   button: {
@@ -56,15 +47,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    flex: 1,
-    width: 43,
-    height: 50,
+    width: "40%",
+    height: "40%",
     justifyContent: "center",
     alignItems: "center",
   },
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "stretch",
+    resizeMode: "center",
   },
 });
