@@ -22,6 +22,7 @@ export type RootStackParamList = {
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
+  AssociatedPatients: undefined;
 };
 
 export type BottomTabParamList = {
@@ -56,6 +57,10 @@ export type SignInProps = NativeStackScreenProps<RootStackParamList, "SignIn">;
 
 export type SignUpProps = NativeStackScreenProps<RootStackParamList, "SignUp">;
 
+export type AssociatedPatientsProps = NativeStackScreenProps<
+  RootStackParamList,
+  "AssociatedPatients"
+>;
 export type NewsProps = BottomTabScreenProps<BottomTabParamList, "News">;
 
 export type MainProps = BottomTabScreenProps<BottomTabParamList, "Main">;
