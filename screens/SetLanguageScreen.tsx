@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import SquareButton from "../components/UI/squareButton";
+import RoundEdgedButton from "../components/UI/RoundEdgedButton";
 import colors from "../constants/colors";
 import i18n from "../i18n";
 import { ChangeLangugageProps } from "../navigation/navigationUtils";
@@ -13,13 +13,13 @@ const SetLanguageScreen = (props: ChangeLangugageProps) => {
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <SquareButton
+      <RoundEdgedButton
         title="استخدم اللغة العربية"
         onPress={() => setLanguage("ar")}
         buttonStyle={styles.button}
         titleStyle={styles.buttonTitle}
       />
-      <SquareButton
+      <RoundEdgedButton
         title="use English"
         onPress={() => setLanguage("en")}
         buttonStyle={styles.button}
@@ -43,10 +43,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 50,
     marginVertical: 10,
     height: 50,
+    borderRadius: 30,
   },
   buttonTitle: {
     fontFamily: "Cairo-Regular",
-    color: "black",
+    color: "white",
     fontSize: 20,
   },
   title: {
