@@ -61,6 +61,15 @@ const HomeScreen = (props: HomeProps) => {
           image={{ url: require("../assets/hospital.png") }}
           hasIcon={false}
         />
+        <MainButton
+          title="Change language"
+          buttonStyle={styles.changeLanguageButton}
+          titleStyle={styles.changeLanguageText}
+          onPress={() => props.navigation.navigate("ChangeLanguage")}
+          icon={{ name: "globe-outline", size: 40, color: "black" }}
+          image={{ url: require("../assets/hospital.png") }}
+          hasIcon={true}
+        />
       </View>
     </View>
   );
@@ -80,6 +89,24 @@ const styles = StyleSheet.create({
   buttons: {
     margin: 10,
     width: 300,
+  },
+  changeLanguageButton: {
+    backgroundColor: colors.lightGreen,
+    borderWidth: 2,
+    borderColor: "white",
+    borderRadius: 30,
+    justifyContent: "center",
+    padding: 15,
+    height: 150,
+    width: 200,
+    marginHorizontal: 50,
+    marginVertical: 10,
+  },
+  changeLanguageText: {
+    fontFamily: "Cairo-Bold",
+    color: "white",
+    fontSize: 20,
+    textAlign: "center",
   },
 });
 
