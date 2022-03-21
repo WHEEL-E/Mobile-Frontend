@@ -3,11 +3,13 @@ import GetStartedScreen from "../screens/GetStartedScreen";
 import HomeScreen from "../screens/HomeScreen";
 import PatientHomeScreen from "../screens/PatientHomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import SetLanguageScreen from "../screens/SetLanguageScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import { RootStackParamList } from "./navigationUtils";
 import TabsNavigator from "./TabsNavigation";
+
 const Stack = createStackNavigator<RootStackParamList>();
 
 export function MainNavigator() {
@@ -21,6 +23,7 @@ export function MainNavigator() {
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Home" component={TabsNavigator} />
+      <Stack.Screen name="ChangeLanguage" component={SetLanguageScreen} />
     </Stack.Navigator>
   );
 }
