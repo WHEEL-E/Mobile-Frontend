@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SupervisorHomeProps } from "../navigation/navigationUtils";
-import MainButton from "../components/UI/mainButton";
+import { MainButton } from "../components/UI/mainButton";
 import colors from "../constants/colors";
 import RoundEdgedButton from "../components/UI/RoundEdgedButton";
 

@@ -7,14 +7,14 @@ import SetLanguageScreen from "../screens/SetLanguageScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
-import { RootStackParamList } from "./navigationUtils";
+import { mainStackOptions, RootStackParamList } from "./navigationUtils";
 import TabsNavigator from "./TabsNavigation";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 export function MainNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={mainStackOptions}>
       <Stack.Screen
         name="GetStarted"
         component={GetStartedScreen}
@@ -30,7 +30,7 @@ export function MainNavigator() {
 // Not sure it's the best practice but it will do till now
 export function SecondaryNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={mainStackOptions}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="PatientHome" component={PatientHomeScreen} />
       <Stack.Screen
