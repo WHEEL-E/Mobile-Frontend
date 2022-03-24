@@ -18,7 +18,7 @@ export const MainButton = (props: MainButtonProps) => {
   if (props.hasIcon) {
     return (
       <TouchableOpacity
-        style={{ ...buttonStyle, ...styles.button }}
+        style={{ ...styles.button, ...buttonStyle }}
         onPress={onPress}
       >
         <View style={styles.imageContainer}>
@@ -30,7 +30,7 @@ export const MainButton = (props: MainButtonProps) => {
   }
   return (
     <TouchableOpacity
-      style={{ ...buttonStyle, ...styles.button }}
+      style={{ ...styles.button, ...buttonStyle }}
       onPress={onPress}
     >
       <View style={styles.imageContainer}>
