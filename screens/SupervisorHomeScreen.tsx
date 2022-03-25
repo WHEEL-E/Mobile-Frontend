@@ -23,10 +23,10 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
       <View style={styles.buttons}>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title="My Profile"
+            title="Reminders"
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
-            onPress={() => props.navigation.navigate("Profile")}
+            onPress={() => props.navigation.navigate("SupervisorReminders")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
             image={{ url: require("../assets/hospital.png"), imageStyle: {} }}
             iconOrImage={true}

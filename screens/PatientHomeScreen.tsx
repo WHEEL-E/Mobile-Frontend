@@ -99,7 +99,9 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.smallButton,
               backgroundColor: colors.lightGreen,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              props.navigation.navigate("PatientReminders");
+            }}
           />
           <MainButton
             title="My profile"

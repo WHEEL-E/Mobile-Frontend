@@ -23,6 +23,8 @@ export type RootStackParamList = {
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
   AssociatedPatients: undefined;
+  PatientReminders: undefined;
+  SupervisorReminders: undefined;
 };
 
 export type BottomTabParamList = {
@@ -61,6 +63,17 @@ export type AssociatedPatientsProps = NativeStackScreenProps<
   RootStackParamList,
   "AssociatedPatients"
 >;
+
+export type PatientRemindersProps = NativeStackScreenProps<
+  RootStackParamList,
+  "PatientReminders"
+>;
+
+export type SupervisorRemindersProps = NativeStackScreenProps<
+  RootStackParamList,
+  "SupervisorReminders"
+>;
+
 export type NewsProps = BottomTabScreenProps<BottomTabParamList, "News">;
 
 export type MainProps = BottomTabScreenProps<BottomTabParamList, "Main">;
