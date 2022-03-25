@@ -7,5 +7,12 @@ export default {
     healthInfo: "السجلات الصحية",
     freeDrive: "القيادة بحرية",
     freeDriveText: "استخدم الأسهم للحركة في أي اتجاه",
+    WelcomeBack: "مرحبًا بك",
+    emailAddress: "البريد الإلكتروني",
+    password: "رمز الدخول",
+    logIn: "تسجيل الدخول",
+    forgotPassword: "نسيت رمز الدخول؟",
+    notMember: "لا تمتلك حساب؟",
+    signUp: "أنشيٍ حساب",
   },
 };
