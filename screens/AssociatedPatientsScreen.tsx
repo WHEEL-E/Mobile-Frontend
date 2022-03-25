@@ -35,13 +35,13 @@ const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
         <View style={styles.innerContainer}>
           <Text style={styles.title}>Associated Patients</Text>
           <AssociatedPatientCard
-            onPress={() => props.navigation.navigate("SignIn")}
+            onPress={() => props.navigation.navigate("SupervisedPatient")}
             patientName={patientName}
             backgroundColor={colors.darkGreen}
             patientAddress={location}
           />
           <AssociatedPatientCard
-            onPress={() => props.navigation.navigate("SignIn")}
+            onPress={() => props.navigation.navigate("SupervisedPatient")}
             patientName={patientName}
             backgroundColor={colors.lightGray}
             patientAddress={location}
