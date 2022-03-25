@@ -7,6 +7,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import SetLanguageScreen from "../screens/SetLanguageScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
+import SupervisedPatientScreen from "../screens/SupervisedPatientScreen";
 import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import { mainStackOptions, RootStackParamList } from "./navigationUtils";
 import TabsNavigator from "./TabsNavigation";
@@ -44,6 +45,10 @@ export function SecondaryNavigator() {
         component={AssociatedPatientsScreen}
       />
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen
+        name="SupervisedPatient"
+        component={SupervisedPatientScreen}
+      />
     </Stack.Navigator>
   );
 }
