@@ -71,10 +71,6 @@ const HomeScreen = (props: HomeProps) => {
             image={{ url: require("../assets/hospital.png") }}
             hasIcon={true}
           />
-          <Button
-            title="GO TO Associated Patients"
-            onPress={() => props.navigation.navigate("AssociatedPatients")}
-          />
         </ScrollView>
       </View>
     </View>

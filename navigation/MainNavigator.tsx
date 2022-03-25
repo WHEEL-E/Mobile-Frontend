@@ -43,7 +43,6 @@ export function SecondaryNavigator() {
       <Stack.Screen
         name="AssociatedPatients"
         component={AssociatedPatientsScreen}
-        options={{ gestureEnabled: false }}
       />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="FreeDrive" component={FreeDriveScreen} />

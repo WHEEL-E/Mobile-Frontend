@@ -11,6 +11,7 @@ import {
 import { AssociatedPatientsProps } from "../navigation/navigationUtils";
 import AssociatedPatientCard from "../components/associatedPatientCard";
 import colors from "../constants/colors";
+import { BackButton } from "../components/UI/BackButton";
 import { Ionicons } from "@expo/vector-icons";
 
 const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
@@ -24,14 +25,13 @@ const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
         resizeMode="cover"
         style={styles.content}
       >
-        <TouchableOpacity style={styles.backButton}>
-          <Ionicons
-            name="arrow-back"
+        <View style={styles.backButton}>
+          <BackButton
             color="#000"
             size={35}
             onPress={() => props.navigation.goBack()}
           />
-        </TouchableOpacity>
+        </View>
         <View style={styles.innerContainer}>
           <Text style={styles.title}>Associated Patients</Text>
           <AssociatedPatientCard
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+    padding: 5,
   },
   title: {
     fontSize: 27,
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
   backButton: {
     marginTop: 20,
     justifyContent: "space-around",
-    alignItems: "flex-start",
     marginLeft: 20,
   },
   innerContainer: {
