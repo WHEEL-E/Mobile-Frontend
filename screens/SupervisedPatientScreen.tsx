@@ -1,9 +1,18 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  Dimensions,
+} from "react-native";
+import { BackButton } from "../components/UI/BackButton";
 import { MainButton } from "../components/UI/mainButton";
 import { SquareButton } from "../components/UI/squareButton";
 import colors from "../constants/colors";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../constants/dimentions";
 import fonts from "../constants/fonts";
 import { SupervisedPatientProps } from "../navigation/navigationUtils";
 
@@ -15,6 +24,13 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
         source={require("../assets/Union.png")}
         style={styles.backgroundImage}
       >
+        <View style={styles.backButton}>
+          <BackButton
+            color="#000"
+            size={35}
+            onPress={() => props.navigation.goBack()}
+          />
+        </View>
         <Image
           style={styles.logo}
           source={require("../assets/logo-b-app.png")}
@@ -76,9 +92,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    resizeMode: "cover",
+    resizeMode: "stretch",
     paddingVertical: "10%",
     paddingHorizontal: "5%",
+  },
+  backButton: {
+    position: "absolute",
+    top: "7%",
+    left: "8%",
   },
   imageContainer: {
     height: 100,
@@ -97,6 +118,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 20,
+    width: "100%",
+    height: DEVICE_HEIGHT * 0.1,
   },
   logo: {
     height: 40,
@@ -106,7 +129,7 @@ const styles = StyleSheet.create({
   },
   patientName: {
     fontFamily: fonts.CairoBold,
-    fontSize: 20,
+    fontSize: DEVICE_HEIGHT * 0.02,
   },
   buttons: {
     flex: 1,
@@ -148,7 +171,7 @@ const styles = StyleSheet.create({
   },
   buttonsTitle: {
     fontFamily: fonts.CairoBold,
-    fontSize: 20,
+    fontSize: DEVICE_HEIGHT * 0.02,
     color: "white",
   },
 });

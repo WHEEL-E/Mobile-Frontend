@@ -5,5 +5,7 @@ export default {
     reminders: "Reminders",
     profile: "Profile",
     healthInfo: "Health Info",
+    freeDrive: "Free Drive",
+    freeDriveText: "Use the cursor to move the chair around.",
   },
 };

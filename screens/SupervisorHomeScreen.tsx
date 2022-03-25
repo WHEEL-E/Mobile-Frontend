@@ -47,7 +47,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title="Patients Status"
             buttonStyle={styles.statusButtonStyle}
             titleStyle={styles.statusTitleStyle}
-            onPress={() => props.navigation.navigate("SupervisedPatient")}
+            onPress={() => props.navigation.navigate("AssociatedPatients")}
             icon={{ name: "", size: 20, color: "white" }}
             image={{
               url: require("../assets/health-record.png"),

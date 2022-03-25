@@ -1,4 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import AssociatedPatientsScreen from "../screens/AssociatedPatientsScreen";
+import FreeDriveScreen from "../screens/FreeDriveScreen";
 import GetStartedScreen from "../screens/GetStartedScreen";
 import HomeScreen from "../screens/HomeScreen";
 import PatientHomeScreen from "../screens/PatientHomeScreen";
@@ -39,11 +41,16 @@ export function SecondaryNavigator() {
         component={SupervisorHomeScreen}
         options={{ headerTransparent: true, title: "" }}
       />
+      <Stack.Screen
+        name="AssociatedPatients"
+        component={AssociatedPatientsScreen}
+      />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen
         name="SupervisedPatient"
         component={SupervisedPatientScreen}
       />
+      <Stack.Screen name="FreeDrive" component={FreeDriveScreen} />
     </Stack.Navigator>
   );
 }

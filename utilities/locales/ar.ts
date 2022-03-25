@@ -5,5 +5,7 @@ export default {
     reminders: "ملاحظات الطبيب",
     profile: "الملف الشخضي",
     healthInfo: "السجلات الصحية",
+    freeDrive: "القيادة بحرية",
+    freeDriveText: "استخدم الأسهم للحركة في أي اتجاه",
   },
 };
