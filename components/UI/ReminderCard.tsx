@@ -1,19 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  TextInput,
-  View,
-  Button,
-  Text,
-  TouchableOpacity,
-  Modal,
-  Alert,
-} from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import colors from "../../constants/colors";
-import { SquareButton } from "../../components/UI/squareButton";
-import InputField from "./InputField";
-
+import EditReminderModal from "../UI/EditReminderModal";
 interface IReminderCardProps {
   identifier: string;
   sender: string;
@@ -27,6 +16,8 @@ interface IReminderCardProps {
     newReminderBody: string
   ) => void;
   enableEdit?: boolean;
+  modalVisible: boolean;
+  setModalVisible: (modalVisible: boolean) => void;
 }
 
 const ReminderCard = (props: IReminderCardProps) => {
@@ -39,9 +30,10 @@ const ReminderCard = (props: IReminderCardProps) => {
     onDelete,
     enableEdit,
     onSave,
+    modalVisible,
+    setModalVisible,
   } = props;
 
-  const [modalVisible, setModalVisible] = useState(false);
   const [reminderTitleEdit, setReminderTitle] = useState(reminderTitle);
   const [reminderBodyEdit, setReminderBody] = useState(reminderBody);
 
@@ -55,53 +47,16 @@ const ReminderCard = (props: IReminderCardProps) => {
 
   return (
     <View style={{ ...styles.container, backgroundColor }}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>Edit Reminder</Text>
-            <InputField
-              fieldStyle={{ marginBottom: 10, width: 250 }}
-              value={reminderTitleEdit}
-              onChangeText={editTitleHandler}
-              autoComplete="off"
-              placeHolder=""
-            />
-            <InputField
-              fieldStyle={{ marginBottom: 10, width: 250 }}
-              value={reminderBodyEdit}
-              onChangeText={editBodyHandler}
-              autoComplete="off"
-              placeHolder=""
-            />
-            <View style={styles.buttonsList}>
-              <SquareButton
-                title="Dismess"
-                titleStyle={{ color: "#fff" }}
-                onPress={() => setModalVisible(!modalVisible)}
-                buttonStyle={styles.dismessButton}
-              />
-              <SquareButton
-                title="Save"
-                titleStyle={{ color: "#fff" }}
-                onPress={onSave.bind(
-                  this,
-                  identifier,
-                  reminderTitleEdit,
-                  reminderBodyEdit
-                )}
-                buttonStyle={styles.saveButton}
-              />
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <EditReminderModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        identifier={identifier}
+        reminderTitleEdit={reminderTitleEdit}
+        editTitleHandler={editTitleHandler}
+        reminderBodyEdit={reminderBodyEdit}
+        editBodyHandler={editBodyHandler}
+        onSave={onSave}
+      />
       <TouchableOpacity onPress={onDelete} style={styles.close}>
         <Ionicons name="ios-close" color="#fff" size={25} />
       </TouchableOpacity>
@@ -164,55 +119,11 @@ const styles = StyleSheet.create({
   whiteTitle: { fontFamily: "Cairo-Bold", fontSize: 18, color: "#fff" },
   body: { fontFamily: "Cairo-Regular", fontSize: 15, color: colors.darkGreen },
   whiteBody: { fontFamily: "Cairo-Regular", fontSize: 15, color: "#fff" },
-  modalTitle: {
-    fontFamily: "Cairo-SemiBold",
-    fontSize: 18,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  content: {
-    flexDirection: "column",
-    justifyContent: "center",
-  },
   close: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
   edit: {
     marginVertical: 5,
-  },
-  buttonsList: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 25,
-  },
-  dismessButton: {
-    backgroundColor: colors.darkPink,
-    width: 100,
-    height: 50,
-  },
-  saveButton: {
-    backgroundColor: colors.lightGreen,
-    width: 100,
-    height: 50,
   },
 });

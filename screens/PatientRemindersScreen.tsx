@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { PatientRemindersProps } from "../navigation/navigationUtils";
 import { BackButton } from "../components/UI/BackButton";
@@ -6,6 +6,8 @@ import ReminderCard from "../components/UI/ReminderCard";
 import colors from "../constants/colors";
 
 const PatientRemindersScreen = (props: PatientRemindersProps) => {
+  // Always false here
+  const [modalVisible, setModalVisible] = useState(false);
   // gotten dynamically from the DB
   const [reminders, setReminders] = useState([
     {
@@ -63,6 +65,8 @@ const PatientRemindersScreen = (props: PatientRemindersProps) => {
                 onDelete={deleteReminderHandler.bind(this, itemData.item.id)}
                 enableEdit={false}
                 onSave={() => {}}
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
               />
             );
           }}

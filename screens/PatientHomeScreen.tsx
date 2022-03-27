@@ -107,7 +107,9 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             title="My profile"
             titleStyle={styles.profileTitle}
             buttonStyle={styles.myProfileButton}
-            onPress={() => {}}
+            onPress={() => {
+              props.navigation.navigate("Profile");
+            }}
             icon={{
               name: "person-outline",
               size: 70,

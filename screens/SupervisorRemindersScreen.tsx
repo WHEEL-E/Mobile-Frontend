@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, FlatList, Modal } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Modal,
+  ImageBackground,
+} from "react-native";
 import { SupervisorRemindersProps } from "../navigation/navigationUtils";
 import { BackButton } from "../components/UI/BackButton";
 import ReminderCard from "../components/UI/ReminderCard";
 import colors from "../constants/colors";
 import { SquareButton } from "../components/UI/squareButton";
-import InputField from "../components/UI/InputField";
+import AddNewReminderModal from "../components/UI/AddNewReminderModal";
+import { Reminder } from "../types/reminder";
 
 const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
   // gotten dynamically from the DB
@@ -28,6 +36,7 @@ const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
     },
   ]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
   const [reminderTitleEdit, setReminderTitle] = useState("");
   const [reminderBodyEdit, setReminderBody] = useState("");
 
@@ -45,7 +54,7 @@ const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
     newReminderTitle: string,
     newReminderBody: string
   ) => {
-    let newReminders = [...reminders];
+    const newReminders = [...reminders];
     let reminder = newReminders.filter(
       (reminder) => reminder.id === reminderId
     );
@@ -54,7 +63,7 @@ const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
     reminder[0].reminderBody = newReminderBody;
 
     setReminders(newReminders);
-    return setModalVisible(false);
+    return setEditModalVisible(!editModalVisible);
   };
 
   // reRenders the UI and hit the db to add a new reminder
@@ -63,13 +72,13 @@ const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
     reminderBodyEdit: string
   ) => {
     const newId = new Date().toString();
-    setReminders((currentReminders: any) => {
+    setReminders((currentReminders: Array<Reminder>) => {
       return [
         ...currentReminders,
         {
           id: newId,
-          supervisorID: "TheSupervisor",
-          patientID: "The patient ID",
+          supervisorId: "TheSupervisor",
+          patientId: "The patient ID",
           reminderTitle: reminderTitleEdit,
           reminderBody: reminderBodyEdit,
         },
@@ -89,90 +98,60 @@ const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
 
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>
-              Type any information you need to remind your patient with
-            </Text>
-            <InputField
-              placeHolder="Enter Reminder Title"
-              value={reminderTitleEdit}
-              onChangeText={editTitleHandler}
-              fieldStyle={{ width: "100%", marginBottom: 10 }}
-              autoComplete="off"
-            />
-            <InputField
-              placeHolder="Enter Reminder Description"
-              value={reminderBodyEdit}
-              onChangeText={editBodyHandler}
-              fieldStyle={{ width: "100%", height: 100 }}
-              autoComplete="off"
-            />
-            <View style={styles.buttonsList}>
-              <SquareButton
-                title="cancel"
-                titleStyle={{ color: "#fff" }}
-                onPress={() => setModalVisible(!modalVisible)}
-                buttonStyle={styles.cancelButton}
-              />
-              <SquareButton
-                title="send"
-                titleStyle={{ color: "#fff" }}
-                onPress={() =>
-                  addNewReminderHandler(reminderTitleEdit, reminderBodyEdit)
-                }
-                buttonStyle={styles.sendButton}
-              />
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <View style={styles.backButton}>
-        <BackButton
-          color="#000"
-          size={35}
-          onPress={() => props.navigation.goBack()}
-        />
-      </View>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Reminders</Text>
-      </View>
-
-      <FlatList
-        contentContainerStyle={styles.listContainer}
-        data={reminders}
-        keyExtractor={(itemData) => itemData.id}
-        renderItem={(itemData) => {
-          return (
-            <ReminderCard
-              identifier={itemData.item.id}
-              sender={itemData.item.supervisorId}
-              reminderTitle={itemData.item.reminderTitle}
-              reminderBody={itemData.item.reminderBody}
-              backgroundColor={colors.darkGreen}
-              onDelete={deleteReminderHandler.bind(this, itemData.item.id)}
-              enableEdit={true}
-              onSave={editReminderHandler}
-            />
-          );
-        }}
+      <AddNewReminderModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        reminderTitleEdit={reminderTitleEdit}
+        reminderBodyEdit={reminderBodyEdit}
+        editTitleHandler={editTitleHandler}
+        editBodyHandler={editBodyHandler}
+        addNewReminderHandler={addNewReminderHandler}
       />
-      <View style={styles.buttonContainer}>
-        <SquareButton
-          title="Add a reminder"
-          buttonStyle={styles.buttonStyle}
-          titleStyle={styles.titleStyle}
-          onPress={() => setModalVisible(true)}
+      <ImageBackground
+        source={require("../assets/cloud-background.png")}
+        style={styles.background}
+      >
+        <View style={styles.backButton}>
+          <BackButton
+            color="#000"
+            size={35}
+            onPress={() => props.navigation.goBack()}
+          />
+        </View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Reminders</Text>
+        </View>
+
+        <FlatList
+          contentContainerStyle={styles.listContainer}
+          data={reminders}
+          keyExtractor={(itemData) => itemData.id}
+          renderItem={(itemData) => {
+            return (
+              <ReminderCard
+                identifier={itemData.item.id}
+                sender={itemData.item.supervisorId}
+                reminderTitle={itemData.item.reminderTitle}
+                reminderBody={itemData.item.reminderBody}
+                backgroundColor={colors.darkGreen}
+                onDelete={deleteReminderHandler.bind(this, itemData.item.id)}
+                enableEdit={true}
+                onSave={editReminderHandler}
+                modalVisible={editModalVisible}
+                setModalVisible={setEditModalVisible}
+              />
+            );
+          }}
         />
-      </View>
+        <View style={styles.buttonContainer}>
+          <SquareButton
+            title="Add a reminder"
+            buttonStyle={styles.buttonStyle}
+            titleStyle={styles.titleStyle}
+            onPress={() => setModalVisible(true)}
+          />
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -193,6 +172,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     alignItems: "center",
   },
+  background: { width: "100%", height: "100%" },
   backButton: {
     marginTop: 20,
     marginLeft: 20,
@@ -215,50 +195,6 @@ const styles = StyleSheet.create({
     fontFamily: "Cairo-Bold",
     color: "white",
     fontSize: 20,
-  },
-  modalTitle: {
-    fontFamily: "Cairo-SemiBold",
-    fontSize: 18,
-    lineHeight: 22,
-    textAlign: "center",
-    marginBottom: 15,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    width: 320,
-  },
-  cancelButton: {
-    backgroundColor: colors.darkPink,
-    width: 100,
-    height: 50,
-  },
-  sendButton: {
-    backgroundColor: colors.lightGreen,
-    width: 100,
-    height: 50,
-  },
-  buttonsList: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 25,
   },
   buttonContainer: {
     alignItems: "center",
