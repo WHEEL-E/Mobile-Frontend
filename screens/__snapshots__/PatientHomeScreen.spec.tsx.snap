@@ -88,9 +88,9 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "height": "40%",
+              "height": "60%",
               "justifyContent": "center",
-              "width": "40%",
+              "width": "60%",
             }
           }
         >
@@ -296,9 +296,9 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "height": "40%",
+              "height": "60%",
               "justifyContent": "center",
-              "width": "40%",
+              "width": "60%",
             }
           }
         >
@@ -424,9 +424,9 @@ exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "height": "40%",
+              "height": "60%",
               "justifyContent": "center",
-              "width": "40%",
+              "width": "60%",
             }
           }
         >

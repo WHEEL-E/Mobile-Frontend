@@ -1,10 +1,9 @@
 import React from "react";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import colors from "../../constants/colors";
-
-const SCREEN_WIDTH = Dimensions.get("screen").width;
+import { DEVICE_WIDTH } from "../../constants/dimentions";
 
 const DriveWheel = () => {
   return (
@@ -56,9 +55,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   background: {
-    borderRadius: SCREEN_WIDTH * 0.45,
-    width: SCREEN_WIDTH * 0.9,
-    height: SCREEN_WIDTH * 0.9,
+    borderRadius: DEVICE_WIDTH * 0.45,
+    width: DEVICE_WIDTH * 0.9,
+    height: DEVICE_WIDTH * 0.9,
     backgroundColor: colors.lightPurple,
     justifyContent: "center",
     alignItems: "center",
@@ -66,37 +65,37 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   linearGradient: {
-    borderRadius: SCREEN_WIDTH * 0.4,
-    width: SCREEN_WIDTH * 0.8,
-    height: SCREEN_WIDTH * 0.8,
+    borderRadius: DEVICE_WIDTH * 0.4,
+    width: DEVICE_WIDTH * 0.8,
+    height: DEVICE_WIDTH * 0.8,
     justifyContent: "center",
     alignItems: "center",
   },
   secondLinearGradient: {
-    borderRadius: SCREEN_WIDTH * 0.3,
-    width: SCREEN_WIDTH * 0.6,
-    height: SCREEN_WIDTH * 0.6,
+    borderRadius: DEVICE_WIDTH * 0.3,
+    width: DEVICE_WIDTH * 0.6,
+    height: DEVICE_WIDTH * 0.6,
     justifyContent: "center",
     alignItems: "center",
   },
   ThirdLinearGradient: {
-    borderRadius: SCREEN_WIDTH * 0.2,
-    width: SCREEN_WIDTH * 0.4,
-    height: SCREEN_WIDTH * 0.4,
+    borderRadius: DEVICE_WIDTH * 0.2,
+    width: DEVICE_WIDTH * 0.4,
+    height: DEVICE_WIDTH * 0.4,
     justifyContent: "center",
     alignItems: "center",
   },
   fourthLinearGradient: {
-    borderRadius: SCREEN_WIDTH * 0.1,
-    width: SCREEN_WIDTH * 0.2,
-    height: SCREEN_WIDTH * 0.2,
+    borderRadius: DEVICE_WIDTH * 0.1,
+    width: DEVICE_WIDTH * 0.2,
+    height: DEVICE_WIDTH * 0.2,
     justifyContent: "center",
     alignItems: "center",
   },
   whiteDot: {
-    borderRadius: SCREEN_WIDTH * 0.0125,
-    width: SCREEN_WIDTH * 0.025,
-    height: SCREEN_WIDTH * 0.025,
+    borderRadius: DEVICE_WIDTH * 0.0125,
+    width: DEVICE_WIDTH * 0.025,
+    height: DEVICE_WIDTH * 0.025,
     backgroundColor: "white",
   },
 });
