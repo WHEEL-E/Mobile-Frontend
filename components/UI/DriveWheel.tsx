@@ -1,6 +1,7 @@
+import React from "react";
+import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import colors from "../../constants/colors";
 
 const SCREEN_WIDTH = Dimensions.get("screen").width;

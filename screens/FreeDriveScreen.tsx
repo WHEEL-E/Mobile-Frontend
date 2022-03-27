@@ -16,12 +16,15 @@ const FreeDriveScreen = (props: any) => {
   return (
     <View style={styles.container}>
       <ImageBackground
+        testID="backgroundImage"
         source={require("../assets/Vector.png")}
         style={styles.backgroundImage}
       >
         <Text style={styles.title}>{t("freeDrive")}</Text>
         <DriveWheel />
-        <Text style={styles.text}>{t("freeDriveText")}</Text>
+        <Text testID="instructionText" style={styles.text}>
+          {t("freeDriveText")}
+        </Text>
       </ImageBackground>
     </View>
   );

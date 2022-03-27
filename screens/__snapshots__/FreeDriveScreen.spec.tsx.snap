@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`patienthomeScreen makes sure screen matches snapShot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "white",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": "10%",
+        "resizeMode": "cover",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": undefined,
+            "width": undefined,
+          },
+          undefined,
+        ]
+      }
+      testID="backgroundImage"
+    />
+    <Text
+      style={
+        Object {
+          "fontFamily": "Cairo-Bold",
+          "fontSize": 35,
+        }
+      }
+    >
+      freeDrive
+    </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#E7D9EA",
+          "borderRadius": 337.5,
+          "height": 675,
+          "justifyContent": "center",
+          "marginBottom": 30,
+          "marginTop": 50,
+          "width": 675,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoLinearGradient
+        proxiedProperties={
+          Object {
+            "colors": Array [
+              4278190080,
+              4282992969,
+              4278190080,
+            ],
+            "endPoint": undefined,
+            "locations": undefined,
+            "startPoint": undefined,
+          }
+        }
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 300,
+            "height": 600,
+            "justifyContent": "center",
+            "width": 600,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignSelf": "center",
+              "opacity": 1,
+            }
+          }
+        >
+          <Text />
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={false}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignSelf": "center",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text />
+          </View>
+          <ViewManagerAdapter_ExpoLinearGradient
+            proxiedProperties={
+              Object {
+                "colors": Array [
+                  4278190080,
+                  4278190080,
+                  4287927444,
+                ],
+                "endPoint": undefined,
+                "locations": undefined,
+                "startPoint": undefined,
+              }
+            }
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": 225,
+                "height": 450,
+                "justifyContent": "center",
+                "width": 450,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              proxiedProperties={
+                Object {
+                  "colors": Array [
+                    4287927444,
+                    4278190080,
+                    4278190080,
+                  ],
+                  "endPoint": undefined,
+                  "locations": undefined,
+                  "startPoint": undefined,
+                }
+              }
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 150,
+                  "height": 300,
+                  "justifyContent": "center",
+                  "width": 300,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4287927444,
+                      4278190080,
+                      4278190080,
+                      4287927444,
+                    ],
+                    "endPoint": undefined,
+                    "locations": undefined,
+                    "startPoint": undefined,
+                  }
+                }
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 75,
+                    "height": 150,
+                    "justifyContent": "center",
+                    "width": 150,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "white",
+                      "borderRadius": 9.375,
+                      "height": 18.75,
+                      "width": 18.75,
+                    }
+                  }
+                />
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            accessible={true}
+            focusable={false}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignSelf": "center",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+        <View
+          accessible={true}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignSelf": "center",
+              "opacity": 1,
+            }
+          }
+        >
+          <Text />
+        </View>
+      </ViewManagerAdapter_ExpoLinearGradient>
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#11698E",
+          "fontFamily": "Cairo-Regular",
+          "lineHeight": 20,
+        }
+      }
+      testID="instructionText"
+    >
+      freeDriveText
+    </Text>
+  </View>
+</View>
+`;
