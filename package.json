@@ -26,6 +26,7 @@
         "i18next-xhr-backend": "^2.0.1",
         "link": "^0.1.5",
         "next-i18next": "^10.5.0",
+        "npx": "^10.2.2",
         "react": "17.0.1",
         "react-dom": "17.0.1",
         "react-i18next": "^10.13.2",
