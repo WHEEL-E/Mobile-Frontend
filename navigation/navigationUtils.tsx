@@ -58,17 +58,15 @@ export type SupervisorHomeProps = NativeStackScreenProps<
 export type SignInProps = NativeStackScreenProps<RootStackParamList, "SignIn">;
 
 export type SignUpProps = NativeStackScreenProps<RootStackParamList, "SignUp">;
+export type freeDriveProps = NativeStackScreenProps<
+  RootStackParamList,
+  "FreeDrive"
+>;
 
 export type AssociatedPatientsProps = NativeStackScreenProps<
   RootStackParamList,
   "AssociatedPatients"
 >;
-
-export type FreeDriveProps = NativeStackScreenProps<
-  RootStackParamList,
-  "FreeDrive"
->;
-
 export type NewsProps = BottomTabScreenProps<BottomTabParamList, "News">;
 
 export type MainProps = BottomTabScreenProps<BottomTabParamList, "Main">;
