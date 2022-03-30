@@ -5,5 +5,10 @@ export default {
     reminders: "Reminders",
     profile: "Profile",
     healthInfo: "Health Info",
+    newPatient: "Add New Patient",
+    patientsStatus: "Patients Status",
+    help: "Help",
+    wishGoodDay: "We wish you a good day!",
+    morning: "Good Morning, ",
   },
 };
