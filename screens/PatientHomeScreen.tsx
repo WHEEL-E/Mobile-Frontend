@@ -7,8 +7,6 @@ import { SquareButton } from "../components/UI/squareButton";
 import { PatientHomeProps } from "../navigation/navigationUtils";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
-  const { navigation } = props;
-
   return (
     <View style={styles.container}>
       <View>
@@ -51,9 +49,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.smallButton,
               backgroundColor: colors.darkGreen,
             }}
-            onPress={() => {
-              navigation.navigate("FreeDrive");
-            }}
+            onPress={() => {}}
           />
           <SquareButton
             title="Add a supervisor"
