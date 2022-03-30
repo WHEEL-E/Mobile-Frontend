@@ -34,11 +34,7 @@ const SignInScreen = (props: SignInProps) => {
         <Text style={styles.title}>{t("WelcomeBack")}</Text>
       </ImageBackground>
       <View style={styles.backButton}>
-        <BackButton
-          color="#000"
-          size={35}
-          onPress={() => props.navigation.goBack()}
-        />
+        <BackButton onPress={() => props.navigation.goBack()} />
       </View>
       <View style={styles.buttons}>
         <InputField

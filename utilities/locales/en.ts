@@ -14,5 +14,10 @@ export default {
     forgotPassword: "Forgot Password?",
     notMember: "Not a member?",
     signUp: "sign up",
+    newPatient: "Add New Patient",
+    patientsStatus: "Patients Status",
+    help: "Help",
+    wishGoodDay: "We wish you a good day!",
+    morning: "Good Morning, ",
   },
 };

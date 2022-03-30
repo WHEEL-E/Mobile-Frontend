@@ -3,8 +3,10 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SupervisorHomeProps } from "../navigation/navigationUtils";
 import { MainButton } from "../components/UI/mainButton";
 import colors from "../constants/colors";
+import { useTranslation } from "react-i18next";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
+  const { t } = useTranslation();
   // there's a dynamic rendering for the name of the user when we get it from the db
   const userName = "Alaa";
   return (
@@ -15,14 +17,16 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
         style={styles.coverImage}
       />
       <View>
-        <Text style={styles.title}>Good Morning, {userName}</Text>
-        <Text style={styles.normalText}>We wish you a good day!</Text>
+        <Text style={styles.title}>
+          {t("morning")} {userName}
+        </Text>
+        <Text style={styles.normalText}>{t("wishGoodDay")}</Text>
       </View>
 
       <View style={styles.buttons}>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title="My Profile"
+            title={t("profile")}
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
             onPress={() => props.navigation.navigate("Profile")}
@@ -31,7 +35,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             hasIcon={true}
           />
           <MainButton
-            title="New Patient"
+            title={t("newPatient")}
             buttonStyle={styles.patientButtonStyle}
             titleStyle={styles.patientTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
@@ -44,7 +48,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
         </View>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title="Patients Status"
+            title={t("patientsStatus")}
             buttonStyle={styles.statusButtonStyle}
             titleStyle={styles.statusTitleStyle}
             onPress={() => props.navigation.navigate("AssociatedPatients")}
@@ -55,7 +59,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             hasIcon={false}
           />
           <MainButton
-            title="Help"
+            title={t("help")}
             buttonStyle={styles.helpButtonStyle}
             titleStyle={styles.helpTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
@@ -116,7 +120,7 @@ const styles = StyleSheet.create({
   profileTitleStyle: {
     fontFamily: "Cairo-Bold",
     color: colors.darkGreen,
-    fontSize: 20,
+    fontSize: 15,
     textAlign: "center",
   },
   patientButtonStyle: {
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
   patientTitleStyle: {
     fontFamily: "Cairo-Bold",
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
   },
   statusButtonStyle: {
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
   statusTitleStyle: {
     fontFamily: "Cairo-Bold",
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
   },
   helpButtonStyle: {

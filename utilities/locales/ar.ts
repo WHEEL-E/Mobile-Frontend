@@ -14,5 +14,10 @@ export default {
     forgotPassword: "نسيت رمز الدخول؟",
     notMember: "لا تمتلك حساب؟",
     signUp: "إنشاء حساب",
+    newPatient: "أضف مريضًا جديدًا",
+    patientsStatus: "حالات المرضي",
+    help: "المساعدة",
+    wishGoodDay: "نتمني لك يومًا سعيدًا!",
+    morning: "صباح الخير, ",
   },
 };
