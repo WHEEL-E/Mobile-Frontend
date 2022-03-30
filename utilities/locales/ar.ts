@@ -13,6 +13,6 @@ export default {
     logIn: "تسجيل الدخول",
     forgotPassword: "نسيت رمز الدخول؟",
     notMember: "لا تمتلك حساب؟",
-    signUp: "أنشيٍ حساب",
+    signUp: "إنشاء حساب",
   },
 };

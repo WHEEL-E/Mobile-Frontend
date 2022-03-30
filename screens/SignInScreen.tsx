@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import i18n from "../i18n";
+import lang from "../lang";
 import InputField from "../components/UI/InputField";
 import RoundEdgedButton from "../components/UI/RoundEdgedButton";
 import colors from "../constants/colors";
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   signUp: {
-    flexDirection: i18n.language == "en" ? "row" : "row-reverse",
+    flexDirection: lang.language == "en" ? "row" : "row-reverse",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
