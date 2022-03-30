@@ -16,7 +16,7 @@ const InputField = (props: InputFieldProps) => {
   return (
     <TextInput
       placeholder={placeHolder}
-      style={{ ...fieldStyle, ...styles.input }}
+      style={{ ...styles.input, ...fieldStyle }}
       autoCompleteType={autoComplete}
       value={value}
       onChangeText={onChangeText}

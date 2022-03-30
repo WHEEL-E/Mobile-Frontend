@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     width: 300,
     marginHorizontal: 50,
     marginVertical: 5,
-    height: 100,
   },
   cover: {
     height: "100%",
