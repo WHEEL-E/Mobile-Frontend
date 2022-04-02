@@ -4,7 +4,15 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import { MainNavigator } from "./navigation/MainNavigator";
-// react-redux , redux is installed
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
+
+const reducers = {
+  form: formReducer,
+};
+const reducer = combineReducers(reducers);
+const store = createStore(reducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -32,8 +40,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <MainNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
