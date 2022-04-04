@@ -3,7 +3,7 @@ import { DEVICE_WIDTH } from "../constants/dimentions";
 
 const PI = 3.14159265359;
 
-export const path = [
+export const archs = [
   { start: 0.25, finish: 0.75 },
   { start: 0.25, finish: -0.25 },
   { start: -0.25, finish: -0.75 },

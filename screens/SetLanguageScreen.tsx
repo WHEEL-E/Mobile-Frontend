@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 import RoundEdgedButton from "../components/UI/RoundEdgedButton";
 import colors from "../constants/colors";
-import i18n from "../i18n";
+import lang from "../lang";
 import { ChangeLangugageProps } from "../navigation/navigationUtils";
 
 const SetLanguageScreen = (props: ChangeLangugageProps) => {
   const setLanguage = (language: string) => {
-    i18n.changeLanguage(language);
+    lang.changeLanguage(language);
   };
   const { t } = useTranslation();
   return (

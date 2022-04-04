@@ -1,4 +1,4 @@
-import "./i18n";
+import "./lang";
 import React, { useState } from "react";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";

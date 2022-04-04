@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Svg } from "react-native-svg";
 import { DEVICE_WIDTH } from "../../../constants/dimentions";
 import colors from "../../../constants/colors";
-import { DriveWheelButtons } from "./DriveWheelButton";
+import { DriveWheelButton } from "./DriveWheelButton";
 import { DriveWheelInnershape } from "./DriveWheelInnershape";
 
 const DriveWheel = () => {
@@ -11,13 +11,9 @@ const DriveWheel = () => {
 
   return (
     <View style={styles.container}>
-      <Svg
-        width="100%"
-        height="100%"
-        style={{ shadowColor: "white", shadowRadius: 4 }}
-      >
+      <Svg width="100%" height="100%">
         {buttons.map((value: string, index: number) => (
-          <DriveWheelButtons index={index} value={value} />
+          <DriveWheelButton index={index} value={value} />
         ))}
         <DriveWheelInnershape />
       </Svg>

@@ -11,11 +11,8 @@ interface roundEdgedButtonProps {
 const RoundEdgedButton = (props: roundEdgedButtonProps) => {
   const { title, buttonStyle, titleStyle, onPress } = props;
   return (
-    <View>
-      <TouchableOpacity
-        style={{ ...buttonStyle, ...styles.button }}
-        onPress={onPress}
-      >
+    <View style={{ ...styles.button, ...buttonStyle }}>
+      <TouchableOpacity onPress={onPress}>
         <Text style={titleStyle}>{title}</Text>
       </TouchableOpacity>
     </View>

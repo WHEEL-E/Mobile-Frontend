@@ -4,12 +4,12 @@ import { DEVICE_WIDTH } from "../../../constants/dimentions";
 import colors from "../../../constants/colors";
 import {
   DriveWheelButtonProps,
-  path,
+  archs,
 } from "../../../utilities/driveWheelUtils";
 import { Gradientfilling } from "./GradientFilling";
 import { View } from "react-native";
 
-export const DriveWheelButtons = (props: DriveWheelButtonProps) => {
+export const DriveWheelButton = (props: DriveWheelButtonProps) => {
   const { index, value } = props;
   const [color, setColor] = React.useState([
     "url(#GradientFilling)",
@@ -19,13 +19,12 @@ export const DriveWheelButtons = (props: DriveWheelButtonProps) => {
   ]);
 
   return (
-    <View>
+    <View key={index.toString()}>
       <Gradientfilling />
       <Path
-        key={index}
         translateX={DEVICE_WIDTH * 0.45}
         translateY={DEVICE_WIDTH * 0.45}
-        d={path[index]}
+        d={archs[index]}
         fill={color[index]}
         stroke={colors.offWhite}
         strokeWidth={5}
