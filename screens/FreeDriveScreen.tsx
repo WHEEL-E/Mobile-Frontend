@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import colors from "../constants/colors";
-import DriveWheel from "../components/UI/DriveWheel";
+import DriveWheel from "../components/UI/freeDriveComponents/DriveWheel";
 import fonts from "../constants/fonts";
 
 const FreeDriveScreen = (props: any) => {
