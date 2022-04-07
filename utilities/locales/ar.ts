@@ -19,5 +19,7 @@ export default {
     help: "المساعدة",
     wishGoodDay: "نتمني لك يومًا سعيدًا!",
     morning: "صباح الخير, ",
+    freeDrive: "القيادة بحرية",
+    freeDriveText: "استخدم الأسهم للحركة في أي اتجاه",
   },
 };

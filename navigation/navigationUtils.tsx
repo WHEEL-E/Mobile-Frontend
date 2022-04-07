@@ -24,6 +24,7 @@ export type RootStackParamList = {
   ChangeLanguage: undefined;
   SupervisedPatient: undefined;
   AssociatedPatients: undefined;
+  FreeDrive: undefined;
 };
 
 export type BottomTabParamList = {
@@ -57,6 +58,10 @@ export type SupervisorHomeProps = NativeStackScreenProps<
 export type SignInProps = NativeStackScreenProps<RootStackParamList, "SignIn">;
 
 export type SignUpProps = NativeStackScreenProps<RootStackParamList, "SignUp">;
+export type freeDriveProps = NativeStackScreenProps<
+  RootStackParamList,
+  "FreeDrive"
+>;
 
 export type AssociatedPatientsProps = NativeStackScreenProps<
   RootStackParamList,

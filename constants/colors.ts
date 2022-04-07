@@ -7,4 +7,5 @@ export default {
   lightPurple: "#E7D9EA",
   lightBrown: "#D9C9AC",
   darkBlue: "#19456B",
+  offWhite: "#F0E9DC",
 };

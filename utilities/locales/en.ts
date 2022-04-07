@@ -19,5 +19,7 @@ export default {
     help: "Help",
     wishGoodDay: "We wish you a good day!",
     morning: "Good Morning, ",
+    freeDrive: "Free Drive",
+    freeDriveText: "Use the cursor to move the chair around.",
   },
 };
