@@ -5,6 +5,8 @@ import GetStartedScreen from "../screens/GetStartedScreen";
 import HomeScreen from "../screens/HomeScreen";
 import PatientHomeScreen from "../screens/PatientHomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import PatientRemindersScreen from "../screens/PatientRemindersScreen";
+import SupervisorRemindersScreen from "../screens/SupervisorRemindersScreen";
 import SetLanguageScreen from "../screens/SetLanguageScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
@@ -27,6 +29,14 @@ export function MainNavigator() {
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Home" component={TabsNavigator} />
       <Stack.Screen name="ChangeLanguage" component={SetLanguageScreen} />
+      <Stack.Screen
+        name="PatientReminders"
+        component={PatientRemindersScreen}
+      />
+      <Stack.Screen
+        name="SupervisorReminders"
+        component={SupervisorRemindersScreen}
+      />
     </Stack.Navigator>
   );
 }

@@ -29,7 +29,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title={t("profile")}
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
-            onPress={() => props.navigation.navigate("Profile")}
+            onPress={() => props.navigation.navigate("SupervisorReminders")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
             image={{ url: require("../assets/hospital.png") }}
             hasIcon={true}

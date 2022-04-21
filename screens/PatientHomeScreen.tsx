@@ -103,13 +103,17 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.smallButton,
               backgroundColor: colors.lightGreen,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              props.navigation.navigate("PatientReminders");
+            }}
           />
           <MainButton
             title="My profile"
             titleStyle={styles.profileTitle}
             buttonStyle={styles.myProfileButton}
-            onPress={() => {}}
+            onPress={() => {
+              props.navigation.navigate("Profile");
+            }}
             icon={{
               name: "person-outline",
               size: 70,
