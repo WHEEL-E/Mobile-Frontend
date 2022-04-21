@@ -1,11 +1,12 @@
 import React from "react";
-import { Button, StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SupervisorHomeProps } from "../navigation/navigationUtils";
 import { MainButton } from "../components/UI/mainButton";
 import colors from "../constants/colors";
-import RoundEdgedButton from "../components/UI/RoundEdgedButton";
+import { useTranslation } from "react-i18next";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
+  const { t } = useTranslation();
   // there's a dynamic rendering for the name of the user when we get it from the db
   const userName = "Alaa";
   return (
@@ -16,58 +17,57 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
         style={styles.coverImage}
       />
       <View>
-        <Text style={styles.title}>Good Morning, {userName}</Text>
-        <Text style={styles.normalText}>We wish you a good day!</Text>
+        <Text style={styles.title}>
+          {t("morning")} {userName}
+        </Text>
+        <Text style={styles.normalText}>{t("wishGoodDay")}</Text>
       </View>
 
       <View style={styles.buttons}>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title="Reminders"
+            title={t("profile")}
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
             onPress={() => props.navigation.navigate("SupervisorReminders")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
-            image={{ url: require("../assets/hospital.png"), imageStyle: {} }}
-            iconOrImage={true}
+            image={{ url: require("../assets/hospital.png") }}
+            hasIcon={true}
           />
           <MainButton
-            title="New Patient"
+            title={t("newPatient")}
             buttonStyle={styles.patientButtonStyle}
             titleStyle={styles.patientTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "ios-cart", size: 20, color: "white" }}
             image={{
               url: require("../assets/new-patient.png"),
-              imageStyle: { width: 100, height: 80 },
             }}
-            iconOrImage={false}
+            hasIcon={false}
           />
         </View>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title="Patients Status"
+            title={t("patientsStatus")}
             buttonStyle={styles.statusButtonStyle}
             titleStyle={styles.statusTitleStyle}
             onPress={() => props.navigation.navigate("AssociatedPatients")}
             icon={{ name: "", size: 20, color: "white" }}
             image={{
               url: require("../assets/health-record.png"),
-              imageStyle: { width: 70, height: 70 },
             }}
-            iconOrImage={false}
+            hasIcon={false}
           />
           <MainButton
-            title="Help"
+            title={t("help")}
             buttonStyle={styles.helpButtonStyle}
             titleStyle={styles.helpTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "ios-help-circle", size: 30, color: "white" }}
             image={{
               url: require("../assets/hospital.png"),
-              imageStyle: {},
             }}
-            iconOrImage={true}
+            hasIcon={true}
           />
         </View>
       </View>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   profileTitleStyle: {
     fontFamily: "Cairo-Bold",
     color: colors.darkGreen,
-    fontSize: 20,
+    fontSize: 15,
     textAlign: "center",
   },
   patientButtonStyle: {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   patientTitleStyle: {
     fontFamily: "Cairo-Bold",
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
   },
   statusButtonStyle: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   statusTitleStyle: {
     fontFamily: "Cairo-Bold",
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
   },
   helpButtonStyle: {
