@@ -35,7 +35,7 @@ export type SupervisorHomeProps = NativeStackScreenProps<
   "SupervisorHome"
 >;
 
-export type freeDriveProps = NativeStackScreenProps<
+export type FreeDriveProps = NativeStackScreenProps<
   MainStackParamList,
   "FreeDrive"
 >;

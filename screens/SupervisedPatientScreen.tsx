@@ -1,18 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  Dimensions,
-} from "react-native";
+import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
 import { BackButton } from "../components/buttons/BackButton";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
 import colors from "../utilities/constants/colors";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 import fonts from "../utilities/constants/fonts";
 import { SupervisedPatientProps } from "../utilities/navigationUtils/mainNavigationUtils";
 

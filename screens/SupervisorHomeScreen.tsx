@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
   const { t } = useTranslation();
+
   // there's a dynamic rendering for the name of the user when we get it from the db
   const userName = "Alaa";
   return (

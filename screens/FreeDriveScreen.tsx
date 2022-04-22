@@ -5,8 +5,9 @@ import colors from "../utilities/constants/colors";
 import DriveWheel from "../components/freeDriveComponents/DriveWheel";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
+import { FreeDriveProps } from "../utilities/navigationUtils/mainNavigationUtils";
 
-const FreeDriveScreen = (props: any) => {
+const FreeDriveScreen = (props: FreeDriveProps) => {
   const { t } = useTranslation();
   return (
     <View style={styles.container}>

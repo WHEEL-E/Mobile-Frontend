@@ -9,59 +9,35 @@ const HomeScreen = (props: HomeProps) => {
   // According to signIn information
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>go to Profile</Text>
       <View style={styles.buttons}>
         <ScrollView>
           <MainButton
             title="Supervisor Home Screen"
             buttonStyle={{
-              backgroundColor: colors.darkGreen,
-              borderWidth: 2,
-              borderColor: "white",
-              borderRadius: 30,
-              justifyContent: "center",
-              padding: 15,
-              height: 150,
-              width: 200,
-              marginHorizontal: 50,
-              marginVertical: 10,
+              ...styles.button,
+              backgroundColor: colors.lightGreen,
             }}
-            titleStyle={{
-              fontFamily: "Cairo-Bold",
-              color: "white",
-              fontSize: 20,
-              textAlign: "center",
-            }}
+            titleStyle={styles.ButtonText}
             onPress={() => props.navigation.navigate("SupervisorHome")}
             image={{ url: require("../assets/images/hospital.png") }}
           />
           <MainButton
             title="Patient Home Screen"
             buttonStyle={{
+              ...styles.button,
               backgroundColor: colors.darkPink,
-              borderWidth: 2,
-              borderColor: "white",
-              borderRadius: 30,
-              justifyContent: "center",
-              padding: 15,
-              height: 150,
-              width: 200,
-              marginHorizontal: 50,
-              marginVertical: 10,
             }}
-            titleStyle={{
-              fontFamily: "Cairo-Bold",
-              color: "white",
-              fontSize: 20,
-              textAlign: "center",
-            }}
+            titleStyle={styles.ButtonText}
             onPress={() => props.navigation.navigate("PatientHome")}
             image={{ url: require("../assets/images/hospital.png") }}
           />
           <MainButton
             title="Change language"
-            buttonStyle={styles.changeLanguageButton}
-            titleStyle={styles.changeLanguageText}
+            buttonStyle={{
+              ...styles.button,
+              backgroundColor: colors.darkGreen,
+            }}
+            titleStyle={styles.ButtonText}
             onPress={() => props.navigation.navigate("ChangeLanguage")}
             icon={{ name: "globe-outline", size: 40, color: "black" }}
           />
@@ -86,8 +62,7 @@ const styles = StyleSheet.create({
     marginBottom: 70,
     width: 300,
   },
-  changeLanguageButton: {
-    backgroundColor: colors.lightGreen,
+  button: {
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 30,
@@ -98,7 +73,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 50,
     marginVertical: 10,
   },
-  changeLanguageText: {
+  ButtonText: {
     fontFamily: "Cairo-Bold",
     color: "white",
     fontSize: 20,
