@@ -56,8 +56,7 @@ const SignInScreen = (props: SignInProps) => {
           onPress={() => {
             navigation.navigate("Home");
           }}
-          buttonStyle={styles.signInButton}
-          titleStyle={styles.signInText}
+          backgroundColor={colors.darkGreen}
         />
         <TouchableOpacity>
           <Text style={styles.forgotPasswordText}>{t("forgotPassword")}</Text>
@@ -111,22 +110,10 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
   },
-  signInButton: {
-    width: "80%",
-    backgroundColor: colors.darkGreen,
-    borderRadius: 60,
-    height: "12%",
-    marginVertical: 5,
-  },
   forgotPasswordText: {
     fontFamily: fonts.CairoRegular,
     paddingHorizontal: 5,
     fontSize: DEVICE_HEIGHT * 0.02,
-  },
-  signInText: {
-    fontSize: DEVICE_HEIGHT * 0.03,
-    fontFamily: fonts.CairoBold,
-    color: "white",
   },
   signUp: {
     flexDirection: lang.language == "en" ? "row" : "row-reverse",

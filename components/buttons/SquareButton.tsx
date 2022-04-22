@@ -1,12 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
-
-interface SquareButtonProps {
-  title: string;
-  buttonStyle: object;
-  titleStyle: object;
-  onPress: () => void;
-}
+import { SquareButtonProps } from "../../utilities/buttonsUtils";
 
 export const SquareButton = (props: SquareButtonProps) => {
   const { title, buttonStyle, titleStyle, onPress } = props;

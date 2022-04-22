@@ -52,8 +52,7 @@ const SignUpAdditionalData = (
       <RoundEdgedButton
         title={t("signUp")}
         onPress={handleSubmit(submitSignUpAdditionalData)}
-        buttonStyle={styles.signUpButton}
-        titleStyle={styles.signUpText}
+        backgroundColor={colors.darkGreen}
       />
     </View>
   );
@@ -68,19 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 20,
-  },
-  signUpButton: {
-    width: "80%",
-    backgroundColor: colors.darkGreen,
-    borderRadius: 60,
-    height: "12%",
-    marginVertical: 5,
-    alignSelf: "center",
-  },
-  signUpText: {
-    fontSize: DEVICE_HEIGHT * 0.03,
-    fontFamily: fonts.CairoBold,
-    color: "white",
   },
 });
 

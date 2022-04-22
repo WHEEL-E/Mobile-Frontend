@@ -32,8 +32,6 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
             onPress={() => {}}
             image={{ url: require("../assets/images/map.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
           />
           <SquareButton
             title="Emergency Call"
@@ -84,8 +82,6 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
             onPress={() => {}}
             image={{ url: require("../assets/images/health-state.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
           />
           <SquareButton
             title="Get my chair"
@@ -119,8 +115,6 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               size: 70,
               color: colors.lightBrown,
             }}
-            hasIcon={true}
-            image={{ url: require("../assets/images/hospital.png") }}
           />
         </View>
       </View>

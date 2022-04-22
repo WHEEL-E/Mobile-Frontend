@@ -1,40 +1,21 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-interface MainButtonProps {
-  title: string;
-  buttonStyle: object;
-  titleStyle: object;
-  onPress: () => void;
-  icon: { name: any; size: number; color: string };
-  image: { url: any };
-  hasIcon: boolean;
-}
+import { MainButtonProps } from "../../utilities/buttonsUtils";
 
 export const MainButton = (props: MainButtonProps) => {
   const { title, buttonStyle, titleStyle, onPress, icon, image } = props;
 
-  if (props.hasIcon) {
-    return (
-      <TouchableOpacity
-        style={{ ...styles.button, ...buttonStyle }}
-        onPress={onPress}
-      >
-        <View style={styles.imageContainer}>
-          <Ionicons name={icon.name} size={icon.size} color={icon.color} />
-        </View>
-        <Text style={titleStyle}>{title}</Text>
-      </TouchableOpacity>
-    );
-  }
   return (
     <TouchableOpacity
       style={{ ...styles.button, ...buttonStyle }}
       onPress={onPress}
     >
       <View style={styles.imageContainer}>
-        <Image source={image.url} style={{ ...styles.image }} />
+        {icon && (
+          <Ionicons name={icon.name} size={icon.size} color={icon.color} />
+        )}
+        {image && <Image source={image.url} style={{ ...styles.image }} />}
       </View>
       <Text style={titleStyle}>{title}</Text>
     </TouchableOpacity>

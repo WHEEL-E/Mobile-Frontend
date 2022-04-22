@@ -26,18 +26,11 @@ const GetStartedScreen = (props: GetStartedProps) => {
       <Text style={styles.slogan}>
         Hundrends of users depend on wheel.e to move around freely!{" "}
       </Text>
-      <View>
-        <RoundEdgedButton
-          title="Get Started"
-          buttonStyle={styles.buttonStyle}
-          titleStyle={{
-            fontFamily: "Cairo-Bold",
-            color: "white",
-            fontSize: 20,
-          }}
-          onPress={() => props.navigation.navigate("SignIn")}
-        />
-      </View>
+      <RoundEdgedButton
+        title="Get Started"
+        backgroundColor={colors.lightGreen}
+        onPress={() => props.navigation.navigate("SignIn")}
+      />
       <View style={styles.signUpContainer}>
         <Text>Not a member? </Text>
         <TouchableOpacity onPress={() => props.navigation.navigate("SignUp")}>
@@ -70,15 +63,6 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 200,
     alignItems: "center",
-  },
-  buttonStyle: {
-    backgroundColor: colors.lightGreen,
-    borderWidth: 2,
-    borderColor: "white",
-    borderRadius: 30,
-    width: 300,
-    marginHorizontal: 50,
-    marginVertical: 5,
   },
   cover: {
     height: "100%",

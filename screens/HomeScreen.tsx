@@ -33,9 +33,7 @@ const HomeScreen = (props: HomeProps) => {
               textAlign: "center",
             }}
             onPress={() => props.navigation.navigate("SupervisorHome")}
-            icon={{ name: "ios-cart", size: 20, color: "white" }}
             image={{ url: require("../assets/images/hospital.png") }}
-            hasIcon={false}
           />
           <MainButton
             title="Patient Home Screen"
@@ -58,9 +56,7 @@ const HomeScreen = (props: HomeProps) => {
               textAlign: "center",
             }}
             onPress={() => props.navigation.navigate("PatientHome")}
-            icon={{ name: "ios-cart", size: 20, color: "white" }}
             image={{ url: require("../assets/images/hospital.png") }}
-            hasIcon={false}
           />
           <MainButton
             title="Change language"
@@ -68,8 +64,6 @@ const HomeScreen = (props: HomeProps) => {
             titleStyle={styles.changeLanguageText}
             onPress={() => props.navigation.navigate("ChangeLanguage")}
             icon={{ name: "globe-outline", size: 40, color: "black" }}
-            image={{ url: require("../assets/images/hospital.png") }}
-            hasIcon={true}
           />
         </ScrollView>
       </View>

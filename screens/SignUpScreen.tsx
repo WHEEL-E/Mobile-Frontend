@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     alignItems: "center",
     paddingTop: "30%",
+    paddingBottom: "10%",
     flex: 1,
     alignSelf: "center",
     width: "100%",

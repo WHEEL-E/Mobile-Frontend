@@ -44,8 +44,6 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
           <MainButton
             title={t("map")}
             image={{ url: require("../assets/images/map.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
             onPress={() => {}}
             buttonStyle={styles.mapButton}
             titleStyle={styles.buttonsTitle}
@@ -67,8 +65,6 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
           <MainButton
             title={t("healthInfo")}
             image={{ url: require("../assets/images/health-state.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
             onPress={() => {}}
             buttonStyle={styles.healthButton}
             titleStyle={styles.buttonsTitle}

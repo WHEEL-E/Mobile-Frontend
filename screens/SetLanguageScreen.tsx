@@ -16,14 +16,12 @@ const SetLanguageScreen = (props: ChangeLangugageProps) => {
       <RoundEdgedButton
         title="استخدم اللغة العربية"
         onPress={() => setLanguage("ar")}
-        buttonStyle={styles.button}
-        titleStyle={styles.buttonTitle}
+        backgroundColor={colors.darkGreen}
       />
       <RoundEdgedButton
         title="use English"
         onPress={() => setLanguage("en")}
-        buttonStyle={styles.button}
-        titleStyle={styles.buttonTitle}
+        backgroundColor={colors.darkGreen}
       />
       <Text style={styles.title}> {t("LanguageText")}</Text>
     </View>
@@ -36,19 +34,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  button: {
-    backgroundColor: colors.darkGreen,
-    width: 300,
-    marginHorizontal: 50,
-    marginVertical: 10,
-    height: 50,
-    borderRadius: 30,
-  },
-  buttonTitle: {
-    fontFamily: "Cairo-Regular",
-    color: "white",
-    fontSize: 20,
   },
   title: {
     fontFamily: "Cairo-Regular",

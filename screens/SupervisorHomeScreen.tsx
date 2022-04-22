@@ -31,8 +31,6 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             titleStyle={styles.profileTitleStyle}
             onPress={() => props.navigation.navigate("Profile")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
-            image={{ url: require("../assets/images/hospital.png") }}
-            hasIcon={true}
           />
           <MainButton
             title={t("newPatient")}
@@ -40,10 +38,6 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             titleStyle={styles.patientTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "ios-cart", size: 20, color: "white" }}
-            image={{
-              url: require("../assets/images/new-patient.png"),
-            }}
-            hasIcon={false}
           />
         </View>
         <View style={styles.buttonColContainer}>
@@ -52,11 +46,9 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             buttonStyle={styles.statusButtonStyle}
             titleStyle={styles.statusTitleStyle}
             onPress={() => props.navigation.navigate("AssociatedPatients")}
-            icon={{ name: "", size: 20, color: "white" }}
             image={{
               url: require("../assets/images/health-record.png"),
             }}
-            hasIcon={false}
           />
           <MainButton
             title={t("help")}
@@ -64,10 +56,6 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             titleStyle={styles.helpTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "ios-help-circle", size: 30, color: "white" }}
-            image={{
-              url: require("../assets/hospital.png"),
-            }}
-            hasIcon={true}
           />
         </View>
       </View>
