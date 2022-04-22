@@ -23,7 +23,7 @@ const SetLanguageScreen = (props: ChangeLangugageProps) => {
         onPress={() => setLanguage("en")}
         backgroundColor={colors.darkGreen}
       />
-      <Text style={styles.title}> {t("LanguageText")}</Text>
+      <Text style={styles.title}> {t("setLanguageScreen.LanguageText")}</Text>
     </View>
   );
 };

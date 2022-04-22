@@ -1,19 +1,19 @@
 import React from "react";
 import {
-  Button,
   StyleSheet,
   Text,
   View,
   Image,
-  ScrollView,
   Platform,
   TouchableOpacity,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { GetStartedProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
 import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 
 const GetStartedScreen = (props: GetStartedProps) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -22,19 +22,19 @@ const GetStartedScreen = (props: GetStartedProps) => {
           style={styles.cover}
         />
       </View>
-      <Text style={styles.title}>Wheel.e gets you everywhere</Text>
-      <Text style={styles.slogan}>
-        Hundrends of users depend on wheel.e to move around freely!{" "}
-      </Text>
+      <Text style={styles.title}>{t("getStartedScreen.wheelE")}</Text>
+      <Text style={styles.slogan}>{t("getStartedScreen.wheelEFeautures")}</Text>
       <RoundEdgedButton
-        title="Get Started"
+        title={t("getStartedScreen.getStarted")}
         backgroundColor={colors.lightGreen}
         onPress={() => props.navigation.navigate("SignIn")}
       />
       <View style={styles.signUpContainer}>
-        <Text>Not a member? </Text>
+        <Text>{t("getStartedScreen.notMember")} </Text>
         <TouchableOpacity onPress={() => props.navigation.navigate("SignUp")}>
-          <Text style={{ color: colors.darkGreen }}>Sign Up</Text>
+          <Text style={{ color: colors.darkGreen }}>
+            {t("getStartedScreen.signUp")}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

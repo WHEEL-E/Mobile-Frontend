@@ -26,7 +26,7 @@ const SignUpAdditionalData = (
   const { t } = useTranslation();
   const { handleSubmit } = props;
   const genderLabels = ["gender", "male", "female"];
-  const smokeLabels = ["do you smoke?", "yes", "no"];
+  const smokeLabels = ["smoking", "yes", "no"];
 
   return (
     <View style={styles.container}>

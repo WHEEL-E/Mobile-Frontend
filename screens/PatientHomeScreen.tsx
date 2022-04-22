@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { MainButton } from "../components/buttons/MainButton";
@@ -8,7 +9,7 @@ import { PatientHomeProps } from "../utilities/navigationUtils/mainNavigationUti
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
   const { navigation } = props;
-
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View>
@@ -16,15 +17,17 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
           style={styles.logo}
           source={require("../assets/images/logo-b-app.png")}
         />
-        <Text style={styles.mainText}>Good morning, user</Text>
+        <Text style={styles.mainText}>
+          {t("patientHomeScreen.morning")}user
+        </Text>
         <Text style={styles.subText} testID="welcomeText">
-          We wish you have a good day
+          {t("patientHomeScreen.wishGoodDay")}
         </Text>
       </View>
       <View style={styles.buttons}>
         <View style={styles.buttonsCol}>
           <MainButton
-            title="Map"
+            title={t("patientHomeScreen.map")}
             titleStyle={{ ...styles.bigButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.mainButton,
@@ -34,7 +37,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             image={{ url: require("../assets/images/map.png") }}
           />
           <SquareButton
-            title="Emergency Call"
+            title={t("patientHomeScreen.emergencyCall")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -43,7 +46,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             onPress={() => {}}
           />
           <SquareButton
-            title="Free Driving"
+            title={t("patientHomeScreen.freeDriving")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -54,7 +57,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
           />
           <SquareButton
-            title="Add a supervisor"
+            title={t("patientHomeScreen.addSupervisor")}
             titleStyle={{ ...styles.smallButtonTitle, color: colors.darkBlue }}
             buttonStyle={{
               ...styles.smallButton,
@@ -63,7 +66,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             onPress={() => {}}
           />
           <SquareButton
-            title="Help"
+            title={t("patientHomeScreen.help")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -74,7 +77,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
         </View>
         <View style={styles.buttonsCol}>
           <MainButton
-            title="Health status"
+            title={t("patientHomeScreen.healthStatus")}
             titleStyle={{ ...styles.bigButtonTitle, color: colors.darkBlue }}
             buttonStyle={{
               ...styles.mainButton,
@@ -84,7 +87,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             image={{ url: require("../assets/images/health-state.png") }}
           />
           <SquareButton
-            title="Get my chair"
+            title={t("patientHomeScreen.getChair")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -93,7 +96,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             onPress={() => {}}
           />
           <SquareButton
-            title="Reminders"
+            title={t("patientHomeScreen.reminders")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -104,7 +107,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
           />
           <MainButton
-            title="My profile"
+            title={t("patientHomeScreen.myProfile")}
             titleStyle={styles.profileTitle}
             buttonStyle={styles.myProfileButton}
             onPress={() => {

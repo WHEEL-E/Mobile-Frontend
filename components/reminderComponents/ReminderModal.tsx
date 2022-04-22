@@ -1,11 +1,13 @@
 import React from "react";
 import { StyleSheet, Modal, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../InputField";
 import colors from "../../utilities/constants/colors";
 import { addNewReminderModalProps } from "../../utilities/remindersUtils";
 
 const ReminderModal = (props: addNewReminderModalProps) => {
+  const { t } = useTranslation();
   const { modalVisible, setModalVisible } = props;
 
   const [reminder, setReminder] = React.useState({
@@ -43,17 +45,17 @@ const ReminderModal = (props: addNewReminderModalProps) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalTitle}>
-            Type any information you need to remind your patient with
+            {t("remindersScreen.addReminderIntro")}
           </Text>
           <InputField
-            placeHolder="Enter Reminder Title"
+            placeHolder={t("remindersScreen.enterTitle")}
             value={reminder.reminderTitle}
             onChangeText={editTitleHandler}
             fieldStyle={{ width: "100%", marginBottom: 10 }}
             autoComplete="off"
           />
           <InputField
-            placeHolder="Enter Reminder Description"
+            placeHolder={t("remindersScreen.enterDescription")}
             value={reminder.reminderBody}
             onChangeText={editBodyHandler}
             fieldStyle={{ width: "100%", height: 100 }}
@@ -61,13 +63,13 @@ const ReminderModal = (props: addNewReminderModalProps) => {
           />
           <View style={styles.buttonsList}>
             <SquareButton
-              title="Cancel"
+              title={t("remindersScreen.cancel")}
               titleStyle={{ color: "#fff" }}
               onPress={() => setModalVisible(false)}
               buttonStyle={styles.cancelButton}
             />
             <SquareButton
-              title="Submit"
+              title={t("remindersScreen.submit")}
               titleStyle={{ color: "#fff" }}
               onPress={() => submitHandler()}
               buttonStyle={styles.sendButton}

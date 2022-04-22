@@ -10,7 +10,7 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
     <InputField
       fieldStyle={styles.inputField}
       onChangeText={props.input.onChange}
-      placeHolder={t(props.input.name)}
+      placeHolder={t(`signupScreen.${props.input.name}`)}
       autoComplete="name"
       value={props.input.value}
     />

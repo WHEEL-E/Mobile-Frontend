@@ -2,8 +2,10 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { navigationComponentProps } from "../../utilities/navigationUtils/navigationComponentsUtils";
+import { useTranslation } from "react-i18next";
 
 export const NavigationComponent = (props: navigationComponentProps) => {
+  const { t } = useTranslation();
   return (
     <TouchableOpacity
       onPress={props.onPress}
@@ -25,7 +27,7 @@ export const NavigationComponent = (props: navigationComponentProps) => {
         />
       </View>
       <Text testID="text" style={styles.title}>
-        {props.title}
+        {t(`navigationBar.${props.title}`)}
       </Text>
     </TouchableOpacity>
   );

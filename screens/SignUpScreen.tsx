@@ -31,7 +31,7 @@ const SignUpScreen = (props: SignUpProps) => {
           style={styles.logo}
           source={require("../assets/images/logo-b-app.png")}
         />
-        <Text style={styles.title}>{t("createAccount")}</Text>
+        <Text style={styles.title}>{t("signUpScreen.createAccount")}</Text>
         <View style={styles.backButton}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>

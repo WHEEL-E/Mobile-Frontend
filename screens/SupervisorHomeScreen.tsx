@@ -19,22 +19,24 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
       />
       <View>
         <Text style={styles.title}>
-          {t("morning")} {userName}
+          {t("supervisorHomeScreen.morning")} {userName}
         </Text>
-        <Text style={styles.normalText}>{t("wishGoodDay")}</Text>
+        <Text style={styles.normalText}>
+          {t("supervisorHomeScreen.wishGoodDay")}
+        </Text>
       </View>
 
       <View style={styles.buttons}>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title={t("profile")}
+            title={t("supervisorHomeScreen.profile")}
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
             onPress={() => props.navigation.navigate("Profile")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
           />
           <MainButton
-            title={t("newPatient")}
+            title={t("supervisorHomeScreen.newPatient")}
             buttonStyle={styles.patientButtonStyle}
             titleStyle={styles.patientTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
@@ -45,7 +47,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
         </View>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title={t("patientsStatus")}
+            title={t("supervisorHomeScreen.patientsStatus")}
             buttonStyle={styles.statusButtonStyle}
             titleStyle={styles.statusTitleStyle}
             onPress={() => props.navigation.navigate("AssociatedPatients")}
@@ -54,7 +56,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             }}
           />
           <MainButton
-            title={t("help")}
+            title={t("supervisorHomeScreen.help")}
             buttonStyle={styles.helpButtonStyle}
             titleStyle={styles.helpTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}

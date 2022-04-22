@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { useTranslation } from "react-i18next";
 import { RemindersProps } from "../utilities/navigationUtils/mainNavigationUtils";
 import { BackButton } from "../components/buttons/BackButton";
 import colors from "../utilities/constants/colors";
@@ -8,6 +9,7 @@ import AddNewReminderModal from "../components/reminderComponents/ReminderModal"
 import { RemindersList } from "../components/reminderComponents/RemindersList";
 
 const SupervisorRemindersScreen = (props: RemindersProps) => {
+  const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -24,12 +26,12 @@ const SupervisorRemindersScreen = (props: RemindersProps) => {
           <BackButton onPress={() => props.navigation.goBack()} />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Reminders</Text>
+          <Text style={styles.title}>{t("remindersScreen.reminders")}</Text>
         </View>
         <RemindersList />
         <View style={styles.buttonContainer}>
           <SquareButton
-            title="Add a reminder"
+            title={t("remindersScreen.addReminder")}
             buttonStyle={styles.buttonStyle}
             titleStyle={styles.titleStyle}
             onPress={() => setModalVisible(true)}
@@ -45,7 +47,8 @@ export default SupervisorRemindersScreen;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingBottom: "20%",
     flexDirection: "column",
     flex: 1,
   },

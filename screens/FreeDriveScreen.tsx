@@ -19,10 +19,10 @@ const FreeDriveScreen = (props: FreeDriveProps) => {
         source={require("../assets/images/Vector.png")}
         style={styles.backgroundImage}
       >
-        <Text style={styles.title}>{t("freeDrive")}</Text>
+        <Text style={styles.title}>{t("freeDriveScreen.freeDrive")}</Text>
         <DriveWheel />
         <Text testID="instructionText" style={styles.text}>
-          {t("freeDriveText")}
+          {t("freeDriveScreen.freeDriveText")}
         </Text>
       </ImageBackground>
     </View>

@@ -35,7 +35,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
         </View>
         <View style={styles.buttons}>
           <MainButton
-            title={t("map")}
+            title={t("supervisedPatientScreen.map")}
             image={{ url: require("../assets/images/map.png") }}
             onPress={() => {}}
             buttonStyle={styles.mapButton}
@@ -43,7 +43,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
           />
           <View style={styles.smallButtonsContainer}>
             <SquareButton
-              title={t("reminders")}
+              title={t("supervisedPatientScreen.reminders")}
               onPress={() => {
                 props.navigation.navigate("Reminders");
               }}
@@ -51,14 +51,14 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
               titleStyle={styles.buttonsTitle}
             />
             <SquareButton
-              title={t("profile")}
+              title={t("supervisedPatientScreen.profile")}
               onPress={() => {}}
               buttonStyle={styles.profileButton}
               titleStyle={{ ...styles.buttonsTitle, color: colors.darkGreen }}
             />
           </View>
           <MainButton
-            title={t("healthInfo")}
+            title={t("supervisedPatientScreen.healthInfo")}
             image={{ url: require("../assets/images/health-state.png") }}
             onPress={() => {}}
             buttonStyle={styles.healthButton}

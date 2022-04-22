@@ -9,7 +9,7 @@ export interface navigationBarProps {
 export interface navigationComponentProps {
   onPress: () => void;
   iconName: any;
-  title: "Home" | "Notes" | "News";
+  title: navigationScreens;
   backgroundColor: string;
   color: string;
 }

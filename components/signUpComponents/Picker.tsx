@@ -12,7 +12,13 @@ const PickerComponent = (props: PickerProps) => {
   const placeHolder = labels[0];
 
   for (const label of labels) {
-    pickers.push(<Picker.Item key={label} label={t(label)} value={label} />);
+    pickers.push(
+      <Picker.Item
+        key={label}
+        label={t(`signupScreen.${label}`)}
+        value={label}
+      />
+    );
   }
   return (
     <View style={styles.pickerContainer}>
