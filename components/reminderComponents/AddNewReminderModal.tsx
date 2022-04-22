@@ -1,34 +1,31 @@
 import React from "react";
-import { StyleSheet, View, Modal, Text } from "react-native";
-import colors from "../../constants/colors";
-import InputField from "../UI/InputField";
-import { SquareButton } from "../UI/squareButton";
+import { StyleSheet, Modal, Text, View } from "react-native";
+import { SquareButton } from "../buttons/SquareButton";
+import InputField from "../InputField";
+import colors from "../../utilities/constants/colors";
 
-interface EditReminderModalProps {
+interface addNewReminderModalProps {
   modalVisible: boolean;
   setModalVisible: (modalVisible: boolean) => void;
-  identifier: string;
   reminderTitleEdit: string;
-  editTitleHandler: (body: string) => void;
+  editTitleHandler: (title: string) => void;
   reminderBodyEdit: string;
   editBodyHandler: (body: string) => void;
-  onSave: (
-    reminderId: string,
-    newReminderTitle: string,
-    newReminderBody: string
+  addNewReminderHandler: (
+    reminderTitleEdit: string,
+    reminderBodyEdit: string
   ) => void;
 }
 
-const EditReminderModal = (props: EditReminderModalProps) => {
+const AddNewReminderModal = (props: addNewReminderModalProps) => {
   const {
     modalVisible,
     setModalVisible,
-    identifier,
     reminderTitleEdit,
     editTitleHandler,
     reminderBodyEdit,
     editBodyHandler,
-    onSave,
+    addNewReminderHandler,
   } = props;
 
   return (
@@ -42,38 +39,37 @@ const EditReminderModal = (props: EditReminderModalProps) => {
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalTitle}>Edit Reminder</Text>
+          <Text style={styles.modalTitle}>
+            Type any information you need to remind your patient with
+          </Text>
           <InputField
-            fieldStyle={{ marginBottom: 10, width: 250 }}
+            placeHolder="Enter Reminder Title"
             value={reminderTitleEdit}
             onChangeText={editTitleHandler}
+            fieldStyle={{ width: "100%", marginBottom: 10 }}
             autoComplete="off"
-            placeHolder=""
           />
           <InputField
-            fieldStyle={{ marginBottom: 10, width: 250 }}
+            placeHolder="Enter Reminder Description"
             value={reminderBodyEdit}
             onChangeText={editBodyHandler}
+            fieldStyle={{ width: "100%", height: 100 }}
             autoComplete="off"
-            placeHolder=""
           />
           <View style={styles.buttonsList}>
             <SquareButton
-              title="Dismiss"
+              title="cancel"
               titleStyle={{ color: "#fff" }}
               onPress={() => setModalVisible(!modalVisible)}
-              buttonStyle={styles.dismissButton}
+              buttonStyle={styles.cancelButton}
             />
             <SquareButton
-              title="Save"
+              title="send"
               titleStyle={{ color: "#fff" }}
-              onPress={onSave.bind(
-                this,
-                identifier,
-                reminderTitleEdit,
-                reminderBodyEdit
-              )}
-              buttonStyle={styles.saveButton}
+              onPress={() =>
+                addNewReminderHandler(reminderTitleEdit, reminderBodyEdit)
+              }
+              buttonStyle={styles.sendButton}
             />
           </View>
         </View>
@@ -82,12 +78,15 @@ const EditReminderModal = (props: EditReminderModalProps) => {
   );
 };
 
-export default EditReminderModal;
+export default AddNewReminderModal;
 
 const styles = StyleSheet.create({
   modalTitle: {
     fontFamily: "Cairo-SemiBold",
     fontSize: 18,
+    lineHeight: 22,
+    textAlign: "center",
+    marginBottom: 15,
   },
   centeredView: {
     flex: 1,
@@ -109,20 +108,21 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    width: 320,
+  },
+  cancelButton: {
+    backgroundColor: colors.darkPink,
+    width: 100,
+    height: 50,
+  },
+  sendButton: {
+    backgroundColor: colors.lightGreen,
+    width: 100,
+    height: 50,
   },
   buttonsList: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 25,
-  },
-  dismissButton: {
-    backgroundColor: colors.darkPink,
-    width: 100,
-    height: 50,
-  },
-  saveButton: {
-    backgroundColor: colors.lightGreen,
-    width: 100,
-    height: 50,
   },
 });

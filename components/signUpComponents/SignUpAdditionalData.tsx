@@ -7,17 +7,17 @@ import {
   reduxForm,
   WrappedFieldProps,
 } from "redux-form";
-import RoundEdgedButton from "../RoundEdgedButton";
-import colors from "../../../constants/colors";
-import fonts from "../../../constants/fonts";
-import { DEVICE_HEIGHT } from "../../../constants/dimentions";
+import RoundEdgedButton from "../buttons/RoundEdgedButton";
+import colors from "../../utilities/constants/colors";
+import fonts from "../../utilities/constants/fonts";
+import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
 import PickerComponent from "./Picker";
 import { RenderInputComponent } from "./RenderInputComponent";
 import {
   SignUpAdditionalDataValues,
   SignUpAdditionalDataProps,
   submitSignUpAdditionalData,
-} from "../../../utilities/types/signUpTypes";
+} from "../../utilities/types/signUpTypes";
 
 const SignUpAdditionalData = (
   props: InjectedFormProps<

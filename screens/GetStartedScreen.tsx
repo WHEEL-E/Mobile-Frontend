@@ -10,14 +10,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { GetStartedProps } from "../navigation/navigationUtils";
-import RoundEdgedButton from "../components/UI/RoundEdgedButton";
-import colors from "../constants/colors";
+import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
+import colors from "../utilities/constants/colors";
 
 const GetStartedScreen = (props: GetStartedProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={require("../assets/Cover.jpg")} style={styles.cover} />
+        <Image
+          source={require("../assets/images/Cover.jpg")}
+          style={styles.cover}
+        />
       </View>
       <Text style={styles.title}>Wheel.e gets you everywhere</Text>
       <Text style={styles.slogan}>

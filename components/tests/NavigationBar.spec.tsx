@@ -1,8 +1,8 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
-import * as cmp from "./NavigationComponent";
-import NavigationBar from "./NavigationBar";
-import { NavigationComponent } from "./NavigationComponent";
+import * as cmp from "../navigationComponents/NavigationComponent";
+import NavigationBar from "../navigationComponents/NavigationBar";
+import { NavigationComponent } from "../navigationComponents/NavigationComponent";
 
 describe("navigationBar", () => {
   beforeAll(() => {

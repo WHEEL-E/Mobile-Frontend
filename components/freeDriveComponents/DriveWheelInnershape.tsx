@@ -1,7 +1,7 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
-import { DEVICE_WIDTH } from "../../../constants/dimentions";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
 export const DriveWheelInnershape = () => {
   return (

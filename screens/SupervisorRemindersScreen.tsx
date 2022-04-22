@@ -8,12 +8,12 @@ import {
   ImageBackground,
 } from "react-native";
 import { SupervisorRemindersProps } from "../navigation/navigationUtils";
-import { BackButton } from "../components/UI/BackButton";
-import ReminderCard from "../components/UI/ReminderCard";
-import colors from "../constants/colors";
-import { SquareButton } from "../components/UI/squareButton";
-import AddNewReminderModal from "../components/UI/AddNewReminderModal";
-import { Reminder } from "../types/reminder";
+import { BackButton } from "../components/buttons/BackButton";
+import ReminderCard from "../components/reminderComponents/ReminderCard";
+import colors from "../utilities/constants/colors";
+import { SquareButton } from "../components/buttons/SquareButton";
+import AddNewReminderModal from "../components/reminderComponents/AddNewReminderModal";
+import { Reminder } from "../utilities/types/Reminder";
 
 const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
   // gotten dynamically from the DB
@@ -108,15 +108,11 @@ const SupervisorRemindersScreen = (props: SupervisorRemindersProps) => {
         addNewReminderHandler={addNewReminderHandler}
       />
       <ImageBackground
-        source={require("../assets/cloud-background.png")}
+        source={require("../assets/images/cloud-background.png")}
         style={styles.background}
       >
         <View style={styles.backButton}>
-          <BackButton
-            color="#000"
-            size={35}
-            onPress={() => props.navigation.goBack()}
-          />
+          <BackButton onPress={() => props.navigation.goBack()} />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Reminders</Text>

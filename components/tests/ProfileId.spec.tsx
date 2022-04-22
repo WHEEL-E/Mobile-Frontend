@@ -1,14 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { render } from "@testing-library/react-native";
-import ProfileId from "./ProfileId";
+import ProfileId from "../ProfileId";
 
 describe("navigationBar", () => {
   it("makes sure image source is passed properly", () => {
     const profieId = renderer
       .create(
         <ProfileId
-          imgSource={require("../../assets/IdPlaceHolder.png")}
+          imgSource={require("../../assets/images/IdPlaceHolder.png")}
           name="testIdName"
         />
       )
@@ -19,7 +19,7 @@ describe("navigationBar", () => {
   it("makes sure text is passed properly", async () => {
     const { getByTestId } = render(
       <ProfileId
-        imgSource={require("../../assets/IdPlaceHolder.png")}
+        imgSource={require("../../assets/images/IdPlaceHolder.png")}
         name="testIdName"
       />
     );

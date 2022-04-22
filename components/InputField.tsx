@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
-import colors from "../../constants/colors";
-import { AutoCompleteType } from "../../utilities/types/AutoCompleteType";
+import colors from "../utilities/constants/colors";
+import { AutoCompleteType } from "../utilities/types/AutoCompleteType";
+
 interface InputFieldProps {
   placeHolder: string;
   fieldStyle: object;

@@ -8,7 +8,7 @@ import {
   BottomTabParamList,
   homeNavOptions,
 } from "./navigationUtils";
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/navigationComponents/NavigationBar";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 

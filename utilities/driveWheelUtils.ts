@@ -1,5 +1,5 @@
 import { arc } from "d3-shape";
-import { DEVICE_WIDTH } from "../constants/dimentions";
+import { DEVICE_WIDTH } from "./constants/dimentions";
 
 const PI = 3.14159265359;
 

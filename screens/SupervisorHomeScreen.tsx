@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SupervisorHomeProps } from "../navigation/navigationUtils";
-import { MainButton } from "../components/UI/mainButton";
-import colors from "../constants/colors";
+import { MainButton } from "../components/buttons/MainButton";
+import colors from "../utilities/constants/colors";
 import { useTranslation } from "react-i18next";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
@@ -12,7 +12,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/Header.png")}
+        source={require("../assets/images/Header.png")}
         resizeMode="cover"
         style={styles.coverImage}
       />
@@ -29,9 +29,9 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title={t("profile")}
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
-            onPress={() => props.navigation.navigate("SupervisorReminders")}
+            onPress={() => props.navigation.navigate("Profile")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/images/hospital.png") }}
             hasIcon={true}
           />
           <MainButton
@@ -41,7 +41,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "ios-cart", size: 20, color: "white" }}
             image={{
-              url: require("../assets/new-patient.png"),
+              url: require("../assets/images/new-patient.png"),
             }}
             hasIcon={false}
           />
@@ -54,7 +54,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             onPress={() => props.navigation.navigate("AssociatedPatients")}
             icon={{ name: "", size: 20, color: "white" }}
             image={{
-              url: require("../assets/health-record.png"),
+              url: require("../assets/images/health-record.png"),
             }}
             hasIcon={false}
           />

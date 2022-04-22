@@ -2,8 +2,8 @@ import React from "react";
 import { Picker } from "@react-native-picker/picker";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
-import colors from "../../../constants/colors";
-import { PickerProps } from "../../../utilities/types/signUpTypes";
+import colors from "../../utilities/constants/colors";
+import { PickerProps } from "../../utilities/types/signUpTypes";
 
 const PickerComponent = (props: PickerProps) => {
   const { fieldProps, labels, setType } = props;

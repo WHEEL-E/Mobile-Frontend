@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { PatientRemindersProps } from "../navigation/navigationUtils";
-import { BackButton } from "../components/UI/BackButton";
-import ReminderCard from "../components/UI/ReminderCard";
-import colors from "../constants/colors";
+import { BackButton } from "../components/buttons/BackButton";
+import ReminderCard from "../components/reminderComponents/ReminderCard";
+import colors from "../utilities/constants/colors";
 
 const PatientRemindersScreen = (props: PatientRemindersProps) => {
   // Always false here
@@ -41,11 +41,7 @@ const PatientRemindersScreen = (props: PatientRemindersProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.backButton}>
-        <BackButton
-          color="#000"
-          size={35}
-          onPress={() => props.navigation.goBack()}
-        />
+        <BackButton onPress={() => props.navigation.goBack()} />
       </View>
 
       <View style={styles.content}>

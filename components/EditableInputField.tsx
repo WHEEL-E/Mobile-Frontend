@@ -7,8 +7,8 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import colors from "../../constants/colors";
-import { AutoCompleteType } from "../../utilities/types/AutoCompleteType";
+import colors from "../utilities/constants/colors";
+import { AutoCompleteType } from "../utilities/types/AutoCompleteType";
 
 interface EditableInputFieldProps {
   placeHolder: string;

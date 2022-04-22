@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NotesProps } from "../navigation/navigationUtils";
-import colors from "../constants/colors";
+import colors from "../utilities/constants/colors";
 
 const NotesScreen = (props: NotesProps) => {
   return (

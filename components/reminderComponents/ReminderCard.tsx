@@ -1,8 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import colors from "../../constants/colors";
-import EditReminderModal from "../UI/EditReminderModal";
+import colors from "../../utilities/constants/colors";
+import EditReminderModal from "./EditReminderModal";
+
 interface IReminderCardProps {
   identifier: string;
   sender: string;

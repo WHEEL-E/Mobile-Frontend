@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import ProfileId from "../components/UI/ProfileId";
+import ProfileId from "../components/ProfileId";
 import { ProfileProps } from "../navigation/navigationUtils";
-import EditableInputField from "../components/UI/EditableInputField";
+import EditableInputField from "../components/EditableInputField";
 
 const ProfileScreen = (props: ProfileProps) => {
   const [inputVal, setInputVal] = useState("Hello Person!");
@@ -18,7 +18,7 @@ const ProfileScreen = (props: ProfileProps) => {
   return (
     <View style={styles.container}>
       <ProfileId
-        imgSource={require("../assets/IdPlaceHolder.png")}
+        imgSource={require("../assets/images/IdPlaceHolder.png")}
         name="Regina phalange"
       />
       <Text style={styles.title}>Profile Screen</Text>

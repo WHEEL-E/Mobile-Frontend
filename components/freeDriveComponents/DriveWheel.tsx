@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Svg } from "react-native-svg";
-import { DEVICE_WIDTH } from "../../../constants/dimentions";
-import colors from "../../../constants/colors";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
+import colors from "../../utilities/constants/colors";
 import { DriveWheelButton } from "./DriveWheelButton";
 import { DriveWheelInnershape } from "./DriveWheelInnershape";
 

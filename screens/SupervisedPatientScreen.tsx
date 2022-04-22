@@ -8,12 +8,12 @@ import {
   ImageBackground,
   Dimensions,
 } from "react-native";
-import { BackButton } from "../components/UI/BackButton";
-import { MainButton } from "../components/UI/mainButton";
-import { SquareButton } from "../components/UI/squareButton";
-import colors from "../constants/colors";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../constants/dimentions";
-import fonts from "../constants/fonts";
+import { BackButton } from "../components/buttons/BackButton";
+import { MainButton } from "../components/buttons/MainButton";
+import { SquareButton } from "../components/buttons/SquareButton";
+import colors from "../utilities/constants/colors";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import fonts from "../utilities/constants/fonts";
 import { SupervisedPatientProps } from "../navigation/navigationUtils";
 
 const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
@@ -21,25 +21,21 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/Union.png")}
+        source={require("../assets/images/Union.png")}
         style={styles.backgroundImage}
       >
         <View style={styles.backButton}>
-          <BackButton
-            color="#000"
-            size={35}
-            onPress={() => props.navigation.goBack()}
-          />
+          <BackButton onPress={() => props.navigation.goBack()} />
         </View>
         <Image
           style={styles.logo}
-          source={require("../assets/logo-b-app.png")}
+          source={require("../assets/images/logo-b-app.png")}
         />
         <View style={styles.patientCard}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../assets/IdPlaceHolder.png")}
+              source={require("../assets/images/IdPlaceHolder.png")}
             />
           </View>
           <Text style={styles.patientName}>My supervised patient</Text>
@@ -47,7 +43,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
         <View style={styles.buttons}>
           <MainButton
             title={t("map")}
-            image={{ url: require("../assets/map.png") }}
+            image={{ url: require("../assets/images/map.png") }}
             icon={{ name: "", size: 24, color: "black" }}
             hasIcon={false}
             onPress={() => {}}
@@ -70,7 +66,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
           </View>
           <MainButton
             title={t("healthInfo")}
-            image={{ url: require("../assets/health-state.png") }}
+            image={{ url: require("../assets/images/health-state.png") }}
             icon={{ name: "", size: 24, color: "black" }}
             hasIcon={false}
             onPress={() => {}}

@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import { HomeProps } from "../navigation/navigationUtils";
-import { MainButton } from "../components/UI/mainButton";
-import colors from "../constants/colors";
+import { MainButton } from "../components/buttons/MainButton";
+import colors from "../utilities/constants/colors";
 
 const HomeScreen = (props: HomeProps) => {
   // Should contain the logic of choosing between patient homeScreen and supervisor homeScreen
@@ -34,7 +34,7 @@ const HomeScreen = (props: HomeProps) => {
             }}
             onPress={() => props.navigation.navigate("SupervisorHome")}
             icon={{ name: "ios-cart", size: 20, color: "white" }}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/images/hospital.png") }}
             hasIcon={false}
           />
           <MainButton
@@ -59,7 +59,7 @@ const HomeScreen = (props: HomeProps) => {
             }}
             onPress={() => props.navigation.navigate("PatientHome")}
             icon={{ name: "ios-cart", size: 20, color: "white" }}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/images/hospital.png") }}
             hasIcon={false}
           />
           <MainButton
@@ -68,7 +68,7 @@ const HomeScreen = (props: HomeProps) => {
             titleStyle={styles.changeLanguageText}
             onPress={() => props.navigation.navigate("ChangeLanguage")}
             icon={{ name: "globe-outline", size: 40, color: "black" }}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/images/hospital.png") }}
             hasIcon={true}
           />
         </ScrollView>

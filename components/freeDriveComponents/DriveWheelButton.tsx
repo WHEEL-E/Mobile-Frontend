@@ -1,11 +1,8 @@
 import React from "react";
 import { Path } from "react-native-svg";
-import { DEVICE_WIDTH } from "../../../constants/dimentions";
-import colors from "../../../constants/colors";
-import {
-  DriveWheelButtonProps,
-  archs,
-} from "../../../utilities/driveWheelUtils";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
+import colors from "../../utilities/constants/colors";
+import { DriveWheelButtonProps, archs } from "../../utilities/driveWheelUtils";
 import { Gradientfilling } from "./GradientFilling";
 import { View } from "react-native";
 

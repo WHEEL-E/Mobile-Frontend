@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import colors from "../constants/colors";
-import fonts from "../constants/fonts";
-import { MainButton } from "../components/UI/mainButton";
-import { SquareButton } from "../components/UI/squareButton";
+import colors from "../utilities/constants/colors";
+import fonts from "../utilities/constants/fonts";
+import { MainButton } from "../components/buttons/MainButton";
+import { SquareButton } from "../components/buttons/SquareButton";
 import { PatientHomeProps } from "../navigation/navigationUtils";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
@@ -14,7 +14,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
       <View>
         <Image
           style={styles.logo}
-          source={require("../assets/logo-b-app.png")}
+          source={require("../assets/images/logo-b-app.png")}
         />
         <Text style={styles.mainText}>Good morning, user</Text>
         <Text style={styles.subText} testID="welcomeText">
@@ -31,7 +31,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               backgroundColor: colors.darkGreen,
             }}
             onPress={() => {}}
-            image={{ url: require("../assets/map.png") }}
+            image={{ url: require("../assets/images/map.png") }}
             icon={{ name: "", size: 24, color: "black" }}
             hasIcon={false}
           />
@@ -83,7 +83,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               backgroundColor: colors.lightPurple,
             }}
             onPress={() => {}}
-            image={{ url: require("../assets/health-state.png") }}
+            image={{ url: require("../assets/images/health-state.png") }}
             icon={{ name: "", size: 24, color: "black" }}
             hasIcon={false}
           />
@@ -120,7 +120,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               color: colors.lightBrown,
             }}
             hasIcon={true}
-            image={{ url: require("../assets/hospital.png") }}
+            image={{ url: require("../assets/images/hospital.png") }}
           />
         </View>
       </View>

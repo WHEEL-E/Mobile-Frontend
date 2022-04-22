@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-  Platform,
-  Text,
-  Image,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
 interface SquareButtonProps {
   title: string;
@@ -36,17 +28,5 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
-  },
-  imageContainer: {
-    flex: 1,
-    width: 100,
-    height: 100,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "stretch",
   },
 });

@@ -1,15 +1,15 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import colors from "../constants/colors";
+import colors from "../utilities/constants/colors";
 
-interface IAssociatedPatientProps {
+interface AssociatedPatientProps {
   patientName: string;
   patientAddress: string;
   onPress: () => void;
   backgroundColor: string;
 }
 
-const AssociatedPatientCard = (props: IAssociatedPatientProps) => {
+const AssociatedPatientCard = (props: AssociatedPatientProps) => {
   const { patientName, patientAddress, onPress, backgroundColor } = props;
 
   return (

@@ -1,8 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import { NavigationComponent } from "./NavigationComponent";
+import { NavigationComponent } from "../navigationComponents/NavigationComponent";
 
 let getByTestId: any;
+
 describe("Navigationcomponent", () => {
   beforeEach(() => {
     const onPress = jest.fn();

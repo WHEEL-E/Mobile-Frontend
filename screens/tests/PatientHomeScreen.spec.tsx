@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { render } from "@testing-library/react-native";
-import PatientHomeScreen from "./PatientHomeScreen";
-import * as mainButton from "../components/UI/mainButton";
-import * as squareButton from "../components/UI/squareButton";
-import { MainButton } from "../components/UI/mainButton";
-import { SquareButton } from "../components/UI/squareButton";
+import PatientHomeScreen from "../PatientHomeScreen";
+import * as mainButton from "../../components/buttons/MainButton";
+import * as squareButton from "../../components/buttons/SquareButton";
+import { MainButton } from "../../components/buttons/MainButton";
+import { SquareButton } from "../../components/buttons/SquareButton";
 
 describe("patienthomeScreen", () => {
   it("makes sure screen matches snapShot", () => {

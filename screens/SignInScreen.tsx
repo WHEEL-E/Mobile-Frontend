@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import lang from "../lang";
-import InputField from "../components/UI/InputField";
-import RoundEdgedButton from "../components/UI/RoundEdgedButton";
-import colors from "../constants/colors";
-import fonts from "../constants/fonts";
-import { BackButton } from "../components/UI/BackButton";
+import InputField from "../components/InputField";
+import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
+import colors from "../utilities/constants/colors";
+import fonts from "../utilities/constants/fonts";
+import { BackButton } from "../components/buttons/BackButton";
 import { SignInProps } from "../navigation/navigationUtils";
-import { DEVICE_HEIGHT } from "../constants/dimentions";
+import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 
 const SignInScreen = (props: SignInProps) => {
   const { t } = useTranslation();
@@ -24,12 +24,12 @@ const SignInScreen = (props: SignInProps) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/vector-back.png")}
+        source={require("../assets/images/vector-back.png")}
         style={styles.backgroundImage}
       >
         <Image
           style={styles.logo}
-          source={require("../assets/logo-b-app.png")}
+          source={require("../assets/images/logo-b-app.png")}
         />
         <Text style={styles.title}>{t("WelcomeBack")}</Text>
       </ImageBackground>
