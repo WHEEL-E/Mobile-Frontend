@@ -14,7 +14,7 @@ import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
-import { SignInProps } from "../navigation/navigationUtils";
+import { SignInProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 
 const SignInScreen = (props: SignInProps) => {
@@ -54,7 +54,7 @@ const SignInScreen = (props: SignInProps) => {
         <RoundEdgedButton
           title={t("logIn")}
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("Tabs");
           }}
           backgroundColor={colors.darkGreen}
         />

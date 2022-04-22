@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-import { SupervisorHomeProps } from "../navigation/navigationUtils";
+import { SupervisorHomeProps } from "../utilities/navigationUtils/mainNavigationUtils";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
 import { useTranslation } from "react-i18next";

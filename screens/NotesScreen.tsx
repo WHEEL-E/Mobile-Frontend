@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NotesProps } from "../navigation/navigationUtils";
+import { NotesProps } from "../utilities/navigationUtils/TabNavigationUtils";
 import colors from "../utilities/constants/colors";
 
 const NotesScreen = (props: NotesProps) => {

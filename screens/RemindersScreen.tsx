@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-import { RemindersProps } from "../navigation/navigationUtils";
+import { RemindersProps } from "../utilities/navigationUtils/mainNavigationUtils";
 import { BackButton } from "../components/buttons/BackButton";
 import colors from "../utilities/constants/colors";
 import { SquareButton } from "../components/buttons/SquareButton";

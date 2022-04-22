@@ -1,14 +1,7 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
-export interface navigationComponentProps {
-  onPress: () => void;
-  iconName: any;
-  title: "Home" | "Notes" | "News";
-  backgroundColor: string;
-  color: string;
-}
+import { navigationComponentProps } from "../../utilities/navigationUtils/navigationComponentsUtils";
 
 export const NavigationComponent = (props: navigationComponentProps) => {
   return (

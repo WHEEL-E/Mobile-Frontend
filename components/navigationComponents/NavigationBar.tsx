@@ -1,20 +1,17 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
-import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
+import {
+  navigationBarProps,
+  navigationScreens,
+} from "../../utilities/navigationUtils/navigationComponentsUtils";
 import { NavigationComponent } from "./NavigationComponent";
-
-interface navigationBarProps {
-  navigation: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
-  testID?: string;
-}
-
-type navigationScreens = "News" | "Home" | "Notes";
 
 const NavigationBar = (props: navigationBarProps) => {
   const [selected, setSelected] = React.useState("Home");
+
   const color = (currentTab: navigationScreens) =>
     currentTab === selected ? "white" : "#11698E";
+
   const backgroundColor = (currentTab: navigationScreens) =>
     currentTab === selected ? "#11698E" : "transparent";
 

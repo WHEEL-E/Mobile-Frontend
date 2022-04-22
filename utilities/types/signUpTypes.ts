@@ -1,14 +1,14 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { WrappedFieldProps } from "redux-form";
-import { RootStackParamList } from "../../navigation/navigationUtils";
+import { GetStartedStackParamList } from "../navigationUtils/getStartedNavigationUtils";
 
 export interface signUpMainFormProps {
-  navigation: NativeStackNavigationProp<RootStackParamList, "SignUp">;
+  navigation: NativeStackNavigationProp<GetStartedStackParamList, "SignUp">;
   setScreen: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface SignUpAdditionalDataProps {
-  navigation: NativeStackNavigationProp<RootStackParamList, "SignUp">;
+  navigation: NativeStackNavigationProp<GetStartedStackParamList, "SignUp">;
 }
 
 export interface signUpMainFormValues {
@@ -36,7 +36,7 @@ export const submitSignUpMainForm = (
   const { navigation, setScreen } = props;
   const { type } = values;
   if (type === "supervisor") {
-    navigation.navigate("Home");
+    navigation.navigate("Tabs");
   } else {
     setScreen("SecondPage");
   }
@@ -49,7 +49,7 @@ export const submitSignUpAdditionalData = (
   props: SignUpAdditionalDataProps
 ) => {
   const { navigation } = props;
-  navigation.navigate("Home");
+  navigation.navigate("Tabs");
   console.log("submitting form", values);
 };
 

@@ -14,7 +14,7 @@ import { SquareButton } from "../components/buttons/SquareButton";
 import colors from "../utilities/constants/colors";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import fonts from "../utilities/constants/fonts";
-import { SupervisedPatientProps } from "../navigation/navigationUtils";
+import { SupervisedPatientProps } from "../utilities/navigationUtils/mainNavigationUtils";
 
 const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
   const { t } = useTranslation();

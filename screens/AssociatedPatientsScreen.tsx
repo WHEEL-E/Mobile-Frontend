@@ -1,9 +1,9 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { AssociatedPatientsProps } from "../navigation/navigationUtils";
 import AssociatedPatientCard from "../components/AssociatedPatientCard";
 import colors from "../utilities/constants/colors";
 import { BackButton } from "../components/buttons/BackButton";
+import { AssociatedPatientsProps } from "../utilities/navigationUtils/mainNavigationUtils";
 
 const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
   // comes dynamically from the db and rendered in a flatList

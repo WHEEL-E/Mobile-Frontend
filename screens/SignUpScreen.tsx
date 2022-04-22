@@ -2,7 +2,7 @@ import React from "react";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "../components/buttons/BackButton";
-import { SignUpProps } from "../navigation/navigationUtils";
+import { SignUpProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
 import SignUpMainForm from "../components/signUpComponents/SignUpMainForm";
 import SignUpAdditionalData from "../components/signUpComponents/SignUpAdditionalData";
 import { DEVICE_WIDTH } from "../utilities/constants/dimentions";

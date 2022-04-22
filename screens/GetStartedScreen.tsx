@@ -9,7 +9,7 @@ import {
   Platform,
   TouchableOpacity,
 } from "react-native";
-import { GetStartedProps } from "../navigation/navigationUtils";
+import { GetStartedProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
 import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 
