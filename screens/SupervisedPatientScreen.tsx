@@ -51,7 +51,9 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
           <View style={styles.smallButtonsContainer}>
             <SquareButton
               title={t("reminders")}
-              onPress={() => {}}
+              onPress={() => {
+                props.navigation.navigate("Reminders");
+              }}
               buttonStyle={styles.remindersButton}
               titleStyle={styles.buttonsTitle}
             />

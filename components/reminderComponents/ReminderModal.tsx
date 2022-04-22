@@ -3,30 +3,33 @@ import { StyleSheet, Modal, Text, View } from "react-native";
 import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../InputField";
 import colors from "../../utilities/constants/colors";
+import { addNewReminderModalProps } from "../../utilities/remindersUtils";
 
-interface addNewReminderModalProps {
-  modalVisible: boolean;
-  setModalVisible: (modalVisible: boolean) => void;
-  reminderTitleEdit: string;
-  editTitleHandler: (title: string) => void;
-  reminderBodyEdit: string;
-  editBodyHandler: (body: string) => void;
-  addNewReminderHandler: (
-    reminderTitleEdit: string,
-    reminderBodyEdit: string
-  ) => void;
-}
+const ReminderModal = (props: addNewReminderModalProps) => {
+  const { modalVisible, setModalVisible } = props;
 
-const AddNewReminderModal = (props: addNewReminderModalProps) => {
-  const {
-    modalVisible,
-    setModalVisible,
-    reminderTitleEdit,
-    editTitleHandler,
-    reminderBodyEdit,
-    editBodyHandler,
-    addNewReminderHandler,
-  } = props;
+  const [reminder, setReminder] = React.useState({
+    reminderTitle: "",
+    reminderBody: "",
+  });
+
+  const editTitleHandler = (title: string) => {
+    setReminder({ ...reminder, reminderTitle: title });
+  };
+
+  const editBodyHandler = (body: string) => {
+    setReminder({ ...reminder, reminderBody: body });
+  };
+
+  const submitHandler = () => {
+    if (props.identifier) {
+      //dispatch the PATCH request to edit the reminder
+    } else {
+      //dispatch the POST request to add the reminder
+    }
+    setReminder({ reminderTitle: "", reminderBody: "" });
+    return setModalVisible(false);
+  };
 
   return (
     <Modal
@@ -34,7 +37,7 @@ const AddNewReminderModal = (props: addNewReminderModalProps) => {
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        setModalVisible(!modalVisible);
+        setModalVisible(false);
       }}
     >
       <View style={styles.centeredView}>
@@ -44,31 +47,29 @@ const AddNewReminderModal = (props: addNewReminderModalProps) => {
           </Text>
           <InputField
             placeHolder="Enter Reminder Title"
-            value={reminderTitleEdit}
+            value={reminder.reminderTitle}
             onChangeText={editTitleHandler}
             fieldStyle={{ width: "100%", marginBottom: 10 }}
             autoComplete="off"
           />
           <InputField
             placeHolder="Enter Reminder Description"
-            value={reminderBodyEdit}
+            value={reminder.reminderBody}
             onChangeText={editBodyHandler}
             fieldStyle={{ width: "100%", height: 100 }}
             autoComplete="off"
           />
           <View style={styles.buttonsList}>
             <SquareButton
-              title="cancel"
+              title="Cancel"
               titleStyle={{ color: "#fff" }}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => setModalVisible(false)}
               buttonStyle={styles.cancelButton}
             />
             <SquareButton
-              title="send"
+              title="Submit"
               titleStyle={{ color: "#fff" }}
-              onPress={() =>
-                addNewReminderHandler(reminderTitleEdit, reminderBodyEdit)
-              }
+              onPress={() => submitHandler()}
               buttonStyle={styles.sendButton}
             />
           </View>
@@ -77,8 +78,6 @@ const AddNewReminderModal = (props: addNewReminderModalProps) => {
     </Modal>
   );
 };
-
-export default AddNewReminderModal;
 
 const styles = StyleSheet.create({
   modalTitle: {
@@ -126,3 +125,5 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
 });
+
+export default ReminderModal;

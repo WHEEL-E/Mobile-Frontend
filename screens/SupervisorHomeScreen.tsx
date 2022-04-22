@@ -37,7 +37,9 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             buttonStyle={styles.patientButtonStyle}
             titleStyle={styles.patientTitleStyle}
             onPress={() => props.navigation.navigate("PatientHome")}
-            icon={{ name: "ios-cart", size: 20, color: "white" }}
+            image={{
+              url: require("../assets/images/new-patient.png"),
+            }}
           />
         </View>
         <View style={styles.buttonColContainer}>

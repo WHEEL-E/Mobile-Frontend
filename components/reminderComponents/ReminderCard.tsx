@@ -1,110 +1,61 @@
-import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import colors from "../../utilities/constants/colors";
-import EditReminderModal from "./EditReminderModal";
+import fonts from "../../utilities/constants/fonts";
+import { ReminderCardProps } from "../../utilities/remindersUtils";
+import ReminderModal from "./ReminderModal";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
-interface IReminderCardProps {
-  identifier: string;
-  sender: string;
-  reminderTitle: string;
-  reminderBody: string;
-  backgroundColor: string;
-  onDelete: () => void;
-  onSave: (
-    reminderId: string,
-    newReminderTitle: string,
-    newReminderBody: string
-  ) => void;
-  enableEdit?: boolean;
-  modalVisible: boolean;
-  setModalVisible: (modalVisible: boolean) => void;
-}
-
-const ReminderCard = (props: IReminderCardProps) => {
+const ReminderCard = (props: ReminderCardProps) => {
   const {
     identifier,
     sender,
     reminderTitle,
     reminderBody,
     backgroundColor,
-    onDelete,
     enableEdit,
-    onSave,
-    modalVisible,
-    setModalVisible,
   } = props;
 
-  const [reminderTitleEdit, setReminderTitle] = useState(reminderTitle);
-  const [reminderBodyEdit, setReminderBody] = useState(reminderBody);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const editTitleHandler = (title: string) => {
-    setReminderTitle(title);
+  const deleteReminderHandler = () => {
+    //dispatch the DELETE request
   };
 
-  const editBodyHandler = (body: string) => {
-    setReminderBody(body);
-  };
+  const textColor =
+    backgroundColor === colors.darkGreen ? "white" : colors.darkGreen;
 
   return (
     <View style={{ ...styles.container, backgroundColor }}>
-      <EditReminderModal
+      <ReminderModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         identifier={identifier}
-        reminderTitleEdit={reminderTitleEdit}
-        editTitleHandler={editTitleHandler}
-        reminderBodyEdit={reminderBodyEdit}
-        editBodyHandler={editBodyHandler}
-        onSave={onSave}
       />
-      <TouchableOpacity onPress={onDelete} style={styles.close}>
-        <Ionicons name="ios-close" color="#fff" size={25} />
+      <TouchableOpacity onPress={deleteReminderHandler} style={styles.close}>
+        <Ionicons name="ios-close" color={textColor} size={25} />
       </TouchableOpacity>
-      <Text
-        style={
-          backgroundColor === colors.darkGreen
-            ? styles.whiteTitle
-            : styles.title
-        }
-      >
-        From {sender}
-      </Text>
-      <Text
-        style={
-          backgroundColor === colors.darkGreen
-            ? styles.whiteTitle
-            : styles.title
-        }
-      >
-        {reminderTitle}
-      </Text>
-      <Text
-        style={
-          backgroundColor === colors.darkGreen ? styles.whiteBody : styles.body
-        }
-      >
-        {reminderBody}
-      </Text>
+      <Text style={{ ...styles.title, color: textColor }}>From {sender}</Text>
+      <Text style={{ ...styles.title, color: textColor }}>{reminderTitle}</Text>
+      <Text style={{ ...styles.body, color: textColor }}>{reminderBody}</Text>
       {enableEdit && (
-        <TouchableOpacity
-          onPress={() => setModalVisible(true)}
+        <Ionicons
+          name="ios-create"
+          color={textColor}
+          size={30}
           style={styles.edit}
-        >
-          <Ionicons name="ios-create" color="#fff" size={30} />
-        </TouchableOpacity>
+          onPress={() => setModalVisible(true)}
+        />
       )}
     </View>
   );
 };
 
-export default ReminderCard;
-
 const styles = StyleSheet.create({
   container: {
     shadowColor: "black",
     shadowOpacity: 0.26,
-    flexDirection: "column",
     justifyContent: "center",
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
@@ -114,17 +65,22 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 10,
     overflow: "hidden",
-    width: 320,
+    width: DEVICE_WIDTH * 0.8,
   },
-  title: { fontFamily: "Cairo-Bold", fontSize: 18, color: colors.darkGreen },
-  whiteTitle: { fontFamily: "Cairo-Bold", fontSize: 18, color: "#fff" },
-  body: { fontFamily: "Cairo-Regular", fontSize: 15, color: colors.darkGreen },
-  whiteBody: { fontFamily: "Cairo-Regular", fontSize: 15, color: "#fff" },
+  title: {
+    fontFamily: fonts.CairoBold,
+    fontSize: 18,
+  },
+  body: {
+    fontFamily: fonts.CairoRegular,
+    fontSize: 15,
+  },
   close: {
-    justifyContent: "flex-end",
     alignItems: "flex-end",
   },
   edit: {
     marginVertical: 5,
   },
 });
+
+export default ReminderCard;
