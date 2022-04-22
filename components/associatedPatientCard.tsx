@@ -1,16 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { AssociatedPatientProps } from "../utilities/componentsUtils";
 import colors from "../utilities/constants/colors";
-
-interface AssociatedPatientProps {
-  patientName: string;
-  patientAddress: string;
-  onPress: () => void;
-  backgroundColor: string;
-}
 
 const AssociatedPatientCard = (props: AssociatedPatientProps) => {
   const { patientName, patientAddress, onPress, backgroundColor } = props;
+
+  const textColor =
+    backgroundColor === colors.darkGreen ? "white" : colors.darkGreen;
 
   return (
     <TouchableOpacity
@@ -18,22 +15,8 @@ const AssociatedPatientCard = (props: AssociatedPatientProps) => {
       style={{ ...styles.container, backgroundColor }}
     >
       <View>
-        <Text
-          style={
-            backgroundColor === colors.darkGreen
-              ? styles.whiteTitle
-              : styles.title
-          }
-        >
-          {patientName}
-        </Text>
-        <Text
-          style={
-            backgroundColor === colors.darkGreen
-              ? styles.whiteLocation
-              : styles.location
-          }
-        >
+        <Text style={{ ...styles.title, color: textColor }}>{patientName}</Text>
+        <Text style={{ ...styles.location, color: textColor }}>
           {patientAddress}
         </Text>
       </View>
@@ -65,20 +48,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
-  whiteTitle: {
-    fontFamily: "Cairo-Bold",
-    fontSize: 20,
-    color: "#fff",
-  },
   location: {
     fontFamily: "Cairo-Medium",
     fontSize: 16,
-    textAlign: "center",
-  },
-  whiteLocation: {
-    fontFamily: "Cairo-Medium",
-    fontSize: 16,
-    color: "#fff",
     textAlign: "center",
   },
 });

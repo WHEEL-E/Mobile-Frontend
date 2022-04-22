@@ -10,6 +10,7 @@ const PickerComponent = (props: PickerProps) => {
   const { t } = useTranslation();
   const pickers = [];
   const placeHolder = labels[0];
+
   for (const label of labels) {
     pickers.push(<Picker.Item key={label} label={t(label)} value={label} />);
   }

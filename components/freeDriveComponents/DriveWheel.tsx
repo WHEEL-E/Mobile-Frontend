@@ -13,7 +13,11 @@ const DriveWheel = () => {
     <View style={styles.container}>
       <Svg width="100%" height="100%">
         {buttons.map((value: string, index: number) => (
-          <DriveWheelButton index={index} value={value} />
+          <DriveWheelButton
+            key={index.toString()}
+            value={value}
+            index={index}
+          />
         ))}
         <DriveWheelInnershape />
       </Svg>

@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export interface InputBackButtonProps {
   onPress: () => void;
 }
@@ -8,7 +10,7 @@ export interface MainButtonProps {
   titleStyle: object;
   onPress: () => void;
   icon?: { name: any; size: number; color: string };
-  image?: { url: any };
+  image?: { url: ImageSourcePropType };
 }
 
 export interface roundEdgedButtonProps {

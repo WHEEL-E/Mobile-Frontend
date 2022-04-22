@@ -16,7 +16,7 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
   ]);
 
   return (
-    <View key={index.toString()}>
+    <View>
       <Gradientfilling />
       <Path
         translateX={DEVICE_WIDTH * 0.45}

@@ -1,17 +1,7 @@
 import React from "react";
-import {
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { profileIdProps } from "../utilities/componentsUtils";
 import colors from "../utilities/constants/colors";
-
-interface profileIdProps {
-  imgSource: ImageSourcePropType;
-  name: string;
-}
 
 const ProfileId = (props: profileIdProps) => {
   return (
@@ -40,7 +30,6 @@ const styles = StyleSheet.create({
   circle: {
     width: 150,
     height: 150,
-    backgroundColor: "red",
     borderRadius: 75,
     borderColor: colors.lightGray,
     borderWidth: 5,
