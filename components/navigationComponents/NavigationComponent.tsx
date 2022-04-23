@@ -3,31 +3,34 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { navigationComponentProps } from "../../utilities/navigationUtils/navigationComponentsUtils";
 import { useTranslation } from "react-i18next";
+import colors from "../../utilities/constants/colors";
 
 export const NavigationComponent = (props: navigationComponentProps) => {
+  const { navigation, title, isFocused, iconName } = props;
+
+  const color = isFocused ? "white" : colors.darkGreen;
+  const backgroundColor = isFocused ? colors.darkGreen : "transparent";
+
   const { t } = useTranslation();
   return (
     <TouchableOpacity
-      onPress={props.onPress}
+      onPress={() => {
+        navigation.navigate(title);
+      }}
       style={styles.container}
-      testID={props.title}
+      testID={title}
     >
       <View
         testID="view"
         style={{
           ...styles.iconBackground,
-          backgroundColor: props.backgroundColor,
+          backgroundColor: backgroundColor,
         }}
       >
-        <Ionicons
-          testID="icon"
-          name={props.iconName}
-          size={24}
-          color={props.color}
-        />
+        <Ionicons testID="icon" name={iconName} size={24} color={color} />
       </View>
       <Text testID="text" style={styles.title}>
-        {t(`navigationBar.${props.title}`)}
+        {t(`navigationBar.${title}`)}
       </Text>
     </TouchableOpacity>
   );

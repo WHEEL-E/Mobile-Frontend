@@ -1,39 +1,28 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import {
+  getProps,
   navigationBarProps,
-  navigationScreens,
+  NavigationScreens,
 } from "../../utilities/navigationUtils/navigationComponentsUtils";
 import { NavigationComponent } from "./NavigationComponent";
 
 const NavigationBar = (props: navigationBarProps) => {
-  const [selected, setSelected] = React.useState("Home");
-
-  const color = (currentTab: navigationScreens) =>
-    currentTab === selected ? "white" : "#11698E";
-
-  const backgroundColor = (currentTab: navigationScreens) =>
-    currentTab === selected ? "#11698E" : "transparent";
-
-  const pressHandler = (currentTab: navigationScreens) => {
-    props.navigation.navigate(currentTab);
-    setSelected(currentTab);
-  };
-
-  const getProps = (currentTab: navigationScreens) => {
-    return {
-      onPress: pressHandler.bind(this, currentTab),
-      title: currentTab,
-      color: color(currentTab),
-      backgroundColor: backgroundColor(currentTab),
-    };
-  };
+  const { navigation, state, testID } = props;
 
   return (
-    <View style={styles.container} testID={props.testID}>
-      <NavigationComponent {...getProps("News")} iconName="notifications" />
-      <NavigationComponent {...getProps("Home")} iconName="home" />
-      <NavigationComponent {...getProps("Notes")} iconName="document-text" />
+    <View style={styles.container} testID={testID}>
+      {state.routes.map((route, index) => {
+        // @ts-ignore
+        const label: NavigationScreens = route.name;
+
+        return (
+          <NavigationComponent
+            {...getProps(label, index, state, navigation)}
+            key={index.toString()}
+          />
+        );
+      })}
     </View>
   );
 };

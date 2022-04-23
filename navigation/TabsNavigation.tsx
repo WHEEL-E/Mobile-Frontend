@@ -15,8 +15,11 @@ const TabsNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={bottomNavOptions}
-      tabBar={(props) => <NavigationBar navigation={props.navigation} />}
+      tabBar={(props) => (
+        <NavigationBar navigation={props.navigation} state={props.state} />
+      )}
       initialRouteName="Home"
+      backBehavior="history"
     >
       <Tab.Screen name="News" component={NotificationsScreen} />
       <Tab.Screen name="Home" component={MainNavigation} />
