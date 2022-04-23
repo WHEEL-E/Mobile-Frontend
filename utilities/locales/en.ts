@@ -29,6 +29,7 @@ export default {
       forgotPassword: "Forgot Password?",
       notMember: "Not a member?",
       signUp: "sign up",
+      WelcomeBack: "Welcome Back",
     },
     signupScreen: {
       createAccount: "Create Account",

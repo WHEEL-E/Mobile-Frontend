@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, Modal, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { SquareButton } from "../buttons/SquareButton";
-import InputField from "../InputField";
+import InputField from "../inputs/InputField";
 import colors from "../../utilities/constants/colors";
 import { addNewReminderModalProps } from "../../utilities/remindersUtils";
 
 const ReminderModal = (props: addNewReminderModalProps) => {
   const { t } = useTranslation();
-  const { modalVisible, setModalVisible } = props;
+  const { modalVisible, setModalVisible, identifier } = props;
 
   const [reminder, setReminder] = React.useState({
     reminderTitle: "",
@@ -24,7 +24,7 @@ const ReminderModal = (props: addNewReminderModalProps) => {
   };
 
   const submitHandler = () => {
-    if (props.identifier) {
+    if (identifier) {
       //dispatch the PATCH request to edit the reminder
     } else {
       //dispatch the POST request to add the reminder

@@ -13,7 +13,9 @@ import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 
 const GetStartedScreen = (props: GetStartedProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -27,11 +29,11 @@ const GetStartedScreen = (props: GetStartedProps) => {
       <RoundEdgedButton
         title={t("getStartedScreen.getStarted")}
         backgroundColor={colors.lightGreen}
-        onPress={() => props.navigation.navigate("SignIn")}
+        onPress={() => navigation.navigate("SignIn")}
       />
       <View style={styles.signUpContainer}>
         <Text>{t("getStartedScreen.notMember")} </Text>
-        <TouchableOpacity onPress={() => props.navigation.navigate("SignUp")}>
+        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
           <Text style={{ color: colors.darkGreen }}>
             {t("getStartedScreen.signUp")}
           </Text>

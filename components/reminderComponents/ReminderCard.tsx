@@ -6,6 +6,7 @@ import fonts from "../../utilities/constants/fonts";
 import { ReminderCardProps } from "../../utilities/remindersUtils";
 import ReminderModal from "./ReminderModal";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
+import { useTranslation } from "react-i18next";
 
 const ReminderCard = (props: ReminderCardProps) => {
   const {
@@ -18,6 +19,8 @@ const ReminderCard = (props: ReminderCardProps) => {
   } = props;
 
   const [modalVisible, setModalVisible] = useState(false);
+
+  const { t } = useTranslation();
 
   const deleteReminderHandler = () => {
     //dispatch the DELETE request
@@ -36,7 +39,9 @@ const ReminderCard = (props: ReminderCardProps) => {
       <TouchableOpacity onPress={deleteReminderHandler} style={styles.close}>
         <Ionicons name="ios-close" color={textColor} size={25} />
       </TouchableOpacity>
-      <Text style={{ ...styles.title, color: textColor }}>From {sender}</Text>
+      <Text style={{ ...styles.title, color: textColor }}>
+        {t("remindersScreen.from")} {sender}
+      </Text>
       <Text style={{ ...styles.title, color: textColor }}>{reminderTitle}</Text>
       <Text style={{ ...styles.body, color: textColor }}>{reminderBody}</Text>
       {enableEdit && (

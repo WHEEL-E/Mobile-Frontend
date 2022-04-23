@@ -8,11 +8,13 @@ import { BackButton } from "../components/buttons/BackButton";
 import { FreeDriveProps } from "../utilities/navigationUtils/mainNavigationUtils";
 
 const FreeDriveScreen = (props: FreeDriveProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <View style={styles.backButton}>
-        <BackButton onPress={() => props.navigation.goBack()} />
+        <BackButton onPress={() => navigation.goBack()} />
       </View>
       <ImageBackground
         testID="backgroundImage"

@@ -8,7 +8,8 @@ import { SquareButton } from "../components/buttons/SquareButton";
 import AddNewReminderModal from "../components/reminderComponents/ReminderModal";
 import { RemindersList } from "../components/reminderComponents/RemindersList";
 
-const SupervisorRemindersScreen = (props: RemindersProps) => {
+const RemindersScreen = (props: RemindersProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -23,7 +24,7 @@ const SupervisorRemindersScreen = (props: RemindersProps) => {
         style={styles.background}
       >
         <View style={styles.backButton}>
-          <BackButton onPress={() => props.navigation.goBack()} />
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{t("remindersScreen.reminders")}</Text>
@@ -42,7 +43,7 @@ const SupervisorRemindersScreen = (props: RemindersProps) => {
   );
 };
 
-export default SupervisorRemindersScreen;
+export default RemindersScreen;
 
 const styles = StyleSheet.create({
   container: {

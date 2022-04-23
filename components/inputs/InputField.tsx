@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
-import { InputFieldProps } from "../utilities/componentsUtils";
-import colors from "../utilities/constants/colors";
+import { InputFieldProps } from "../../utilities/componentsUtils";
+import colors from "../../utilities/constants/colors";
 
 const InputField = (props: InputFieldProps) => {
   const { placeHolder, fieldStyle, autoComplete, value, onChangeText } = props;

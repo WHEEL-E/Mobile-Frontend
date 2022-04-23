@@ -6,10 +6,10 @@ import colors from "../utilities/constants/colors";
 import { useTranslation } from "react-i18next";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
-
-  // there's a dynamic rendering for the name of the user when we get it from the db
   const userName = "Alaa";
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -39,7 +39,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title={t("supervisorHomeScreen.newPatient")}
             buttonStyle={styles.patientButtonStyle}
             titleStyle={styles.patientTitleStyle}
-            onPress={() => props.navigation.navigate("PatientHome")}
+            onPress={() => navigation.navigate("PatientHome")}
             image={{
               url: require("../assets/images/new-patient.png"),
             }}
@@ -50,7 +50,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title={t("supervisorHomeScreen.patientsStatus")}
             buttonStyle={styles.statusButtonStyle}
             titleStyle={styles.statusTitleStyle}
-            onPress={() => props.navigation.navigate("AssociatedPatients")}
+            onPress={() => navigation.navigate("AssociatedPatients")}
             image={{
               url: require("../assets/images/health-record.png"),
             }}
@@ -59,7 +59,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title={t("supervisorHomeScreen.help")}
             buttonStyle={styles.helpButtonStyle}
             titleStyle={styles.helpTitleStyle}
-            onPress={() => props.navigation.navigate("PatientHome")}
+            onPress={() => navigation.navigate("PatientHome")}
             icon={{ name: "ios-help-circle", size: 30, color: "white" }}
           />
         </View>

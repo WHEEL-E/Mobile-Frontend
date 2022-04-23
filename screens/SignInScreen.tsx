@@ -8,8 +8,7 @@ import {
   View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import lang from "../lang";
-import InputField from "../components/InputField";
+import InputField from "../components/inputs/InputField";
 import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
@@ -34,7 +33,7 @@ const SignInScreen = (props: SignInProps) => {
         <Text style={styles.title}>{t("signInScreen.WelcomeBack")}</Text>
       </ImageBackground>
       <View style={styles.backButton}>
-        <BackButton onPress={() => props.navigation.goBack()} />
+        <BackButton onPress={() => navigation.goBack()} />
       </View>
       <View style={styles.buttons}>
         <InputField
@@ -54,7 +53,8 @@ const SignInScreen = (props: SignInProps) => {
         <RoundEdgedButton
           title={t("signInScreen.logIn")}
           onPress={() => {
-            navigation.navigate("Tabs");
+            navigation.popToTop();
+            navigation.replace("Tabs");
           }}
           backgroundColor={colors.darkGreen}
         />
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     fontSize: DEVICE_HEIGHT * 0.02,
   },
   signUp: {
-    flexDirection: lang.language == "en" ? "row" : "row-reverse",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,

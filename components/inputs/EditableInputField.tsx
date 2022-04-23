@@ -7,8 +7,8 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import { EditableInputFieldProps } from "../utilities/componentsUtils";
-import colors from "../utilities/constants/colors";
+import { EditableInputFieldProps } from "../../utilities/componentsUtils";
+import colors from "../../utilities/constants/colors";
 
 const EditableInputField = (props: EditableInputFieldProps) => {
   const { placeHolder, fieldStyle, autoComplete, value, onChangeText, onSave } =

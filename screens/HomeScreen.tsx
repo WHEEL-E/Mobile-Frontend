@@ -5,8 +5,8 @@ import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
 
 const HomeScreen = (props: HomeProps) => {
-  // Should contain the logic of choosing between patient homeScreen and supervisor homeScreen
-  // According to signIn information
+  const { navigation } = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.buttons}>
@@ -18,7 +18,7 @@ const HomeScreen = (props: HomeProps) => {
               backgroundColor: colors.lightGreen,
             }}
             titleStyle={styles.ButtonText}
-            onPress={() => props.navigation.navigate("SupervisorHome")}
+            onPress={() => navigation.navigate("SupervisorHome")}
             image={{ url: require("../assets/images/hospital.png") }}
           />
           <MainButton
@@ -28,7 +28,7 @@ const HomeScreen = (props: HomeProps) => {
               backgroundColor: colors.darkPink,
             }}
             titleStyle={styles.ButtonText}
-            onPress={() => props.navigation.navigate("PatientHome")}
+            onPress={() => navigation.navigate("PatientHome")}
             image={{ url: require("../assets/images/hospital.png") }}
           />
           <MainButton
@@ -38,7 +38,7 @@ const HomeScreen = (props: HomeProps) => {
               backgroundColor: colors.darkGreen,
             }}
             titleStyle={styles.ButtonText}
-            onPress={() => props.navigation.navigate("ChangeLanguage")}
+            onPress={() => navigation.navigate("ChangeLanguage")}
             icon={{ name: "globe-outline", size: 40, color: "black" }}
           />
         </ScrollView>

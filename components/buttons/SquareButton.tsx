@@ -7,7 +7,7 @@ export const SquareButton = (props: SquareButtonProps) => {
 
   return (
     <TouchableOpacity
-      style={{ ...buttonStyle, ...styles.button }}
+      style={{ ...styles.button, ...buttonStyle }}
       onPress={onPress}
     >
       <Text style={titleStyle}>{title}</Text>

@@ -1,20 +1,22 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { profileIdProps } from "../utilities/componentsUtils";
-import colors from "../utilities/constants/colors";
+import { profileIdProps } from "../../utilities/componentsUtils";
+import colors from "../../utilities/constants/colors";
 
 const ProfileId = (props: profileIdProps) => {
+  const { imgSource, name } = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.circle}>
         <Image
           testID="profileIdImage"
           style={styles.image}
-          source={props.imgSource}
+          source={imgSource}
         />
       </View>
       <Text testID="profileIdName" style={styles.name}>
-        {props.name}
+        {name}
       </Text>
     </View>
   );

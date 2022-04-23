@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { render } from "@testing-library/react-native";
-import ProfileId from "../ProfileId";
+import ProfileId from "../profileComponents/ProfileId";
 
 describe("navigationBar", () => {
   it("makes sure image source is passed properly", () => {

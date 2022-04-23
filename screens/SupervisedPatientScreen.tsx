@@ -10,7 +10,9 @@ import fonts from "../utilities/constants/fonts";
 import { SupervisedPatientProps } from "../utilities/navigationUtils/mainNavigationUtils";
 
 const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -18,7 +20,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
         style={styles.backgroundImage}
       >
         <View style={styles.backButton}>
-          <BackButton onPress={() => props.navigation.goBack()} />
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
         <Image
           style={styles.logo}
@@ -45,7 +47,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
             <SquareButton
               title={t("supervisedPatientScreen.reminders")}
               onPress={() => {
-                props.navigation.navigate("Reminders");
+                navigation.navigate("Reminders");
               }}
               buttonStyle={styles.remindersButton}
               titleStyle={styles.buttonsTitle}

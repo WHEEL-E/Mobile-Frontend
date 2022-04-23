@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import ProfileId from "../components/ProfileId";
+import ProfileId from "../components/profileComponents/ProfileId";
 import { ProfileProps } from "../utilities/navigationUtils/mainNavigationUtils";
-import EditableInputField from "../components/EditableInputField";
+import EditableInputField from "../components/inputs/EditableInputField";
 
 const ProfileScreen = (props: ProfileProps) => {
   const [inputVal, setInputVal] = useState("Hello Person!");

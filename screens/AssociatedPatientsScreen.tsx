@@ -1,12 +1,13 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import AssociatedPatientCard from "../components/AssociatedPatientCard";
+import AssociatedPatientCard from "../components/associatedPatientComponents/AssociatedPatientCard";
 import colors from "../utilities/constants/colors";
 import { BackButton } from "../components/buttons/BackButton";
 import { AssociatedPatientsProps } from "../utilities/navigationUtils/mainNavigationUtils";
 
 const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
-  // comes dynamically from the db and rendered in a flatList
+  const { navigation } = props;
+
   const patientName = "Emelia Erheart";
   const location = "Atlantic ocean";
   return (
@@ -17,18 +18,18 @@ const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
         style={styles.content}
       >
         <View style={styles.backButton}>
-          <BackButton onPress={() => props.navigation.goBack()} />
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
         <View style={styles.innerContainer}>
           <Text style={styles.title}>Associated Patients</Text>
           <AssociatedPatientCard
-            onPress={() => props.navigation.navigate("SupervisedPatient")}
+            onPress={() => navigation.navigate("SupervisedPatient")}
             patientName={patientName}
             backgroundColor={colors.darkGreen}
             patientAddress={location}
           />
           <AssociatedPatientCard
-            onPress={() => props.navigation.navigate("SupervisedPatient")}
+            onPress={() => navigation.navigate("SupervisedPatient")}
             patientName={patientName}
             backgroundColor={colors.lightGray}
             patientAddress={location}
