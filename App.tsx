@@ -2,7 +2,7 @@ import "./lang";
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
-import { GetStartedNavigation } from "./navigation/GetStartedNavigation";
+import { VisibleNavigation } from "./navigation/VisibleNavigation";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
@@ -29,7 +29,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <GetStartedNavigation />
+        <VisibleNavigation />
       </NavigationContainer>
     </Provider>
   );

@@ -52,10 +52,7 @@ const SignInScreen = (props: SignInProps) => {
         />
         <RoundEdgedButton
           title={t("signInScreen.logIn")}
-          onPress={() => {
-            navigation.popToTop();
-            navigation.replace("Tabs");
-          }}
+          onPress={() => {}}
           backgroundColor={colors.darkGreen}
         />
         <TouchableOpacity>
