@@ -15,10 +15,17 @@ import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
 import { SignInProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
+import { useAuth } from "../context/AuthContext";
 
 const SignInScreen = (props: SignInProps) => {
   const { t } = useTranslation();
   const { navigation } = props;
+  const { signIn } = useAuth();
+
+  const [userToken, setUserToken] = React.useState({
+    emailAddress: "",
+    password: "",
+  });
 
   return (
     <View style={styles.container}>
@@ -39,20 +46,26 @@ const SignInScreen = (props: SignInProps) => {
         <InputField
           placeHolder={t("signInScreen.emailAddress")}
           fieldStyle={styles.inputField}
-          onChangeText={() => {}}
+          onChangeText={(text) => {
+            setUserToken({ ...userToken, emailAddress: text });
+          }}
           autoComplete="email"
-          value=""
+          value={userToken.emailAddress}
         />
         <InputField
           placeHolder={t("signInScreen.password")}
           fieldStyle={styles.inputField}
-          onChangeText={() => {}}
+          onChangeText={(text) => {
+            setUserToken({ ...userToken, password: text });
+          }}
           autoComplete="password"
-          value=""
+          value={userToken.password}
         />
         <RoundEdgedButton
           title={t("signInScreen.logIn")}
-          onPress={() => {}}
+          onPress={() => {
+            signIn(userToken);
+          }}
           backgroundColor={colors.darkGreen}
         />
         <TouchableOpacity>

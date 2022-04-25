@@ -1,8 +1,11 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers/rootReducer";
 import { GetStartedNavigation } from "./GetStartedNavigation";
 import TabsNavigator from "./TabsNavigation";
 
-const isSignedIn = true;
+export function VisibleNavigation() {
+  const isSignedIn = useSelector((store: RootState) => store.signIn.userToken);
 
-export const VisibleNavigation = isSignedIn
-  ? TabsNavigator
-  : GetStartedNavigation;
+  return isSignedIn ? <TabsNavigator /> : <GetStartedNavigation />;
+}
