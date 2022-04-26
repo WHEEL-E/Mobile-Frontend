@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { signIn, signOut } from "../store/actions/signIn";
+import { getTokenandSignIn, signOut } from "../store/actions/signIn";
 import {
   AuthContextPlaceHolder,
   AuthProviderProps,
-  Context,
+  encryptPassword,
   LoginData,
 } from "../utilities/signInUtils";
 
@@ -16,12 +16,15 @@ export const AuthProvider = (props: AuthProviderProps) => {
 
   const authFunctions = {
     signIn: async (data: LoginData) => {
-      //hit the DB to make sure the email and pass are correct and receive the token
-      dispatch(signIn("dummy-auth-token"));
+      const signIndata = { ...data };
+      signIndata.password = encryptPassword(signIndata.password);
+      dispatch(getTokenandSignIn(signIndata));
     },
-    signOut: () => dispatch(signOut),
+    signOut: () => dispatch(signOut()),
     signUp: async (data: LoginData) => {
-      dispatch(signIn("dummy-auth-token"));
+      const signIndata = { ...data };
+      signIndata.password = encryptPassword(signIndata.password);
+      dispatch(getTokenandSignIn(signIndata));
     },
   };
 

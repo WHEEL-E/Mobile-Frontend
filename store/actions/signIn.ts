@@ -1,3 +1,6 @@
+import { Dispatch } from "react";
+import { LoginData } from "../../utilities/signInUtils";
+
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 export const RESTORE_TOKEN = "RESTORE_TOKEN";
@@ -12,4 +15,19 @@ export const restoreToken = (token: string | undefined | null) => {
 
 export const signOut = () => {
   return { type: SIGN_OUT };
+};
+
+export const getTokenandSignIn = (data: LoginData) => {
+  return async (dispatch: Dispatch<any>) => {
+    //here we will add the endpoint for login
+    const response = await fetch("", {
+      method: "GET",
+      body: JSON.stringify({
+        loginData: data,
+      }),
+    });
+
+    const resData = await response.json();
+    dispatch(signIn(resData.token));
+  };
 };
