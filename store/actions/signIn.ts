@@ -1,6 +1,8 @@
 import { Dispatch } from "react";
 import * as SecureStore from "expo-secure-store";
 import { LoginData } from "../../utilities/signInUtils";
+import { deleteUser, restoreUser, storeUser } from "./user";
+import { User } from "../../utilities/userUtils";
 
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
@@ -28,6 +30,7 @@ export const restoreToken = () => {
       console.log(e);
     }
     dispatch({ type: RESTORE_TOKEN, token: userToken });
+    dispatch(restoreUser());
   };
 };
 
@@ -39,6 +42,7 @@ export const signOut = () => {
       console.log(e);
     }
     dispatch({ type: SIGN_OUT });
+    dispatch(deleteUser());
   };
 };
 
@@ -51,14 +55,16 @@ export const getTokenandSignIn = (data: LoginData) => {
       "https://wheel--e-default-rtdb.firebaseio.com/users.json"
     );
     const resData = await response.json();
-    const user = () => {
+    const getUser = () => {
       for (const data in resData) {
         if (resData[data].type == "patient") {
           return resData[data];
         }
       }
     };
+    const user: User = getUser();
     //@ts-ignore
-    dispatch(signIn(user().token));
+    dispatch(signIn(user.token));
+    dispatch(storeUser(user.mainData, user.type));
   };
 };

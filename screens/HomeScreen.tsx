@@ -4,13 +4,20 @@ import { HomeProps } from "../utilities/navigationUtils/mainNavigationUtils";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
 import { useAuth } from "../context/AuthContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers/rootReducer";
 
 const HomeScreen = (props: HomeProps) => {
+  const userData = useSelector(
+    (store: RootState) => store.user?.mainData.username
+  );
+  console.log(userData);
   const { navigation } = props;
   const { signOut } = useAuth();
 
   return (
     <View style={styles.container}>
+      <Text>{userData}</Text>
       <View style={styles.buttons}>
         <ScrollView>
           <MainButton

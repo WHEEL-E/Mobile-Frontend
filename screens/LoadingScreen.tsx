@@ -4,7 +4,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { VisibleNavigation } from "../navigation/VisibleNavigation";
 import { fetchFonts } from "../utilities/fetchFonts";
-import * as SecureStore from "expo-secure-store";
 import { restoreToken } from "../store/actions/signIn";
 import { useDispatch } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
