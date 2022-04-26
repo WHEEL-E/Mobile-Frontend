@@ -1,12 +1,8 @@
 import { Dispatch } from "react";
 import * as SecureStore from "expo-secure-store";
-import { LoginData } from "../../utilities/signInUtils";
+import { AuthActionTypes, LoginData } from "../../utilities/signInUtils";
 import { deleteUser, restoreUser, storeUser } from "./user";
 import { User } from "../../utilities/userUtils";
-
-export const SIGN_IN = "SIGN_IN";
-export const SIGN_OUT = "SIGN_OUT";
-export const RESTORE_TOKEN = "RESTORE_TOKEN";
 
 export const signIn = (token: string | undefined | null) => {
   if (token) {
@@ -16,7 +12,7 @@ export const signIn = (token: string | undefined | null) => {
       } catch (e) {
         console.log(e);
       }
-      dispatch({ type: SIGN_IN, token: token });
+      dispatch({ type: AuthActionTypes.SIGN_IN });
     };
   }
 };
@@ -29,7 +25,10 @@ export const restoreToken = () => {
     } catch (e) {
       console.log(e);
     }
-    dispatch({ type: RESTORE_TOKEN, token: userToken });
+    dispatch({
+      type: AuthActionTypes.RESTORE_TOKEN,
+      isSignedOut: userToken ? false : true,
+    });
     dispatch(restoreUser());
   };
 };
@@ -41,7 +40,7 @@ export const signOut = () => {
     } catch (e) {
       console.log(e);
     }
-    dispatch({ type: SIGN_OUT });
+    dispatch({ type: AuthActionTypes.SIGN_OUT });
     dispatch(deleteUser());
   };
 };
@@ -63,7 +62,6 @@ export const getTokenandSignIn = (data: LoginData) => {
       }
     };
     const user: User = getUser();
-    //@ts-ignore
     dispatch(signIn(user.token));
     dispatch(storeUser(user.mainData, user.type));
   };

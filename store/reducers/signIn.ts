@@ -1,12 +1,12 @@
 import {
-  ActionTypes,
+  AuthActionTypes,
   AuthAction,
   AuthState,
 } from "../../utilities/signInUtils";
 
 const initialState = {
   isLoading: true,
-  isSignOut: false,
+  isSignOut: true,
 };
 
 const signInReducer = (
@@ -14,17 +14,18 @@ const signInReducer = (
   action: AuthAction
 ): AuthState => {
   switch (action.type) {
-    case ActionTypes.RESTORE_TOKEN:
+    case AuthActionTypes.RESTORE_TOKEN:
       return {
         ...state,
         isLoading: false,
+        isSignOut: action.isSignedOut,
       };
-    case ActionTypes.SIGN_IN:
+    case AuthActionTypes.SIGN_IN:
       return {
         ...state,
         isSignOut: false,
       };
-    case ActionTypes.SIGN_OUT:
+    case AuthActionTypes.SIGN_OUT:
       return {
         ...state,
         isSignOut: true,

@@ -26,15 +26,15 @@ export interface AuthState {
   isSignOut: boolean;
 }
 
-export enum ActionTypes {
+export enum AuthActionTypes {
   SIGN_IN = "SIGN_IN",
   SIGN_OUT = "SIGN_OUT",
   RESTORE_TOKEN = "RESTORE_TOKEN",
 }
 
 export interface AuthAction {
-  type: ActionTypes;
-  token?: string;
+  type: AuthActionTypes;
+  isSignedOut: boolean;
   data?: LoginData;
 }
 
