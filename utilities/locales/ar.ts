@@ -29,6 +29,8 @@ export default {
       forgotPassword: "نسيت رمز الدخول؟",
       notMember: "لا تمتلك حساب؟",
       signUp: "إنشاء حساب",
+      enterValidEmail: "من فضلك أدخل البريد الإلكتروني الصحيح",
+      enterPassword: "من فضلك قم بإدخال كلمة المرور",
     },
     signupScreen: {
       createAccount: "إنشاء حساب",

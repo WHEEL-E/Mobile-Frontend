@@ -24,6 +24,7 @@ export interface InputFieldProps {
   value: string;
   onChangeText: (text: string) => void;
   secureText?: boolean;
+  onBlur?: () => void;
 }
 
 export interface profileIdProps {

@@ -30,6 +30,8 @@ export default {
       notMember: "Not a member?",
       signUp: "sign up",
       WelcomeBack: "Welcome Back",
+      enterValidEmail: "Please enter a valid email address",
+      enterPassword: "Please enter your password",
     },
     signupScreen: {
       createAccount: "Create Account",

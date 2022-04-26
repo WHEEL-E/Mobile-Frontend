@@ -6,6 +6,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Keyboard,
+  EmitterSubscription,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import InputField from "../components/inputs/InputField";
@@ -14,18 +16,51 @@ import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
 import { SignInProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
-import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import { useAuth } from "../context/AuthContext";
+import { validateMail, validatePassword } from "../utilities/dataValidators";
 
 const SignInScreen = (props: SignInProps) => {
   const { t } = useTranslation();
   const { navigation } = props;
   const { signIn } = useAuth();
 
-  const [userToken, setUserToken] = React.useState({
+  const [userData, setUserData] = React.useState({
     emailAddress: "",
     password: "",
   });
+
+  const [isValid, setIsValid] = React.useState({
+    emailAddress: true,
+    password: true,
+  });
+
+  const [isKeyBoardShown, setIsKeyBoardShown] = React.useState(false);
+
+  const signInHandler = () => {
+    if (
+      userData.emailAddress &&
+      userData.password &&
+      isValid.emailAddress &&
+      isValid.password
+    ) {
+      signIn(userData);
+    }
+  };
+
+  React.useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setIsKeyBoardShown(true);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setIsKeyBoardShown(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -42,45 +77,65 @@ const SignInScreen = (props: SignInProps) => {
       <View style={styles.backButton}>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <View style={styles.buttons}>
+      <View style={styles.inputs}>
         <InputField
           placeHolder={t("signInScreen.emailAddress")}
           fieldStyle={styles.inputField}
           onChangeText={(text) => {
-            setUserToken({ ...userToken, emailAddress: text });
+            setUserData({ ...userData, emailAddress: text });
+            setIsValid({ ...isValid, emailAddress: validateMail(text) });
           }}
           autoComplete="email"
-          value={userToken.emailAddress}
+          value={userData.emailAddress}
+          onBlur={() => validatePassword(userData.emailAddress)}
         />
+        {!isValid.emailAddress && (
+          <Text style={styles.validationText}>
+            {t("signInScreen.enterValidEmail")}
+          </Text>
+        )}
         <InputField
           placeHolder={t("signInScreen.password")}
           fieldStyle={styles.inputField}
           onChangeText={(text) => {
-            setUserToken({ ...userToken, password: text });
+            setUserData({ ...userData, password: text });
+            setIsValid({ ...isValid, password: validatePassword(text) });
           }}
           autoComplete="password"
-          value={userToken.password}
+          value={userData.password}
           secureText
+          onBlur={() => validatePassword(userData.password)}
         />
-        <RoundEdgedButton
-          title={t("signInScreen.logIn")}
-          onPress={() => {
-            signIn(userToken);
-          }}
-          backgroundColor={colors.darkGreen}
-        />
-        <TouchableOpacity>
-          <Text style={styles.forgotPasswordText}>
-            {t("signInScreen.forgotPassword")}
+        {!isValid.password && (
+          <Text style={styles.validationText}>
+            {t("signInScreen.enterPassword")}
           </Text>
-        </TouchableOpacity>
+        )}
+        {!isKeyBoardShown && (
+          <View style={styles.buttons}>
+            <RoundEdgedButton
+              title={t("signInScreen.logIn")}
+              onPress={signInHandler}
+              backgroundColor={colors.darkGreen}
+            />
+            <TouchableOpacity>
+              <Text style={styles.forgotPasswordText}>
+                {t("signInScreen.forgotPassword")}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
-      <View style={styles.signUp}>
-        <Text style={styles.notMemberText}>{t("signInScreen.notMember")}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-          <Text style={styles.signUpText}>{t("signInScreen.signUp")}</Text>
-        </TouchableOpacity>
-      </View>
+      {!isKeyBoardShown && (
+        <View style={styles.signUp}>
+          <Text style={styles.notMemberText}>
+            {t("signInScreen.notMember")}
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <Text style={styles.signUpText}>{t("signInScreen.signUp")}</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -97,6 +152,12 @@ const styles = StyleSheet.create({
     paddingVertical: "30%",
     width: "100%",
   },
+  imageStyle: {
+    position: "absolute",
+    top: 0,
+    width: DEVICE_WIDTH,
+    height: DEVICE_WIDTH * 0.7,
+  },
   backButton: {
     position: "absolute",
     top: "7%",
@@ -111,17 +172,22 @@ const styles = StyleSheet.create({
   inputField: {
     width: "80%",
     height: 70,
-    marginVertical: 10,
+    marginBottom: 15,
   },
   title: {
     fontSize: 27,
     fontFamily: "Cairo-Bold",
   },
-  buttons: {
+  inputs: {
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
     flex: 1,
+  },
+  buttons: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
   },
   forgotPasswordText: {
     fontFamily: fonts.CairoRegular,
@@ -144,6 +210,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     fontSize: DEVICE_HEIGHT * 0.025,
     color: colors.darkGreen,
+  },
+  validationText: {
+    color: "red",
+    fontFamily: fonts.CairoRegular,
   },
 });
 

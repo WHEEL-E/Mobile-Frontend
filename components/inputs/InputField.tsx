@@ -11,6 +11,7 @@ const InputField = (props: InputFieldProps) => {
     value,
     onChangeText,
     secureText,
+    onBlur,
   } = props;
 
   return (
@@ -21,6 +22,7 @@ const InputField = (props: InputFieldProps) => {
       value={value}
       onChangeText={onChangeText}
       secureTextEntry={secureText}
+      onBlur={onBlur}
     />
   );
 };
