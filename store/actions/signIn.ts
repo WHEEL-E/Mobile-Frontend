@@ -44,15 +44,21 @@ export const signOut = () => {
 
 export const getTokenandSignIn = (data: LoginData) => {
   return async (dispatch: Dispatch<any>) => {
-    //here we will add the endpoint for login
-    const response = await fetch("", {
-      method: "GET",
-      body: JSON.stringify({
-        loginData: data,
-      }),
-    });
+    // Here we will add the endpoint for login
+    // The logic will change since the endpoint will return only one user
 
+    const response = await fetch(
+      "https://wheel--e-default-rtdb.firebaseio.com/users.json"
+    );
     const resData = await response.json();
-    dispatch(signIn(resData.token));
+    const user = () => {
+      for (const data in resData) {
+        if (resData[data].type == "patient") {
+          return resData[data];
+        }
+      }
+    };
+    //@ts-ignore
+    dispatch(signIn(user().token));
   };
 };

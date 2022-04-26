@@ -3,9 +3,11 @@ import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import { HomeProps } from "../utilities/navigationUtils/mainNavigationUtils";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
+import { useAuth } from "../context/AuthContext";
 
 const HomeScreen = (props: HomeProps) => {
   const { navigation } = props;
+  const { signOut } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -40,6 +42,16 @@ const HomeScreen = (props: HomeProps) => {
             titleStyle={styles.ButtonText}
             onPress={() => navigation.navigate("ChangeLanguage")}
             icon={{ name: "globe-outline", size: 40, color: "black" }}
+          />
+          <MainButton
+            title="SignOut"
+            buttonStyle={{
+              ...styles.button,
+              backgroundColor: colors.lightBrown,
+            }}
+            titleStyle={styles.ButtonText}
+            onPress={signOut}
+            icon={{ name: "log-out-outline", size: 40, color: "black" }}
           />
         </ScrollView>
       </View>
