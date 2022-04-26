@@ -16,13 +16,7 @@ const LoadingScreen = () => {
 
   React.useEffect(() => {
     const bootstrapAsync = async () => {
-      let userToken;
-      try {
-        userToken = await SecureStore.getItemAsync("userToken");
-      } catch (e) {
-        console.log(e);
-      }
-      dispatch(restoreToken(userToken));
+      dispatch(restoreToken());
     };
     bootstrapAsync();
   }, []);

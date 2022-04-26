@@ -24,7 +24,6 @@ export const AuthContextPlaceHolder: Context = {
 export interface AuthState {
   isLoading: boolean;
   isSignOut: boolean;
-  userToken: string | undefined;
 }
 
 export enum ActionTypes {

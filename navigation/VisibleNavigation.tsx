@@ -5,7 +5,7 @@ import { GetStartedNavigation } from "./GetStartedNavigation";
 import TabsNavigator from "./TabsNavigation";
 
 export function VisibleNavigation() {
-  const isSignedIn = useSelector((store: RootState) => store.signIn.userToken);
+  const isSignedIn = !useSelector((store: RootState) => store.signIn.isSignOut);
 
   return isSignedIn ? <TabsNavigator /> : <GetStartedNavigation />;
 }

@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import * as SecureStore from "expo-secure-store";
 import { LoginData } from "../../utilities/signInUtils";
 
 export const SIGN_IN = "SIGN_IN";
@@ -6,15 +7,39 @@ export const SIGN_OUT = "SIGN_OUT";
 export const RESTORE_TOKEN = "RESTORE_TOKEN";
 
 export const signIn = (token: string | undefined | null) => {
-  return { type: SIGN_IN, token: token };
+  if (token) {
+    return async (dispatch: Dispatch<any>) => {
+      try {
+        await SecureStore.setItemAsync("userToken", token);
+      } catch (e) {
+        console.log(e);
+      }
+      dispatch({ type: SIGN_IN, token: token });
+    };
+  }
 };
 
-export const restoreToken = (token: string | undefined | null) => {
-  return { type: RESTORE_TOKEN, token: token };
+export const restoreToken = () => {
+  return async (dispatch: Dispatch<any>) => {
+    let userToken;
+    try {
+      userToken = await SecureStore.getItemAsync("userToken");
+    } catch (e) {
+      console.log(e);
+    }
+    dispatch({ type: RESTORE_TOKEN, token: userToken });
+  };
 };
 
 export const signOut = () => {
-  return { type: SIGN_OUT };
+  return async (dispatch: Dispatch<any>) => {
+    try {
+      await SecureStore.deleteItemAsync("userToken");
+    } catch (e) {
+      console.log(e);
+    }
+    dispatch({ type: SIGN_OUT });
+  };
 };
 
 export const getTokenandSignIn = (data: LoginData) => {

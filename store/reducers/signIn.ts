@@ -7,7 +7,6 @@ import {
 const initialState = {
   isLoading: true,
   isSignOut: false,
-  userToken: undefined,
 };
 
 const signInReducer = (
@@ -18,20 +17,17 @@ const signInReducer = (
     case ActionTypes.RESTORE_TOKEN:
       return {
         ...state,
-        userToken: action.token,
         isLoading: false,
       };
     case ActionTypes.SIGN_IN:
       return {
         ...state,
         isSignOut: false,
-        userToken: action.token,
       };
     case ActionTypes.SIGN_OUT:
       return {
         ...state,
         isSignOut: true,
-        userToken: undefined,
       };
   }
   return state;
