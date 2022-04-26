@@ -60,6 +60,7 @@ const SignInScreen = (props: SignInProps) => {
           }}
           autoComplete="password"
           value={userToken.password}
+          secureText
         />
         <RoundEdgedButton
           title={t("signInScreen.logIn")}
