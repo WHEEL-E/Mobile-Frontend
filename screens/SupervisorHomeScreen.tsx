@@ -1,73 +1,66 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-import { SupervisorHomeProps } from "../navigation/navigationUtils";
-import { MainButton } from "../components/UI/mainButton";
-import colors from "../constants/colors";
+import { SupervisorHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { MainButton } from "../components/buttons/MainButton";
+import colors from "../utilities/constants/colors";
 import { useTranslation } from "react-i18next";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
-  // there's a dynamic rendering for the name of the user when we get it from the db
   const userName = "Alaa";
+
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/Header.png")}
+        source={require("../assets/images/Header.png")}
         resizeMode="cover"
         style={styles.coverImage}
       />
       <View>
         <Text style={styles.title}>
-          {t("morning")} {userName}
+          {t("supervisorHomeScreen.morning")} {userName}
         </Text>
-        <Text style={styles.normalText}>{t("wishGoodDay")}</Text>
+        <Text style={styles.normalText}>
+          {t("supervisorHomeScreen.wishGoodDay")}
+        </Text>
       </View>
 
       <View style={styles.buttons}>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title={t("profile")}
+            title={t("supervisorHomeScreen.profile")}
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
-            onPress={() => props.navigation.navigate("SupervisorReminders")}
+            onPress={() => props.navigation.navigate("Profile")}
             icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
-            image={{ url: require("../assets/hospital.png") }}
-            hasIcon={true}
           />
           <MainButton
-            title={t("newPatient")}
+            title={t("supervisorHomeScreen.newPatient")}
             buttonStyle={styles.patientButtonStyle}
             titleStyle={styles.patientTitleStyle}
-            onPress={() => props.navigation.navigate("PatientHome")}
-            icon={{ name: "ios-cart", size: 20, color: "white" }}
+            onPress={() => navigation.navigate("PatientHome")}
             image={{
-              url: require("../assets/new-patient.png"),
+              url: require("../assets/images/new-patient.png"),
             }}
-            hasIcon={false}
           />
         </View>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title={t("patientsStatus")}
+            title={t("supervisorHomeScreen.patientsStatus")}
             buttonStyle={styles.statusButtonStyle}
             titleStyle={styles.statusTitleStyle}
-            onPress={() => props.navigation.navigate("AssociatedPatients")}
-            icon={{ name: "", size: 20, color: "white" }}
+            onPress={() => navigation.navigate("AssociatedPatients")}
             image={{
-              url: require("../assets/health-record.png"),
+              url: require("../assets/images/health-record.png"),
             }}
-            hasIcon={false}
           />
           <MainButton
-            title={t("help")}
+            title={t("supervisorHomeScreen.help")}
             buttonStyle={styles.helpButtonStyle}
             titleStyle={styles.helpTitleStyle}
-            onPress={() => props.navigation.navigate("PatientHome")}
+            onPress={() => navigation.navigate("PatientHome")}
             icon={{ name: "ios-help-circle", size: 30, color: "white" }}
-            image={{
-              url: require("../assets/hospital.png"),
-            }}
-            hasIcon={true}
           />
         </View>
       </View>

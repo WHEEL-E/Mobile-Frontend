@@ -1,33 +1,30 @@
 import React from "react";
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import colors from "../constants/colors";
-import DriveWheel from "../components/UI/freeDriveComponents/DriveWheel";
-import fonts from "../constants/fonts";
-import { BackButton } from "../components/UI/BackButton";
+import colors from "../utilities/constants/colors";
+import DriveWheel from "../components/freeDriveComponents/DriveWheel";
+import fonts from "../utilities/constants/fonts";
+import { BackButton } from "../components/buttons/BackButton";
+import { FreeDriveProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
-const FreeDriveScreen = (props: any) => {
+const FreeDriveScreen = (props: FreeDriveProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <View style={styles.backButton}>
-        <BackButton onPress={() => props.navigation.goBack()} />
+        <BackButton onPress={() => navigation.goBack()} />
       </View>
       <ImageBackground
         testID="backgroundImage"
-        source={require("../assets/Vector.png")}
+        source={require("../assets/images/Vector.png")}
         style={styles.backgroundImage}
       >
-        <Text style={styles.title}>{t("freeDrive")}</Text>
+        <Text style={styles.title}>{t("freeDriveScreen.freeDrive")}</Text>
         <DriveWheel />
         <Text testID="instructionText" style={styles.text}>
-          {t("freeDriveText")}
+          {t("freeDriveScreen.freeDriveText")}
         </Text>
       </ImageBackground>
     </View>

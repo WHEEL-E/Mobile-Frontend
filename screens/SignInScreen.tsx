@@ -8,14 +8,13 @@ import {
   View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import lang from "../lang";
-import InputField from "../components/UI/InputField";
-import RoundEdgedButton from "../components/UI/RoundEdgedButton";
-import colors from "../constants/colors";
-import fonts from "../constants/fonts";
-import { BackButton } from "../components/UI/BackButton";
-import { SignInProps } from "../navigation/navigationUtils";
-import { DEVICE_HEIGHT } from "../constants/dimentions";
+import InputField from "../components/inputs/InputField";
+import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
+import colors from "../utilities/constants/colors";
+import fonts from "../utilities/constants/fonts";
+import { BackButton } from "../components/buttons/BackButton";
+import { SignInProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
+import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 
 const SignInScreen = (props: SignInProps) => {
   const { t } = useTranslation();
@@ -24,49 +23,51 @@ const SignInScreen = (props: SignInProps) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/vector-back.png")}
+        source={require("../assets/images/vector-back.png")}
         style={styles.backgroundImage}
       >
         <Image
           style={styles.logo}
-          source={require("../assets/logo-b-app.png")}
+          source={require("../assets/images/logo-b-app.png")}
         />
-        <Text style={styles.title}>{t("WelcomeBack")}</Text>
+        <Text style={styles.title}>{t("signInScreen.WelcomeBack")}</Text>
       </ImageBackground>
       <View style={styles.backButton}>
-        <BackButton onPress={() => props.navigation.goBack()} />
+        <BackButton onPress={() => navigation.goBack()} />
       </View>
       <View style={styles.buttons}>
         <InputField
-          placeHolder={t("emailAddress")}
+          placeHolder={t("signInScreen.emailAddress")}
           fieldStyle={styles.inputField}
           onChangeText={() => {}}
           autoComplete="email"
           value=""
         />
         <InputField
-          placeHolder={t("password")}
+          placeHolder={t("signInScreen.password")}
           fieldStyle={styles.inputField}
           onChangeText={() => {}}
           autoComplete="password"
           value=""
         />
         <RoundEdgedButton
-          title={t("logIn")}
+          title={t("signInScreen.logIn")}
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.popToTop();
+            navigation.replace("Tabs");
           }}
-          buttonStyle={styles.signInButton}
-          titleStyle={styles.signInText}
+          backgroundColor={colors.darkGreen}
         />
         <TouchableOpacity>
-          <Text style={styles.forgotPasswordText}>{t("forgotPassword")}</Text>
+          <Text style={styles.forgotPasswordText}>
+            {t("signInScreen.forgotPassword")}
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.signUp}>
-        <Text style={styles.notMemberText}>{t("notMember")}</Text>
+        <Text style={styles.notMemberText}>{t("signInScreen.notMember")}</Text>
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-          <Text style={styles.signUpText}>{t("signUp")}</Text>
+          <Text style={styles.signUpText}>{t("signInScreen.signUp")}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -111,25 +112,13 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
   },
-  signInButton: {
-    width: "80%",
-    backgroundColor: colors.darkGreen,
-    borderRadius: 60,
-    height: "12%",
-    marginVertical: 5,
-  },
   forgotPasswordText: {
     fontFamily: fonts.CairoRegular,
     paddingHorizontal: 5,
     fontSize: DEVICE_HEIGHT * 0.02,
   },
-  signInText: {
-    fontSize: DEVICE_HEIGHT * 0.03,
-    fontFamily: fonts.CairoBold,
-    color: "white",
-  },
   signUp: {
-    flexDirection: lang.language == "en" ? "row" : "row-reverse",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,

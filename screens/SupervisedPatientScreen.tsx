@@ -1,78 +1,67 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  Dimensions,
-} from "react-native";
-import { BackButton } from "../components/UI/BackButton";
-import { MainButton } from "../components/UI/mainButton";
-import { SquareButton } from "../components/UI/squareButton";
-import colors from "../constants/colors";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../constants/dimentions";
-import fonts from "../constants/fonts";
-import { SupervisedPatientProps } from "../navigation/navigationUtils";
+import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
+import { BackButton } from "../components/buttons/BackButton";
+import { MainButton } from "../components/buttons/MainButton";
+import { SquareButton } from "../components/buttons/SquareButton";
+import colors from "../utilities/constants/colors";
+import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
+import fonts from "../utilities/constants/fonts";
+import { SupervisedPatientProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
+  const { navigation } = props;
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/Union.png")}
+        source={require("../assets/images/Union.png")}
         style={styles.backgroundImage}
       >
         <View style={styles.backButton}>
-          <BackButton
-            color="#000"
-            size={35}
-            onPress={() => props.navigation.goBack()}
-          />
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
         <Image
           style={styles.logo}
-          source={require("../assets/logo-b-app.png")}
+          source={require("../assets/images/logo-b-app.png")}
         />
         <View style={styles.patientCard}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../assets/IdPlaceHolder.png")}
+              source={require("../assets/images/IdPlaceHolder.png")}
             />
           </View>
           <Text style={styles.patientName}>My supervised patient</Text>
         </View>
         <View style={styles.buttons}>
           <MainButton
-            title={t("map")}
-            image={{ url: require("../assets/map.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
+            title={t("supervisedPatientScreen.map")}
+            image={{ url: require("../assets/images/map.png") }}
             onPress={() => {}}
             buttonStyle={styles.mapButton}
             titleStyle={styles.buttonsTitle}
           />
           <View style={styles.smallButtonsContainer}>
             <SquareButton
-              title={t("reminders")}
-              onPress={() => {}}
+              title={t("supervisedPatientScreen.reminders")}
+              onPress={() => {
+                navigation.navigate("Reminders");
+              }}
               buttonStyle={styles.remindersButton}
               titleStyle={styles.buttonsTitle}
             />
             <SquareButton
-              title={t("profile")}
+              title={t("supervisedPatientScreen.profile")}
               onPress={() => {}}
               buttonStyle={styles.profileButton}
               titleStyle={{ ...styles.buttonsTitle, color: colors.darkGreen }}
             />
           </View>
           <MainButton
-            title={t("healthInfo")}
-            image={{ url: require("../assets/health-state.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
+            title={t("supervisedPatientScreen.healthInfo")}
+            image={{ url: require("../assets/images/health-state.png") }}
             onPress={() => {}}
             buttonStyle={styles.healthButton}
             titleStyle={styles.buttonsTitle}

@@ -1,42 +1,43 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import colors from "../constants/colors";
-import fonts from "../constants/fonts";
-import { MainButton } from "../components/UI/mainButton";
-import { SquareButton } from "../components/UI/squareButton";
-import { PatientHomeProps } from "../navigation/navigationUtils";
+import { useTranslation } from "react-i18next";
+import colors from "../utilities/constants/colors";
+import fonts from "../utilities/constants/fonts";
+import { MainButton } from "../components/buttons/MainButton";
+import { SquareButton } from "../components/buttons/SquareButton";
+import { PatientHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
   const { navigation } = props;
-
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View>
         <Image
           style={styles.logo}
-          source={require("../assets/logo-b-app.png")}
+          source={require("../assets/images/logo-b-app.png")}
         />
-        <Text style={styles.mainText}>Good morning, user</Text>
+        <Text style={styles.mainText}>
+          {t("patientHomeScreen.morning")}user
+        </Text>
         <Text style={styles.subText} testID="welcomeText">
-          We wish you have a good day
+          {t("patientHomeScreen.wishGoodDay")}
         </Text>
       </View>
       <View style={styles.buttons}>
         <View style={styles.buttonsCol}>
           <MainButton
-            title="Map"
+            title={t("patientHomeScreen.map")}
             titleStyle={{ ...styles.bigButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.mainButton,
               backgroundColor: colors.darkGreen,
             }}
             onPress={() => {}}
-            image={{ url: require("../assets/map.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
+            image={{ url: require("../assets/images/map.png") }}
           />
           <SquareButton
-            title="Emergency Call"
+            title={t("patientHomeScreen.emergencyCall")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -45,7 +46,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             onPress={() => {}}
           />
           <SquareButton
-            title="Free Driving"
+            title={t("patientHomeScreen.freeDriving")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -56,7 +57,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
           />
           <SquareButton
-            title="Add a supervisor"
+            title={t("patientHomeScreen.addSupervisor")}
             titleStyle={{ ...styles.smallButtonTitle, color: colors.darkBlue }}
             buttonStyle={{
               ...styles.smallButton,
@@ -65,7 +66,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             onPress={() => {}}
           />
           <SquareButton
-            title="Help"
+            title={t("patientHomeScreen.help")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -76,19 +77,17 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
         </View>
         <View style={styles.buttonsCol}>
           <MainButton
-            title="Health status"
+            title={t("patientHomeScreen.healthStatus")}
             titleStyle={{ ...styles.bigButtonTitle, color: colors.darkBlue }}
             buttonStyle={{
               ...styles.mainButton,
               backgroundColor: colors.lightPurple,
             }}
             onPress={() => {}}
-            image={{ url: require("../assets/health-state.png") }}
-            icon={{ name: "", size: 24, color: "black" }}
-            hasIcon={false}
+            image={{ url: require("../assets/images/health-state.png") }}
           />
           <SquareButton
-            title="Get my chair"
+            title={t("patientHomeScreen.getChair")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
@@ -97,30 +96,28 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             onPress={() => {}}
           />
           <SquareButton
-            title="Reminders"
+            title={t("patientHomeScreen.reminders")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
               backgroundColor: colors.lightGreen,
             }}
             onPress={() => {
-              props.navigation.navigate("PatientReminders");
+              navigation.navigate("Reminders");
             }}
           />
           <MainButton
-            title="My profile"
+            title={t("patientHomeScreen.myProfile")}
             titleStyle={styles.profileTitle}
             buttonStyle={styles.myProfileButton}
             onPress={() => {
-              props.navigation.navigate("Profile");
+              navigation.navigate("Profile");
             }}
             icon={{
               name: "person-outline",
               size: 70,
               color: colors.lightBrown,
             }}
-            hasIcon={true}
-            image={{ url: require("../assets/hospital.png") }}
           />
         </View>
       </View>

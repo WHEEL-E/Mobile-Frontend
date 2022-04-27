@@ -2,13 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import NotesScreen from "../screens/NotesScreen";
-import { SecondaryNavigator } from "./MainNavigator";
+import { MainNavigation } from "./MainNavigation";
 import {
   bottomNavOptions,
   BottomTabParamList,
-  homeNavOptions,
-} from "./navigationUtils";
-import NavigationBar from "../components/NavigationBar";
+} from "../utilities/types/navigationTypes/tabNavigationTypes";
+import NavigationBar from "../components/navigationComponents/NavigationBar";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,15 +15,14 @@ const TabsNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={bottomNavOptions}
-      tabBar={(props) => <NavigationBar navigation={props.navigation} />}
-      initialRouteName="Main"
+      tabBar={(props) => (
+        <NavigationBar navigation={props.navigation} state={props.state} />
+      )}
+      initialRouteName="Home"
+      backBehavior="history"
     >
       <Tab.Screen name="News" component={NotificationsScreen} />
-      <Tab.Screen
-        name="Main"
-        component={SecondaryNavigator}
-        options={homeNavOptions}
-      />
+      <Tab.Screen name="Home" component={MainNavigation} />
       <Tab.Screen name="Notes" component={NotesScreen} />
     </Tab.Navigator>
   );

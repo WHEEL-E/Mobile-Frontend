@@ -1,47 +1,35 @@
-import React, { useState } from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
-import { AssociatedPatientsProps } from "../navigation/navigationUtils";
-import AssociatedPatientCard from "../components/associatedPatientCard";
-import colors from "../constants/colors";
-import { BackButton } from "../components/UI/BackButton";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import AssociatedPatientCard from "../components/associatedPatientComponents/AssociatedPatientCard";
+import colors from "../utilities/constants/colors";
+import { BackButton } from "../components/buttons/BackButton";
+import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
-  // comes dynamically from the db and rendered in a flatList
+  const { navigation } = props;
+
   const patientName = "Emelia Erheart";
   const location = "Atlantic ocean";
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/Vector.png")}
+        source={require("../assets/images/Vector.png")}
         resizeMode="cover"
         style={styles.content}
       >
         <View style={styles.backButton}>
-          <BackButton
-            color="#000"
-            size={35}
-            onPress={() => props.navigation.goBack()}
-          />
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
         <View style={styles.innerContainer}>
           <Text style={styles.title}>Associated Patients</Text>
           <AssociatedPatientCard
-            onPress={() => props.navigation.navigate("SupervisedPatient")}
+            onPress={() => navigation.navigate("SupervisedPatient")}
             patientName={patientName}
             backgroundColor={colors.darkGreen}
             patientAddress={location}
           />
           <AssociatedPatientCard
-            onPress={() => props.navigation.navigate("SupervisedPatient")}
+            onPress={() => navigation.navigate("SupervisedPatient")}
             patientName={patientName}
             backgroundColor={colors.lightGray}
             patientAddress={location}

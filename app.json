@@ -1,30 +1,30 @@
 {
-  "expo": {
-    "name": "wheele-mobile-frontend",
-    "slug": "wheele-mobile-frontend",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/logo-b.png",
-    "splash": {
-      "image": "./assets/logo-b.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/logo-b.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/logo-b.png"
+    "expo": {
+        "name": "wheele-mobile-frontend",
+        "slug": "wheele-mobile-frontend",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/images/logo-b.png",
+        "splash": {
+            "image": "./assets/images/logo-b.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/logo-b.png",
+                "backgroundColor": "#FFFFFF"
+            }
+        },
+        "web": {
+            "favicon": "./assets/images/logo-b.png"
+        }
     }
-  }
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BackButton } from "../components/UI/BackButton";
-import { SignUpProps } from "../navigation/navigationUtils";
-import SignUpMainForm from "../components/UI/signUpComponents/signUpMainForm";
-import SignUpAdditionalData from "../components/UI/signUpComponents/SignUpAdditionalData";
-import { DEVICE_WIDTH } from "../constants/dimentions";
+import { BackButton } from "../components/buttons/BackButton";
+import { SignUpProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
+import SignUpMainForm from "../components/signUpComponents/SignUpMainForm";
+import SignUpAdditionalData from "../components/signUpComponents/SignUpAdditionalData";
+import { DEVICE_WIDTH } from "../utilities/constants/dimentions";
 
 const SignUpScreen = (props: SignUpProps) => {
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ const SignUpScreen = (props: SignUpProps) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/vector-back.png")}
+        source={require("../assets/images/vector-back.png")}
         style={styles.backgroundImage}
         resizeMode="contain"
         imageStyle={styles.imageStyle}
@@ -29,9 +29,9 @@ const SignUpScreen = (props: SignUpProps) => {
       >
         <Image
           style={styles.logo}
-          source={require("../assets/logo-b-app.png")}
+          source={require("../assets/images/logo-b-app.png")}
         />
-        <Text style={styles.title}>{t("createAccount")}</Text>
+        <Text style={styles.title}>{t("signUpScreen.createAccount")}</Text>
         <View style={styles.backButton}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     alignItems: "center",
     paddingTop: "30%",
+    paddingBottom: "10%",
     flex: 1,
     alignSelf: "center",
     width: "100%",
