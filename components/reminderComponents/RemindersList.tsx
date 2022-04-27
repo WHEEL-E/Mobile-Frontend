@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import colors from "../../utilities/constants/colors";
-import { Reminder } from "../../utilities/types/Reminder";
+import { Reminder } from "../../utilities/types/remindersTypes";
 import ReminderCard from "./ReminderCard";
 
 export const RemindersList = () => {

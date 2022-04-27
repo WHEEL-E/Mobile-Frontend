@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import { GetStartedProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
+import { GetStartedProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 

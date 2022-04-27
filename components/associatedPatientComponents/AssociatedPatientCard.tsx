@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { AssociatedPatientProps } from "../../utilities/componentsUtils";
+import { AssociatedPatientProps } from "../../utilities/types/componentsTypes";
 import colors from "../../utilities/constants/colors";
 
 const AssociatedPatientCard = (props: AssociatedPatientProps) => {

@@ -6,7 +6,7 @@ import { MainNavigation } from "./MainNavigation";
 import {
   bottomNavOptions,
   BottomTabParamList,
-} from "../utilities/navigationUtils/TabNavigationUtils";
+} from "../utilities/types/navigationTypes/tabNavigationTypes";
 import NavigationBar from "../components/navigationComponents/NavigationBar";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();

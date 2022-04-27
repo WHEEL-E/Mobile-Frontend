@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../inputs/InputField";
 import colors from "../../utilities/constants/colors";
-import { addNewReminderModalProps } from "../../utilities/remindersUtils";
+import { addNewReminderModalProps } from "../../utilities/types/remindersTypes";
 
 const ReminderModal = (props: addNewReminderModalProps) => {
   const { t } = useTranslation();

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
-import { HomeProps } from "../utilities/navigationUtils/mainNavigationUtils";
+import { HomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
 import { useAuth } from "../context/AuthContext";

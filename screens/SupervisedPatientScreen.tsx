@@ -7,7 +7,7 @@ import { SquareButton } from "../components/buttons/SquareButton";
 import colors from "../utilities/constants/colors";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 import fonts from "../utilities/constants/fonts";
-import { SupervisedPatientProps } from "../utilities/navigationUtils/mainNavigationUtils";
+import { SupervisedPatientProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
   const { navigation } = props;

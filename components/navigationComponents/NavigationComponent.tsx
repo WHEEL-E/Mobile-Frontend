@@ -1,7 +1,7 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { navigationComponentProps } from "../../utilities/navigationUtils/navigationComponentsUtils";
+import { navigationComponentProps } from "../../utilities/types/navigationTypes/navigationComponentsTypes";
 import { useTranslation } from "react-i18next";
 import colors from "../../utilities/constants/colors";
 

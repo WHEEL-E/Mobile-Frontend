@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
-import { InputBackButtonProps } from "../../utilities/buttonsUtils";
+import { InputBackButtonProps } from "../../utilities/types/buttonTypes";
 
 export const BackButton = (props: InputBackButtonProps) => {
   const { onPress } = props;

@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import AssociatedPatientCard from "../components/associatedPatientComponents/AssociatedPatientCard";
 import colors from "../utilities/constants/colors";
 import { BackButton } from "../components/buttons/BackButton";
-import { AssociatedPatientsProps } from "../utilities/navigationUtils/mainNavigationUtils";
+import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
   const { navigation } = props;

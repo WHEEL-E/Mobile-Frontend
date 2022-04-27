@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import colors from "../../utilities/constants/colors";
 import fonts from "../../utilities/constants/fonts";
-import { ReminderCardProps } from "../../utilities/remindersUtils";
+import { ReminderCardProps } from "../../utilities/types/remindersTypes";
 import ReminderModal from "./ReminderModal";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { useTranslation } from "react-i18next";

@@ -15,8 +15,8 @@ import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
-import { SignInProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import { SignInProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
+import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 import { useAuth } from "../context/AuthContext";
 import { validateMail, validatePassword } from "../utilities/dataValidators";
 
@@ -151,12 +151,6 @@ const styles = StyleSheet.create({
     resizeMode: "center",
     paddingVertical: "30%",
     width: "100%",
-  },
-  imageStyle: {
-    position: "absolute",
-    top: 0,
-    width: DEVICE_WIDTH,
-    height: DEVICE_WIDTH * 0.7,
   },
   backButton: {
     position: "absolute",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ProfileId from "../components/profileComponents/ProfileId";
-import { ProfileProps } from "../utilities/navigationUtils/mainNavigationUtils";
+import { ProfileProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import EditableInputField from "../components/inputs/EditableInputField";
 
 const ProfileScreen = (props: ProfileProps) => {

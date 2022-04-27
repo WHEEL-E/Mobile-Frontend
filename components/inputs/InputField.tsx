@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
-import { InputFieldProps } from "../../utilities/componentsUtils";
+import { InputFieldProps } from "../../utilities/types/componentsTypes";
 import colors from "../../utilities/constants/colors";
 
 const InputField = (props: InputFieldProps) => {

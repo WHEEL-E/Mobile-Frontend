@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import lang from "../lang";
-import { ChangeLangugageProps } from "../utilities/navigationUtils/mainNavigationUtils";
+import { ChangeLangugageProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const SetLanguageScreen = (props: ChangeLangugageProps) => {
   const setLanguage = (language: string) => {

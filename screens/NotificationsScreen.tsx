@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NewsProps } from "../utilities/navigationUtils/TabNavigationUtils";
+import { NewsProps } from "../utilities/types/navigationTypes/tabNavigationTypes";
 import { SquareButton } from "../components/buttons/SquareButton";
 
 const NotificationsScreen = (props: NewsProps) => {

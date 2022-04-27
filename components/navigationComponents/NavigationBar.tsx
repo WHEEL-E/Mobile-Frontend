@@ -4,7 +4,7 @@ import {
   getProps,
   navigationBarProps,
   NavigationScreens,
-} from "../../utilities/navigationUtils/navigationComponentsUtils";
+} from "../../utilities/types/navigationTypes/navigationComponentsTypes";
 import { NavigationComponent } from "./NavigationComponent";
 
 const NavigationBar = (props: navigationBarProps) => {
