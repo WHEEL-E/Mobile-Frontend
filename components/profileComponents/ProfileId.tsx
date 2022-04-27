@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { profileIdProps } from "../../utilities/componentsUtils";
+import { profileIdProps } from "../../utilities/types/componentsTypes";
 import colors from "../../utilities/constants/colors";
 
 const ProfileId = (props: profileIdProps) => {

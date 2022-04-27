@@ -1,12 +1,12 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
-import * as cmp from "../navigationComponents/NavigationComponent";
+import * as navigationComponent from "../navigationComponents/NavigationComponent";
 import NavigationBar from "../navigationComponents/NavigationBar";
 import { NavigationComponent } from "../navigationComponents/NavigationComponent";
 
 describe("navigationBar", () => {
   beforeAll(() => {
-    jest.spyOn(cmp, "NavigationComponent");
+    jest.spyOn(navigationComponent, "NavigationComponent");
   });
 
   it("makes sure that NavigationComponent gets called", () => {

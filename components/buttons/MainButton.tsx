@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { MainButtonProps } from "../../utilities/buttonsUtils";
+import { MainButtonProps } from "../../utilities/types/buttonTypes";
 
 export const MainButton = (props: MainButtonProps) => {
   const { title, buttonStyle, titleStyle, onPress, icon, image } = props;

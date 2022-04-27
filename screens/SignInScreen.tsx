@@ -13,7 +13,7 @@ import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
-import { SignInProps } from "../utilities/navigationUtils/getStartedNavigationUtils";
+import { SignInProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 
 const SignInScreen = (props: SignInProps) => {

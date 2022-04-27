@@ -11,7 +11,7 @@ import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import {
   mainStackOptions,
   MainStackParamList,
-} from "../utilities/navigationUtils/mainNavigationUtils";
+} from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 

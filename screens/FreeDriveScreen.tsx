@@ -5,7 +5,7 @@ import colors from "../utilities/constants/colors";
 import DriveWheel from "../components/freeDriveComponents/DriveWheel";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
-import { FreeDriveProps } from "../utilities/navigationUtils/mainNavigationUtils";
+import { FreeDriveProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const FreeDriveScreen = (props: FreeDriveProps) => {
   const { navigation } = props;

@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { WrappedFieldProps } from "redux-form";
-import { GetStartedStackParamList } from "../navigationUtils/getStartedNavigationUtils";
+import { GetStartedStackParamList } from "./navigationTypes/getStartedNavigationTypes";
 
 export interface signUpMainFormProps {
   navigation: NativeStackNavigationProp<GetStartedStackParamList, "SignUp">;

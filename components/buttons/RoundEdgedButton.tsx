@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
-import { roundEdgedButtonProps } from "../../utilities/buttonsUtils";
+import { roundEdgedButtonProps } from "../../utilities/types/buttonTypes";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
 const RoundEdgedButton = (props: roundEdgedButtonProps) => {

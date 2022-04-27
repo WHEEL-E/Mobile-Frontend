@@ -5,7 +5,7 @@ import SignUpScreen from "../screens/SignUpScreen";
 import {
   mainStackOptions,
   GetStartedStackParamList,
-} from "../utilities/navigationUtils/getStartedNavigationUtils";
+} from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 import TabsNavigator from "./TabsNavigation";
 
 const GetStartedStack = createStackNavigator<GetStartedStackParamList>();

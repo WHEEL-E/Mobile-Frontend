@@ -1,5 +1,5 @@
 import { ImageSourcePropType } from "react-native";
-import { AutoCompleteType } from "./types/AutoCompleteType";
+import { AutoCompleteType } from "./autoCompleteType";
 
 export interface AssociatedPatientProps {
   patientName: string;

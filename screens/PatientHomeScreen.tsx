@@ -5,7 +5,7 @@ import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
-import { PatientHomeProps } from "../utilities/navigationUtils/mainNavigationUtils";
+import { PatientHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
   const { navigation } = props;
