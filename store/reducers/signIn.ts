@@ -2,7 +2,7 @@ import {
   AuthActionTypes,
   AuthAction,
   AuthState,
-} from "../../utilities/signInUtils";
+} from "../../utilities/types/signInTypes";
 
 const initialState = {
   isLoading: true,

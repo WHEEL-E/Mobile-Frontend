@@ -5,7 +5,7 @@ import {
   Supervisor,
   UserActionTypes,
   UserTypes,
-} from "../../utilities/userUtils";
+} from "../../utilities/types/userTypes";
 
 export const storeUser = (user: Supervisor | Patient, userType: UserTypes) => {
   const data = { mainData: user, userType };

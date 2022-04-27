@@ -2,7 +2,7 @@ import {
   UserAction,
   UserActionTypes,
   Userstate,
-} from "../../utilities/userUtils";
+} from "../../utilities/types/userTypes";
 
 const initialState = null;
 

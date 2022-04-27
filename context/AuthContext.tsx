@@ -6,7 +6,7 @@ import {
   AuthProviderProps,
   encryptPassword,
   LoginData,
-} from "../utilities/signInUtils";
+} from "../utilities/types/signInTypes";
 
 const AuthContext = React.createContext(AuthContextPlaceHolder);
 

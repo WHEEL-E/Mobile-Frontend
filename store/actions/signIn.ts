@@ -1,8 +1,8 @@
 import { Dispatch } from "react";
 import * as SecureStore from "expo-secure-store";
-import { AuthActionTypes, LoginData } from "../../utilities/signInUtils";
+import { AuthActionTypes, LoginData } from "../../utilities/types/signInTypes";
 import { deleteUser, restoreUser, storeUser } from "./user";
-import { User } from "../../utilities/userUtils";
+import { User } from "../../utilities/types/userTypes";
 
 export const signIn = (token: string | undefined | null) => {
   if (token) {
