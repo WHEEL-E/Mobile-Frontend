@@ -1,20 +1,38 @@
 import {
   UserAction,
   UserActionTypes,
-  Userstate,
+  UserState,
 } from "../../utilities/types/userTypes";
 
-const initialState = null;
+const initialState = {
+  userData: null,
+  isLoggedIn: false,
+  isRestoringData: true,
+};
 
 const userReducer = (
-  state: Userstate | null = initialState,
+  state: UserState = initialState,
   action: UserAction
-): Userstate | null => {
+): UserState => {
   switch (action.type) {
-    case UserActionTypes.STORE_USER:
-      return action.data!;
-    case UserActionTypes.DELETE_USER:
-      return null;
+    case UserActionTypes.SIGN_IN:
+      return {
+        isRestoringData: false,
+        userData: action.data!,
+        isLoggedIn: true,
+      };
+    case UserActionTypes.SIGN_OUT:
+      return {
+        isRestoringData: false,
+        userData: null,
+        isLoggedIn: false,
+      };
+    case UserActionTypes.RESTORE_USER:
+      return {
+        isRestoringData: false,
+        userData: action.data!,
+        isLoggedIn: true,
+      };
   }
   return state;
 };

@@ -1,37 +1,50 @@
 import { Dispatch } from "redux";
 import * as SecureStore from "expo-secure-store";
-import {
-  Patient,
-  Supervisor,
-  UserActionTypes,
-  UserTypes,
-} from "../../utilities/types/userTypes";
+import { User, UserActionTypes } from "../../utilities/types/userTypes";
+import { SignInData } from "../../utilities/types/signInTypes";
 
-export const storeUser = (user: Supervisor | Patient, userType: UserTypes) => {
-  const data = { mainData: user, userType };
-  return async (dispatch: Dispatch<any>) => {
-    try {
-      await SecureStore.setItemAsync("userdata", JSON.stringify(data));
-    } catch (e) {
-      console.log(e);
+export const signIn = (data: SignInData) => {
+  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
+    const response = await fetch(
+      "https://wheel--e-default-rtdb.firebaseio.com/users.json"
+    );
+
+    if (!response.ok) {
     }
-    dispatch({ type: UserActionTypes.STORE_USER, data: data });
+    const resData = await response.json();
+
+    const getUser = () => {
+      for (const data in resData) {
+        if (resData[data].type == "patient") {
+          return resData[data];
+        }
+      }
+    };
+
+    const user: User = getUser();
+    dispatch({ type: UserActionTypes.SIGN_IN, data: user });
+
+    try {
+      await SecureStore.setItemAsync("userdata", JSON.stringify(user));
+    } catch (e) {
+      // nothing he'll just login again next time
+    }
   };
 };
 
-export const deleteUser = () => {
-  return async (dispatch: Dispatch<any>) => {
+export const signOut = () => {
+  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
     try {
       await SecureStore.deleteItemAsync("userdata");
     } catch (e) {
       console.log(e);
     }
-    dispatch({ type: UserActionTypes.DELETE_USER });
+    dispatch({ type: UserActionTypes.SIGN_OUT });
   };
 };
 
 export const restoreUser = () => {
-  return async (dispatch: Dispatch<any>) => {
+  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
     let userData: string | null = null;
     try {
       userData = await SecureStore.getItemAsync("userData");
@@ -41,7 +54,9 @@ export const restoreUser = () => {
 
     if (userData) {
       const user = JSON.parse(userData);
-      dispatch(storeUser(user.mainData, user.userType));
+      dispatch({ type: UserActionTypes.RESTORE_USER, data: user });
+    } else {
+      dispatch({ type: UserActionTypes.SIGN_OUT });
     }
   };
 };

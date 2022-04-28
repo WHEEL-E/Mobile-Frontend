@@ -1,4 +1,5 @@
 export interface Supervisor {
+  userId: string;
   username: string;
   profilePhoto: string;
   mail: string;
@@ -7,6 +8,7 @@ export interface Supervisor {
 }
 
 export interface Patient {
+  userId: string;
   username: string;
   profilePhoto: string;
   smoking: boolean;
@@ -28,22 +30,30 @@ export interface User {
   token: string;
 }
 
-export interface Userstate {
+export interface UserData {
   mainData: Patient | Supervisor;
   userType: UserTypes;
+  token: string;
 }
 
 export enum UserActionTypes {
-  STORE_USER = "STORE_USER",
-  DELETE_USER = "DELETE_USER",
+  SIGN_IN = "SIGN_IN",
+  SIGN_OUT = "SIGN_OUT",
+  RESTORE_USER = "RESTORE_USER",
 }
 
 export interface UserAction {
-  data?: { mainData: Supervisor | Patient; userType: UserTypes };
+  data?: { mainData: Supervisor | Patient; userType: UserTypes; token: string };
   type: UserActionTypes;
 }
 
 export enum UserTypes {
   SUPERVISOR = "SUPERVISOR",
   PATIENT = "PATIENT",
+}
+
+export interface UserState {
+  userData: UserData | null;
+  isLoggedIn: boolean;
+  isRestoringData: boolean;
 }

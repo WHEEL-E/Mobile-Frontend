@@ -4,18 +4,20 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { VisibleNavigation } from "../navigation/VisibleNavigation";
 import { fetchFonts } from "../utilities/fetchFonts";
-import { restoreToken } from "../store/actions/signIn";
 import { useDispatch } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
+import { restoreUser } from "../store/actions/user";
 
 const LoadingScreen = () => {
   const [fontLoaded, setFontLoaded] = React.useState(false);
-  const isLoading = useSelector((store: RootState) => store.signIn.isLoading);
+  const isLoading = useSelector(
+    (store: RootState) => store.user.isRestoringData
+  );
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     const bootstrapAsync = async () => {
-      dispatch(restoreToken());
+      dispatch(restoreUser());
     };
     bootstrapAsync();
   }, []);
