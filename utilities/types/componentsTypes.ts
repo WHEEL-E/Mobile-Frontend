@@ -23,6 +23,8 @@ export interface InputFieldProps {
   autoComplete: AutoCompleteType;
   value: string;
   onChangeText: (text: string) => void;
+  secureText?: boolean;
+  onBlur?: () => void;
 }
 
 export interface profileIdProps {

@@ -7,7 +7,6 @@ export type GetStartedStackParamList = {
   GetStarted: undefined;
   SignIn: undefined;
   SignUp: undefined;
-  Tabs: undefined;
 };
 
 export type SignInProps = NativeStackScreenProps<

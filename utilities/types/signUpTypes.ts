@@ -36,8 +36,6 @@ export const submitSignUpMainForm = (
   const { navigation, setScreen } = props;
   const { type } = values;
   if (type === "supervisor") {
-    navigation.popToTop();
-    navigation.replace("Tabs");
   } else {
     setScreen("SecondPage");
   }
@@ -51,7 +49,6 @@ export const submitSignUpAdditionalData = (
 ) => {
   const { navigation } = props;
   navigation.popToTop();
-  navigation.replace("Tabs");
   console.log("submitting form", values);
 };
 

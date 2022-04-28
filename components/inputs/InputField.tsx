@@ -4,7 +4,15 @@ import { InputFieldProps } from "../../utilities/types/componentsTypes";
 import colors from "../../utilities/constants/colors";
 
 const InputField = (props: InputFieldProps) => {
-  const { placeHolder, fieldStyle, autoComplete, value, onChangeText } = props;
+  const {
+    placeHolder,
+    fieldStyle,
+    autoComplete,
+    value,
+    onChangeText,
+    secureText,
+    onBlur,
+  } = props;
 
   return (
     <TextInput
@@ -13,6 +21,8 @@ const InputField = (props: InputFieldProps) => {
       autoCompleteType={autoComplete}
       value={value}
       onChangeText={onChangeText}
+      secureTextEntry={secureText}
+      onBlur={onBlur}
     />
   );
 };
@@ -20,16 +30,8 @@ const InputField = (props: InputFieldProps) => {
 export default InputField;
 
 const styles = StyleSheet.create({
-  button: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: 55,
-    backgroundColor: "#ccc",
-    textAlign: "center",
-  },
   input: {
     borderRadius: 15,
-    textAlign: "left",
     padding: 20,
     backgroundColor: colors.lightGray,
   },

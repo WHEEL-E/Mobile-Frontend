@@ -1,14 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { HomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
+import { useAuth } from "../context/AuthContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers/rootReducer";
 
 const HomeScreen = (props: HomeProps) => {
+  const userData = useSelector(
+    (store: RootState) => store.user.userData?.mainData.username
+  );
   const { navigation } = props;
+  const { signOut } = useAuth();
 
   return (
     <View style={styles.container}>
+      <Text>{userData}</Text>
       <View style={styles.buttons}>
         <ScrollView>
           <MainButton
@@ -40,6 +48,16 @@ const HomeScreen = (props: HomeProps) => {
             titleStyle={styles.ButtonText}
             onPress={() => navigation.navigate("ChangeLanguage")}
             icon={{ name: "globe-outline", size: 40, color: "black" }}
+          />
+          <MainButton
+            title="SignOut"
+            buttonStyle={{
+              ...styles.button,
+              backgroundColor: colors.lightBrown,
+            }}
+            titleStyle={styles.ButtonText}
+            onPress={signOut}
+            icon={{ name: "log-out-outline", size: 40, color: "black" }}
           />
         </ScrollView>
       </View>

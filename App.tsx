@@ -1,36 +1,20 @@
 import "./lang";
-import React, { useState } from "react";
-import AppLoading from "expo-app-loading";
-import { NavigationContainer } from "@react-navigation/native";
-import { GetStartedNavigation } from "./navigation/GetStartedNavigation";
+import React from "react";
 import { Provider } from "react-redux";
-import { createStore, combineReducers } from "redux";
-import { reducer as formReducer } from "redux-form";
-import { fetchFonts } from "./utilities/fetchFonts";
+import { applyMiddleware, createStore } from "redux";
+import ReduxThunk from "redux-thunk";
+import reducer from "./store/reducers/rootReducer";
+import LoadingScreen from "./screens/LoadingScreen";
+import { AuthProvider } from "./context/AuthContext";
 
-const reducers = {
-  form: formReducer,
-};
-const reducer = combineReducers(reducers);
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(ReduxThunk));
 
 export default function App() {
-  const [fontLoaded, setFontLoaded] = useState(false);
-  if (!fontLoaded) {
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setFontLoaded(true)}
-        onError={(err) => console.warn(err)}
-      />
-    );
-  }
-
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <GetStartedNavigation />
-      </NavigationContainer>
+      <AuthProvider>
+        <LoadingScreen />
+      </AuthProvider>
     </Provider>
   );
 }
