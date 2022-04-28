@@ -1,59 +1,18 @@
-import { Dispatch } from "react";
+import { Dispatch } from "redux";
 import * as SecureStore from "expo-secure-store";
-import { AuthActionTypes, LoginData } from "../../utilities/types/signInTypes";
-import { deleteUser, restoreUser, storeUser } from "./user";
-import { User } from "../../utilities/types/userTypes";
+import { User, UserActionTypes } from "../../utilities/types/userTypes";
+import { SignInData } from "../../utilities/types/signInTypes";
 
-export const signIn = (token: string | undefined | null) => {
-  if (token) {
-    return async (dispatch: Dispatch<any>) => {
-      try {
-        await SecureStore.setItemAsync("userToken", token);
-      } catch (e) {
-        console.log(e);
-      }
-      dispatch({ type: AuthActionTypes.SIGN_IN });
-    };
-  }
-};
-
-export const restoreToken = () => {
-  return async (dispatch: Dispatch<any>) => {
-    let userToken;
-    try {
-      userToken = await SecureStore.getItemAsync("userToken");
-    } catch (e) {
-      console.log(e);
-    }
-    dispatch({
-      type: AuthActionTypes.RESTORE_TOKEN,
-      isSignedOut: userToken ? false : true,
-    });
-    dispatch(restoreUser());
-  };
-};
-
-export const signOut = () => {
-  return async (dispatch: Dispatch<any>) => {
-    try {
-      await SecureStore.deleteItemAsync("userToken");
-    } catch (e) {
-      console.log(e);
-    }
-    dispatch({ type: AuthActionTypes.SIGN_OUT });
-    dispatch(deleteUser());
-  };
-};
-
-export const getTokenandSignIn = (data: LoginData) => {
-  return async (dispatch: Dispatch<any>) => {
-    // Here we will add the endpoint for login
-    // The logic will change since the endpoint will return only one user
-
+export const signIn = (data: SignInData) => {
+  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
     const response = await fetch(
       "https://wheel--e-default-rtdb.firebaseio.com/users.json"
     );
+
+    if (!response.ok) {
+    }
     const resData = await response.json();
+
     const getUser = () => {
       for (const data in resData) {
         if (resData[data].type == "patient") {
@@ -61,8 +20,43 @@ export const getTokenandSignIn = (data: LoginData) => {
         }
       }
     };
+
     const user: User = getUser();
-    dispatch(signIn(user.token));
-    dispatch(storeUser(user.mainData, user.type));
+    dispatch({ type: UserActionTypes.SIGN_IN, data: user });
+
+    try {
+      await SecureStore.setItemAsync("userdata", JSON.stringify(user));
+    } catch (e) {
+      // nothing he'll just login again next time
+    }
+  };
+};
+
+export const signOut = () => {
+  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
+    try {
+      await SecureStore.deleteItemAsync("userdata");
+    } catch (e) {
+      console.log(e);
+    }
+    dispatch({ type: UserActionTypes.SIGN_OUT });
+  };
+};
+
+export const restoreUser = () => {
+  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
+    let userData: string | null = null;
+    try {
+      userData = await SecureStore.getItemAsync("userData");
+    } catch (e) {
+      console.log(e);
+    }
+
+    if (userData) {
+      const user = JSON.parse(userData);
+      dispatch({ type: UserActionTypes.RESTORE_USER, data: user });
+    } else {
+      dispatch({ type: UserActionTypes.SIGN_OUT });
+    }
   };
 };

@@ -6,7 +6,6 @@ import {
   mainStackOptions,
   GetStartedStackParamList,
 } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
-import TabsNavigator from "./TabsNavigation";
 
 const GetStartedStack = createStackNavigator<GetStartedStackParamList>();
 

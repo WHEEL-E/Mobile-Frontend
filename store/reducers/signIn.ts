@@ -1,37 +1,40 @@
 import {
-  AuthActionTypes,
-  AuthAction,
-  AuthState,
-} from "../../utilities/types/signInTypes";
+  UserAction,
+  UserActionTypes,
+  UserState,
+} from "../../utilities/types/userTypes";
 
 const initialState = {
-  isLoading: true,
-  isSignOut: true,
+  userData: null,
+  isLoggedIn: false,
+  isRestoringData: true,
 };
 
-const signInReducer = (
-  state: AuthState = initialState,
-  action: AuthAction
-): AuthState => {
+const userReducer = (
+  state: UserState = initialState,
+  action: UserAction
+): UserState | null => {
   switch (action.type) {
-    case AuthActionTypes.RESTORE_TOKEN:
+    case UserActionTypes.SIGN_IN:
       return {
-        ...state,
-        isLoading: false,
-        isSignOut: action.isSignedOut,
+        isRestoringData: false,
+        userData: action.data!,
+        isLoggedIn: true,
       };
-    case AuthActionTypes.SIGN_IN:
+    case UserActionTypes.SIGN_OUT:
       return {
-        ...state,
-        isSignOut: false,
+        isRestoringData: false,
+        userData: null,
+        isLoggedIn: false,
       };
-    case AuthActionTypes.SIGN_OUT:
+    case UserActionTypes.RESTORE_USER:
       return {
-        ...state,
-        isSignOut: true,
+        isRestoringData: false,
+        userData: action.data!,
+        isLoggedIn: true,
       };
   }
   return state;
 };
 
-export default signInReducer;
+export default userReducer;

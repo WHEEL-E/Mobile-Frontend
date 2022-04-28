@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { HomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
@@ -8,10 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 
 const HomeScreen = (props: HomeProps) => {
-  const userData = useSelector(
-    (store: RootState) => store.user?.mainData.username
-  );
-  console.log(userData);
+  const userData = useSelector((store: RootState) => store.user);
   const { navigation } = props;
   const { signOut } = useAuth();
 
