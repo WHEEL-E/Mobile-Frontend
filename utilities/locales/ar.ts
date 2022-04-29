@@ -89,5 +89,11 @@ export default {
       cancel: "إلغاء",
       submit: "حفظ",
     },
+    emergencyCallModal: {
+      mainText:
+        "تم الاتصال بجميع بأرقام الطوارئ الخاصة بك وإعلامهم بمكانهم الحالي",
+      subText: "نتمنى وجودك بخير!",
+      gotIt: "حسنًا!",
+    },
   },
 };

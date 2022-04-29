@@ -6,12 +6,19 @@ import fonts from "../utilities/constants/fonts";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
 import { PatientHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { EmergencyCallModal } from "../components/homeScreenComponents/EmergencyCallModal";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
   const { navigation } = props;
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
+      <EmergencyCallModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
       <View>
         <Image
           style={styles.logo}
@@ -43,7 +50,9 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.smallButton,
               backgroundColor: colors.darkPink,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              setIsModalVisible(true);
+            }}
           />
           <SquareButton
             title={t("patientHomeScreen.freeDriving")}
