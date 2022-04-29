@@ -92,5 +92,10 @@ export default {
       cancel: "Cancel",
       submit: "Submit",
     },
+    errorModal: {
+      gotIt: "Got It!",
+      signIn: "An error occurred while signing you in! Please sign in again",
+      signOut: "An error occurred while signing you out! Please sign out again",
+    },
   },
 };

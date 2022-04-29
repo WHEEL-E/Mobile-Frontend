@@ -4,8 +4,9 @@ import { HomeProps } from "../utilities/types/navigationTypes/mainNavigationType
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
 import { useAuth } from "../context/AuthContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
+import { ShowModal } from "../store/actions/errorModal";
 
 const HomeScreen = (props: HomeProps) => {
   const userData = useSelector(
@@ -13,7 +14,7 @@ const HomeScreen = (props: HomeProps) => {
   );
   const { navigation } = props;
   const { signOut } = useAuth();
-
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Text>{userData}</Text>
@@ -26,7 +27,13 @@ const HomeScreen = (props: HomeProps) => {
               backgroundColor: colors.lightGreen,
             }}
             titleStyle={styles.ButtonText}
-            onPress={() => navigation.navigate("SupervisorHome")}
+            onPress={() =>
+              dispatch(
+                ShowModal(
+                  "An error occurred while signing you in! Please sign in again"
+                )
+              )
+            }
             image={{ url: require("../assets/images/hospital.png") }}
           />
           <MainButton
