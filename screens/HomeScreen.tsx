@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 
 const HomeScreen = (props: HomeProps) => {
-  const userData = useSelector((store: RootState) => store.user);
+  const userData = useSelector(
+    (store: RootState) => store.user.userData?.mainData.username
+  );
   const { navigation } = props;
   const { signOut } = useAuth();
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { signIn, signOut } from "../store/actions/signIn";
+import { signIn, signOut } from "../store/actions/user";
 import {
   AuthContextPlaceHolder,
   AuthProviderProps,

@@ -13,7 +13,7 @@ const initialState = {
 const userReducer = (
   state: UserState = initialState,
   action: UserAction
-): UserState | null => {
+): UserState => {
   switch (action.type) {
     case UserActionTypes.SIGN_IN:
       return {
