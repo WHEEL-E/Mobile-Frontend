@@ -1,6 +1,10 @@
 import { Dispatch } from "redux";
 import * as SecureStore from "expo-secure-store";
-import { User, UserActionTypes } from "../../utilities/types/userTypes";
+import {
+  User,
+  UserActionTypes,
+  UserTypes,
+} from "../../utilities/types/userTypes";
 import { SignInData } from "../../utilities/types/signInTypes";
 
 export const signIn = (data: SignInData) => {
@@ -15,7 +19,7 @@ export const signIn = (data: SignInData) => {
 
     const getUser = () => {
       for (const data in resData) {
-        if (resData[data].type == "patient") {
+        if (resData[data].userType == UserTypes.PATIENT) {
           return resData[data];
         }
       }
@@ -58,5 +62,33 @@ export const restoreUser = () => {
     } else {
       dispatch({ type: UserActionTypes.SIGN_OUT });
     }
+  };
+};
+
+export const signUp = (data: User) => {
+  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
+    const response = await fetch(
+      "https://wheel--e-default-rtdb.firebaseio.com/users.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    const resData = await response.json();
+    dispatch({
+      type: UserActionTypes.SIGN_IN,
+      data: {
+        ...data,
+        id: resData.name,
+      },
+    });
   };
 };

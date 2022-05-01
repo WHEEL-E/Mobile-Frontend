@@ -1,11 +1,12 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { signIn, signOut } from "../store/actions/user";
+import { signIn, signOut, signUp } from "../store/actions/user";
 import {
   AuthContextPlaceHolder,
   AuthProviderProps,
   SignInData,
 } from "../utilities/types/signInTypes";
+import { User } from "../utilities/types/userTypes";
 
 const AuthContext = React.createContext(AuthContextPlaceHolder);
 
@@ -18,8 +19,8 @@ export const AuthProvider = (props: AuthProviderProps) => {
       dispatch(signIn(data));
     },
     signOut: () => dispatch(signOut()),
-    signUp: async (data: SignInData) => {
-      dispatch(signIn(data));
+    signUp: async (data: User) => {
+      dispatch(signUp(data));
     },
   };
 

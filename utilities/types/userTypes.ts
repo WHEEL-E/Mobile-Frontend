@@ -27,13 +27,7 @@ export interface Patient {
 export interface User {
   mainData: Patient | Supervisor;
   type: UserTypes;
-  token: string;
-}
-
-export interface UserData {
-  mainData: Patient | Supervisor;
-  userType: UserTypes;
-  token: string;
+  token?: string;
 }
 
 export enum UserActionTypes {
@@ -43,7 +37,7 @@ export enum UserActionTypes {
 }
 
 export interface UserAction {
-  data?: { mainData: Supervisor | Patient; userType: UserTypes; token: string };
+  data?: User;
   type: UserActionTypes;
 }
 
@@ -53,7 +47,7 @@ export enum UserTypes {
 }
 
 export interface UserState {
-  userData: UserData | null;
+  userData: User | null;
   isLoggedIn: boolean;
   isRestoringData: boolean;
 }
