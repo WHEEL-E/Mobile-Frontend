@@ -15,7 +15,7 @@ const PickerComponent = (props: PickerProps) => {
     pickers.push(
       <Picker.Item
         key={label}
-        label={t(`signupScreen.${label}`)}
+        label={t(`signUpScreen.${label}`)}
         value={label}
       />
     );

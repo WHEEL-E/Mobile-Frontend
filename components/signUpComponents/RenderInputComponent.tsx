@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, { Dispatch, SetStateAction } from "react";
+import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { WrappedFieldProps } from "redux-form";
 import InputField from "../inputs/InputField";
@@ -13,7 +13,7 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
     <InputField
       fieldStyle={styles.inputField}
       onChangeText={onChange}
-      placeHolder={t(`signupScreen.${name}`)}
+      placeHolder={t(`signUpScreen.${name}`)}
       autoComplete="name"
       value={value}
     />

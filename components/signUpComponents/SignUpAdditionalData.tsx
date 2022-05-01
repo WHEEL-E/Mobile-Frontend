@@ -16,6 +16,7 @@ import {
   SignUpAdditionalDataProps,
   submitSignUpAdditionalData,
 } from "../../utilities/types/signUpTypes";
+import { RenderEmergencyContactsList } from "./RenderEmergencyContactsList";
 
 const SignUpAdditionalData = (
   props: InjectedFormProps<
@@ -34,6 +35,10 @@ const SignUpAdditionalData = (
         <Field name="height" component={RenderInputComponent} />
         <Field name="weight" component={RenderInputComponent} />
         <Field name="age" component={RenderInputComponent} />
+        <Field
+          name="emergencyContacts"
+          component={RenderEmergencyContactsList}
+        />
         <Field
           name="gender"
           component={(props: WrappedFieldProps) => (

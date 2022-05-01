@@ -54,6 +54,7 @@ export const submitSignUpAdditionalData = (
   values: SignUpAdditionalDataValues,
   dispatch: Dispatch<any>
 ) => {
+  console.log(values);
   Patient.addAdditionalFormData(values);
   const user = Patient.prepareUserObject();
   dispatch(signUp(user));

@@ -33,7 +33,7 @@ export default {
       enterValidEmail: "Please enter a valid email address",
       enterPassword: "Please enter your password",
     },
-    signupScreen: {
+    signUpScreen: {
       createAccount: "Create Account",
       signUp: "Sign up",
       name: "Name",
@@ -55,6 +55,8 @@ export default {
       weight: "Weight",
       age: "Age",
       profilePhoto: "Profile Photo",
+      emergencyContact: "Emergency Contact",
+      emergencyContacts: "Emergency Contacts",
     },
     navigationBar: {
       Home: "Home",

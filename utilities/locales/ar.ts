@@ -32,7 +32,7 @@ export default {
       enterValidEmail: "من فضلك أدخل البريد الإلكتروني الصحيح",
       enterPassword: "من فضلك قم بإدخال كلمة المرور",
     },
-    signupScreen: {
+    signUpScreen: {
       createAccount: "إنشاء حساب",
       signUp: "إنشاء حساب",
       name: "الاسم",
@@ -54,6 +54,8 @@ export default {
       weight: "الوزن",
       age: "العمر",
       profilePhoto: "الصورة الشخصية",
+      emergencyContact: "رقم الطوارئ",
+      emergencyContacts: "ارقام الطوارئ",
     },
     navigationBar: {
       Home: "الرئيسية",
