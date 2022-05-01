@@ -54,6 +54,7 @@ export default {
       height: "Height",
       weight: "Weight",
       age: "Age",
+      profilePhoto: "Profile Photo",
     },
     navigationBar: {
       Home: "Home",

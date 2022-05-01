@@ -1,5 +1,9 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Dispatch } from "redux";
 import { WrappedFieldProps } from "redux-form";
+import { Patient } from "../../models/patient";
+import { Supervisor } from "../../models/supervisor";
+import { signUp } from "../../store/actions/user";
 import { GetStartedStackParamList } from "./navigationTypes/getStartedNavigationTypes";
 
 export interface signUpMainFormProps {
@@ -18,14 +22,15 @@ export interface signUpMainFormValues {
   address: string;
   phoneNumber: string;
   type: string;
+  profilePhoto: string;
 }
 
 export interface SignUpAdditionalDataValues {
-  height: string;
-  weight: string;
-  age: string;
-  gender: string;
-  smoke: string;
+  height: number;
+  weight: number;
+  age: number;
+  gender: "female" | "male";
+  smoke: "yes" | "no";
 }
 
 export const submitSignUpMainForm = (
@@ -33,23 +38,25 @@ export const submitSignUpMainForm = (
   dispatch: any,
   props: signUpMainFormProps
 ) => {
-  const { navigation, setScreen } = props;
+  const { setScreen } = props;
   const { type } = values;
   if (type === "supervisor") {
+    Supervisor.addMainFormData(values);
+    const user = Supervisor.prepareUserObject();
+    dispatch(signUp(user));
   } else {
+    Patient.addMainFormData(values);
     setScreen("SecondPage");
   }
-  console.log("submitting form", values);
 };
 
 export const submitSignUpAdditionalData = (
   values: SignUpAdditionalDataValues,
-  dispatch: any,
-  props: SignUpAdditionalDataProps
+  dispatch: Dispatch<any>
 ) => {
-  const { navigation } = props;
-  navigation.popToTop();
-  console.log("submitting form", values);
+  Patient.addAdditionalFormData(values);
+  const user = Patient.prepareUserObject();
+  dispatch(signUp(user));
 };
 
 export interface PickerProps {

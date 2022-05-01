@@ -33,6 +33,7 @@ const SignUpMainForm = (
         <Field name="password" component={RenderInputComponent} />
         <Field name="address" component={RenderInputComponent} />
         <Field name="phoneNumber" component={RenderInputComponent} />
+        <Field name="profilePhoto" component={RenderInputComponent} />
         <Field
           name="type"
           component={(props: WrappedFieldProps) => (

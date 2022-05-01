@@ -53,6 +53,7 @@ export default {
       height: "الطول",
       weight: "الوزن",
       age: "العمر",
+      profilePhoto: "الصورة الشخصية",
     },
     navigationBar: {
       Home: "الرئيسية",
