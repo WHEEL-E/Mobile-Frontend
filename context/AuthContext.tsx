@@ -31,9 +31,13 @@ export const AuthProvider = (props: AuthProviderProps) => {
 };
 
 export function useAuth() {
-  const context = React.useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useSignIn must be used within a signInProvider");
+  try {
+    const context = React.useContext(AuthContext);
+    if (context === undefined) {
+      throw new Error("useAuth must be used inside AuthProvider");
+    }
+    return context;
+  } catch {
+    throw new Error("useAuth must be used inside AuthProvider");
   }
-  return context;
 }
