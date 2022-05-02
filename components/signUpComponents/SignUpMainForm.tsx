@@ -16,6 +16,7 @@ import {
   signUpMainFormProps,
   submitSignUpMainForm,
 } from "../../utilities/types/signUpTypes";
+import { ImagePickerComponent } from "./ImagePicker";
 
 const SignUpMainForm = (
   props: InjectedFormProps<signUpMainFormValues, signUpMainFormProps>
@@ -24,7 +25,6 @@ const SignUpMainForm = (
   const { handleSubmit } = props;
   const [type, setType] = React.useState("patient");
   const typeLabels = ["select", "supervisor", "patient"];
-
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
@@ -33,7 +33,7 @@ const SignUpMainForm = (
         <Field name="password" component={RenderInputComponent} />
         <Field name="address" component={RenderInputComponent} />
         <Field name="phoneNumber" component={RenderInputComponent} />
-        <Field name="profilePhoto" component={RenderInputComponent} />
+        <Field name="profilePhoto" component={ImagePickerComponent} />
         <Field
           name="type"
           component={(props: WrappedFieldProps) => (
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
+    backgroundColor: "red",
   },
   scrollView: {
     justifyContent: "center",

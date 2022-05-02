@@ -31,6 +31,7 @@ export interface SignUpAdditionalDataValues {
   age: number;
   gender: "female" | "male";
   smoke: "yes" | "no";
+  emergencyContacts: string[];
 }
 
 export const submitSignUpMainForm = (
@@ -54,7 +55,6 @@ export const submitSignUpAdditionalData = (
   values: SignUpAdditionalDataValues,
   dispatch: Dispatch<any>
 ) => {
-  console.log(values);
   Patient.addAdditionalFormData(values);
   const user = Patient.prepareUserObject();
   dispatch(signUp(user));

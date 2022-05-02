@@ -41,14 +41,17 @@ export class Patient {
     age: number;
     gender: "female" | "male";
     smoke: "yes" | "no";
+    emergencyContacts: string[];
   }) => {
-    const { height, weight, age, gender, smoke } = additionalFormValues;
+    const { height, weight, age, gender, smoke, emergencyContacts } =
+      additionalFormValues;
 
     this.smoking = smoke === "yes" ? true : false;
     this.weight = weight;
     this.height = height;
     this.age = age;
     this.gender = gender;
+    this.emergencyContacts = emergencyContacts;
   };
 
   static prepareUserObject = () => {
