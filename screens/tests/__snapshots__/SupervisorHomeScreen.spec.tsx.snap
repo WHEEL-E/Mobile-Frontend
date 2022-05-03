@@ -1,0 +1,326 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`supervisorHomeScreen makes sure screen matches snapShot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0.9,
+    }
+  }
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "flex": 1,
+        "height": 350,
+        "width": 380,
+      }
+    }
+  >
+    <Image
+      resizeMode="cover"
+      source={1}
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": 350,
+            "width": 380,
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+  <View>
+    <Text
+      style={
+        Object {
+          "fontFamily": "Cairo-Bold",
+          "fontSize": 20,
+          "textAlign": "center",
+        }
+      }
+      testID="morningText"
+    >
+      translated text
+       
+      mockFirstName
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontFamily": "Cairo-Regular",
+          "fontSize": 15,
+          "textAlign": "center",
+        }
+      }
+      testID="welcomeText"
+    >
+      translated text
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "marginBottom": 15,
+        "width": 200,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#E7D9EA",
+            "borderColor": "#E7D9EA",
+            "borderRadius": 30,
+            "borderWidth": 2,
+            "height": 100,
+            "justifyContent": "center",
+            "marginHorizontal": 70,
+            "marginVertical": 5,
+            "opacity": 1,
+            "padding": 15,
+            "width": 150,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "60%",
+              "justifyContent": "center",
+              "width": "60%",
+            }
+          }
+        >
+          <Text />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#11698E",
+              "fontFamily": "Cairo-Bold",
+              "fontSize": 15,
+              "textAlign": "center",
+            }
+          }
+        >
+          translated text
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#11698E",
+            "borderColor": "#11698E",
+            "borderRadius": 30,
+            "borderWidth": 2,
+            "height": 150,
+            "justifyContent": "center",
+            "marginHorizontal": 70,
+            "marginVertical": 5,
+            "opacity": 1,
+            "padding": 15,
+            "width": 150,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "60%",
+              "justifyContent": "center",
+              "width": "60%",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": "100%",
+                "resizeMode": "center",
+                "width": "100%",
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontFamily": "Cairo-Bold",
+              "fontSize": 18,
+              "textAlign": "center",
+            }
+          }
+        >
+          translated text
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#11698E",
+            "borderColor": "#11698E",
+            "borderRadius": 30,
+            "borderWidth": 2,
+            "height": 150,
+            "justifyContent": "center",
+            "marginHorizontal": 70,
+            "marginVertical": 5,
+            "opacity": 1,
+            "padding": 15,
+            "width": 150,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "60%",
+              "justifyContent": "center",
+              "width": "60%",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": "100%",
+                "resizeMode": "center",
+                "width": "100%",
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontFamily": "Cairo-Bold",
+              "fontSize": 18,
+              "textAlign": "center",
+            }
+          }
+        >
+          translated text
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#B91646",
+            "borderColor": "#B91646",
+            "borderRadius": 30,
+            "borderWidth": 2,
+            "height": 100,
+            "justifyContent": "center",
+            "marginHorizontal": 70,
+            "marginVertical": 5,
+            "opacity": 1,
+            "padding": 15,
+            "width": 150,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "60%",
+              "justifyContent": "center",
+              "width": "60%",
+            }
+          }
+        >
+          <Text />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontFamily": "Cairo-Bold",
+              "fontSize": 20,
+              "textAlign": "center",
+            }
+          }
+        >
+          translated text
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
