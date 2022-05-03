@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, Text } from "react-native";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { WrappedFieldProps } from "redux-form";
 import { useTranslation } from "react-i18next";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../../utilities/constants/colors";
-import { View } from "react-native";
+import fonts from "../../utilities/constants/fonts";
 
 export const ImagePickerComponent = (props: WrappedFieldProps) => {
-  const { input } = props;
-  const { onChange, value } = input;
+  const { input, meta } = props;
+  const { onChange, value, name } = input;
   const { t } = useTranslation();
 
   const pickImage = async () => {
@@ -26,16 +26,28 @@ export const ImagePickerComponent = (props: WrappedFieldProps) => {
   };
 
   return (
-    <TouchableOpacity style={styles.button} onPress={pickImage}>
-      <View style={styles.buttonView}>
-        <Text>{t("signUpScreen.profilePhoto")}</Text>
-        {value !== "" && <Image source={{ uri: value }} style={styles.image} />}
-      </View>
-    </TouchableOpacity>
+    <View style={styles.mainView}>
+      <TouchableOpacity style={styles.button} onPress={pickImage}>
+        <View style={styles.buttonView}>
+          <Text>{t("signUpScreen.profilePhoto")}</Text>
+          {value !== "" && (
+            <Image source={{ uri: value }} style={styles.image} />
+          )}
+        </View>
+      </TouchableOpacity>
+      <Text style={styles.validationText}>
+        {meta.invalid && t(meta.warning, { name: t(`signUpScreen.${name}`) })}
+      </Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  mainView: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   button: {
     width: "80%",
     height: 105,
@@ -57,5 +69,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: colors.darkGrey,
     borderWidth: 5,
+  },
+  validationText: {
+    color: "red",
+    fontFamily: fonts.CairoRegular,
+    fontSize: 10,
   },
 });

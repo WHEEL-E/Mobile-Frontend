@@ -11,12 +11,18 @@ import RoundEdgedButton from "../buttons/RoundEdgedButton";
 import colors from "../../utilities/constants/colors";
 import PickerComponent from "./Picker";
 import { RenderInputComponent } from "./RenderInputComponent";
+import { ImagePickerComponent } from "./ImagePicker";
 import {
   signUpMainFormValues,
   signUpMainFormProps,
   submitSignUpMainForm,
 } from "../../utilities/types/signUpTypes";
-import { ImagePickerComponent } from "./ImagePicker";
+import {
+  validateMail,
+  validateNotEmpty,
+  validatePassword,
+  validatePhone,
+} from "../../utilities/dataValidators";
 
 const SignUpMainForm = (
   props: InjectedFormProps<signUpMainFormValues, signUpMainFormProps>
@@ -25,15 +31,46 @@ const SignUpMainForm = (
   const { handleSubmit } = props;
   const [type, setType] = React.useState("patient");
   const typeLabels = ["select", "supervisor", "patient"];
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <Field name="name" component={RenderInputComponent} />
-        <Field name="emailAddress" component={RenderInputComponent} />
-        <Field name="password" component={RenderInputComponent} />
-        <Field name="address" component={RenderInputComponent} />
-        <Field name="phoneNumber" component={RenderInputComponent} />
-        <Field name="profilePhoto" component={ImagePickerComponent} />
+        <Field
+          name="name"
+          component={RenderInputComponent}
+          validate={validateNotEmpty}
+          warn={validateNotEmpty}
+        />
+        <Field
+          name="emailAddress"
+          component={RenderInputComponent}
+          validate={validateMail}
+          warn={validateMail}
+        />
+        <Field
+          name="password"
+          component={RenderInputComponent}
+          validate={validatePassword}
+          warn={validatePassword}
+        />
+        <Field
+          name="address"
+          component={RenderInputComponent}
+          validate={validateNotEmpty}
+          warn={validateNotEmpty}
+        />
+        <Field
+          name="phoneNumber"
+          component={RenderInputComponent}
+          validate={validatePhone}
+          warn={validatePhone}
+        />
+        <Field
+          name="profilePhoto"
+          component={ImagePickerComponent}
+          validate={validateNotEmpty}
+          warn={validateNotEmpty}
+        />
         <Field
           name="type"
           component={(props: WrappedFieldProps) => (
@@ -43,10 +80,16 @@ const SignUpMainForm = (
               labels={typeLabels}
             />
           )}
+          validate={validateNotEmpty}
+          warn={validateNotEmpty}
         />
       </ScrollView>
       <RoundEdgedButton
-        title={type === "supervisor" ? t("signUp") : t("next")}
+        title={
+          type === "supervisor"
+            ? t("signUpScreen.signUp")
+            : t("signUpScreen.next")
+        }
         onPress={handleSubmit(submitSignUpMainForm)}
         backgroundColor={colors.darkGreen}
       />
@@ -58,7 +101,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    backgroundColor: "red",
   },
   scrollView: {
     justifyContent: "center",

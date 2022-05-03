@@ -66,7 +66,6 @@ export const restoreUser = () => {
 };
 
 export const signUp = (data: User) => {
-  console.log(data);
   return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
     const response = await fetch(
       "https://wheel--e-default-rtdb.firebaseio.com/users.json",

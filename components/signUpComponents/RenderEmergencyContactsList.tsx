@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { WrappedFieldProps } from "redux-form";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import fonts from "../../utilities/constants/fonts";
 import colors from "../../utilities/constants/colors";
 import { EmergencyContactField } from "./EmergencyContactsField";
-import { useTranslation } from "react-i18next";
 
 export const RenderEmergencyContactsList = (props: WrappedFieldProps) => {
-  const { input } = props;
-  const { onChange, value } = input;
+  const { input, meta } = props;
+  const { onChange, value, name } = input;
   const placeHolder: JSX.Element[] = [];
   const [list, setList] = React.useState(placeHolder);
   const { t } = useTranslation();
@@ -37,6 +37,9 @@ export const RenderEmergencyContactsList = (props: WrappedFieldProps) => {
         />
       </View>
       {list}
+      <Text style={styles.validationText}>
+        {meta.invalid && t(meta.warning, { name: t(`signUpScreen.${name}`) })}
+      </Text>
     </View>
   );
 };
@@ -57,5 +60,12 @@ const styles = StyleSheet.create({
     fontFamily: fonts.CairoRegular,
     fontSize: 17,
     color: "black",
+  },
+  validationText: {
+    color: "red",
+    fontFamily: fonts.CairoRegular,
+    width: "80%",
+    textAlign: "center",
+    fontSize: 10,
   },
 });
