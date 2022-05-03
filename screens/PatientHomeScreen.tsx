@@ -23,7 +23,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
           style={styles.logo}
           source={require("../assets/images/logo-b-app.png")}
         />
-        <Text style={styles.mainText}>
+        <Text style={styles.mainText} testID="morningText">
           {t("patientHomeScreen.morning")}
           {userName}
         </Text>
