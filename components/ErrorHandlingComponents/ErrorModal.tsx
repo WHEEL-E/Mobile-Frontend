@@ -18,6 +18,7 @@ import fonts from "../../utilities/constants/fonts";
 import { SquareButton } from "../buttons/SquareButton";
 import { hideModal } from "../../store/actions/errorModal";
 import { RootState } from "../../store/reducers/rootReducer";
+import { Ionicons } from "@expo/vector-icons";
 
 export const ErrorModal = () => {
   const content = useSelector(
@@ -40,6 +41,14 @@ export const ErrorModal = () => {
             source={require("../../assets/images/logo-b-app.png")}
             style={styles.image}
           />
+          <View style={styles.titleView}>
+            <Ionicons
+              name="close-circle"
+              color={colors.darkPink}
+              size={DEVICE_WIDTH * 0.2}
+            />
+            <Text style={styles.title}>{t("errorModal.oops")}</Text>
+          </View>
         </ImageBackground>
         <Text style={styles.mainText}>{t(content)}</Text>
         <SquareButton
@@ -77,7 +86,18 @@ const styles = StyleSheet.create({
     height: DEVICE_HEIGHT * 0.25,
     alignItems: "center",
     justifyContent: "center",
-    resizeMode: "cover",
+  },
+  titleView: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    color: "black",
+    fontFamily: fonts.CairoBold,
+    fontSize: DEVICE_WIDTH * 0.08,
+    textAlign: "center",
   },
   mainText: {
     color: colors.darkBlue,
