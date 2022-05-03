@@ -7,11 +7,10 @@ import {
   TouchableOpacity,
   View,
   Keyboard,
-  EmitterSubscription,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import InputField from "../components/inputs/InputField";
-import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
+import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
