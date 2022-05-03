@@ -7,7 +7,7 @@ import {
   reduxForm,
   WrappedFieldProps,
 } from "redux-form";
-import RoundEdgedButton from "../buttons/RoundEdgedButton";
+import { RoundEdgedButton } from "../buttons/RoundEdgedButton";
 import colors from "../../utilities/constants/colors";
 import PickerComponent from "./Picker";
 import { RenderInputComponent } from "./RenderInputComponent";

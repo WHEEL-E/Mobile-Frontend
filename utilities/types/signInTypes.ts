@@ -13,8 +13,4 @@ export interface AuthProviderProps {
   children: React.ReactNode;
 }
 
-export const AuthContextPlaceHolder: Context = {
-  signIn: async () => {},
-  signUp: async () => {},
-  signOut: () => {},
-};
+export const AuthContextPlaceHolder: Context | undefined = undefined;

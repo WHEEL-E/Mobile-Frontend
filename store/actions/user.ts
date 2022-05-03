@@ -18,9 +18,9 @@ export const signIn = (data: SignInData) => {
     const resData = await response.json();
 
     const getUser = () => {
-      for (const data in resData) {
-        if (resData[data].userType == UserTypes.PATIENT) {
-          return resData[data];
+      for (const field in resData) {
+        if (resData[field].mainData.emailAddress === data.emailAddress) {
+          return resData[field];
         }
       }
     };

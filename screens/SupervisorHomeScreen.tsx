@@ -1,14 +1,18 @@
 import React from "react";
+import { RootState } from "../store/reducers/rootReducer";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SupervisorHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
   const { navigation } = props;
   const { t } = useTranslation();
-  const userName = "Alaa";
+  const userName = useSelector(
+    (state: RootState) => state.user.userData?.mainData.username
+  )?.split(" ")[0];
 
   return (
     <View style={styles.container}>
