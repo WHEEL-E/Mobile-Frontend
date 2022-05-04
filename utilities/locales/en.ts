@@ -92,5 +92,11 @@ export default {
       cancel: "Cancel",
       submit: "Submit",
     },
+    emergencyCallModal: {
+      mainText:
+        "All your emergency contacts are called and a message with your current location is sent",
+      subText: "We hope you are safe!",
+      gotIt: "Got It!",
+    },
   },
 };
