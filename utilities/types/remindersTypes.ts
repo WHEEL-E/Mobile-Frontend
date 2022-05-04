@@ -31,7 +31,31 @@ export interface ReminderCardProps {
 export type Reminder = {
   id: string;
   supervisorId: string;
+  supervisorName: string;
   patientId: string;
   reminderTitle: string;
   reminderBody: string;
 };
+
+export interface RemindersState {
+  allReminders: Reminder[];
+}
+
+export enum RemindersActionTypes {
+  GET_ALL = "GET_ALL",
+  REMOVE_REMINDER = "REMOVE_REMINDER",
+  ADD_REMINDER = "ADD_REMINDER",
+  UPDATE_REMINDER = "UPDATE_REMINDER",
+}
+
+export interface RemindersData {
+  addedReminder?: Reminder;
+  allReminders?: Reminder[];
+  removedId?: string;
+  updatedReminder?: Partial<Reminder>;
+}
+
+export interface RemindersAction {
+  type: RemindersActionTypes;
+  data: RemindersData;
+}
