@@ -5,10 +5,18 @@ import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../inputs/InputField";
 import colors from "../../utilities/constants/colors";
 import { addNewReminderModalProps } from "../../utilities/types/remindersTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { addReminder, updateReminder } from "../../store/actions/reminders";
+import { RootState } from "../../store/reducers/rootReducer";
 
 const ReminderModal = (props: addNewReminderModalProps) => {
   const { t } = useTranslation();
   const { modalVisible, setModalVisible, identifier } = props;
+  const dispatch = useDispatch();
+
+  const supervisorData = useSelector(
+    (state: RootState) => state.user.userData?.mainData
+  )!;
 
   const [reminder, setReminder] = React.useState({
     reminderTitle: "",
@@ -25,9 +33,17 @@ const ReminderModal = (props: addNewReminderModalProps) => {
 
   const submitHandler = () => {
     if (identifier) {
-      //dispatch the PATCH request to edit the reminder
+      dispatch(updateReminder({ ...reminder, id: identifier }));
     } else {
-      //dispatch the POST request to add the reminder
+      dispatch(
+        addReminder({
+          ...reminder,
+          id: "",
+          supervisorId: supervisorData.userId,
+          supervisorName: supervisorData.username,
+          patientId: "",
+        })
+      );
     }
     setReminder({ reminderTitle: "", reminderBody: "" });
     return setModalVisible(false);

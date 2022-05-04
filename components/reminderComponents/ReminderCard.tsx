@@ -7,6 +7,8 @@ import { ReminderCardProps } from "../../utilities/types/remindersTypes";
 import ReminderModal from "./ReminderModal";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { removeReminder } from "../../store/actions/reminders";
 
 const ReminderCard = (props: ReminderCardProps) => {
   const {
@@ -21,9 +23,10 @@ const ReminderCard = (props: ReminderCardProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const deleteReminderHandler = () => {
-    //dispatch the DELETE request
+    dispatch(removeReminder(identifier));
   };
 
   const textColor =

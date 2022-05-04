@@ -7,11 +7,20 @@ import colors from "../utilities/constants/colors";
 import { SquareButton } from "../components/buttons/SquareButton";
 import AddNewReminderModal from "../components/reminderComponents/ReminderModal";
 import { RemindersList } from "../components/reminderComponents/RemindersList";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers/rootReducer";
+import { UserTypes } from "../utilities/types/userTypes";
 
 const RemindersScreen = (props: RemindersProps) => {
   const { navigation } = props;
   const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const userType = useSelector(
+    (state: RootState) => state.user.userData?.userType
+  );
+
+  const enableEdit = userType === UserTypes.SUPERVISOR;
 
   return (
     <View style={styles.container}>
@@ -29,7 +38,7 @@ const RemindersScreen = (props: RemindersProps) => {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{t("remindersScreen.reminders")}</Text>
         </View>
-        <RemindersList />
+        <RemindersList enableEdit={enableEdit} />
         <View style={styles.buttonContainer}>
           <SquareButton
             title={t("remindersScreen.addReminder")}

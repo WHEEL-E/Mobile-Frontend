@@ -4,24 +4,13 @@ import colors from "../../utilities/constants/colors";
 import { Reminder } from "../../utilities/types/remindersTypes";
 import ReminderCard from "./ReminderCard";
 
-export const RemindersList = () => {
-  const reminders: Reminder[] = [
-    {
-      reminderBody: "take the medicine",
-      reminderTitle: "medicine",
-      patientId: "1",
-      supervisorId: "2",
-      id: "3",
-    },
-    {
-      reminderBody: "Visit your doctor",
-      reminderTitle: "visit",
-      patientId: "1",
-      supervisorId: "2",
-      id: "4",
-    },
-  ];
+interface RemindersListProps {
+  enableEdit: boolean;
+}
 
+export const RemindersList = (props: RemindersListProps) => {
+  const reminders: Reminder[] = [];
+  const { enableEdit } = props;
   return (
     <FlatList
       contentContainerStyle={styles.listContainer}
@@ -35,7 +24,7 @@ export const RemindersList = () => {
             reminderTitle={itemData.item.reminderTitle}
             reminderBody={itemData.item.reminderBody}
             backgroundColor={colors.darkGreen}
-            enableEdit={true}
+            enableEdit={enableEdit}
           />
         );
       }}
