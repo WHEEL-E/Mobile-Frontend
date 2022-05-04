@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { roundEdgedButtonProps } from "../../utilities/types/buttonTypes";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
-const RoundEdgedButton = (props: roundEdgedButtonProps) => {
+export const RoundEdgedButton = (props: roundEdgedButtonProps) => {
   const { title, backgroundColor, onPress } = props;
   return (
     <TouchableOpacity
@@ -14,8 +14,6 @@ const RoundEdgedButton = (props: roundEdgedButtonProps) => {
     </TouchableOpacity>
   );
 };
-
-export default RoundEdgedButton;
 
 const styles = StyleSheet.create({
   button: {

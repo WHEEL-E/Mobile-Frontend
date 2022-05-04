@@ -7,11 +7,17 @@ import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
 import { PatientHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { EmergencyCallModal } from "../components/homeScreenComponents/EmergencyCallModal";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers/rootReducer";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const { navigation } = props;
   const { t } = useTranslation();
+
+  const userName = useSelector(
+    (state: RootState) => state.user.userData?.mainData.username
+  )?.split(" ")[0];
 
   return (
     <View style={styles.container}>
@@ -25,7 +31,8 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
           source={require("../assets/images/logo-b-app.png")}
         />
         <Text style={styles.mainText}>
-          {t("patientHomeScreen.morning")}user
+          {t("patientHomeScreen.morning")}
+          {userName}
         </Text>
         <Text style={styles.subText} testID="welcomeText">
           {t("patientHomeScreen.wishGoodDay")}

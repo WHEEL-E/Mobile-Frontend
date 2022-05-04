@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import RoundEdgedButton from "../components/buttons/RoundEdgedButton";
+import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import lang from "../lang";
 import { ChangeLangugageProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
