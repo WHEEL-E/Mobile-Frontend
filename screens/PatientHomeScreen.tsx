@@ -110,7 +110,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               backgroundColor: colors.lightGreen,
             }}
             onPress={() => {
-              navigation.navigate("Reminders");
+              navigation.navigate("Reminders", {});
             }}
           />
           <MainButton

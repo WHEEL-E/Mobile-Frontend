@@ -12,7 +12,9 @@ import { RootState } from "../store/reducers/rootReducer";
 import { UserTypes } from "../utilities/types/userTypes";
 
 const RemindersScreen = (props: RemindersProps) => {
-  const { navigation } = props;
+  const { navigation, route } = props;
+  const { receiver, patientId } = route.params;
+
   const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -27,6 +29,7 @@ const RemindersScreen = (props: RemindersProps) => {
       <AddNewReminderModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        patientId={patientId}
       />
       <ImageBackground
         source={require("../assets/images/cloud-background.png")}
@@ -38,15 +41,17 @@ const RemindersScreen = (props: RemindersProps) => {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{t("remindersScreen.reminders")}</Text>
         </View>
-        <RemindersList enableEdit={enableEdit} />
-        <View style={styles.buttonContainer}>
-          <SquareButton
-            title={t("remindersScreen.addReminder")}
-            buttonStyle={styles.buttonStyle}
-            titleStyle={styles.titleStyle}
-            onPress={() => setModalVisible(true)}
-          />
-        </View>
+        <RemindersList enableEdit={enableEdit} receiver={receiver} />
+        {enableEdit && (
+          <View style={styles.buttonContainer}>
+            <SquareButton
+              title={t("remindersScreen.addReminder")}
+              buttonStyle={styles.buttonStyle}
+              titleStyle={styles.titleStyle}
+              onPress={() => setModalVisible(true)}
+            />
+          </View>
+        )}
       </ImageBackground>
     </View>
   );

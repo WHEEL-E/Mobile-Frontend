@@ -1,5 +1,6 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackNavigationOptions } from "@react-navigation/stack";
+import { Patient } from "../userTypes";
 
 export const mainStackOptions: StackNavigationOptions = { headerShown: false };
 
@@ -9,9 +10,9 @@ export type MainStackParamList = {
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
-  SupervisedPatient: undefined;
+  SupervisedPatient: { patient: Patient };
   AssociatedPatients: undefined;
-  Reminders: undefined;
+  Reminders: { patientId?: string; receiver?: string };
   FreeDrive: undefined;
 };
 

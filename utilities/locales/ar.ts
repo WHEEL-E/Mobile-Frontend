@@ -82,6 +82,7 @@ export default {
     remindersScreen: {
       reminders: "ملاحظات الطبيب",
       from: "من",
+      to: "إلى",
       addReminder: "أضف ملاحظة",
       addReminderIntro: "أدخل المعلومات التي تريد إيصالها للمريض",
       enterTitle: "أدخل عنوان الملاحظة",

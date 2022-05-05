@@ -84,6 +84,7 @@ export default {
     remindersScreen: {
       reminders: "Reminders",
       from: "From",
+      to: "To",
       addReminder: "Add a Reminder",
       addReminderIntro:
         "Type any information you need to remind your patient with",

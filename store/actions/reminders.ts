@@ -24,7 +24,7 @@ export const getReminders = () => {
         supervisorName: resData[data].supervisorName,
         patientId: resData[data].patientId,
         reminderBody: resData[data].reminderBody,
-        reminderTitle: resData[data].reminderBody,
+        reminderTitle: resData[data].reminderTitle,
       });
     }
 

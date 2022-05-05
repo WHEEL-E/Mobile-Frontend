@@ -14,6 +14,7 @@ const ReminderCard = (props: ReminderCardProps) => {
   const {
     identifier,
     sender,
+    receiver,
     reminderTitle,
     reminderBody,
     backgroundColor,
@@ -42,9 +43,16 @@ const ReminderCard = (props: ReminderCardProps) => {
       <TouchableOpacity onPress={deleteReminderHandler} style={styles.close}>
         <Ionicons name="ios-close" color={textColor} size={25} />
       </TouchableOpacity>
-      <Text style={{ ...styles.title, color: textColor }}>
-        {t("remindersScreen.from")} {sender}
-      </Text>
+      {sender && (
+        <Text style={{ ...styles.title, color: textColor }}>
+          {t("remindersScreen.from")} {sender}
+        </Text>
+      )}
+      {receiver && (
+        <Text style={{ ...styles.title, color: textColor }}>
+          {t("remindersScreen.to")} {receiver}
+        </Text>
+      )}
       <Text style={{ ...styles.title, color: textColor }}>{reminderTitle}</Text>
       <Text style={{ ...styles.body, color: textColor }}>{reminderBody}</Text>
       {enableEdit && (

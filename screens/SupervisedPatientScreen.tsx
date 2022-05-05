@@ -10,8 +10,10 @@ import fonts from "../utilities/constants/fonts";
 import { SupervisedPatientProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
-  const { navigation } = props;
+  const { navigation, route } = props;
   const { t } = useTranslation();
+
+  const patient = route.params.patient;
 
   return (
     <View style={styles.container}>
@@ -33,7 +35,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
               source={require("../assets/images/IdPlaceHolder.png")}
             />
           </View>
-          <Text style={styles.patientName}>My supervised patient</Text>
+          <Text style={styles.patientName}>{patient.userName}</Text>
         </View>
         <View style={styles.buttons}>
           <MainButton
@@ -47,7 +49,10 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
             <SquareButton
               title={t("supervisedPatientScreen.reminders")}
               onPress={() => {
-                navigation.navigate("Reminders");
+                navigation.navigate("Reminders", {
+                  patientId: patient.userId,
+                  receiver: patient.userName,
+                });
               }}
               buttonStyle={styles.remindersButton}
               titleStyle={styles.buttonsTitle}
