@@ -6,6 +6,11 @@ import { useTranslation } from "react-i18next";
 import fonts from "../../utilities/constants/fonts";
 import colors from "../../utilities/constants/colors";
 import { EmergencyContactField } from "./EmergencyContactsField";
+import {
+  PADDING_VERTICAL,
+  SMALL_MARGIN_VERTICAL,
+} from "../../utilities/constants/spacing";
+import { NormalText, NoteText } from "../../utilities/types/fontTypes";
 
 export const RenderEmergencyContactsList = (props: WrappedFieldProps) => {
   const { input, meta } = props;
@@ -52,20 +57,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     borderRadius: 15,
-    padding: 20,
+    padding: PADDING_VERTICAL,
     backgroundColor: colors.lightGray,
-    marginVertical: 10,
+    marginVertical: SMALL_MARGIN_VERTICAL,
   },
   title: {
-    fontFamily: fonts.CairoRegular,
-    fontSize: 17,
+    ...NormalText,
     color: "black",
   },
   validationText: {
+    ...NoteText,
     color: "red",
-    fontFamily: fonts.CairoRegular,
-    width: "80%",
+    width: "100%",
     textAlign: "center",
-    fontSize: 10,
   },
 });

@@ -22,6 +22,7 @@ import {
   validateNotEmpty,
   validateThreeDigitNum,
 } from "../../utilities/dataValidators";
+import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
 
 const SignUpAdditionalData = (
   props: InjectedFormProps<
@@ -31,8 +32,8 @@ const SignUpAdditionalData = (
 ) => {
   const { t } = useTranslation();
   const { handleSubmit } = props;
-  const genderLabels = ["gender", "male", "female"];
-  const smokeLabels = ["smoking", "yes", "no"];
+  const genderLabels = ["male", "female"];
+  const smokeLabels = ["yes", "no"];
 
   return (
     <View style={styles.container}>
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   scrollView: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 20,
+    paddingVertical: PADDING_VERTICAL,
   },
 });
 

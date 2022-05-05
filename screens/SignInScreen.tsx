@@ -84,7 +84,7 @@ const SignInScreen = (props: SignInProps) => {
             setUserData({ ...userData, emailAddress: text });
             setIsValid({
               ...isValid,
-              emailAddress: validateMail(text) ? true : false,
+              emailAddress: validateMail(text) ? false : true,
             });
           }}
           autoComplete="email"
@@ -103,7 +103,7 @@ const SignInScreen = (props: SignInProps) => {
             setUserData({ ...userData, password: text });
             setIsValid({
               ...isValid,
-              password: validatePassword(text) ? true : false,
+              password: validatePassword(text) ? false : true,
             });
           }}
           autoComplete="password"

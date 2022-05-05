@@ -5,6 +5,8 @@ import { WrappedFieldProps } from "redux-form";
 import InputField from "../inputs/InputField";
 import { Text } from "react-native";
 import fonts from "../../utilities/constants/fonts";
+import { SMALL_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
+import { NoteText } from "../../utilities/types/fontTypes";
 
 export const RenderInputComponent = (props: WrappedFieldProps) => {
   const { input, meta } = props;
@@ -37,13 +39,12 @@ const styles = StyleSheet.create({
   inputField: {
     width: "80%",
     height: 70,
-    marginVertical: 10,
+    marginVertical: SMALL_MARGIN_VERTICAL,
   },
   validationText: {
+    ...NoteText,
     color: "red",
-    fontFamily: fonts.CairoRegular,
     width: "80%",
     textAlign: "center",
-    fontSize: 10,
   },
 });

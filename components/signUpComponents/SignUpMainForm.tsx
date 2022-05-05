@@ -23,6 +23,7 @@ import {
   validatePassword,
   validatePhone,
 } from "../../utilities/dataValidators";
+import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
 
 const SignUpMainForm = (
   props: InjectedFormProps<signUpMainFormValues, signUpMainFormProps>
@@ -30,11 +31,14 @@ const SignUpMainForm = (
   const { t } = useTranslation();
   const { handleSubmit } = props;
   const [type, setType] = React.useState("patient");
-  const typeLabels = ["select", "supervisor", "patient"];
+  const typeLabels = ["supervisor", "patient"];
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        nestedScrollEnabled={true}
+      >
         <Field
           name="name"
           component={RenderInputComponent}
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
   scrollView: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 20,
+    paddingVertical: PADDING_VERTICAL,
   },
 });
 

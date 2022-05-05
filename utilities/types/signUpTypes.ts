@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Dispatch } from "redux";
-import { WrappedFieldProps } from "redux-form";
+import { EventOrValueHandler, WrappedFieldProps } from "redux-form";
 import { Patient } from "../../models/patient";
 import { Supervisor } from "../../models/supervisor";
 import { signUp } from "../../store/actions/user";
@@ -64,4 +64,12 @@ export interface PickerProps {
   fieldProps: WrappedFieldProps;
   labels: string[];
   setType?: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface EmergencyContactFieldProps {
+  index: number;
+  value: string[];
+  list: JSX.Element[];
+  onChange: EventOrValueHandler<React.ChangeEvent<any>>;
+  setList: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
 }

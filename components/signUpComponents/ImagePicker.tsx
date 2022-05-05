@@ -5,7 +5,15 @@ import { WrappedFieldProps } from "redux-form";
 import { useTranslation } from "react-i18next";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../../utilities/constants/colors";
-import fonts from "../../utilities/constants/fonts";
+import {
+  PADDING_VERTICAL,
+  SMALL_MARGIN_VERTICAL,
+} from "../../utilities/constants/spacing";
+import { NoteText } from "../../utilities/types/fontTypes";
+import {
+  DEVICE_HEIGHT,
+  DEVICE_WIDTH,
+} from "../../utilities/constants/dimentions";
 
 export const ImagePickerComponent = (props: WrappedFieldProps) => {
   const { input, meta } = props;
@@ -50,10 +58,10 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "80%",
-    height: 105,
-    marginVertical: 10,
+    height: DEVICE_HEIGHT * 0.15,
+    marginVertical: SMALL_MARGIN_VERTICAL,
     borderRadius: 15,
-    padding: 20,
+    padding: PADDING_VERTICAL,
     backgroundColor: colors.lightGray,
     flexDirection: "row",
   },
@@ -64,15 +72,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   image: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: DEVICE_HEIGHT * 0.1,
+    height: DEVICE_HEIGHT * 0.1,
+    borderRadius: DEVICE_HEIGHT * 0.05,
     borderColor: colors.darkGrey,
-    borderWidth: 5,
+    borderWidth: DEVICE_WIDTH * 0.005,
   },
   validationText: {
     color: "red",
-    fontFamily: fonts.CairoRegular,
-    fontSize: 10,
+    ...NoteText,
   },
 });

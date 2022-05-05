@@ -1,17 +1,13 @@
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { EventOrValueHandler } from "redux-form";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../../utilities/constants/colors";
-
-interface EmergencyContactFieldProps {
-  index: number;
-  value: string[];
-  list: JSX.Element[];
-  onChange: EventOrValueHandler<React.ChangeEvent<any>>;
-  setList: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
-}
+import { EmergencyContactFieldProps } from "../../utilities/types/signUpTypes";
+import {
+  PADDING_VERTICAL,
+  SMALL_MARGIN_VERTICAL,
+} from "../../utilities/constants/spacing";
 
 export const EmergencyContactField = (props: EmergencyContactFieldProps) => {
   const { index, value, onChange, setList, list } = props;
@@ -46,12 +42,12 @@ export const EmergencyContactField = (props: EmergencyContactFieldProps) => {
 
 const styles = StyleSheet.create({
   inputView: {
-    marginVertical: 10,
+    marginVertical: SMALL_MARGIN_VERTICAL,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     borderRadius: 15,
-    padding: 20,
+    padding: PADDING_VERTICAL,
     backgroundColor: colors.lightGray,
     width: "100%",
     alignSelf: "center",

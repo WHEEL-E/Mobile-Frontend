@@ -13,7 +13,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
   const { navigation } = props;
   const { t } = useTranslation();
   const userName = useSelector(
-    (state: RootState) => state.user.userData?.mainData.username
+    (state: RootState) => state.user.userData?.mainData.userName
   )?.split(" ")[0];
 
   return (

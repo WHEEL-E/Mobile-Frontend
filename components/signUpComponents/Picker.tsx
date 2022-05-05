@@ -1,47 +1,41 @@
 import React from "react";
-import { Text } from "react-native";
-import { Picker } from "@react-native-picker/picker";
-import { useTranslation } from "react-i18next";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import colors from "../../utilities/constants/colors";
 import { PickerProps } from "../../utilities/types/signUpTypes";
-import fonts from "../../utilities/constants/fonts";
+import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
+import { NormalText, NoteText } from "../../utilities/types/fontTypes";
+import DropDownPicker from "react-native-dropdown-picker";
+import { useTranslation } from "react-i18next";
 
 const PickerComponent = (props: PickerProps) => {
-  const { fieldProps, labels, setType } = props;
-  const { input, meta } = fieldProps;
-  const { onChange, value, name } = input;
+  const { fieldProps, labels } = props;
+  const { meta, input } = fieldProps;
+  const { name, onChange, value } = input;
   const { t } = useTranslation();
-  const pickers = [];
-  const placeHolder = labels[0];
 
-  for (const label of labels) {
-    pickers.push(
-      <Picker.Item
-        key={label}
-        label={t(`signUpScreen.${label}`)}
-        value={label}
-      />
-    );
-  }
+  const [open, setOpen] = React.useState(false);
+  const [items, setItems] = React.useState(
+    labels.map((prop) => {
+      return { label: t(`signUpScreen.${prop}`), value: prop };
+    })
+  );
 
   return (
     <View style={styles.mainView}>
-      <View style={styles.pickerContainer}>
-        <Picker
-          selectedValue={value}
-          style={styles.picker}
-          mode="dropdown"
-          onValueChange={(name) => {
-            if (name !== placeHolder) {
-              onChange(name);
-              setType && setType(name);
-            }
-          }}
-        >
-          {pickers}
-        </Picker>
-      </View>
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={onChange}
+        setItems={setItems}
+        textStyle={NormalText}
+        dropDownContainerStyle={styles.pickerContainer}
+        style={styles.picker}
+        placeholder={t(`signUpScreen.${name}`)}
+        listMode="SCROLLVIEW"
+      />
+
       <Text style={styles.validationText}>
         {meta.invalid && t(meta.warning, { name: t(`signUpScreen.${name}`) })}
       </Text>
@@ -53,25 +47,28 @@ const styles = StyleSheet.create({
   mainView: {
     width: "100%",
     alignItems: "center",
-    justifyContent: "space-between",
   },
   pickerContainer: {
     width: "80%",
-    height: 70,
-    marginVertical: 10,
-    borderRadius: 20,
-    overflow: "hidden",
+    backgroundColor: colors.lightGray,
+    alignSelf: "center",
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: PADDING_VERTICAL,
+    zIndex: 1,
   },
   picker: {
-    width: "100%",
+    width: "80%",
     height: 70,
     backgroundColor: colors.lightGray,
-    color: "black",
+    alignSelf: "center",
+    borderWidth: 0,
+    borderRadius: 15,
+    zIndex: 0,
   },
   validationText: {
     color: "red",
-    fontFamily: fonts.CairoRegular,
-    fontSize: 10,
+    ...NoteText,
   },
 });
 export default PickerComponent;
