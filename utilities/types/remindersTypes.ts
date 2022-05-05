@@ -1,23 +1,9 @@
-export interface addNewReminderModalProps {
+export interface ReminderModalProps {
   modalVisible: boolean;
   setModalVisible: (modalVisible: boolean) => void;
   identifier?: string;
+  reminderData: { reminderTitle: string; reminderBody: string };
   patientId?: string;
-}
-
-export interface EditReminderModalProps {
-  modalVisible: boolean;
-  setModalVisible: (modalVisible: boolean) => void;
-  identifier: string;
-  reminderTitleEdit: string;
-  editTitleHandler: (body: string) => void;
-  reminderBodyEdit: string;
-  editBodyHandler: (body: string) => void;
-  onSave: (
-    reminderId: string,
-    newReminderTitle: string,
-    newReminderBody: string
-  ) => void;
 }
 
 export interface ReminderCardProps {
@@ -55,7 +41,7 @@ export enum RemindersActionTypes {
   UPDATE_REMINDER = "UPDATE_REMINDER",
 }
 
-export interface RemindersData {
+export interface RemindersActionData {
   addedReminder?: Reminder;
   allReminders?: Reminder[];
   removedId?: string;
@@ -64,5 +50,5 @@ export interface RemindersData {
 
 export interface RemindersAction {
   type: RemindersActionTypes;
-  data: RemindersData;
+  data: RemindersActionData;
 }

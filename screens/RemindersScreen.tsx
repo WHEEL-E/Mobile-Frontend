@@ -30,6 +30,7 @@ const RemindersScreen = (props: RemindersProps) => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         patientId={patientId}
+        reminderData={{ reminderBody: "", reminderTitle: "" }}
       />
       <ImageBackground
         source={require("../assets/images/cloud-background.png")}

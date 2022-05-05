@@ -20,7 +20,7 @@ const userReducer = (
         allReminders,
       };
     case RemindersActionTypes.UPDATE_REMINDER:
-      const updatedReminder = action.data.addedReminder!;
+      const updatedReminder = action.data.updatedReminder!;
       const updatedReminders = [...state.allReminders];
       const updatedReminderIndex = updatedReminders.findIndex(
         (reminder) => reminder.id === updatedReminder.id

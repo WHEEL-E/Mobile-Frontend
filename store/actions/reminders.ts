@@ -2,12 +2,15 @@ import { Dispatch } from "redux";
 import {
   Reminder,
   RemindersActionTypes,
-  RemindersData,
+  RemindersActionData,
 } from "../../utilities/types/remindersTypes";
 
 export const getReminders = () => {
   return async (
-    dispatch: Dispatch<{ type: RemindersActionTypes; data: RemindersData }>
+    dispatch: Dispatch<{
+      type: RemindersActionTypes;
+      data: RemindersActionData;
+    }>
   ) => {
     const response = await fetch(
       "https://wheel--e-default-rtdb.firebaseio.com/reminders.json"
@@ -38,7 +41,10 @@ export const getReminders = () => {
 export const removeReminder = (reminderId: string) => {
   try {
     return async (
-      dispatch: Dispatch<{ type: RemindersActionTypes; data: RemindersData }>
+      dispatch: Dispatch<{
+        type: RemindersActionTypes;
+        data: RemindersActionData;
+      }>
     ) => {
       const response = await fetch(
         `https://wheel--e-default-rtdb.firebaseio.com/reminders/${reminderId}.json`,
@@ -61,7 +67,10 @@ export const removeReminder = (reminderId: string) => {
 
 export const addReminder = (newReminder: Reminder) => {
   return async (
-    dispatch: Dispatch<{ type: RemindersActionTypes; data: RemindersData }>
+    dispatch: Dispatch<{
+      type: RemindersActionTypes;
+      data: RemindersActionData;
+    }>
   ) => {
     const response = await fetch(
       "https://wheel--e-default-rtdb.firebaseio.com/reminders.json",
@@ -90,7 +99,10 @@ export const addReminder = (newReminder: Reminder) => {
 
 export const updateReminder = (newReminder: Partial<Reminder>) => {
   return async (
-    dispatch: Dispatch<{ type: RemindersActionTypes; data: RemindersData }>
+    dispatch: Dispatch<{
+      type: RemindersActionTypes;
+      data: RemindersActionData;
+    }>
   ) => {
     const response = await fetch(
       `https://wheel--e-default-rtdb.firebaseio.com/reminders/${newReminder.id}.json`,

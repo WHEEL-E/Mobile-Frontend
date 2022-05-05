@@ -4,24 +4,21 @@ import { useTranslation } from "react-i18next";
 import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../inputs/InputField";
 import colors from "../../utilities/constants/colors";
-import { addNewReminderModalProps } from "../../utilities/types/remindersTypes";
+import { ReminderModalProps } from "../../utilities/types/remindersTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { addReminder, updateReminder } from "../../store/actions/reminders";
 import { RootState } from "../../store/reducers/rootReducer";
 
-const ReminderModal = (props: addNewReminderModalProps) => {
+const ReminderModal = (props: ReminderModalProps) => {
   const { t } = useTranslation();
-  const { modalVisible, setModalVisible, identifier } = props;
+  const { modalVisible, setModalVisible, reminderData, identifier } = props;
   const dispatch = useDispatch();
 
   const supervisorData = useSelector(
     (state: RootState) => state.user.userData?.mainData
   )!;
 
-  const [reminder, setReminder] = React.useState({
-    reminderTitle: "",
-    reminderBody: "",
-  });
+  const [reminder, setReminder] = React.useState(reminderData);
 
   const editTitleHandler = (title: string) => {
     setReminder({ ...reminder, reminderTitle: title });
