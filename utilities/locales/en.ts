@@ -98,6 +98,10 @@ export default {
       signIn: "An error occurred while signing you in! Please sign in again",
       signOut: "An error occurred while signing you out! Please sign out again",
       oops: "Oops!",
+      addingReminder: "Error adding reminder. Please try agaon later",
+      deletingReminder: "Error deleting reminder. Please try agaon later",
+      updatingReminder: "Error updating reminder. Please try agaon later",
+      fetchingReminders: "Error loading reminders. Please try agaon later",
     },
     emergencyCallModal: {
       mainText:

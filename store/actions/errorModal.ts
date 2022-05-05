@@ -1,7 +1,4 @@
-export enum ErrorModalActionTypes {
-  SHOW_MODAL = "SHOW_MODAL",
-  HIDE_MODAL = "HIDE_MODAL",
-}
+import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
 
 export const ShowModal = (data: string) => {
   return { type: ErrorModalActionTypes.SHOW_MODAL, data: data };

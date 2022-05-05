@@ -1,19 +1,13 @@
-import { ErrorModalActionTypes } from "../actions/errorModal";
+import {
+  ErrorModalAction,
+  ErrorModalActionTypes,
+  ErrorModalState,
+} from "../../utilities/types/errorModalTypes";
 
 const initialState = {
   content: "",
   isVisible: false,
 };
-
-export interface ErrorModalAction {
-  data?: string;
-  type: ErrorModalActionTypes;
-}
-
-interface ErrorModalState {
-  content: string;
-  isVisible: boolean;
-}
 
 const errorModalReducer = (
   state = initialState,
