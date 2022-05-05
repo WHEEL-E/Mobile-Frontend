@@ -31,3 +31,8 @@ export interface profileIdProps {
   imgSource: ImageSourcePropType;
   name: string;
 }
+
+export interface EmergencyCallModalProps {
+  isModalVisible: boolean;
+  setIsModalVisible: (state: boolean) => void;
+}
