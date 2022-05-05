@@ -82,11 +82,14 @@ const SignInScreen = (props: SignInProps) => {
           fieldStyle={styles.inputField}
           onChangeText={(text) => {
             setUserData({ ...userData, emailAddress: text });
-            setIsValid({ ...isValid, emailAddress: validateMail(text) });
+            setIsValid({
+              ...isValid,
+              emailAddress: validateMail(text) ? false : true,
+            });
           }}
           autoComplete="email"
           value={userData.emailAddress}
-          onBlur={() => validatePassword(userData.emailAddress)}
+          onBlur={() => validateMail(userData.emailAddress)}
         />
         {!isValid.emailAddress && (
           <Text style={styles.validationText}>
@@ -98,7 +101,10 @@ const SignInScreen = (props: SignInProps) => {
           fieldStyle={styles.inputField}
           onChangeText={(text) => {
             setUserData({ ...userData, password: text });
-            setIsValid({ ...isValid, password: validatePassword(text) });
+            setIsValid({
+              ...isValid,
+              password: validatePassword(text) ? false : true,
+            });
           }}
           autoComplete="password"
           value={userData.password}

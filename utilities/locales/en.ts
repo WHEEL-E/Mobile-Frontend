@@ -33,7 +33,7 @@ export default {
       enterValidEmail: "Please enter a valid email address",
       enterPassword: "Please enter your password",
     },
-    signupScreen: {
+    signUpScreen: {
       createAccount: "Create Account",
       signUp: "Sign up",
       name: "Name",
@@ -49,11 +49,22 @@ export default {
       male: "Male",
       female: "Female",
       smoking: "Do you smoke?",
+      smoke: "smoking state",
       yes: "Yes",
       no: "No",
+      type: "type",
       height: "Height",
       weight: "Weight",
       age: "Age",
+      profilePhoto: "Profile Photo",
+      emergencyContact: "Emergency Contact",
+      emergencyContacts: "Emergency Contacts",
+      warningText: "{{name}} is a required field",
+      warningPassword:
+        "password should contain eight characters, one letter, one number and one special character",
+      warningMail: "please enter a valid email address",
+      warningphone: "please enter a valid phone number",
+      warningNumber: "please enter a valid {{name}}",
     },
     navigationBar: {
       Home: "Home",

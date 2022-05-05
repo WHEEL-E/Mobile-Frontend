@@ -26,7 +26,15 @@
         "web": {
             "favicon": "./assets/images/logo-b.png"
         },
-        "plugins": ["sentry-expo"],
+        "plugins": [
+            [
+                "expo-image-picker",
+                {
+                    "photosPermission": "The app accesses your photos to let you share your identity with connections."
+                }
+            ],
+            "sentry-expo"
+        ],
         "hooks": {
             "postPublish": [{
                 "file": "sentry-expo/upload-sourcemaps",

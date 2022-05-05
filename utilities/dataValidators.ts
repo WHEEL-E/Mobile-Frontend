@@ -1,18 +1,64 @@
 export const emailRegex =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export const validateMail = (text: string) => {
-  if (emailRegex.test(text.toLowerCase())) {
-    return true;
+// Minimum eight characters, at least one letter, one number and one special character:
+export const passwordRegex =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+//can start with + and contains only numbers and - after
+export const phoneRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
+
+//a number from two to three digits
+export const ThreeDigitRegex = /^([0-9]{1}|[0-9]{2}|[0-9]{3})$/;
+
+export const validateMail = (text: string | undefined) => {
+  if (!(text && emailRegex.test(text.toLowerCase()))) {
+    return "signUpScreen.warningMail";
   } else {
-    return false;
+    return undefined;
   }
 };
 
-export const validatePassword = (text: string) => {
-  if (text.length) {
-    return true;
+export const validatePassword = (text: string | undefined) => {
+  if (!(text && passwordRegex.test(text))) {
+    return "signUpScreen.warningPassword";
   } else {
-    return false;
+    return undefined;
+  }
+};
+
+export const validateArray = (data: string[] | undefined) => {
+  if (!data) {
+    return "signUpScreen.warningText";
+  }
+  if (data.length === 0) {
+    return "signUpScreen.warningText";
+  }
+  if (data.filter((text) => text.trim().length !== 0).length == 0) {
+    return "signUpScreen.warningText";
+  }
+  return undefined;
+};
+
+export const validateNotEmpty = (text: string | undefined) => {
+  if (!text || text.trim().length === 0) {
+    return "signUpScreen.warningText";
+  }
+  return undefined;
+};
+
+export const validatePhone = (text: string | undefined) => {
+  if (!(text && phoneRegex.test(text))) {
+    return "signUpScreen.warningphone";
+  } else {
+    return undefined;
+  }
+};
+
+export const validateThreeDigitNum = (text: string | undefined) => {
+  if (!(text && ThreeDigitRegex.test(text))) {
+    return "signUpScreen.warningNumber";
+  } else {
+    return undefined;
   }
 };
