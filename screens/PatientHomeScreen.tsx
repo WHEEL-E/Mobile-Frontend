@@ -6,24 +6,31 @@ import fonts from "../utilities/constants/fonts";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
 import { PatientHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { EmergencyCallModal } from "../components/homeScreenComponents/EmergencyCallModal";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
   const { navigation } = props;
   const { t } = useTranslation();
+
   const userName = useSelector(
     (state: RootState) => state.user.userData?.mainData.userName
   )?.split(" ")[0];
 
   return (
     <View style={styles.container}>
+      <EmergencyCallModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
       <View>
         <Image
           style={styles.logo}
           source={require("../assets/images/logo-b-app.png")}
         />
-        <Text style={styles.mainText}>
+        <Text style={styles.mainText} testID="morningText">
           {t("patientHomeScreen.morning")}
           {userName}
         </Text>
@@ -50,7 +57,9 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.smallButton,
               backgroundColor: colors.darkPink,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              setIsModalVisible(true);
+            }}
           />
           <SquareButton
             title={t("patientHomeScreen.freeDriving")}

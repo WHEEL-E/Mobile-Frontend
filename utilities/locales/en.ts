@@ -93,5 +93,17 @@ export default {
       cancel: "Cancel",
       submit: "Submit",
     },
+    errorModal: {
+      gotIt: "Got It!",
+      signIn: "An error occurred while signing you in! Please sign in again",
+      signOut: "An error occurred while signing you out! Please sign out again",
+      oops: "Oops!",
+    },
+    emergencyCallModal: {
+      mainText:
+        "All your emergency contacts are called and a message with your current location is sent",
+      subText: "We hope you are safe!",
+      gotIt: "Got It!",
+    },
   },
 };

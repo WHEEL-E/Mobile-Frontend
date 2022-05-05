@@ -25,6 +25,17 @@
         },
         "web": {
             "favicon": "./assets/images/logo-b.png"
+        },
+        "plugins": ["sentry-expo"],
+        "hooks": {
+            "postPublish": [{
+                "file": "sentry-expo/upload-sourcemaps",
+                "config": {
+                    "organization": "wheel_e",
+                    "project": "react-native-wheel-e",
+                    "authToken": "1d87bfdec79311ec9a530e7f15d8d524"
+                }
+            }]
         }
     }
 }

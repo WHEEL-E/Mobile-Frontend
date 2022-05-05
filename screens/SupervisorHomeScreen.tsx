@@ -22,10 +22,10 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
         style={styles.coverImage}
       />
       <View>
-        <Text style={styles.title}>
+        <Text style={styles.title} testID="morningText">
           {t("supervisorHomeScreen.morning")} {userName}
         </Text>
-        <Text style={styles.normalText}>
+        <Text style={styles.normalText} testID="welcomeText">
           {t("supervisorHomeScreen.wishGoodDay")}
         </Text>
       </View>
