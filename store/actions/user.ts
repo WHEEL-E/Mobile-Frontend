@@ -11,17 +11,19 @@ export const signIn = (data: SignInData) => {
 
     if (!response.ok) {
     }
-    const resData = await response.json();
 
+    const resData = await response.json();
     const getUser = () => {
       for (const field in resData) {
         if (resData[field].mainData.emailAddress === data.emailAddress) {
-          return resData[field];
+          const user: User = resData[field];
+          user.mainData.userId = field;
+          return user;
         }
       }
     };
 
-    const user: User = getUser();
+    const user: User = getUser()!;
     dispatch({ type: UserActionTypes.SIGN_IN, data: user });
 
     try {

@@ -40,8 +40,8 @@ const ReminderModal = (props: addNewReminderModalProps) => {
           ...reminder,
           id: "",
           supervisorId: supervisorData.userId,
-          supervisorName: supervisorData.username,
-          patientId: "",
+          supervisorName: supervisorData.userName,
+          patientId: "", //will be added when associatedPatientsScreen and supervisedPatientScreen are implemented
         })
       );
     }
