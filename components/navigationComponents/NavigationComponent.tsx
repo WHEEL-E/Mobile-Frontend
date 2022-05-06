@@ -15,7 +15,10 @@ export const NavigationComponent = (props: navigationComponentProps) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate(title);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: title }],
+        });
       }}
       style={styles.container}
       testID={title}
