@@ -28,7 +28,7 @@ export interface Patient {
 
 export interface User {
   mainData: Patient | Supervisor;
-  type: UserTypes;
+  userType: UserTypes;
   token?: string;
 }
 
