@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: 120,
+    paddingTop: "25%",
   },
   itemsContainer: {
     alignItems: "center",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: "#3f414e",
+    color: colors.lightBlack,
     fontFamily: fonts.CairoRegular,
     fontSize: 14,
     marginStart: 18,
