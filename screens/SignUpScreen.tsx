@@ -6,6 +6,7 @@ import { SignUpProps } from "../utilities/types/navigationTypes/getStartedNaviga
 import SignUpMainForm from "../components/signUpComponents/SignUpMainForm";
 import SignUpAdditionalData from "../components/signUpComponents/SignUpAdditionalData";
 import { DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import { HeadingText } from "../utilities/types/fontTypes";
 
 const SignUpScreen = (props: SignUpProps) => {
   const { t } = useTranslation();
@@ -74,10 +75,7 @@ const styles = StyleSheet.create({
     width: "70%",
     alignSelf: "center",
   },
-  title: {
-    fontSize: 27,
-    fontFamily: "Cairo-Bold",
-  },
+  title: HeadingText,
 });
 
 export default SignUpScreen;
