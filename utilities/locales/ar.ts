@@ -103,6 +103,10 @@ export default {
     },
     settings: {
       settings: "الإعدادات",
-    }
+      account: "الملف الشخصي",
+      sound: "الصوت",
+      language: "اللغة",
+      logout: "تسجيل الخروج",
+    },
   },
 };

@@ -106,6 +106,10 @@ export default {
     },
     settings: {
       settings: "Settings",
+      account: "Account",
+      sound: "Sound",
+      language: "language",
+      logout: "Logout",
     },
   },
 };

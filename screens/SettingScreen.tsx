@@ -6,35 +6,38 @@ import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const SettingScreen = (props: SettingProps) => {
   const { navigation } = props;
   const { signOut } = useAuth();
+  const { t } = useTranslation();
 
   const screenItems = [
     {
-      name: "Account",
+      name: t("settings.account"),
       icon: "person",
       PressingFunction: () => {
         navigation.navigate("Profile");
       },
     },
     {
-      name: "Sound",
+      name: t("settings.sound"),
       icon: "volume-high",
       PressingFunction: () => {
         navigation.navigate("SoundSettings");
       },
     },
     {
-      name: "Language",
+      name: t("settings.language"),
+
       icon: "earth",
       PressingFunction: () => {
         navigation.navigate("ChangeLanguage");
       },
     },
     {
-      name: "Logout",
+      name: t("settings.logout"),
       icon: "person",
       PressingFunction: () => {
         signOut();
