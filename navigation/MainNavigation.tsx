@@ -9,6 +9,8 @@ import SetLanguageScreen from "../screens/SetLanguageScreen";
 import SupervisedPatientScreen from "../screens/SupervisedPatientScreen";
 import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import { RootState } from "../store/reducers/rootReducer";
+import SettingScreen from "../screens/SettingScreen";
+import SoundSettingScreen from "../screens/SoundSettingScreen";
 import {
   mainStackOptions,
   MainStackParamList,
@@ -21,6 +23,12 @@ export function MainNavigation() {
   const isPatient =
     useSelector((store: RootState) => store.user.userData?.userType) ===
     UserTypes.PATIENT;
+
+  const generalOptions: any = {
+    headerTransparent: true,
+    headerShown: true,
+    headerTitleAlign: "center",
+  };
 
   return (
     <MainStack.Navigator
@@ -37,6 +45,18 @@ export function MainNavigation() {
       )}
       <MainStack.Screen name="FreeDrive" component={FreeDriveScreen} />
       <MainStack.Screen name="Reminders" component={RemindersScreen} />
+      <MainStack.Screen
+        name="Settings"
+        component={SettingScreen}
+        options={generalOptions}
+      />
+
+      <MainStack.Screen
+        name="SoundSettings"
+        component={SoundSettingScreen}
+        options={generalOptions}
+      />
+
       <MainStack.Screen name="Profile" component={ProfileScreen} />
       <MainStack.Screen name="ChangeLanguage" component={SetLanguageScreen} />
       <MainStack.Screen

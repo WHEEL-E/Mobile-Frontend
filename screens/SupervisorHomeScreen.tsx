@@ -33,11 +33,15 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
       <View style={styles.buttons}>
         <View style={styles.buttonColContainer}>
           <MainButton
-            title={t("supervisorHomeScreen.profile")}
+            title={t("settings.settings")}
             buttonStyle={styles.profileButtonStyle}
             titleStyle={styles.profileTitleStyle}
-            onPress={() => props.navigation.navigate("Profile")}
-            icon={{ name: "ios-person", size: 30, color: colors.darkGreen }}
+            onPress={() => props.navigation.navigate("Settings")}
+            icon={{
+              name: "ios-settings-outline",
+              size: 30,
+              color: colors.darkGreen,
+            }}
           />
           <MainButton
             title={t("supervisorHomeScreen.newPatient")}

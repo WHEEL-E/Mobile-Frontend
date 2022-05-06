@@ -104,4 +104,8 @@ export default {
       subText: "We hope you are safe!",
       gotIt: "Got It!",
     },
+    settings: {
+      settings: "Settings",
+    },
+  },
 };

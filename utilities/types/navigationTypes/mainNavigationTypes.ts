@@ -6,6 +6,8 @@ export const mainStackOptions: StackNavigationOptions = { headerShown: false };
 export type MainStackParamList = {
   HomeScreen: undefined;
   Profile: undefined;
+  Settings: undefined;
+  SoundSettings: undefined;
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
@@ -57,4 +59,14 @@ export type ChangeLangugageProps = NativeStackScreenProps<
 export type SupervisedPatientProps = NativeStackScreenProps<
   MainStackParamList,
   "SupervisedPatient"
+>;
+
+export type SettingProps = NativeStackScreenProps<
+  MainStackParamList,
+  "Settings"
+>;
+
+export type SoundSettings = NativeStackScreenProps<
+  MainStackParamList,
+  "SoundSettings"
 >;
