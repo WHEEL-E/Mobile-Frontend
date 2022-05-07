@@ -108,6 +108,10 @@ export default {
       signIn: "An error occurred while signing you in! Please sign in again",
       signOut: "An error occurred while signing you out! Please sign out again",
       oops: "Oops!",
+      addingNote: "Error adding note. Please try again later",
+      deletingNote: "Error deleting note. Please try again later",
+      updatingNote: "Error updating note. Please try again later",
+      fetchingNotes: "Error loading note. Please try again later",
     },
     emergencyCallModal: {
       mainText:
@@ -115,4 +119,5 @@ export default {
       subText: "We hope you are safe!",
       gotIt: "Got It!",
     },
+  },
 };

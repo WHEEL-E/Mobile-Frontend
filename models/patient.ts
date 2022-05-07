@@ -1,7 +1,7 @@
 import { User, UserTypes } from "../utilities/types/userTypes";
 
 export class Patient {
-  static username: string = "";
+  static userName: string = "";
   static password: string = "";
   static profilePhoto: string = "";
   static smoking: boolean = false;
@@ -27,7 +27,7 @@ export class Patient {
     const { name, emailAddress, password, address, phoneNumber, profilePhoto } =
       mainFormValues;
 
-    this.username = name;
+    this.userName = name;
     this.mail = emailAddress;
     this.password = password;
     this.address = address;
@@ -57,7 +57,7 @@ export class Patient {
   static prepareUserObject = () => {
     const user: User = {
       mainData: {
-        username: this.username,
+        userName: this.userName,
         password: this.password,
         profilePhoto: this.profilePhoto,
         smoking: this.smoking,
