@@ -119,8 +119,12 @@ export default {
       settings: "Settings",
       account: "Account",
       sound: "Sound",
-      language: "language",
+      language: "Language",
       logout: "Logout",
     },
+    screenTitles: {
+      setting: "Settings",
+      language: "Change Language",
+    }
   },
 };

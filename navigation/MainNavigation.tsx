@@ -1,4 +1,7 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from "@react-navigation/stack";
 import { useSelector } from "react-redux";
 import AssociatedPatientsScreen from "../screens/AssociatedPatientsScreen";
 import FreeDriveScreen from "../screens/FreeDriveScreen";
@@ -16,19 +19,15 @@ import {
   MainStackParamList,
 } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { UserTypes } from "../utilities/types/userTypes";
+import { useTranslation } from "react-i18next";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
 export function MainNavigation() {
+  const { t } = useTranslation();
   const isPatient =
     useSelector((store: RootState) => store.user.userData?.userType) ===
     UserTypes.PATIENT;
-
-  const generalOptions: any = {
-    headerTransparent: true,
-    headerShown: true,
-    headerTitleAlign: "center",
-  };
 
   return (
     <MainStack.Navigator
@@ -48,17 +47,17 @@ export function MainNavigation() {
       <MainStack.Screen
         name="Settings"
         component={SettingScreen}
-        options={generalOptions}
+        options={{ title: t("screenTitles.settings") }}
       />
 
-      <MainStack.Screen
-        name="SoundSettings"
-        component={SoundSettingScreen}
-        options={generalOptions}
-      />
+      <MainStack.Screen name="SoundSettings" component={SoundSettingScreen} />
 
       <MainStack.Screen name="Profile" component={ProfileScreen} />
-      <MainStack.Screen name="ChangeLanguage" component={SetLanguageScreen} />
+      <MainStack.Screen
+        name="ChangeLanguage"
+        component={SetLanguageScreen}
+        options={{ title: t("screenTitles.language") }}
+      />
       <MainStack.Screen
         name="AssociatedPatients"
         component={AssociatedPatientsScreen}

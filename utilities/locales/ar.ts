@@ -119,5 +119,9 @@ export default {
       language: "اللغة",
       logout: "تسجيل الخروج",
     },
+    screenTitles: {
+      settings: "الإعدادات",
+      language: "تغيير اللغة",
+    },
   },
 };
