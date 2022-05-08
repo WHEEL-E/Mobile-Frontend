@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     width: "80%",
     height: 70,
     maxHeight: "30%",
-    marginBottom: SMALL_MARGIN_VERTICAL,
+    marginBottom: SMALL_MARGIN_VERTICAL * 2,
   },
   inputs: {
     alignItems: "center",
@@ -234,6 +234,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     ...NoteText,
+    marginVertical: SMALL_MARGIN_VERTICAL,
     paddingHorizontal: PADDING_HORIZONTAL,
   },
   signUp: {
