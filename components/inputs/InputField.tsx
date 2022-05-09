@@ -20,7 +20,7 @@ const InputField = (props: InputFieldProps) => {
     <TextInput
       placeholder={placeHolder}
       style={{ ...styles.input, ...fieldStyle }}
-      autoCompleteType={autoComplete}
+      autoComplete={autoComplete}
       value={value}
       onChangeText={onChangeText}
       secureTextEntry={secureText}

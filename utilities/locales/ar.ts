@@ -110,6 +110,14 @@ export default {
       updatingNote: "حدث خطأ أثناء تعديل الملاحظة, برجاء المحاولة لاحقًا",
       fetchingNotes: "حدث خطأ أثناء تحميل الملاحظات, برجاء المحاولة لاحقًا",
     },
+    notesScreen: {
+      modalHeader: "قم بملئ البيانات لإاضافة ملاحظة",
+      enterTitle: "عنوان الملاحظة",
+      enterDescription: "محتوى الملاحظة",
+      cancel: "إلغاء",
+      submit: "حفظ",
+      addNote: "أضف ملاحظة جديدة",
+    },
     emergencyCallModal: {
       mainText:
         "تم الاتصال بجميع بأرقام الطوارئ الخاصة بك وإعلامهم بمكانهم الحالي",

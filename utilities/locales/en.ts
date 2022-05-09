@@ -113,6 +113,14 @@ export default {
       updatingNote: "Error updating note. Please try again later",
       fetchingNotes: "Error loading note. Please try again later",
     },
+    notesScreen: {
+      modalHeader: "Fill the required fields to add new note",
+      enterTitle: "Enter Note Title",
+      enterDescription: "Enter Note Description",
+      cancel: "Cancel",
+      submit: "Submit",
+      addNote: "Add New Note",
+    },
     emergencyCallModal: {
       mainText:
         "All your emergency contacts are called and a message with your current location is sent",
