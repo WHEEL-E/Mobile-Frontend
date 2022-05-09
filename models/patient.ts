@@ -72,7 +72,7 @@ export class Patient {
         healthRecords: this.healthRecords,
         healthMonitor: this.healthMonitor,
       },
-      type: UserTypes.PATIENT,
+      userType: UserTypes.PATIENT,
     };
     return user;
   };

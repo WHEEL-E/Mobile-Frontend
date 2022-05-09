@@ -124,5 +124,16 @@ export default {
       subText: "نتمنى وجودك بخير!",
       gotIt: "حسنًا!",
     },
+    settings: {
+      settings: "الإعدادات",
+      account: "الملف الشخصي",
+      sound: "الصوت",
+      language: "اللغة",
+      logout: "تسجيل الخروج",
+    },
+    screenTitles: {
+      settings: "الإعدادات",
+      language: "تغيير اللغة",
+    },
   },
 };

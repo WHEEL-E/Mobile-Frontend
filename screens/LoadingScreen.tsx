@@ -5,6 +5,12 @@ import { useDispatch } from "react-redux";
 import { restoreUser } from "../store/actions/user";
 import React from "react";
 import * as SplashScreen from "expo-splash-screen";
+import * as SecureStore from "expo-secure-store";
+import lang from "../lang";
+
+const getCurrentLanguage = async () => {
+  return await SecureStore.getItemAsync("CurrentLang");
+};
 
 const App = () => {
   const dispatch = useDispatch<any>();
@@ -12,6 +18,8 @@ const App = () => {
 
   const prepareResources = async () => {
     const bootstrapAsync = async () => {
+      const Lang = await getCurrentLanguage();
+      Lang && lang.changeLanguage(Lang);
       dispatch(restoreUser());
     };
 

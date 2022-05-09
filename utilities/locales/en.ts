@@ -127,5 +127,16 @@ export default {
       subText: "We hope you are safe!",
       gotIt: "Got It!",
     },
+    settings: {
+      settings: "Settings",
+      account: "Account",
+      sound: "Sound",
+      language: "Language",
+      logout: "Logout",
+    },
+    screenTitles: {
+      settings: "Settings",
+      language: "Change Language",
+    },
   },
 };

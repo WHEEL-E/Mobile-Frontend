@@ -8,4 +8,5 @@ export default {
   lightBrown: "#D9C9AC",
   darkBlue: "#19456B",
   offWhite: "#F0E9DC",
+  lightBlack: "#3f414e"
 };

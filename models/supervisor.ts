@@ -37,7 +37,7 @@ export class Supervisor {
         phone: this.phone,
         address: this.address,
       },
-      type: UserTypes.SUPERVISOR,
+      userType: UserTypes.SUPERVISOR,
     };
     return user;
   };
