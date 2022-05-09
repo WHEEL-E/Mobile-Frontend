@@ -1,39 +1,42 @@
 import { NavigationContainer } from "@react-navigation/native";
-import AppLoading from "expo-app-loading";
-import React from "react";
-import { useSelector } from "react-redux";
 import { VisibleNavigation } from "../navigation/VisibleNavigation";
 import { fetchFonts } from "../utilities/fetchFonts";
 import { useDispatch } from "react-redux";
-import { RootState } from "../store/reducers/rootReducer";
 import { restoreUser } from "../store/actions/user";
+import React from "react";
+import * as SplashScreen from "expo-splash-screen";
 
-const LoadingScreen = () => {
-  const [fontLoaded, setFontLoaded] = React.useState(false);
-  const isLoading = useSelector(
-    (store: RootState) => store.user.isRestoringData
-  );
+const App = () => {
   const dispatch = useDispatch<any>();
+  const [appReady, setAppReady] = React.useState(false);
 
-  React.useEffect(() => {
+  const prepareResources = async () => {
     const bootstrapAsync = async () => {
       dispatch(restoreUser());
     };
-    bootstrapAsync();
-  }, []);
 
-  if (!fontLoaded) {
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setFontLoaded(true)}
-        onError={(err) => console.warn(err)}
-      />
-    );
-  }
+    await fetchFonts();
+    await bootstrapAsync();
 
-  if (isLoading) {
-    return <AppLoading />;
+    setAppReady(true);
+
+    await SplashScreen.hideAsync();
+  };
+
+  React.useEffect(() => {
+    const componentDidMount = async () => {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+      } catch (e) {
+        console.warn(e);
+      }
+      prepareResources();
+    };
+    componentDidMount();
+  }, [SplashScreen, prepareResources]);
+
+  if (!appReady) {
+    return null;
   }
 
   return (
@@ -43,4 +46,4 @@ const LoadingScreen = () => {
   );
 };
 
-export default LoadingScreen;
+export default App;
