@@ -6,10 +6,12 @@ import colors from "../utilities/constants/colors";
 import lang from "../lang";
 import { ChangeLangugageProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import * as SecureStore from "expo-secure-store";
 
 const SetLanguageScreen = (props: ChangeLangugageProps) => {
-  const setLanguage = (language: string) => {
-    lang.changeLanguage(language);
+  const setLanguage = async (language: string) => {
+    await lang.changeLanguage(language);
+    await SecureStore.setItemAsync("CurrentLang", language);
   };
 
   console.log(lang.language);
