@@ -125,6 +125,6 @@ export default {
     screenTitles: {
       setting: "Settings",
       language: "Change Language",
-    }
+    },
   },
 };

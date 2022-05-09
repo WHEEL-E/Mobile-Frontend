@@ -30,14 +30,14 @@ export class Supervisor {
   static prepareUserObject = () => {
     const user: User = {
       mainData: {
-        username: this.username,
+        userName: this.username,
         password: this.password,
         profilePhoto: this.profilePhoto,
         mail: this.mail,
         phone: this.phone,
         address: this.address,
       },
-      type: UserTypes.SUPERVISOR,
+      userType: UserTypes.SUPERVISOR,
     };
     return user;
   };
