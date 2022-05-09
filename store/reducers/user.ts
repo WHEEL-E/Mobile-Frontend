@@ -18,7 +18,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(signOut.fulfilled, (state) => {
       state.isRestoringData = false;
       state.userData = null;
-      state.isLoggedIn = true;
+      state.isLoggedIn = false;
     })
     .addCase(restoreUser.fulfilled, (state, action) => {
       state.isRestoringData = false;

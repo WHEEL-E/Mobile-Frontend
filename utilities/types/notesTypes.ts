@@ -1,5 +1,5 @@
 export type Note = {
-  id: string;
+  id?: string;
   userId: string;
   title: string;
   description: string;
@@ -16,14 +16,17 @@ export enum NotesActionTypes {
   UPDATE_NOTE = "UPDATE_NOTE",
 }
 
-export interface NotesActionData {
-  addedNote?: Note;
-  allNotes?: Note[];
-  removedId?: string;
-  updatedNote?: Partial<Note>;
+export interface NoteCardProps {
+  id: string;
+  title: string;
+  description: string;
+  backgroundColor: string;
 }
 
-export interface NotesAction {
-  type: NotesActionTypes;
-  data: NotesActionData;
+export interface NoteModalProps {
+  noteId?: string;
+  noteTitle: string;
+  noteDescription: string;
+  modalVisible: boolean;
+  setModalVisible: (state: boolean) => void;
 }

@@ -1,9 +1,8 @@
-import { Dispatch } from "redux";
 import * as SecureStore from "expo-secure-store";
 import { User, UserActionTypes } from "../../utilities/types/userTypes";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { ShowModal } from "./errorModal";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,

@@ -1,26 +1,34 @@
-import {
-  NotesAction,
-  NotesActionTypes,
-  NotesState,
-} from "../../utilities/types/notesTypes";
+import { NotesState } from "../../utilities/types/notesTypes";
+import { createReducer } from "@reduxjs/toolkit";
+import { addNote, getNotes, removeNote, updateNote } from "../actions/notes";
 
-const initialState = {
+const initialState: NotesState = {
   allNotes: [],
 };
 
-const notesReducer = (
-  state: NotesState = initialState,
-  action: NotesAction
-): NotesState => {
-  switch (action.type) {
-    case NotesActionTypes.ADD_NOTE:
-      const newNote = action.data.addedNote!;
+const notesReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(getNotes.fulfilled, (state, action) => {
+      return { allNotes: action.payload };
+    })
+    .addCase(addNote.fulfilled, (state, action) => {
+      const newNote = action.payload;
       const allNotes = [...state.allNotes, newNote];
       return {
         allNotes,
       };
-    case NotesActionTypes.UPDATE_NOTE:
-      const updatedNote = action.data.updatedNote!;
+    })
+    .addCase(removeNote.fulfilled, (state, action) => {
+      const removedNote = action.payload;
+      const newNotes = [...state.allNotes].filter(
+        (note) => note.id !== removedNote
+      );
+      return {
+        allNotes: newNotes,
+      };
+    })
+    .addCase(updateNote.fulfilled, (state, action) => {
+      const updatedNote = action.payload;
       const updatedNotes = [...state.allNotes];
       const updatedNoteIndex = updatedNotes.findIndex(
         (note) => note.id === updatedNote.id
@@ -34,20 +42,7 @@ const notesReducer = (
       return {
         allNotes: updatedNotes,
       };
-    case NotesActionTypes.REMOVE_NOTE:
-      const removedNote = action.data.removedId;
-      const newNotes = [...state.allNotes].filter(
-        (note) => note.id !== removedNote
-      );
-      return {
-        allNotes: newNotes,
-      };
-    case NotesActionTypes.GET_ALL:
-      return {
-        allNotes: action.data.allNotes!,
-      };
-  }
-  return state;
-};
+    });
+});
 
 export default notesReducer;
