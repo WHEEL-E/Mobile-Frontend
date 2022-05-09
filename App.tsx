@@ -1,6 +1,6 @@
 import "./lang";
 import React from "react";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import ReduxThunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from "./store/reducers/rootReducer";

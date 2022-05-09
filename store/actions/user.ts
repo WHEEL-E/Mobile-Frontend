@@ -18,14 +18,17 @@ export const signIn = createAsyncThunk(
 
     const getUser = () => {
       for (const field in resData) {
-        2;
         if (resData[field].mainData.emailAddress === data.emailAddress) {
-          return resData[field];
+          let user: User;
+          user = resData[field];
+          user.mainData.userId = field;
+          return user;
         }
       }
+      return null;
     };
 
-    const user: User = getUser();
+    const user: User = getUser()!;
     try {
       await SecureStore.setItemAsync("userData", JSON.stringify(user));
     } catch (e) {

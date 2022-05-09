@@ -15,7 +15,7 @@ import { NoteCardProps } from "../../utilities/types/notesTypes";
 
 const NoteCard = (props: NoteCardProps) => {
   const { id, title, description, backgroundColor } = props;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const [modalVisible, setModalVisible] = useState(false);
 
   const deleteNoteHandler = () => {
@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
     borderRadius: 10,
-    marginVertical: SMALL_MARGIN_VERTICAL,
+    margin: SMALL_MARGIN_VERTICAL,
     padding: PADDING_VERTICAL,
     overflow: "hidden",
-    width: DEVICE_WIDTH * 0.8,
+    width: DEVICE_WIDTH * 0.4,
   },
   close: {
     alignItems: "flex-end",

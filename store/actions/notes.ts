@@ -1,34 +1,43 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { EndPoints } from "../../utilities/constants/endpoints";
 import { Note, NotesActionTypes } from "../../utilities/types/notesTypes";
 import { ErrorModalActionTypes } from "../actions/errorModal";
 
 export const getNotes = createAsyncThunk(
   NotesActionTypes.GET_ALL,
   async (userId: string, thunkAPI) => {
-    const response = await fetch(
-      "https://wheel--e-default-rtdb.firebaseio.com/notes.json"
-    );
+    try {
+      const response = await fetch(`${EndPoints.Notes}`, {
+        body: JSON.stringify({ user_id: userId }),
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
+        thunkAPI.dispatch({
+          type: ErrorModalActionTypes.SHOW_MODAL,
+          data: "errorModal.fetchingNotes",
+        });
+        throw new Error("can't get notes");
+      }
+
+      const resData = await response.json();
+      const allNotes: Note[] = [];
+      for (const data in resData) {
+        allNotes.push({
+          id: data,
+          user_id: resData[data].user_id,
+          title: resData[data].title,
+          description: resData[data].description,
+        });
+      }
+
+      return allNotes;
+    } catch (err) {
       thunkAPI.dispatch({
         type: ErrorModalActionTypes.SHOW_MODAL,
         data: "errorModal.fetchingNotes",
       });
-      throw new Error("can't get notes");
+      throw err;
     }
-
-    const resData = await response.json();
-    const allNotes: Note[] = [];
-    for (const data in resData) {
-      allNotes.push({
-        id: data,
-        userId: resData[data].userId,
-        title: resData[data].title,
-        description: resData[data].description,
-      });
-    }
-
-    return allNotes;
   }
 );
 
@@ -36,10 +45,10 @@ export const removeNote = createAsyncThunk(
   NotesActionTypes.REMOVE_NOTE,
   async (noteId: string, thunkAPI) => {
     try {
-      const response = await fetch(
-        `https://wheel--e-default-rtdb.firebaseio.com/notes/${noteId}.json`,
-        { method: "DELETE" }
-      );
+      const response = await fetch(`${EndPoints.Notes}/${noteId}`, {
+        method: "DELETE",
+        body: JSON.stringify({ id: noteId }),
+      });
 
       if (!response.ok) {
         thunkAPI.dispatch({
@@ -50,6 +59,10 @@ export const removeNote = createAsyncThunk(
       }
       return noteId;
     } catch (err) {
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.deletingNote",
+      });
       throw err;
     }
   }
@@ -59,16 +72,13 @@ export const addNote = createAsyncThunk(
   NotesActionTypes.ADD_NOTE,
   async (newNote: Note, thunkAPI) => {
     try {
-      const response = await fetch(
-        "https://wheel--e-default-rtdb.firebaseio.com/notes.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newNote),
-        }
-      );
+      const response = await fetch(`${EndPoints.Notes}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newNote),
+      });
 
       if (!response.ok) {
         thunkAPI.dispatch({
@@ -77,10 +87,16 @@ export const addNote = createAsyncThunk(
         });
         throw new Error("can't add note");
       }
+
       const resData = await response.json();
       const note = { ...newNote, id: resData.name };
+
       return note;
     } catch (err) {
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.addingNote",
+      });
       throw err;
     }
   }
@@ -90,16 +106,13 @@ export const updateNote = createAsyncThunk(
   NotesActionTypes.UPDATE_NOTE,
   async (newNote: Partial<Note>, thunkAPI) => {
     try {
-      const response = await fetch(
-        `https://wheel--e-default-rtdb.firebaseio.com/notes/${newNote.id}.json`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newNote),
-        }
-      );
+      const response = await fetch(`${EndPoints.Notes}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newNote),
+      });
 
       if (!response.ok) {
         thunkAPI.dispatch({
@@ -111,6 +124,10 @@ export const updateNote = createAsyncThunk(
 
       return newNote;
     } catch (err) {
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.updatingNote",
+      });
       throw err;
     }
   }

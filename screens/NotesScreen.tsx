@@ -20,7 +20,9 @@ const NotesScreen = (props: NotesProps) => {
     (state: RootState) => state.user.userData?.mainData.userId
   );
 
-  console.log(notes);
+  const backgroundColors = [colors.darkGreen, colors.lightPurple];
+  let colorIndex = 0;
+
   React.useEffect(() => {
     dispatch(getNotes(userId!));
   }, [dispatch, getNotes]);
@@ -36,14 +38,21 @@ const NotesScreen = (props: NotesProps) => {
       <FlatList
         data={notes}
         keyExtractor={(info) => info.id!}
-        renderItem={(info) => (
-          <NoteCard
-            id={info.item.id!}
-            description={info.item.description}
-            title={info.item.title}
-            backgroundColor={colors.darkGreen}
-          />
-        )}
+        numColumns={2}
+        renderItem={(info) => {
+          if (info.index % 2 == 1) {
+            colorIndex = 1 - colorIndex;
+          }
+          return (
+            <NoteCard
+              id={info.item.id!}
+              description={info.item.description}
+              title={info.item.title}
+              backgroundColor={backgroundColors[colorIndex]}
+              key={info.item.id}
+            />
+          );
+        }}
       />
 
       <SquareButton

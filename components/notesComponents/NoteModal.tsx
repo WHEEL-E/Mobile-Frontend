@@ -51,7 +51,7 @@ const NoteModal = (props: NoteModalProps) => {
         addNote({
           title: note.title,
           description: note.description,
-          userId: userId!,
+          user_id: userId!,
         })
       );
     }

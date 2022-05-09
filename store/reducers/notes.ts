@@ -13,6 +13,7 @@ const notesReducer = createReducer(initialState, (builder) => {
     })
     .addCase(addNote.fulfilled, (state, action) => {
       const newNote = action.payload;
+
       const allNotes = [...state.allNotes, newNote];
       return {
         allNotes,
