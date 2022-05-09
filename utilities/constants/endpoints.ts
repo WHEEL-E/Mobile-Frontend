@@ -1,3 +1,3 @@
 export enum EndPoints {
-  Notes = "http://localhost:3000/api/notes",
+  Notes = "http://192.168.180.215:3000/api/notes", // You need to change this ip based on your Laptop IP
 }

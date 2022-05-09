@@ -2,41 +2,49 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { Note, NotesActionTypes } from "../../utilities/types/notesTypes";
 import { ErrorModalActionTypes } from "../actions/errorModal";
+import axios from "axios";
 
 export const getNotes = createAsyncThunk(
   NotesActionTypes.GET_ALL,
   async (userId: string, thunkAPI) => {
     try {
-      const response = await fetch(`${EndPoints.Notes}`, {
-        body: JSON.stringify({ user_id: userId }),
-      });
+      const response = await axios.get(
+        `${EndPoints.Notes}/user/6263ce0577164ec6745e3bd7`
+      );
 
-      if (!response.ok) {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.fetchingNotes",
-        });
-        throw new Error("can't get notes");
-      }
+      console.log(response.data.data);
+      console.log(response.data.message);
+      console.log(response.data.status);
+      console.log(response.status);
+      console.log("-----------------------------------------------------");
 
-      const resData = await response.json();
-      const allNotes: Note[] = [];
-      for (const data in resData) {
-        allNotes.push({
-          id: data,
-          user_id: resData[data].user_id,
-          title: resData[data].title,
-          description: resData[data].description,
-        });
-      }
+      // if (!response.ok) {
+      //   thunkAPI.dispatch({
+      //     type: ErrorModalActionTypes.SHOW_MODAL,
+      //     data: "errorModal.fetchingNotes",
+      //   });
+      //   throw new Error("can't get notes");
+      // }
 
-      return allNotes;
+      // const resData = await response.json();
+      // const allNotes: Note[] = [];
+      // for (const data in resData) {
+      //   allNotes.push({
+      //     id: data,
+      //     user_id: resData[data].user_id,
+      //     title: resData[data].title,
+      //     description: resData[data].description,
+      //   });
+      // }
+
+      // return allNotes;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.fetchingNotes",
-      });
-      throw err;
+      console.log(err);
+      // thunkAPI.dispatch({
+      //   type: ErrorModalActionTypes.SHOW_MODAL,
+      //   data: "errorModal.fetchingNotes",
+      // });
+      // throw err;
     }
   }
 );
