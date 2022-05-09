@@ -35,11 +35,16 @@ export function MainNavigation() {
       initialRouteName={isPatient ? "PatientHome" : "SupervisorHome"}
     >
       {isPatient ? (
-        <MainStack.Screen name="PatientHome" component={PatientHomeScreen} />
+        <MainStack.Screen
+          name="PatientHome"
+          component={PatientHomeScreen}
+          options={{ title: "" }}
+        />
       ) : (
         <MainStack.Screen
           name="SupervisorHome"
           component={SupervisorHomeScreen}
+          options={{ title: "" }}
         />
       )}
       <MainStack.Screen name="FreeDrive" component={FreeDriveScreen} />
