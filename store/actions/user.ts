@@ -18,6 +18,7 @@ export const signIn = createAsyncThunk(
 
     const getUser = () => {
       for (const field in resData) {
+        2;
         if (resData[field].mainData.emailAddress === data.emailAddress) {
           return resData[field];
         }
@@ -26,7 +27,7 @@ export const signIn = createAsyncThunk(
 
     const user: User = getUser();
     try {
-      await SecureStore.setItemAsync("userdata", JSON.stringify(user));
+      await SecureStore.setItemAsync("userData", JSON.stringify(user));
     } catch (e) {
       throw e;
     }
@@ -38,7 +39,7 @@ export const signOut = createAsyncThunk(
   UserActionTypes.SIGN_OUT,
   async (data: null, thunkAPI) => {
     try {
-      await SecureStore.deleteItemAsync("userdata");
+      await SecureStore.deleteItemAsync("userData");
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal.signOut"));
       throw e;

@@ -28,7 +28,7 @@ export interface Patient {
 
 export interface User {
   mainData: Patient | Supervisor;
-  type: UserTypes;
+  userType: UserTypes;
   token?: string;
 }
 
@@ -36,11 +36,6 @@ export enum UserActionTypes {
   SIGN_IN = "SIGN_IN",
   SIGN_OUT = "SIGN_OUT",
   RESTORE_USER = "RESTORE_USER",
-}
-
-export interface UserAction {
-  data?: User;
-  type: UserActionTypes;
 }
 
 export enum UserTypes {
