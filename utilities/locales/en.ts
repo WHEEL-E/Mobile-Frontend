@@ -123,7 +123,7 @@ export default {
       logout: "Logout",
     },
     screenTitles: {
-      setting: "Settings",
+      settings: "Settings",
       language: "Change Language",
     },
   },
