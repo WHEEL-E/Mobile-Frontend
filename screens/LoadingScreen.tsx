@@ -13,7 +13,7 @@ const LoadingScreen = () => {
   const isLoading = useSelector(
     (store: RootState) => store.user.isRestoringData
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   React.useEffect(() => {
     const bootstrapAsync = async () => {

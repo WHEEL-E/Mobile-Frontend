@@ -12,13 +12,13 @@ const AuthContext = React.createContext(AuthContextPlaceHolder);
 
 export const AuthProvider = (props: AuthProviderProps) => {
   const { children } = props;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const authFunctions = {
     signIn: async (data: SignInData) => {
       dispatch(signIn(data));
     },
-    signOut: () => dispatch(signOut()),
+    signOut: () => dispatch(signOut(null)),
     signUp: async (data: User) => {
       dispatch(signUp(data));
     },

@@ -1,40 +1,30 @@
-import {
-  UserAction,
-  UserActionTypes,
-  UserState,
-} from "../../utilities/types/userTypes";
+import { UserState } from "../../utilities/types/userTypes";
+import { createReducer } from "@reduxjs/toolkit";
+import { restoreUser, signIn, signOut } from "../actions/user";
 
-const initialState = {
+const initialState: UserState = {
   userData: null,
   isLoggedIn: false,
   isRestoringData: true,
 };
 
-const userReducer = (
-  state: UserState = initialState,
-  action: UserAction
-): UserState => {
-  switch (action.type) {
-    case UserActionTypes.SIGN_IN:
-      return {
-        isRestoringData: false,
-        userData: action.data!,
-        isLoggedIn: true,
-      };
-    case UserActionTypes.SIGN_OUT:
-      return {
-        isRestoringData: false,
-        userData: null,
-        isLoggedIn: false,
-      };
-    case UserActionTypes.RESTORE_USER:
-      return {
-        isRestoringData: false,
-        userData: action.data!,
-        isLoggedIn: true,
-      };
-  }
-  return state;
-};
+const userReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(signIn.fulfilled, (state, action) => {
+      state.isRestoringData = false;
+      state.userData = action.payload;
+      state.isLoggedIn = true;
+    })
+    .addCase(signOut.fulfilled, (state) => {
+      state.isRestoringData = false;
+      state.userData = null;
+      state.isLoggedIn = true;
+    })
+    .addCase(restoreUser.fulfilled, (state, action) => {
+      state.isRestoringData = false;
+      state.userData = action.payload;
+      state.isLoggedIn = true;
+    });
+});
 
 export default userReducer;
