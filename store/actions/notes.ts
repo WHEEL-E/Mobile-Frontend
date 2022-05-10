@@ -8,43 +8,38 @@ export const getNotes = createAsyncThunk(
   NotesActionTypes.GET_ALL,
   async (userId: string, thunkAPI) => {
     try {
+      // TODO: replace static user Id with variable value
       const response = await axios.get(
         `${EndPoints.Notes}/user/6263ce0577164ec6745e3bd7`
       );
 
-      console.log(response.data.data);
-      console.log(response.data.message);
-      console.log(response.data.status);
-      console.log(response.status);
-      console.log("-----------------------------------------------------");
+      if (response.data.status === "Success") {
+        thunkAPI.dispatch({
+          type: ErrorModalActionTypes.SHOW_MODAL,
+          data: "errorModal.fetchingNotes",
+        });
+        throw new Error("can't get notes");
+      }
 
-      // if (!response.ok) {
-      //   thunkAPI.dispatch({
-      //     type: ErrorModalActionTypes.SHOW_MODAL,
-      //     data: "errorModal.fetchingNotes",
-      //   });
-      //   throw new Error("can't get notes");
-      // }
+      const resData = await response.data.data.json();
+      const allNotes: Note[] = [];
+      for (const data in resData) {
+        allNotes.push({
+          id: data,
+          user_id: resData[data].user_id,
+          title: resData[data].title,
+          description: resData[data].description,
+        });
+      }
 
-      // const resData = await response.json();
-      // const allNotes: Note[] = [];
-      // for (const data in resData) {
-      //   allNotes.push({
-      //     id: data,
-      //     user_id: resData[data].user_id,
-      //     title: resData[data].title,
-      //     description: resData[data].description,
-      //   });
-      // }
-
-      // return allNotes;
+      return allNotes;
     } catch (err) {
-      console.log(err);
-      // thunkAPI.dispatch({
-      //   type: ErrorModalActionTypes.SHOW_MODAL,
-      //   data: "errorModal.fetchingNotes",
-      // });
-      // throw err;
+      console.log("there is an error", err);
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.fetchingNotes",
+      });
+      throw err;
     }
   }
 );
@@ -53,12 +48,11 @@ export const removeNote = createAsyncThunk(
   NotesActionTypes.REMOVE_NOTE,
   async (noteId: string, thunkAPI) => {
     try {
-      const response = await fetch(`${EndPoints.Notes}/${noteId}`, {
+      const response = await axios.delete(`${EndPoints.Notes}/${noteId}`, {
         method: "DELETE",
-        body: JSON.stringify({ id: noteId }),
       });
 
-      if (!response.ok) {
+      if (response.data.status === "Success") {
         thunkAPI.dispatch({
           type: ErrorModalActionTypes.SHOW_MODAL,
           data: "errorModal.deletingNote",
@@ -80,7 +74,7 @@ export const addNote = createAsyncThunk(
   NotesActionTypes.ADD_NOTE,
   async (newNote: Note, thunkAPI) => {
     try {
-      const response = await fetch(`${EndPoints.Notes}`, {
+      const response = await axios.post(`${EndPoints.Notes}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +82,7 @@ export const addNote = createAsyncThunk(
         body: JSON.stringify(newNote),
       });
 
-      if (!response.ok) {
+      if (response.data.status === "Success") {
         thunkAPI.dispatch({
           type: ErrorModalActionTypes.SHOW_MODAL,
           data: "errorModal.addingNote",
@@ -96,7 +90,7 @@ export const addNote = createAsyncThunk(
         throw new Error("can't add note");
       }
 
-      const resData = await response.json();
+      const resData = await response.data.json();
       const note = { ...newNote, id: resData.name };
 
       return note;
@@ -114,7 +108,7 @@ export const updateNote = createAsyncThunk(
   NotesActionTypes.UPDATE_NOTE,
   async (newNote: Partial<Note>, thunkAPI) => {
     try {
-      const response = await fetch(`${EndPoints.Notes}`, {
+      const response = await axios.patch(`${EndPoints.Notes}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +116,7 @@ export const updateNote = createAsyncThunk(
         body: JSON.stringify(newNote),
       });
 
-      if (!response.ok) {
+      if (response.status % 100 !== 2) {
         thunkAPI.dispatch({
           type: ErrorModalActionTypes.SHOW_MODAL,
           data: "errorModal.updatingNote",
