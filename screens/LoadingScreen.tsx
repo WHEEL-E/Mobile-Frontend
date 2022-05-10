@@ -7,6 +7,12 @@ import { fetchFonts } from "../utilities/fetchFonts";
 import { useDispatch } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { restoreUser } from "../store/actions/user";
+import * as SecureStore from "expo-secure-store";
+import lang from "../lang";
+
+const getCurrentLanguage = async () => {
+  return await SecureStore.getItemAsync("CurrentLang");
+};
 
 const LoadingScreen = () => {
   const [fontLoaded, setFontLoaded] = React.useState(false);
@@ -17,6 +23,8 @@ const LoadingScreen = () => {
 
   React.useEffect(() => {
     const bootstrapAsync = async () => {
+      const Lang = await getCurrentLanguage();
+      Lang && lang.changeLanguage(Lang);
       dispatch(restoreUser());
     };
     bootstrapAsync();

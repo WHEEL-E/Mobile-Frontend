@@ -58,7 +58,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
               titleStyle={styles.buttonsTitle}
             />
             <SquareButton
-              title={t("supervisedPatientScreen.profile")}
+              title={t("settings.settings")}
               onPress={() => {}}
               buttonStyle={styles.profileButton}
               titleStyle={{ ...styles.buttonsTitle, color: colors.darkGreen }}

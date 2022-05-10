@@ -1,12 +1,22 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackNavigationOptions } from "@react-navigation/stack";
 import { Patient } from "../userTypes";
+import fonts from "../../constants/fonts";
 
-export const mainStackOptions: StackNavigationOptions = { headerShown: false };
+export const mainStackOptions: StackNavigationOptions = {
+  headerTransparent: true,
+  headerShown: true,
+  headerTitleAlign: "center",
+  headerTitleStyle: {
+    fontFamily: fonts.CairoBold,
+  },
+};
 
 export type MainStackParamList = {
   HomeScreen: undefined;
   Profile: undefined;
+  Settings: undefined;
+  SoundSettings: undefined;
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
@@ -58,4 +68,14 @@ export type ChangeLangugageProps = NativeStackScreenProps<
 export type SupervisedPatientProps = NativeStackScreenProps<
   MainStackParamList,
   "SupervisedPatient"
+>;
+
+export type SettingProps = NativeStackScreenProps<
+  MainStackParamList,
+  "Settings"
+>;
+
+export type SoundSettings = NativeStackScreenProps<
+  MainStackParamList,
+  "SoundSettings"
 >;

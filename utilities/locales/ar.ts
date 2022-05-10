@@ -32,7 +32,7 @@ export default {
       enterValidEmail: "من فضلك أدخل البريد الإلكتروني الصحيح",
       enterPassword: "من فضلك قم بإدخال كلمة المرور",
     },
-    signupScreen: {
+    signUpScreen: {
       createAccount: "إنشاء حساب",
       signUp: "إنشاء حساب",
       name: "الاسم",
@@ -48,11 +48,22 @@ export default {
       male: "ذكر",
       female: "أنثى",
       smoking: "هل تدخن؟",
+      smoke: "حالة التدخين",
       yes: "نعم",
       no: "لا",
       height: "الطول",
       weight: "الوزن",
       age: "العمر",
+      type: "نوع المستخدم",
+      profilePhoto: "الصورة الشخصية",
+      emergencyContact: "رقم الطوارئ",
+      emergencyContacts: "ارقام الطوارئ",
+      warningText: "يجب إدخال {{name}}",
+      warningPassword:
+        "كلمة المرور يجب أن تحتوي على ثمانية أحرف أو اكثر مكونة من حروف إنجليزية, رقم أو أكثر, رمز أو أكثر",
+      warningMail: "من فضلك أدخل بريد الكتروني صحيح",
+      warningphone: "من فضلك ادخل رقم هاتف صحيح",
+      warningNumber: "من فضلك أدخل {{name}} الصحيح",
     },
     navigationBar: {
       Home: "الرئيسية",
@@ -105,6 +116,17 @@ export default {
         "تم الاتصال بجميع بأرقام الطوارئ الخاصة بك وإعلامهم بمكانهم الحالي",
       subText: "نتمنى وجودك بخير!",
       gotIt: "حسنًا!",
+    },
+    settings: {
+      settings: "الإعدادات",
+      account: "الملف الشخصي",
+      sound: "الصوت",
+      language: "اللغة",
+      logout: "تسجيل الخروج",
+    },
+    screenTitles: {
+      settings: "الإعدادات",
+      language: "تغيير اللغة",
     },
   },
 };

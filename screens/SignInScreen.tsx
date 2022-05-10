@@ -2,11 +2,12 @@ import React from "react";
 import {
   Image,
   ImageBackground,
+  Keyboard,
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
-  Keyboard,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import InputField from "../components/inputs/InputField";
@@ -15,9 +16,21 @@ import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
 import { SignInProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
-import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import { useAuth } from "../context/AuthContext";
 import { validateMail, validatePassword } from "../utilities/dataValidators";
+import {
+  HeadingText,
+  ImportantText,
+  NormalText,
+  NoteText,
+  TitleText,
+} from "../utilities/types/fontTypes";
+import {
+  PADDING_HORIZONTAL,
+  PADDING_VERTICAL,
+  SMALL_MARGIN_VERTICAL,
+} from "../utilities/constants/spacing";
 
 const SignInScreen = (props: SignInProps) => {
   const { t } = useTranslation();
@@ -61,80 +74,114 @@ const SignInScreen = (props: SignInProps) => {
     };
   }, []);
 
+  let padding = {
+    paddingTop: "30%",
+    paddingBottom: "10%",
+  };
+
+  if (isKeyBoardShown) {
+    padding = {
+      paddingTop: "15%",
+      paddingBottom: "5%",
+    };
+  } else {
+    padding = {
+      paddingTop: "30%",
+      paddingBottom: "10%",
+    };
+  }
+
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../assets/images/vector-back.png")}
-        style={styles.backgroundImage}
+      <TouchableWithoutFeedback
+        style={styles.container}
+        onPress={Keyboard.dismiss}
       >
-        <Image
-          style={styles.logo}
-          source={require("../assets/images/logo-b-app.png")}
-        />
-        <Text style={styles.title}>{t("signInScreen.WelcomeBack")}</Text>
-      </ImageBackground>
-      <View style={styles.backButton}>
-        <BackButton onPress={() => navigation.goBack()} />
-      </View>
-      <View style={styles.inputs}>
-        <InputField
-          placeHolder={t("signInScreen.emailAddress")}
-          fieldStyle={styles.inputField}
-          onChangeText={(text) => {
-            setUserData({ ...userData, emailAddress: text });
-            setIsValid({ ...isValid, emailAddress: validateMail(text) });
-          }}
-          autoComplete="email"
-          value={userData.emailAddress}
-          onBlur={() => validatePassword(userData.emailAddress)}
-        />
-        {!isValid.emailAddress && (
-          <Text style={styles.validationText}>
-            {t("signInScreen.enterValidEmail")}
-          </Text>
-        )}
-        <InputField
-          placeHolder={t("signInScreen.password")}
-          fieldStyle={styles.inputField}
-          onChangeText={(text) => {
-            setUserData({ ...userData, password: text });
-            setIsValid({ ...isValid, password: validatePassword(text) });
-          }}
-          autoComplete="password"
-          value={userData.password}
-          secureText
-          onBlur={() => validatePassword(userData.password)}
-        />
-        {!isValid.password && (
-          <Text style={styles.validationText}>
-            {t("signInScreen.enterPassword")}
-          </Text>
-        )}
-        {!isKeyBoardShown && (
-          <View style={styles.buttons}>
-            <RoundEdgedButton
-              title={t("signInScreen.logIn")}
-              onPress={signInHandler}
-              backgroundColor={colors.darkGreen}
-            />
-            <TouchableOpacity>
-              <Text style={styles.forgotPasswordText}>
-                {t("signInScreen.forgotPassword")}
-              </Text>
-            </TouchableOpacity>
+        <ImageBackground
+          source={require("../assets/images/vector-back.png")}
+          style={{ ...styles.backgroundImage, ...padding }}
+          resizeMode="contain"
+          imageStyle={styles.imageStyle}
+          resizeMethod="auto"
+        >
+          <View style={styles.backButton}>
+            <BackButton onPress={() => navigation.goBack()} />
           </View>
-        )}
-      </View>
-      {!isKeyBoardShown && (
-        <View style={styles.signUp}>
-          <Text style={styles.notMemberText}>
-            {t("signInScreen.notMember")}
-          </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-            <Text style={styles.signUpText}>{t("signInScreen.signUp")}</Text>
-          </TouchableOpacity>
-        </View>
-      )}
+          <View style={{ width: "100%", alignItems: "center" }}>
+            <Image
+              style={styles.logo}
+              source={require("../assets/images/logo-b-app.png")}
+            />
+            <Text style={HeadingText}>{t("signInScreen.WelcomeBack")}</Text>
+          </View>
+
+          <View style={styles.inputs}>
+            <InputField
+              placeHolder={t("signInScreen.emailAddress")}
+              fieldStyle={styles.inputField}
+              onChangeText={(text) => {
+                setUserData({ ...userData, emailAddress: text });
+                setIsValid({
+                  ...isValid,
+                  emailAddress: validateMail(text) ? false : true,
+                });
+              }}
+              autoComplete="email"
+              value={userData.emailAddress}
+              onBlur={() => validateMail(userData.emailAddress)}
+            />
+            {!isValid.emailAddress && (
+              <Text style={styles.validationText}>
+                {t("signInScreen.enterValidEmail")}
+              </Text>
+            )}
+            <InputField
+              placeHolder={t("signInScreen.password")}
+              fieldStyle={styles.inputField}
+              onChangeText={(text) => {
+                setUserData({ ...userData, password: text });
+                setIsValid({
+                  ...isValid,
+                  password: validatePassword(text) ? false : true,
+                });
+              }}
+              autoComplete="password"
+              value={userData.password}
+              secureText
+              onBlur={() => validatePassword(userData.password)}
+            />
+            {!isValid.password && (
+              <Text style={styles.validationText}>
+                {t("signInScreen.enterPassword")}
+              </Text>
+            )}
+            <View style={styles.buttons}>
+              <RoundEdgedButton
+                title={t("signInScreen.logIn")}
+                onPress={signInHandler}
+                backgroundColor={colors.darkGreen}
+              />
+              <TouchableOpacity>
+                <Text style={styles.forgotPasswordText}>
+                  {t("signInScreen.forgotPassword")}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          {!isKeyBoardShown && (
+            <View style={styles.signUp}>
+              <Text style={styles.notMemberText}>
+                {t("signInScreen.notMember")}
+              </Text>
+              <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+                <Text style={styles.signUpText}>
+                  {t("signInScreen.signUp")}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </ImageBackground>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
@@ -146,10 +193,16 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     alignItems: "center",
-    justifyContent: "center",
-    resizeMode: "center",
-    paddingVertical: "30%",
+    flex: 1,
+    alignSelf: "center",
     width: "100%",
+  },
+  imageStyle: {
+    borderColor: "red",
+    position: "absolute",
+    top: 0,
+    width: DEVICE_WIDTH,
+    height: DEVICE_WIDTH * 0.7,
   },
   backButton: {
     position: "absolute",
@@ -165,11 +218,8 @@ const styles = StyleSheet.create({
   inputField: {
     width: "80%",
     height: 70,
-    marginBottom: 15,
-  },
-  title: {
-    fontSize: 27,
-    fontFamily: "Cairo-Bold",
+    maxHeight: "30%",
+    marginBottom: SMALL_MARGIN_VERTICAL * 2,
   },
   inputs: {
     alignItems: "center",
@@ -183,30 +233,28 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   forgotPasswordText: {
-    fontFamily: fonts.CairoRegular,
-    paddingHorizontal: 5,
-    fontSize: DEVICE_HEIGHT * 0.02,
+    ...NoteText,
+    marginVertical: SMALL_MARGIN_VERTICAL,
+    paddingHorizontal: PADDING_HORIZONTAL,
   },
   signUp: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: PADDING_VERTICAL,
   },
   notMemberText: {
-    fontFamily: fonts.CairoRegular,
-    paddingHorizontal: 5,
-    fontSize: DEVICE_HEIGHT * 0.025,
+    ...NormalText,
+    paddingHorizontal: PADDING_HORIZONTAL,
   },
   signUpText: {
-    fontFamily: fonts.CairoRegular,
-    paddingHorizontal: 5,
-    fontSize: DEVICE_HEIGHT * 0.025,
+    ...NormalText,
+    paddingHorizontal: PADDING_HORIZONTAL,
     color: colors.darkGreen,
   },
   validationText: {
     color: "red",
-    fontFamily: fonts.CairoRegular,
+    ...NoteText,
   },
 });
 
