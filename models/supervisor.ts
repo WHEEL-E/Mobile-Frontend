@@ -1,7 +1,7 @@
 import { User, UserTypes } from "../utilities/types/userTypes";
 
 export class Supervisor {
-  static username: string = "";
+  static userName: string = "";
   static password: string = "";
   static profilePhoto: string = "";
   static mail: string = "";
@@ -19,7 +19,7 @@ export class Supervisor {
     const { name, emailAddress, password, address, phoneNumber, profilePhoto } =
       mainFormValues;
 
-    this.username = name;
+    this.userName = name;
     this.mail = emailAddress;
     this.password = password;
     this.address = address;
@@ -30,7 +30,7 @@ export class Supervisor {
   static prepareUserObject = () => {
     const user: User = {
       mainData: {
-        userName: this.username,
+        userName: this.userName,
         password: this.password,
         profilePhoto: this.profilePhoto,
         mail: this.mail,

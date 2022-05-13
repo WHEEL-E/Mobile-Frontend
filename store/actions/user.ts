@@ -1,75 +1,76 @@
-import { Dispatch } from "redux";
 import * as SecureStore from "expo-secure-store";
-import {
-  User,
-  UserActionTypes,
-  UserTypes,
-} from "../../utilities/types/userTypes";
+import { User, UserActionTypes } from "../../utilities/types/userTypes";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { ShowModal } from "./errorModal";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const signIn = (data: SignInData) => {
-  return async (dispatch: Dispatch<any>) => {
+export const signIn = createAsyncThunk(
+  UserActionTypes.SIGN_IN,
+  async (data: SignInData, thunkAPI) => {
     const response = await fetch(
       "https://wheel--e-default-rtdb.firebaseio.com/users.json"
     );
-
     if (!response.ok) {
-      dispatch(ShowModal("errorModal.signIn"));
+      thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }
+
     const resData = await response.json();
 
     const getUser = () => {
       for (const field in resData) {
         if (resData[field].mainData.emailAddress === data.emailAddress) {
-          return resData[field];
+          let user: User;
+          user = resData[field];
+          user.mainData.userId = field;
+          return user;
         }
       }
+      return null;
     };
 
-    const user: User = getUser();
-    dispatch({ type: UserActionTypes.SIGN_IN, data: user });
-
+    const user: User = getUser()!;
     try {
-      await SecureStore.setItemAsync("userdata", JSON.stringify(user));
+      await SecureStore.setItemAsync("userData", JSON.stringify(user));
     } catch (e) {
       throw e;
     }
-  };
-};
+    return user;
+  }
+);
 
-export const signOut = () => {
-  return async (dispatch: Dispatch<any>) => {
+export const signOut = createAsyncThunk(
+  UserActionTypes.SIGN_OUT,
+  async (data: null, thunkAPI) => {
     try {
-      await SecureStore.deleteItemAsync("userdata");
+      await SecureStore.deleteItemAsync("userData");
     } catch (e) {
-      dispatch(ShowModal("errorModal.signOut"));
+      thunkAPI.dispatch(ShowModal("errorModal.signOut"));
       throw e;
     }
-    dispatch({ type: UserActionTypes.SIGN_OUT });
-  };
-};
+  }
+);
 
-export const restoreUser = () => {
-  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
+export const restoreUser = createAsyncThunk(
+  UserActionTypes.RESTORE_USER,
+  async () => {
     let userData: string | null = null;
     try {
       userData = await SecureStore.getItemAsync("userData");
       if (userData) {
-        const user = JSON.parse(userData);
-        dispatch({ type: UserActionTypes.RESTORE_USER, data: user });
+        return JSON.parse(userData);
       } else {
-        dispatch({ type: UserActionTypes.SIGN_OUT });
+        return null;
       }
     } catch (e) {
-      dispatch({ type: UserActionTypes.SIGN_OUT });
+      return null;
       throw e;
     }
-  };
-};
+  }
+);
 
-export const signUp = (data: User) => {
-  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
+export const signUp = createAsyncThunk(
+  UserActionTypes.SIGN_IN,
+  async (data: User) => {
     const response = await fetch(
       "https://wheel--e-default-rtdb.firebaseio.com/users.json",
       {
@@ -86,12 +87,11 @@ export const signUp = (data: User) => {
     }
 
     const resData = await response.json();
-    dispatch({
-      type: UserActionTypes.SIGN_IN,
-      data: {
-        ...data,
-        id: resData.name,
-      },
-    });
-  };
-};
+    const user = {
+      ...data,
+      id: resData.name,
+    };
+
+    return user;
+  }
+);

@@ -38,11 +38,6 @@ export enum UserActionTypes {
   RESTORE_USER = "RESTORE_USER",
 }
 
-export interface UserAction {
-  data?: User;
-  type: UserActionTypes;
-}
-
 export enum UserTypes {
   SUPERVISOR = "SUPERVISOR",
   PATIENT = "PATIENT",

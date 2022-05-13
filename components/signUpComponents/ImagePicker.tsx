@@ -1,9 +1,8 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { WrappedFieldProps } from "redux-form";
 import { useTranslation } from "react-i18next";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../../utilities/constants/colors";
 import {
   PADDING_VERTICAL,
