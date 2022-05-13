@@ -1,31 +1,31 @@
-import {
-  ErrorModalAction,
-  ErrorModalActionTypes,
-  ErrorModalState,
-} from "../../utilities/types/errorModalTypes";
+import { createReducer } from "@reduxjs/toolkit";
+import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
+import { hideModal, ShowModal } from "../actions/errorModal";
+
+export interface ErrorModalAction {
+  data?: string;
+  type: ErrorModalActionTypes;
+}
 
 const initialState = {
   content: "",
   isVisible: false,
 };
 
-const errorModalReducer = (
-  state = initialState,
-  action: ErrorModalAction
-): ErrorModalState => {
-  switch (action.type) {
-    case ErrorModalActionTypes.SHOW_MODAL:
+const errorModalReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(ShowModal, (state, action) => {
       return {
-        content: action.data!,
+        content: action.payload,
         isVisible: true,
       };
-    case ErrorModalActionTypes.HIDE_MODAL:
+    })
+    .addCase(hideModal, (state) => {
       return {
         ...state,
         isVisible: false,
       };
-  }
-  return state;
-};
+    });
+});
 
 export default errorModalReducer;

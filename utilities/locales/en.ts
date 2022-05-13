@@ -113,6 +113,18 @@ export default {
       deletingReminder: "Error deleting reminder. Please try agaon later",
       updatingReminder: "Error updating reminder. Please try agaon later",
       fetchingReminders: "Error loading reminders. Please try agaon later",
+      addingNote: "Error adding note. Please try again later",
+      deletingNote: "Error deleting note. Please try again later",
+      updatingNote: "Error updating note. Please try again later",
+      fetchingNotes: "Error loading note. Please try again later",
+    },
+    notesScreen: {
+      modalHeader: "Fill the required fields to add new note",
+      enterTitle: "Enter Note Title",
+      enterDescription: "Enter Note Description",
+      cancel: "Cancel",
+      submit: "Submit",
+      addNote: "Add New Note",
     },
     emergencyCallModal: {
       mainText:
