@@ -1,16 +1,26 @@
+import React from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StackNavigationOptions } from "@react-navigation/stack";
+import { BackButton } from "../../../components/buttons/BackButton";
 import { Patient } from "../userTypes";
-import fonts from "../../constants/fonts";
+import { ScreenNameText } from "../fontTypes";
+import { RouteProp } from "@react-navigation/native";
+import { StackNavigationOptions } from "@react-navigation/stack";
 
-export const mainStackOptions: StackNavigationOptions = {
+export const mainStackOptions: (props: {
+  route: RouteProp<MainStackParamList, keyof MainStackParamList>;
+  navigation: any;
+}) => StackNavigationOptions = (navigation: any) => ({
   headerTransparent: true,
   headerShown: true,
   headerTitleAlign: "center",
-  headerTitleStyle: {
-    fontFamily: fonts.CairoBold,
+  headerStyle: {
+    height: "10%",
   },
-};
+  headerTitleStyle: { ...ScreenNameText, marginTop: "30%" },
+  headerBackImage: () => {
+    return <BackButton onPress={() => navigation.goBack()} />;
+  },
+});
 
 export type MainStackParamList = {
   HomeScreen: undefined;

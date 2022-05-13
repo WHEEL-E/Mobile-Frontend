@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, View, ImageBackground } from "react-native";
 import { useTranslation } from "react-i18next";
 import { RemindersProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
-import { BackButton } from "../components/buttons/BackButton";
 import colors from "../utilities/constants/colors";
 import { SquareButton } from "../components/buttons/SquareButton";
 import AddNewReminderModal from "../components/reminderComponents/ReminderModal";
@@ -36,12 +35,6 @@ const RemindersScreen = (props: RemindersProps) => {
         source={require("../assets/images/cloud-background.png")}
         style={styles.background}
       >
-        <View style={styles.backButton}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{t("remindersScreen.reminders")}</Text>
-        </View>
         <RemindersList enableEdit={enableEdit} receiver={receiver} />
         {enableEdit && (
           <View style={styles.buttonContainer}>
@@ -65,6 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 10,
     paddingBottom: "20%",
+    paddingTop: "35%",
     flexDirection: "column",
     flex: 1,
   },
