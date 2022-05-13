@@ -126,5 +126,9 @@ export default {
       settings: "Settings",
       language: "Change Language",
     },
+    AddNewConnection: {
+      PatientTitle: "Add New Supervisor",
+      SupervisotTitle: "Add New Patient",
+    },
   },
 };

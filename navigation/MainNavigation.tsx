@@ -1,7 +1,4 @@
-import {
-  createStackNavigator,
-  StackNavigationOptions,
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
 import AssociatedPatientsScreen from "../screens/AssociatedPatientsScreen";
 import FreeDriveScreen from "../screens/FreeDriveScreen";
@@ -14,6 +11,7 @@ import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import { RootState } from "../store/reducers/rootReducer";
 import SettingScreen from "../screens/SettingScreen";
 import SoundSettingScreen from "../screens/SoundSettingScreen";
+import AddNewConnection from "../screens/AddNewConnectionScreen";
 import {
   mainStackOptions,
   MainStackParamList,
@@ -70,6 +68,15 @@ export function MainNavigation() {
       <MainStack.Screen
         name="SupervisedPatient"
         component={SupervisedPatientScreen}
+      />
+      <MainStack.Screen
+        name="AddNewConnection"
+        component={AddNewConnection}
+        options={{
+          title: isPatient
+            ? t("AddNewConnection.PatientTitle")
+            : t("AddNewConnection.SupervisotTitle"),
+        }}
       />
     </MainStack.Navigator>
   );

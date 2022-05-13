@@ -47,7 +47,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title={t("supervisorHomeScreen.newPatient")}
             buttonStyle={styles.patientButtonStyle}
             titleStyle={styles.patientTitleStyle}
-            onPress={() => navigation.navigate("PatientHome")}
+            onPress={() => navigation.navigate("AddNewConnection")}
             image={{
               url: require("../assets/images/new-patient.png"),
             }}

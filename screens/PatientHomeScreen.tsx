@@ -79,7 +79,9 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.smallButton,
               backgroundColor: colors.lightPurple,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("AddNewConnection");
+            }}
           />
           <SquareButton
             title={t("patientHomeScreen.help")}

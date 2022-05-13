@@ -123,5 +123,9 @@ export default {
       settings: "الإعدادات",
       language: "تغيير اللغة",
     },
+    AddNewConnection: {
+      PatientTitle: "أضف مشرف جديد",
+      SupervisotTitle: "أضف مريض جديد",
+    },
   },
 };
