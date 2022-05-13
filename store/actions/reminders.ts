@@ -4,23 +4,28 @@ import {
   RemindersActionTypes,
 } from "../../utilities/types/remindersTypes";
 import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
+import axios from "axios";
+import { EndPoints } from "../../utilities/constants/endpoints";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getReminders = () => {
-  try {
-    return async (dispatch: Dispatch<any>) => {
-      const response = await fetch(
-        "https://wheel--e-default-rtdb.firebaseio.com/reminders.json"
+export const getReminders = createAsyncThunk(
+  RemindersActionTypes.GET_ALL,
+  async (userId: string, thunkAPI) => {
+    try {
+      // TODO: replace static user Id with variable value
+      const response = await axios.get(
+        `${EndPoints.Reminders}/user/6263ce0577164ec6745e3bd7`
       );
 
-      if (!response.ok) {
-        dispatch({
+      if (response.data.status === "Success") {
+        thunkAPI.dispatch({
           type: ErrorModalActionTypes.SHOW_MODAL,
           data: "errorModal.fetchingReminders",
         });
         throw new Error("can't get reminders");
       }
 
-      const resData = await response.json();
+      const resData = await response.data.data.json();
       const allReminders: Reminder[] = [];
       for (const data in resData) {
         allReminders.push({
@@ -33,110 +38,107 @@ export const getReminders = () => {
         });
       }
 
-      dispatch({
-        type: RemindersActionTypes.GET_ALL,
-        data: { allReminders: allReminders },
+      return allReminders;
+    } catch (err) {
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.fetchingReminders",
       });
-    };
-  } catch (err) {
-    throw err;
+      throw new Error("can't get reminders");
+    }
   }
-};
+);
 
-export const removeReminder = (reminderId: string) => {
-  try {
-    return async (dispatch: Dispatch<any>) => {
-      const response = await fetch(
-        `https://wheel--e-default-rtdb.firebaseio.com/reminders/${reminderId}.json`,
-        { method: "DELETE" }
+export const removeReminder = createAsyncThunk(
+  RemindersActionTypes.REMOVE_REMINDER,
+  async (reminderId: string, thunkAPI) => {
+    try {
+      const response = await axios.delete(
+        `${EndPoints.Reminders}/${reminderId}`,
+        {
+          method: "DELETE",
+        }
       );
 
-      if (!response.ok) {
-        dispatch({
+      if (response.data.status === "Success") {
+        thunkAPI.dispatch({
           type: ErrorModalActionTypes.SHOW_MODAL,
           data: "errorModal.deletingReminder",
         });
         throw new Error("Can't delete reminder");
       }
-
-      dispatch({
-        type: RemindersActionTypes.REMOVE_REMINDER,
-        data: { removedId: reminderId },
+      return reminderId;
+    } catch (err) {
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.deletingReminder",
       });
-    };
-  } catch (err) {
-    throw err;
+      throw new Error("Can't delete reminder");
+    }
   }
-};
+);
 
-export const addReminder = (newReminder: Reminder) => {
-  try {
-    return async (dispatch: Dispatch<any>) => {
-      const response = await fetch(
-        "https://wheel--e-default-rtdb.firebaseio.com/reminders.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newReminder),
-        }
-      );
+export const addReminder = createAsyncThunk(
+  RemindersActionTypes.ADD_REMINDER,
+  async (newReminder: Reminder, thunkAPI) => {
+    try {
+      const response = await axios.post(`${EndPoints.Reminders}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newReminder),
+      });
 
-      if (!response.ok) {
-        dispatch({
+      if (response.data.status === "Success") {
+        thunkAPI.dispatch({
           type: ErrorModalActionTypes.SHOW_MODAL,
           data: "errorModal.addingReminder",
         });
         throw new Error("can't add reminder");
       }
-      const resData = await response.json();
 
-      dispatch({
-        type: RemindersActionTypes.ADD_REMINDER,
-        data: {
-          addedReminder: {
-            ...newReminder,
-            id: resData.name,
-          },
-        },
+      const resData = await response.data.json();
+      const reminder = { ...newReminder, id: resData.name };
+
+      return reminder;
+    } catch (err) {
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.addingReminder",
       });
-    };
-  } catch (err) {
-    throw err;
+      throw new Error("can't add reminder");
+    }
   }
-};
+);
 
-export const updateReminder = (newReminder: Partial<Reminder>) => {
-  return async (dispatch: Dispatch<any>) => {
+export const updateReminder = createAsyncThunk(
+  RemindersActionTypes.UPDATE_REMINDER,
+  async (updatedReminder: Partial<Reminder>, thunkAPI) => {
     try {
-      const response = await fetch(
-        `https://wheel--e-default-rtdb.firebaseio.com/reminders/${newReminder.id}.json`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newReminder),
-        }
-      );
+      const response = await axios.patch(`${EndPoints.Reminders}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedReminder),
+      });
 
-      if (!response.ok) {
-        dispatch({
+      if (response.status % 100 !== 2) {
+        thunkAPI.dispatch({
           type: ErrorModalActionTypes.SHOW_MODAL,
           data: "errorModal.updatingReminder",
         });
         throw new Error("can't update reminders");
       }
 
-      dispatch({
-        type: RemindersActionTypes.UPDATE_REMINDER,
-        data: {
-          updatedReminder: newReminder,
-        },
-      });
+      return updatedReminder;
     } catch (err) {
-      throw err;
+      thunkAPI.dispatch({
+        type: ErrorModalActionTypes.SHOW_MODAL,
+        data: "errorModal.updatingReminder",
+      });
+      throw new Error("can't update reminders");
     }
-  };
-};
+  }
+);

@@ -1,26 +1,40 @@
+import { createReducer } from "@reduxjs/toolkit";
+import { RemindersState } from "../../utilities/types/remindersTypes";
 import {
-  RemindersAction,
-  RemindersActionTypes,
-  RemindersState,
-} from "../../utilities/types/remindersTypes";
+  addReminder,
+  getReminders,
+  removeReminder,
+  updateReminder,
+} from "../actions/reminders";
 
-const initialState = {
+const initialState: RemindersState = {
   allReminders: [],
 };
 
-const userReducer = (
-  state: RemindersState = initialState,
-  action: RemindersAction
-): RemindersState => {
-  switch (action.type) {
-    case RemindersActionTypes.ADD_REMINDER:
-      const newReminder = action.data.addedReminder!;
+const remindersReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(getReminders.fulfilled, (state, action) => {
+      return { allReminders: action.payload };
+    })
+    .addCase(addReminder.fulfilled, (state, action) => {
+      const newReminder = action.payload;
+
       const allReminders = [...state.allReminders, newReminder];
       return {
         allReminders,
       };
-    case RemindersActionTypes.UPDATE_REMINDER:
-      const updatedReminder = action.data.updatedReminder!;
+    })
+    .addCase(removeReminder.fulfilled, (state, action) => {
+      const removedReminder = action.payload;
+      const newReminders = [...state.allReminders].filter(
+        (reminder) => reminder.id !== removedReminder
+      );
+      return {
+        allReminders: newReminders,
+      };
+    })
+    .addCase(updateReminder.fulfilled, (state, action) => {
+      const updatedReminder = action.payload;
       const updatedReminders = [...state.allReminders];
       const updatedReminderIndex = updatedReminders.findIndex(
         (reminder) => reminder.id === updatedReminder.id
@@ -34,20 +48,7 @@ const userReducer = (
       return {
         allReminders: updatedReminders,
       };
-    case RemindersActionTypes.REMOVE_REMINDER:
-      const removedReminder = action.data.removedId;
-      const newReminders = [...state.allReminders].filter(
-        (reminder) => reminder.id !== removedReminder
-      );
-      return {
-        allReminders: newReminders,
-      };
-    case RemindersActionTypes.GET_ALL:
-      return {
-        allReminders: action.data.allReminders!,
-      };
-  }
-  return state;
-};
+    });
+});
 
-export default userReducer;
+export default remindersReducer;

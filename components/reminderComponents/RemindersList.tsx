@@ -11,15 +11,19 @@ import {
 import ReminderCard from "./ReminderCard";
 
 export const RemindersList = (props: RemindersListProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
+  const { enableEdit, receiver } = props;
 
   const reminders: Reminder[] = useSelector(
     (state: RootState) => state.reminders.allReminders
   );
-  const { enableEdit, receiver } = props;
+
+  const userId = useSelector(
+    (state: RootState) => state.user.userData?.mainData.userId
+  )!;
 
   React.useEffect(() => {
-    dispatch(getReminders());
+    dispatch(getReminders(userId));
   }, [dispatch, getReminders]);
 
   return (

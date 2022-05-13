@@ -12,7 +12,7 @@ import { RootState } from "../../store/reducers/rootReducer";
 const ReminderModal = (props: ReminderModalProps) => {
   const { t } = useTranslation();
   const { modalVisible, setModalVisible, reminderData, identifier } = props;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const supervisorData = useSelector(
     (state: RootState) => state.user.userData?.mainData
@@ -36,7 +36,7 @@ const ReminderModal = (props: ReminderModalProps) => {
         addReminder({
           ...reminder,
           id: "",
-          supervisorId: supervisorData.userId,
+          supervisorId: supervisorData.userId!,
           supervisorName: supervisorData.userName,
           patientId: props.patientId!,
         })

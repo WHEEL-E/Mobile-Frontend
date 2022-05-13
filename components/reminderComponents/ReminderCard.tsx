@@ -24,7 +24,7 @@ const ReminderCard = (props: ReminderCardProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const deleteReminderHandler = () => {
     dispatch(removeReminder(identifier));
