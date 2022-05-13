@@ -114,6 +114,7 @@ export default {
       deletingNote: "حدث خطأ أثناء حذف الملاحظة, برجاء المحاولة لاحقًا",
       updatingNote: "حدث خطأ أثناء تعديل الملاحظة, برجاء المحاولة لاحقًا",
       fetchingNotes: "حدث خطأ أثناء تحميل الملاحظات, برجاء المحاولة لاحقًا",
+      openfile: "حدث خطأ أثناء تحميل الملف, برجاء المحاولة لاحقًا",
     },
     notesScreen: {
       modalHeader: "قم بملئ البيانات لإاضافة ملاحظة",
@@ -139,6 +140,15 @@ export default {
     screenTitles: {
       settings: "الإعدادات",
       language: "تغيير اللغة",
+    },
+    healthRecords: {
+      dateText: "تم التشخيص في",
+      addRecord: "أضف ملف",
+      enterTitle: "عنوان الملف",
+      modalHeader: "قم بملئ البيانات لإاضافة ملف جديد",
+      cancel: "إلغاء",
+      add: "إضافة",
+      upload: "إختر ملف",
     },
   },
 };

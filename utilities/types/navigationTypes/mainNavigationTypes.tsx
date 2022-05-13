@@ -34,6 +34,7 @@ export type MainStackParamList = {
   AssociatedPatients: undefined;
   Reminders: { patientId?: string; receiver?: string };
   FreeDrive: undefined;
+  HealthRecords: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<
@@ -88,4 +89,9 @@ export type SettingProps = NativeStackScreenProps<
 export type SoundSettings = NativeStackScreenProps<
   MainStackParamList,
   "SoundSettings"
+>;
+
+export type HealthRecordsProps = NativeStackScreenProps<
+  MainStackParamList,
+  "HealthRecords"
 >;
