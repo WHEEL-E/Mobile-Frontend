@@ -1,43 +1,51 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, View, ImageBackground } from "react-native";
 import { useTranslation } from "react-i18next";
 import { RemindersProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
-import { BackButton } from "../components/buttons/BackButton";
 import colors from "../utilities/constants/colors";
 import { SquareButton } from "../components/buttons/SquareButton";
 import AddNewReminderModal from "../components/reminderComponents/ReminderModal";
 import { RemindersList } from "../components/reminderComponents/RemindersList";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers/rootReducer";
+import { UserTypes } from "../utilities/types/userTypes";
 
 const RemindersScreen = (props: RemindersProps) => {
-  const { navigation } = props;
+  const { navigation, route } = props;
+  const { receiver, patientId } = route.params;
+
   const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const userType = useSelector(
+    (state: RootState) => state.user.userData?.userType
+  );
+
+  const enableEdit = userType === UserTypes.SUPERVISOR;
 
   return (
     <View style={styles.container}>
       <AddNewReminderModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        patientId={patientId}
+        reminderData={{ reminderBody: "", reminderTitle: "" }}
       />
       <ImageBackground
         source={require("../assets/images/cloud-background.png")}
         style={styles.background}
       >
-        <View style={styles.backButton}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{t("remindersScreen.reminders")}</Text>
-        </View>
-        <RemindersList />
-        <View style={styles.buttonContainer}>
-          <SquareButton
-            title={t("remindersScreen.addReminder")}
-            buttonStyle={styles.buttonStyle}
-            titleStyle={styles.titleStyle}
-            onPress={() => setModalVisible(true)}
-          />
-        </View>
+        <RemindersList enableEdit={enableEdit} receiver={receiver} />
+        {enableEdit && (
+          <View style={styles.buttonContainer}>
+            <SquareButton
+              title={t("remindersScreen.addReminder")}
+              buttonStyle={styles.buttonStyle}
+              titleStyle={styles.titleStyle}
+              onPress={() => setModalVisible(true)}
+            />
+          </View>
+        )}
       </ImageBackground>
     </View>
   );
@@ -50,6 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 10,
     paddingBottom: "20%",
+    paddingTop: "35%",
     flexDirection: "column",
     flex: 1,
   },
