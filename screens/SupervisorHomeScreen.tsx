@@ -67,7 +67,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
             title={t("supervisorHomeScreen.help")}
             buttonStyle={styles.helpButtonStyle}
             titleStyle={styles.helpTitleStyle}
-            onPress={() => navigation.navigate("PatientHome")}
+            onPress={() => navigation.navigate("HealthRecords")}
             icon={{ name: "ios-help-circle", size: 30, color: "white" }}
           />
         </View>

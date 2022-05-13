@@ -14,7 +14,7 @@ export interface MainButtonProps {
 }
 
 export interface roundEdgedButtonProps {
-  title: string;
+  title: any;
   backgroundColor: string;
   onPress: () => void;
 }

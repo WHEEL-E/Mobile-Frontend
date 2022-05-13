@@ -112,6 +112,7 @@ export default {
       deletingNote: "Error deleting note. Please try again later",
       updatingNote: "Error updating note. Please try again later",
       fetchingNotes: "Error loading note. Please try again later",
+      openfile: "Error opening files. Please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
@@ -137,6 +138,15 @@ export default {
     screenTitles: {
       settings: "Settings",
       language: "Change Language",
+    },
+    healthRecords: {
+      dateText: "Diagnosed in",
+      addRecord: "Add Record",
+      enterTitle: "Enter Record Title",
+      modalHeader: "Fill the required fields to add new record",
+      cancel: "Cancel",
+      add: "Submit",
+      upload: "Upload file",
     },
   },
 };
