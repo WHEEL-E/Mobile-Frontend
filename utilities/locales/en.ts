@@ -95,6 +95,7 @@ export default {
     remindersScreen: {
       reminders: "Reminders",
       from: "From",
+      to: "To",
       addReminder: "Add a Reminder",
       addReminderIntro:
         "Type any information you need to remind your patient with",
@@ -108,6 +109,10 @@ export default {
       signIn: "An error occurred while signing you in! Please sign in again",
       signOut: "An error occurred while signing you out! Please sign out again",
       oops: "Oops!",
+      addingReminder: "Error adding reminder. Please try again later",
+      deletingReminder: "Error deleting reminder. Please try again later",
+      updatingReminder: "Error updating reminder. Please try again later",
+      fetchingReminders: "Error loading reminders. Please try again later",
       addingNote: "Error adding note. Please try again later",
       deletingNote: "Error deleting note. Please try again later",
       updatingNote: "Error updating note. Please try again later",

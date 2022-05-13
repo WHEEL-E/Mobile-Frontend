@@ -1,9 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {
-  ErrorModalActionTypes,
-  hideModal,
-  ShowModal,
-} from "../actions/errorModal";
+import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
+import { hideModal, ShowModal } from "../actions/errorModal";
 
 export interface ErrorModalAction {
   data?: string;

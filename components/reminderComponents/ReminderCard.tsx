@@ -7,11 +7,14 @@ import { ReminderCardProps } from "../../utilities/types/remindersTypes";
 import ReminderModal from "./ReminderModal";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { removeReminder } from "../../store/actions/reminders";
 
 const ReminderCard = (props: ReminderCardProps) => {
   const {
     identifier,
     sender,
+    receiver,
     reminderTitle,
     reminderBody,
     backgroundColor,
@@ -21,9 +24,10 @@ const ReminderCard = (props: ReminderCardProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const { t } = useTranslation();
+  const dispatch = useDispatch<any>();
 
   const deleteReminderHandler = () => {
-    //dispatch the DELETE request
+    dispatch(removeReminder(identifier));
   };
 
   const textColor =
@@ -35,13 +39,21 @@ const ReminderCard = (props: ReminderCardProps) => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         identifier={identifier}
+        reminderData={{ reminderTitle, reminderBody }}
       />
       <TouchableOpacity onPress={deleteReminderHandler} style={styles.close}>
         <Ionicons name="ios-close" color={textColor} size={25} />
       </TouchableOpacity>
-      <Text style={{ ...styles.title, color: textColor }}>
-        {t("remindersScreen.from")} {sender}
-      </Text>
+      {sender && (
+        <Text style={{ ...styles.title, color: textColor }}>
+          {t("remindersScreen.from")} {sender}
+        </Text>
+      )}
+      {receiver && (
+        <Text style={{ ...styles.title, color: textColor }}>
+          {t("remindersScreen.to")} {receiver}
+        </Text>
+      )}
       <Text style={{ ...styles.title, color: textColor }}>{reminderTitle}</Text>
       <Text style={{ ...styles.body, color: textColor }}>{reminderBody}</Text>
       {enableEdit && (

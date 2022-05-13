@@ -1,7 +1,5 @@
-import {
-  createStackNavigator,
-  StackNavigationOptions,
-} from "@react-navigation/stack";
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
 import AssociatedPatientsScreen from "../screens/AssociatedPatientsScreen";
 import FreeDriveScreen from "../screens/FreeDriveScreen";
@@ -31,7 +29,7 @@ export function MainNavigation() {
 
   return (
     <MainStack.Navigator
-      screenOptions={mainStackOptions}
+      screenOptions={(props) => mainStackOptions(props.navigation)}
       initialRouteName={isPatient ? "PatientHome" : "SupervisorHome"}
     >
       {isPatient ? (
@@ -48,7 +46,11 @@ export function MainNavigation() {
         />
       )}
       <MainStack.Screen name="FreeDrive" component={FreeDriveScreen} />
-      <MainStack.Screen name="Reminders" component={RemindersScreen} />
+      <MainStack.Screen
+        name="Reminders"
+        component={RemindersScreen}
+        options={{ title: t("remindersScreen.reminders") }}
+      />
       <MainStack.Screen
         name="Settings"
         component={SettingScreen}

@@ -1,6 +1,11 @@
 import fonts from "../constants/fonts";
 import { DEVICE_HEIGHT } from "../constants/dimentions";
 
+export const ScreenNameText = {
+  fontSize: DEVICE_HEIGHT * 0.033,
+  fontFamily: fonts.CairoBold,
+};
+
 export const HeadingText = {
   fontSize: DEVICE_HEIGHT * 0.04,
   fontFamily: fonts.CairoBold,

@@ -1,7 +1,6 @@
 export interface Supervisor {
   userId?: string;
   userName: string;
-  password?: string;
   profilePhoto: string;
   mail: string;
   phone: string;
@@ -11,7 +10,6 @@ export interface Supervisor {
 export interface Patient {
   userId?: string;
   userName: string;
-  password?: string;
   profilePhoto: string;
   smoking: boolean;
   age: number;
