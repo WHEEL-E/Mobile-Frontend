@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { Note, NotesActionTypes } from "../../utilities/types/notesTypes";
 import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
+import { ShowModal } from "./errorModal";
 
 export const getNotes = createAsyncThunk(
   NotesActionTypes.GET_ALL,
@@ -14,10 +15,7 @@ export const getNotes = createAsyncThunk(
       );
 
       if (response.data.status === "Success") {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.fetchingNotes",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.fetchingNotes"));
         throw new Error("can't get notes");
       }
 
@@ -34,11 +32,7 @@ export const getNotes = createAsyncThunk(
 
       return allNotes;
     } catch (err) {
-      console.log("there is an error", err);
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.fetchingNotes",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.fetchingNotes"));
       throw err;
     }
   }
@@ -53,18 +47,12 @@ export const removeNote = createAsyncThunk(
       });
 
       if (response.data.status === "Success") {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.deletingNote",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.deletingNote"));
         throw new Error("Can't delete note");
       }
       return noteId;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.deletingNote",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.deletingNote"));
       throw err;
     }
   }
@@ -83,10 +71,7 @@ export const addNote = createAsyncThunk(
       });
 
       if (response.data.status === "Success") {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.addingNote",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.addingNote"));
         throw new Error("can't add note");
       }
 
@@ -95,10 +80,7 @@ export const addNote = createAsyncThunk(
 
       return note;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.addingNote",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.addingNote"));
       throw err;
     }
   }
@@ -117,19 +99,13 @@ export const updateNote = createAsyncThunk(
       });
 
       if (response.status % 100 !== 2) {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.updatingNote",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
         throw new Error("can't update note");
       }
 
       return newNote;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.updatingNote",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
       throw err;
     }
   }

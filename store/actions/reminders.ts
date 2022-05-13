@@ -1,11 +1,11 @@
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   Reminder,
   RemindersActionTypes,
 } from "../../utilities/types/remindersTypes";
-import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
-import axios from "axios";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ShowModal } from "./errorModal";
 
 export const getReminders = createAsyncThunk(
   RemindersActionTypes.GET_ALL,
@@ -17,10 +17,7 @@ export const getReminders = createAsyncThunk(
       );
 
       if (response.data.status === "Success") {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.fetchingReminders",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.fetchingReminders"));
         throw new Error("can't get reminders");
       }
 
@@ -39,10 +36,7 @@ export const getReminders = createAsyncThunk(
 
       return allReminders;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.fetchingReminders",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.fetchingReminders"));
       throw new Error("can't get reminders");
     }
   }
@@ -60,18 +54,12 @@ export const removeReminder = createAsyncThunk(
       );
 
       if (response.data.status === "Success") {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.deletingReminder",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.deletingReminder"));
         throw new Error("Can't delete reminder");
       }
       return reminderId;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.deletingReminder",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.deletingReminder"));
       throw new Error("Can't delete reminder");
     }
   }
@@ -90,10 +78,7 @@ export const addReminder = createAsyncThunk(
       });
 
       if (response.data.status === "Success") {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.addingReminder",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.addingReminder"));
         throw new Error("can't add reminder");
       }
 
@@ -102,10 +87,7 @@ export const addReminder = createAsyncThunk(
 
       return reminder;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.addingReminder",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.addingReminder"));
       throw new Error("can't add reminder");
     }
   }
@@ -124,19 +106,13 @@ export const updateReminder = createAsyncThunk(
       });
 
       if (response.status % 100 !== 2) {
-        thunkAPI.dispatch({
-          type: ErrorModalActionTypes.SHOW_MODAL,
-          data: "errorModal.updatingReminder",
-        });
+        thunkAPI.dispatch(ShowModal("errorModal.updatingReminder"));
         throw new Error("can't update reminders");
       }
 
       return updatedReminder;
     } catch (err) {
-      thunkAPI.dispatch({
-        type: ErrorModalActionTypes.SHOW_MODAL,
-        data: "errorModal.updatingReminder",
-      });
+      thunkAPI.dispatch(ShowModal("errorModal.updatingReminder"));
       throw new Error("can't update reminders");
     }
   }
