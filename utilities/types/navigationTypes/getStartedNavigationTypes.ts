@@ -7,6 +7,8 @@ export type GetStartedStackParamList = {
   GetStarted: undefined;
   SignIn: undefined;
   SignUp: undefined;
+  ForgetPassword: undefined;
+  SetPassword: undefined;
 };
 
 export type SignInProps = NativeStackScreenProps<
@@ -20,4 +22,12 @@ export type SignUpProps = NativeStackScreenProps<
 export type GetStartedProps = NativeStackScreenProps<
   GetStartedStackParamList,
   "GetStarted"
+>;
+export type ForgetPasswordProps = NativeStackScreenProps<
+  GetStartedStackParamList,
+  "ForgetPassword"
+>;
+export type SetPasswordProps = NativeStackScreenProps<
+  GetStartedStackParamList,
+  "SetPassword"
 >;

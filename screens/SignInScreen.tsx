@@ -161,7 +161,11 @@ const SignInScreen = (props: SignInProps) => {
                 onPress={signInHandler}
                 backgroundColor={colors.darkGreen}
               />
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ForgetPassword");
+                }}
+              >
                 <Text style={styles.forgotPasswordText}>
                   {t("signInScreen.forgotPassword")}
                 </Text>
