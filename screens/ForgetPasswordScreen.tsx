@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { sendEmail } from "../utilities/forgetPasswordUtils";
+import { getToken } from "../store/actions/forgetPassword";
 
 export const ForgetPasswordScreen = () => {
   const [emailAddress, setEmailAddress] = React.useState("");
@@ -15,7 +15,7 @@ export const ForgetPasswordScreen = () => {
     //if not--> error modal
     //else--> send the email
 
-    dispatch(sendEmail());
+    dispatch(getToken(emailAddress));
   };
   return (
     // here users will enter their email address to receive the other screen with the token

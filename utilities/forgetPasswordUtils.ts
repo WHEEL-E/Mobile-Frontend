@@ -26,3 +26,9 @@ export async function sendEmail(to: string, token: string) {
 
   return Linking.openURL(url);
 }
+
+export enum ForgetPasswordActionType {
+  GET_TOKEN = "GET_TOKEN",
+  SEND_EMAIL = "SEND_EMAIL",
+  CHANGE_PASSWORD = "CHANGE_PASSWORD",
+}
