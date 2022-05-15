@@ -31,9 +31,11 @@ import {
 } from "../utilities/constants/spacing";
 import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import InputField from "../components/inputs/InputField";
+import ChangedPasswordModal from "../components/ForgetPasswordComponents/ChangedPasswordModal";
 
 export const SetPasswordScreen = (props: SetPasswordProps) => {
   const { navigation } = props;
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const link = Linking.useURL();
   const dispatch = useDispatch<any>();
@@ -91,6 +93,7 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
       dispatch(ShowModal("errorModal.resetPassword"));
       throw e;
     }
+    setModalVisible(true);
   };
 
   return (
@@ -99,6 +102,12 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
         source={require("../assets/images/cloud-background.png")}
         style={styles.backgroundImage}
       >
+        <ChangedPasswordModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          navigation={navigation}
+        />
+
         <Image
           style={styles.logo}
           source={require("../assets/images/logo-b-app.png")}

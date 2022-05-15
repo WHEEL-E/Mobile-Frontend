@@ -158,6 +158,9 @@ export default {
       validPassword:
         "password should contain eight characters, one letter, one number and one special character",
       validConfirmPassword: "Passwords should be matching",
+      backToLogin: "Back To Login",
+      modalText:
+        "Your password is changes successfully, you can try logging back in.",
     },
   },
 };
