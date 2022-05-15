@@ -64,7 +64,7 @@ export const validateThreeDigitNum = (text: string | undefined) => {
 };
 
 export const validateMatching = (text: string, reference: string) => {
-  if (!(text && text === reference)) {
+  if (text !== reference) {
     return "notValid";
   } else {
     return undefined;

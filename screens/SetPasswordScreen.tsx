@@ -1,16 +1,36 @@
 import React from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  Image,
+  ImageBackground,
+  ImageBackgroundComponent,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SetPasswordProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 import { changePassword } from "../store/actions/forgetPassword";
 import * as Linking from "expo-linking";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { NoteText } from "../utilities/types/fontTypes";
+import {
+  NormalText,
+  NoteText,
+  ScreenNameText,
+} from "../utilities/types/fontTypes";
 import {
   validatePassword,
   validateMatching,
 } from "../utilities/dataValidators";
 import { ShowModal } from "../store/actions/errorModal";
+import colors from "../utilities/constants/colors";
+import {
+  BIG_MARGIN_VERTICAL,
+  SMALL_MARGIN_VERTICAL,
+} from "../utilities/constants/spacing";
+import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
+import InputField from "../components/inputs/InputField";
 
 export const SetPasswordScreen = (props: SetPasswordProps) => {
   const { navigation } = props;
@@ -25,15 +45,17 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
   });
 
   const [isValid, setIsValid] = React.useState({
-    confirmPassword: false,
+    confirmPassword: true,
     password: false,
   });
 
   const passwordChangeHandler = (value: string) => {
     setUserData({ ...userData, password: value });
     setIsValid({
-      ...isValid,
       password: validatePassword(value) ? false : true,
+      confirmPassword: validateMatching(value, userData.password)
+        ? false
+        : true,
     });
   };
 
@@ -41,7 +63,9 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
     setUserData({ ...userData, confirmPassword: value });
     setIsValid({
       ...isValid,
-      password: validateMatching(value, userData.password) ? false : true,
+      confirmPassword: validateMatching(value, userData.password)
+        ? false
+        : true,
     });
   };
 
@@ -71,28 +95,56 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
 
   return (
     <View style={styles.container}>
-      <Text>Forgot Password Screen</Text>
-      <TextInput
-        placeholder="password"
-        value={userData.password}
-        onChangeText={passwordChangeHandler}
-      />
-      {!isValid.password && (
-        <Text style={styles.validationText}>
-          {t("forgetPassword.validPassword")}
+      <ImageBackground
+        source={require("../assets/images/cloud-background.png")}
+        style={styles.backgroundImage}
+      >
+        <Image
+          style={styles.logo}
+          source={require("../assets/images/logo-b-app.png")}
+        />
+        <Text style={styles.title}>{t("forgetPassword.resetPassword")}</Text>
+        <Image
+          source={require("../assets/images/forgot-password-ICON.png")}
+          resizeMode="contain"
+          style={styles.image}
+        />
+        <Text style={styles.fieldTitle}>{t("forgetPassword.password")}</Text>
+        <InputField
+          placeHolder="********"
+          value={userData.password}
+          onChangeText={passwordChangeHandler}
+          fieldStyle={styles.inputField}
+          autoComplete="email"
+          secureText
+        />
+        {!isValid.password && (
+          <Text style={styles.validationText}>
+            {t("forgetPassword.validPassword")}
+          </Text>
+        )}
+        <Text style={styles.fieldTitle}>
+          {t("forgetPassword.confirmPassword")}
         </Text>
-      )}
-      <TextInput
-        placeholder="confirmPassword"
-        value={userData.confirmPassword}
-        onChangeText={confirmPasswordChangeHandler}
-      />
-      {!isValid.confirmPassword && (
-        <Text style={styles.validationText}>
-          {t("forgetPassword.matchingPassword")}
-        </Text>
-      )}
-      <Button title={"SUBMIT"} onPress={submitResetPasswordHandler} />
+        <InputField
+          placeHolder="********"
+          value={userData.confirmPassword}
+          onChangeText={confirmPasswordChangeHandler}
+          fieldStyle={styles.inputField}
+          autoComplete="email"
+          secureText
+        />
+        {!isValid.confirmPassword && (
+          <Text style={styles.validationText}>
+            {t("forgetPassword.validConfirmPassword")}
+          </Text>
+        )}
+        <RoundEdgedButton
+          title={t("forgetPassword.submit")}
+          backgroundColor={colors.darkGreen}
+          onPress={submitResetPasswordHandler}
+        />
+      </ImageBackground>
     </View>
   );
 };
@@ -100,11 +152,43 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    backgroundColor: "white",
+  },
+  backgroundImage: {
+    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: "20%",
+  },
+  logo: {
+    height: 50,
+    resizeMode: "center",
+    width: "100%",
+    alignSelf: "center",
+  },
+  title: {
+    ...ScreenNameText,
+    marginVertical: BIG_MARGIN_VERTICAL,
+  },
+  image: {
+    flex: 1,
+    marginVertical: BIG_MARGIN_VERTICAL,
   },
   validationText: {
     color: "red",
+    marginBottom: BIG_MARGIN_VERTICAL,
+    textAlign: "center",
+    width: "80%",
     ...NoteText,
+  },
+  inputField: {
+    width: "80%",
+    backgroundColor: colors.lightPurple,
+    marginBottom: SMALL_MARGIN_VERTICAL,
+  },
+  fieldTitle: {
+    ...NormalText,
+    width: "80%",
+    marginBottom: SMALL_MARGIN_VERTICAL,
   },
 });

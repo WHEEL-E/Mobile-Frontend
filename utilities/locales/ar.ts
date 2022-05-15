@@ -142,5 +142,18 @@ export default {
       settings: "الإعدادات",
       language: "تغيير اللغة",
     },
+    forgetPassword: {
+      validMail: "من فضلك أدخل بريد الكتروني صحيح",
+      resetPassword: "تغيير كلمة المرور",
+      resetText: "سيتم إرسال رسالة الى بريدك الإلكتروني",
+      mailAddress: "البريد الإلكتروني",
+      forgetPassword: "تغيير رمز الدخول",
+      submit: "تأكيد",
+      password: "كلمة المرور",
+      confirmPassword: "تأكيد كلمة المرور",
+      validPassword:
+        "كلمة المرور يجب أن تحتوي على ثمانية أحرف أو اكثر مكونة من حروف إنجليزية, رقم أو أكثر, رمز أو أكثر",
+      validConfirmPassword: "كلمة المرور غير متطابقة",
+    },
   },
 };

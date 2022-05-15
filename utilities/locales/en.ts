@@ -146,5 +146,18 @@ export default {
       settings: "Settings",
       language: "Change Language",
     },
+    forgetPassword: {
+      validMail: "Please enter a valid email",
+      resetPassword: "ٌReset Password",
+      resetText: "A reset password will be sent to your registered email",
+      mailAddress: "ُEmail Address",
+      forgetPassword: "Forget Password",
+      submit: "Submit",
+      password: "Password",
+      confirmPassword: "Confirm Password",
+      validPassword:
+        "password should contain eight characters, one letter, one number and one special character",
+      validConfirmPassword: "Passwords should be matching",
+    },
   },
 };
