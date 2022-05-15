@@ -44,13 +44,13 @@ export const changePassword = createAsyncThunk(
       });
 
       if (response.status / 100 !== 2) {
-        thunkAPI.dispatch(ShowModal("errorModal.changePassword"));
+        thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));
         throw new Error("Can't change password");
       }
 
       return response.data;
     } catch (err) {
-      thunkAPI.dispatch(ShowModal("errorModal.changePassword"));
+      thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));
       throw new Error("Can't change password");
     }
   }

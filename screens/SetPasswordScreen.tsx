@@ -10,6 +10,7 @@ import {
   validatePassword,
   validateMatching,
 } from "../utilities/dataValidators";
+import { ShowModal } from "../store/actions/errorModal";
 
 export const SetPasswordScreen = (props: SetPasswordProps) => {
   const { navigation } = props;
@@ -46,13 +47,13 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
 
   const submitResetPasswordHandler = () => {
     if (!(isValid.confirmPassword && isValid.password)) {
-      //errorModal
+      return;
     }
     try {
       const token = Linking.parse(link!).queryParams!.token?.toString()!;
 
       if (!token) {
-        // errorModal
+        dispatch(ShowModal("errorModal.resetPassword"));
       }
 
       dispatch(
@@ -63,7 +64,7 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
       );
       navigation.navigate("SignIn");
     } catch (e) {
-      //errorModal
+      dispatch(ShowModal("errorModal.resetPassword"));
       throw e;
     }
   };

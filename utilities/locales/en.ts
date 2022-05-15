@@ -117,6 +117,9 @@ export default {
       deletingNote: "Error deleting note. Please try again later",
       updatingNote: "Error updating note. Please try again later",
       fetchingNotes: "Error loading note. Please try again later",
+      resetPassword: "Error resetting new password, please try again later",
+      notValidEmail:
+        "Please enter a valid mail and make sure you already have an account.",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",

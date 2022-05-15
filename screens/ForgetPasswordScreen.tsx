@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
+import { ShowModal } from "../store/actions/errorModal";
 import { sendResetEmail } from "../store/actions/forgetPassword";
 import { validateMail } from "../utilities/dataValidators";
 import { NoteText } from "../utilities/types/fontTypes";
@@ -18,6 +19,9 @@ export const ForgetPasswordScreen = () => {
   };
 
   const submitHandler = () => {
+    if (!isValid) {
+      return;
+    }
     dispatch(sendResetEmail(emailAddress));
   };
   return (
