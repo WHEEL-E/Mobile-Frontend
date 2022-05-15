@@ -23,7 +23,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(restoreUser.fulfilled, (state, action) => {
       state.isRestoringData = false;
       state.userData = action.payload;
-      state.isLoggedIn = true;
+      state.isLoggedIn = action.payload === null ? false : true;
     });
 });
 

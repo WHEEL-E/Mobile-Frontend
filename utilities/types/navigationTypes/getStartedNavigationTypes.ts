@@ -8,7 +8,7 @@ export type GetStartedStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   ForgetPassword: undefined;
-  SetPassword: undefined;
+  SetPassword: { token: string };
 };
 
 export type SignInProps = NativeStackScreenProps<
