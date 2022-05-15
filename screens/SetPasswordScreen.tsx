@@ -1,11 +1,8 @@
 import React from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { SetPasswordProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
-import Constants from "expo-constants";
-import * as WebBrowser from "expo-web-browser";
-import { changePassword, getToken } from "../store/actions/forgetPassword";
+import { changePassword } from "../store/actions/forgetPassword";
 import * as Linking from "expo-linking";
-import { getStateFromPath } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 
 export const SetPasswordScreen = (props: SetPasswordProps) => {
@@ -13,9 +10,6 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
 
   const link2 = Linking.useURL();
   const dispatch = useDispatch<any>();
-  const getName = () => {
-    console.log(Linking.parse(link2!).queryParams!.token);
-  };
 
   const [userData, setUserData] = React.useState({
     password: "",
@@ -35,10 +29,16 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
       //errorModal
     }
     try {
+      const token = Linking.parse(link2!).queryParams!.token?.toString()!;
+
+      if (!token) {
+        // errorModal
+      }
+
       dispatch(
         changePassword({
           password: userData.password,
-          token: Linking.parse(link2!).queryParams!.token?.toString()!,
+          token: token,
         })
       );
       navigation.navigate("SignIn");
@@ -49,8 +49,6 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
   };
 
   return (
-    // here users will enter new password, this screen should receive
-    // the email as prop and send a change request to back-end
     <View style={styles.container}>
       <Text>Forgot Password Screen</Text>
       <TextInput
@@ -60,10 +58,10 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
       />
       <TextInput
         placeholder="confirmPassword"
-        value={userData.password}
+        value={userData.confirmPassword}
         onChangeText={confirmPasswordChangeHandler}
       />
-      <Button title={"SUBMIT"} onPress={getName} />
+      <Button title={"SUBMIT"} onPress={submitHandler} />
     </View>
   );
 };
