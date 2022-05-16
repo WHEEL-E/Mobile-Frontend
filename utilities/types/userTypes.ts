@@ -20,7 +20,7 @@ export interface PatientExtradata {
 }
 
 export interface User {
-  PatientExtraData?: PatientExtradata;
+  patientExtraData?: PatientExtradata;
   userMainData: UserMainData;
   userType: UserTypes;
   token?: string;

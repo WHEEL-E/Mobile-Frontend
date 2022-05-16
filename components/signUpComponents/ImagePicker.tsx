@@ -3,12 +3,13 @@ import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { WrappedFieldProps } from "redux-form";
 import { useTranslation } from "react-i18next";
+import lang from "../../lang";
 import colors from "../../utilities/constants/colors";
 import {
   PADDING_VERTICAL,
   SMALL_MARGIN_VERTICAL,
 } from "../../utilities/constants/spacing";
-import { NoteText } from "../../utilities/types/fontTypes";
+import { NormalText, NoteText } from "../../utilities/types/fontTypes";
 import {
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
@@ -36,7 +37,9 @@ export const ImagePickerComponent = (props: WrappedFieldProps) => {
     <View style={styles.mainView}>
       <TouchableOpacity style={styles.button} onPress={pickImage}>
         <View style={styles.buttonView}>
-          <Text>{t("signUpScreen.profilePhoto")}</Text>
+          <Text style={{ ...NormalText }}>
+            {t("signUpScreen.profilePhoto")}
+          </Text>
           {value !== "" && (
             <Image source={{ uri: value }} style={styles.image} />
           )}
@@ -62,11 +65,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: PADDING_VERTICAL,
     backgroundColor: colors.lightGray,
-    flexDirection: "row",
   },
   buttonView: {
     width: "100%",
-    flexDirection: "row",
+    flexDirection: lang.language === "en" ? "row" : "row-reverse",
     alignItems: "center",
     justifyContent: "space-between",
   },

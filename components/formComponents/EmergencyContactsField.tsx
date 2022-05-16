@@ -21,7 +21,7 @@ export const EmergencyContactField = (props: EmergencyContactFieldProps) => {
           newValues[index] = data;
           onChange(newValues);
         }}
-        placeholder={t(`signUpScreen.emergencyContact`)}
+        placeholder={t(`form.emergencyContact`)}
         autoComplete="name"
         value={value[index]}
       />

@@ -26,20 +26,21 @@ export const signIn = createAsyncThunk(
     const resData = await response.json();
     const getUser = () => {
       for (const field in resData) {
-        if (resData[field].mainData.emailAddress === data.emailAddress) {
+        if (resData[field].userMainData?.mail === data.emailAddress) {
           const userData: User = {
             token: resData[field].token,
             userType: resData[field].userType,
-            userMainData: resData[field].mainData,
+            userMainData: resData[field].userMainData,
           };
 
           if (data.type === UserTypes.PATIENT) {
-            userData.PatientExtraData = resData[field].mainData;
+            userData.patientExtraData = resData[field].patientExtraData;
           }
 
           return userData;
         }
       }
+      //TODO: MODAL this email don't exist
       return null;
     };
 

@@ -64,7 +64,7 @@ export class Patient {
         phone: this.phone,
         address: this.address,
       },
-      PatientExtraData: {
+      patientExtraData: {
         smoking: this.smoking,
         age: this.age,
         height: this.height,

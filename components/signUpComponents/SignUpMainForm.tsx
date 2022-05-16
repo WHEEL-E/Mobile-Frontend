@@ -9,8 +9,8 @@ import {
 } from "redux-form";
 import { RoundEdgedButton } from "../buttons/RoundEdgedButton";
 import colors from "../../utilities/constants/colors";
-import PickerComponent from "./Picker";
-import { RenderInputComponent } from "./RenderInputComponent";
+import PickerComponent from "../formComponents/Picker";
+import { RenderInputComponent } from "../formComponents/RenderInputComponent";
 import { ImagePickerComponent } from "./ImagePicker";
 import {
   signUpMainFormValues,
