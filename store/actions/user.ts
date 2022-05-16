@@ -3,13 +3,18 @@ import { User, UserActionTypes } from "../../utilities/types/userTypes";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { ShowModal } from "./errorModal";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { EndPoints } from "../../utilities/constants/endpoints";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: SignInData, thunkAPI) => {
-    const response = await fetch(
-      "https://wheel--e-default-rtdb.firebaseio.com/users.json"
-    );
+    let endpoint = EndPoints.supervisorLogin;
+    if (data.type === "patient") {
+      endpoint = EndPoints.patientLogin;
+    }
+
+    const response = await fetch(endpoint);
+
     if (!response.ok) {
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }
@@ -69,16 +74,13 @@ export const restoreUser = createAsyncThunk(
 export const signUp = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: User) => {
-    const response = await fetch(
-      "https://wheel--e-default-rtdb.firebaseio.com/users.json",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await fetch(EndPoints.signUp, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
     if (!response.ok) {
       throw new Error(response.statusText);
