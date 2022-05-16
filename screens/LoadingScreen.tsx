@@ -1,12 +1,13 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { VisibleNavigation } from "../navigation/VisibleNavigation";
-import { fetchFonts } from "../utilities/fetchFonts";
-import { useDispatch } from "react-redux";
-import { restoreUser } from "../store/actions/user";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import * as SecureStore from "expo-secure-store";
 import lang from "../lang";
+import { VisibleNavigation } from "../navigation/VisibleNavigation";
+import { fetchFonts } from "../utilities/fetchFonts";
+import { restoreUser } from "../store/actions/user";
+import { linking } from "../utilities/forgetPasswordUtils";
 
 const getCurrentLanguage = async () => {
   return await SecureStore.getItemAsync("CurrentLang");
@@ -48,7 +49,7 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <VisibleNavigation />
     </NavigationContainer>
   );
