@@ -5,6 +5,7 @@ import { Patient } from "../../models/patient";
 import { Supervisor } from "../../models/supervisor";
 import { signUp } from "../../store/actions/user";
 import { GetStartedStackParamList } from "./navigationTypes/getStartedNavigationTypes";
+import { UserTypes } from "./userTypes";
 
 export interface signUpMainFormProps {
   navigation: NativeStackNavigationProp<GetStartedStackParamList, "SignUp">;
@@ -21,7 +22,7 @@ export interface signUpMainFormValues {
   password: string;
   address: string;
   phoneNumber: string;
-  type: string;
+  type: UserTypes;
   profilePhoto: string;
 }
 
@@ -41,7 +42,7 @@ export const submitSignUpMainForm = (
 ) => {
   const { setScreen } = props;
   const { type } = values;
-  if (type === "supervisor") {
+  if (type === UserTypes.SUPERVISOR) {
     Supervisor.addMainFormData(values);
     const user = Supervisor.prepareUserObject();
     dispatch(signUp(user));
@@ -63,7 +64,7 @@ export const submitSignUpAdditionalData = (
 export interface PickerProps {
   fieldProps: WrappedFieldProps;
   labels: string[];
-  setType?: React.Dispatch<React.SetStateAction<string>>;
+  setType?: React.Dispatch<React.SetStateAction<UserTypes>>;
 }
 
 export interface EmergencyContactFieldProps {

@@ -24,14 +24,15 @@ import {
   validatePhone,
 } from "../../utilities/dataValidators";
 import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
+import { UserTypes } from "../../utilities/types/userTypes";
 
 const SignUpMainForm = (
   props: InjectedFormProps<signUpMainFormValues, signUpMainFormProps>
 ) => {
   const { t } = useTranslation();
   const { handleSubmit } = props;
-  const [type, setType] = React.useState("patient");
-  const typeLabels = ["supervisor", "patient"];
+  const [type, setType] = React.useState(UserTypes.PATIENT);
+  const typeLabels = [UserTypes.SUPERVISOR, UserTypes.PATIENT];
 
   return (
     <View style={styles.container}>
@@ -90,7 +91,7 @@ const SignUpMainForm = (
       </ScrollView>
       <RoundEdgedButton
         title={
-          type === "supervisor"
+          type === UserTypes.SUPERVISOR
             ? t("signUpScreen.signUp")
             : t("signUpScreen.next")
         }

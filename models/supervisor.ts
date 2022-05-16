@@ -29,7 +29,7 @@ export class Supervisor {
 
   static prepareUserObject = () => {
     const user: User = {
-      mainData: {
+      userMainData: {
         userName: this.userName,
         password: this.password,
         profilePhoto: this.profilePhoto,

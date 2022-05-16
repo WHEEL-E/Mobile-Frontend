@@ -15,12 +15,13 @@ import {
   validatePassword,
 } from "../../utilities/dataValidators";
 import { SignInData, submitLoginForm } from "../../utilities/types/signInTypes";
+import { UserTypes } from "../../utilities/types/userTypes";
 import { RoundEdgedButton } from "../buttons/RoundEdgedButton";
 import PickerComponent from "../signUpComponents/Picker";
 import { RenderInputComponent } from "../signUpComponents/RenderInputComponent";
 
 const SignInForm = (props: InjectedFormProps<SignInData>) => {
-  const typeLabels = ["supervisor", "patient"];
+  const typeLabels = [UserTypes.PATIENT, UserTypes.SUPERVISOR];
   const { handleSubmit } = props;
   const { t } = useTranslation();
 
