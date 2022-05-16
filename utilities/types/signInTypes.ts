@@ -1,10 +1,11 @@
 import { Dispatch } from "redux";
 import { signIn } from "../../store/actions/user";
+import { UserTypes } from "./userTypes";
 
 export type SignInData = {
   emailAddress: string;
   password: string;
-  type: "patient" | "supervisor";
+  type: UserTypes;
 };
 
 export type Context = {

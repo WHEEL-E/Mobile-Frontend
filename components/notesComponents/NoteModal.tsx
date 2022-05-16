@@ -27,7 +27,7 @@ const NoteModal = (props: NoteModalProps) => {
     props;
 
   const userId = useSelector(
-    (state: RootState) => state.user.userData?.mainData.userId
+    (state: RootState) => state.user.userData?.userMainData.userId
   );
 
   const [note, setNote] = React.useState({

@@ -1,5 +1,9 @@
 import * as SecureStore from "expo-secure-store";
-import { User, UserActionTypes } from "../../utilities/types/userTypes";
+import {
+  User,
+  UserActionTypes,
+  UserTypes,
+} from "../../utilities/types/userTypes";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { ShowModal } from "./errorModal";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -9,7 +13,7 @@ export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: SignInData, thunkAPI) => {
     let endpoint = EndPoints.supervisorLogin;
-    if (data.type === "patient") {
+    if (data.type === UserTypes.PATIENT) {
       endpoint = EndPoints.patientLogin;
     }
 
@@ -23,9 +27,17 @@ export const signIn = createAsyncThunk(
     const getUser = () => {
       for (const field in resData) {
         if (resData[field].mainData.emailAddress === data.emailAddress) {
-          const user: User = resData[field];
-          user.mainData.userId = field;
-          return user;
+          const userData: User = {
+            token: resData[field].token,
+            userType: resData[field].userType,
+            userMainData: resData[field].mainData,
+          };
+
+          if (data.type === UserTypes.PATIENT) {
+            userData.PatientExtraData = resData[field].mainData;
+          }
+
+          return userData;
         }
       }
       return null;
@@ -73,7 +85,7 @@ export const restoreUser = createAsyncThunk(
 
 export const signUp = createAsyncThunk(
   UserActionTypes.SIGN_IN,
-  async (data: User) => {
+  async (data: User, thunkAPI) => {
     const response = await fetch(EndPoints.signUp, {
       method: "POST",
       headers: {
@@ -91,6 +103,13 @@ export const signUp = createAsyncThunk(
       ...data,
       id: resData.name,
     };
+
+    const signInData: SignInData = {
+      emailAddress: data.userMainData.mail,
+      password: data.userMainData.password!,
+      type: data.userType,
+    };
+    thunkAPI.dispatch(signIn(signInData));
 
     return user;
   }

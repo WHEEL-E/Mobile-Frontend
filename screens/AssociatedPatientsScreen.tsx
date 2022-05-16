@@ -4,12 +4,12 @@ import AssociatedPatientCard from "../components/associatedPatientComponents/Ass
 import colors from "../utilities/constants/colors";
 import { BackButton } from "../components/buttons/BackButton";
 import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
-import { Patient } from "../utilities/types/userTypes";
+import { UserMainData, PatientExtradata } from "../utilities/types/userTypes";
 
 const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
   const { navigation } = props;
 
-  const patient: Patient = {
+  const patient: UserMainData & PatientExtradata = {
     userId: "id",
     userName: "Emelia Erheart",
     address: "Atlantic ocean",
