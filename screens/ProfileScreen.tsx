@@ -5,12 +5,13 @@ import { ProfileProps } from "../utilities/types/navigationTypes/mainNavigationT
 import EditableInputField from "../components/inputs/EditableInputField";
 import colors from "../utilities/constants/colors";
 import { MainButton } from "../components/buttons/MainButton";
-import { useAuth } from "../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { signOut } from "../store/actions/user";
 
 const ProfileScreen = (props: ProfileProps) => {
   const [inputVal, setInputVal] = useState("Hello Person!");
   const { navigation } = props;
-  const { signOut } = useAuth();
+  const dispatch = useDispatch<any>();
 
   const textHandler = (val: string) => {
     setInputVal(val);
@@ -55,7 +56,7 @@ const ProfileScreen = (props: ProfileProps) => {
           backgroundColor: colors.lightBrown,
         }}
         titleStyle={styles.ButtonText}
-        onPress={signOut}
+        onPress={() => dispatch(signOut(null))}
         icon={{ name: "log-out-outline", size: 40, color: "black" }}
       />
     </View>

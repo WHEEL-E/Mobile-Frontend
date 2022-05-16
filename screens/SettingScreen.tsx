@@ -1,21 +1,21 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { SettingProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useAuth } from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import {
   BIG_MARGIN_HORIZONTAL,
   PADDING_HORIZONTAL,
   SMALL_MARGIN_VERTICAL,
 } from "../utilities/constants/spacing";
+import { useDispatch } from "react-redux";
+import { signOut } from "../store/actions/user";
 
 const SettingScreen = (props: SettingProps) => {
   const { navigation } = props;
-  const { signOut } = useAuth();
+  const dispatch = useDispatch<any>();
   const { t } = useTranslation();
 
   const screenItems = [
@@ -44,7 +44,7 @@ const SettingScreen = (props: SettingProps) => {
       name: t("settings.logout"),
       icon: "person",
       PressingFunction: () => {
-        signOut();
+        dispatch(signOut(null));
       },
     },
   ];

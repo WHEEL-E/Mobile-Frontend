@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import colors from "../utilities/constants/colors";
 import { SignInProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 import { DEVICE_WIDTH } from "../utilities/constants/dimentions";
-import { useAuth } from "../context/AuthContext";
 import {
   HeadingText,
   NormalText,
