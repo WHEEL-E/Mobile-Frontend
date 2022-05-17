@@ -4,7 +4,6 @@ import {
   getResultsPatients,
   getResultsSupervisors,
   setIsLoading,
-  setNoMatching,
 } from "../actions/addNewConnection";
 
 export interface searchUser {
@@ -28,16 +27,21 @@ const initialState: AddConnectionState = {
 const addNewConnectionReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getResultsPatients.fulfilled, (state, action) => {
-      return { data: action.payload, loading: false, noMatching: false };
+      return {
+        data: action.payload,
+        loading: false,
+        noMatching: action.payload.length === 0,
+      };
     })
     .addCase(getResultsSupervisors.fulfilled, (state, action) => {
-      return { data: action.payload, loading: false, noMatching: false };
+      return {
+        data: action.payload,
+        loading: false,
+        noMatching: action.payload.length === 0,
+      };
     })
     .addCase(setIsLoading, (state, action) => {
       return { ...state, loading: action.payload };
-    })
-    .addCase(setNoMatching, (state, action) => {
-      return { ...state, noMatching: true };
     })
     .addCase(emptyList, (state, action) => {
       return { ...state, data: [] };

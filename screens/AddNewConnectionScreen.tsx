@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    paddingTop: "35%",
+    paddingTop: "40%",
     paddingBottom: "20%",
   },
   backgroundImage: {

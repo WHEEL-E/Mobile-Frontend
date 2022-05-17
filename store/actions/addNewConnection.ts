@@ -21,9 +21,6 @@ export const getResultsPatients = createAsyncThunk(
           profilePhoto: resData[data].uri,
         });
       }
-      if (matchingUsers.length == 0) {
-        thunkAPI.dispatch(setNoMatching(true));
-      }
       return matchingUsers;
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal.fetchingMatchingPatients"));
@@ -47,9 +44,6 @@ export const getResultsSupervisors = createAsyncThunk(
           id: resData[data].id,
           profilePhoto: resData[data].profilePhoto,
         });
-      }
-      if (matchingUsers.length == 0) {
-        thunkAPI.dispatch(setNoMatching(true));
       }
       return matchingUsers;
     } catch (e) {
@@ -83,10 +77,6 @@ export const sendConnectionRequest = createAsyncThunk(
 
 export const setIsLoading = createAction<boolean>(
   AddNewConnectionActionTypes.SET_IS_LOADING
-);
-
-export const setNoMatching = createAction<boolean>(
-  AddNewConnectionActionTypes.SET_NO_MATCHING
 );
 
 export const emptyList = createAction(AddNewConnectionActionTypes.EMPTY_LIST);
