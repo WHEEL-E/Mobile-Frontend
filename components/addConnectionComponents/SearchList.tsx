@@ -11,22 +11,30 @@ export const SearchList = () => {
     (state: RootState) => state.addNewConnectionReducer.data
   );
 
+  const notLoading = !useSelector(
+    (state: RootState) => state.addNewConnectionReducer.loading
+  );
+
   return (
-    <FlatList
-      contentContainerStyle={styles.listContainer}
-      data={results}
-      numColumns={2}
-      renderItem={(itemData) => {
-        return (
-          <UserCard
-            key={itemData.index}
-            name={itemData.item.name}
-            imageUri={itemData.item.profilePhoto}
-            id={itemData.item.id}
-          />
-        );
-      }}
-    />
+    <View style={{ flex: 1 }}>
+      {notLoading && (
+        <FlatList
+          contentContainerStyle={styles.listContainer}
+          data={results}
+          numColumns={2}
+          renderItem={(itemData) => {
+            return (
+              <UserCard
+                key={itemData.index}
+                name={itemData.item.name}
+                imageUri={itemData.item.profilePhoto}
+                id={itemData.item.id}
+              />
+            );
+          }}
+        />
+      )}
+    </View>
   );
 };
 
