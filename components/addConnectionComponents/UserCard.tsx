@@ -1,16 +1,27 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { UserCardProps } from "../../utilities/types/addNewConnectionTypes";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { TitleText } from "../../utilities/types/fontTypes";
 import colors from "../../utilities/constants/colors";
+import { useDispatch } from "react-redux";
+import { AddUserModal } from "./AddUserModal";
 
 export const UserCard = (props: UserCardProps) => {
-  const { name, imageUri } = props;
+  const { name, imageUri, id } = props;
+  const dispatch = useDispatch();
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => setModalVisible(true)}>
+      <AddUserModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        name={name}
+        imageUri={imageUri}
+        id={id}
+      />
       <View
         style={{
           width: DEVICE_WIDTH * 0.15,
@@ -24,7 +35,7 @@ export const UserCard = (props: UserCardProps) => {
         <Ionicons name="airplane" size={DEVICE_WIDTH * 0.1} />
       </View>
       <Text style={styles.name}>{name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

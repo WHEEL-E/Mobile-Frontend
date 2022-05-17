@@ -8,4 +8,13 @@ export enum AddNewConnectionActionTypes {
 export interface UserCardProps {
   name: string;
   imageUri: string;
+  id: string;
+}
+
+export interface AddUserModalProps {
+  name: string;
+  imageUri: string;
+  id: string;
+  modalVisible: boolean;
+  setModalVisible: (state: boolean) => void;
 }

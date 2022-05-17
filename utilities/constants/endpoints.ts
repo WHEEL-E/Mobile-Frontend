@@ -5,5 +5,6 @@ export enum EndPoints {
   supervisorLogin = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   signUp = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   forgetPassword = "http://192.168.1.32:3000/api/resetPass",
-  addConnection = "http://192.168.1.32:3000/api/supervisor/search?name=",
+  searchConnection = "https://fa-search-backend.herokuapp.com/search?delay=true&term=",
+  sendConnection = "",
 }
