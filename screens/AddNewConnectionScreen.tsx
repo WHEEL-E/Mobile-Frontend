@@ -1,11 +1,13 @@
 import React from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import {
   BehaviorSubject,
   debounceTime,
   distinctUntilChanged,
   map,
   filter,
+  merge,
+  of,
   switchMap,
 } from "rxjs";
 import { useTranslation } from "react-i18next";
@@ -13,7 +15,11 @@ import { AddNewConnectionProps } from "../utilities/types/navigationTypes/mainNa
 import InputField from "../components/inputs/InputField";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
-import { getResultsPatients } from "../store/actions/addNewConnection";
+import {
+  getResultsPatients,
+  setIsLoading,
+} from "../store/actions/addNewConnection";
+import { Ionicons } from "@expo/vector-icons";
 
 const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
   const { t } = useTranslation();
@@ -21,7 +27,7 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
   const dispatch = useDispatch<any>();
 
   const [value, setValue] = React.useState("");
-  const [subject, setSubject] = React.useState(sub);
+  const [subject] = React.useState(sub);
 
   const isLoading = useSelector(
     (state: RootState) => state.addNewConnectionReducer.loading
@@ -45,9 +51,14 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
         distinctUntilChanged(),
         filter((s) => s.length >= 2),
         debounceTime(500),
-        switchMap((term: string) => {
-          return dispatch(getResultsPatients(term));
-        })
+        switchMap((term) =>
+          merge(
+            of(dispatch(setIsLoading(true))),
+            dispatch(getResultsPatients(term))
+          )
+        )
+
+        // switchMap((term: string) => dispatch(setIsLoading(true)))
       )
       .subscribe();
     return () => {
@@ -75,6 +86,7 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
         {results.map(({ name, profilePhoto, id }, index) => (
           <View key={index}>
             <Text>{name}</Text>
+            <Ionicons name="airplane" />
           </View>
         ))}
       </ImageBackground>

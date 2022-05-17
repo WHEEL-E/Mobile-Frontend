@@ -19,7 +19,7 @@ export const getResultsPatients = createAsyncThunk(
         matchingUsers.push({
           name: resData[data].name,
           id: resData[data].id,
-          profilePhoto: resData[data].profilePhoto,
+          profilePhoto: resData[data].uri,
         });
       }
 
@@ -58,10 +58,10 @@ export const getResultsSupervisors = createAsyncThunk(
   }
 );
 
-export const setIsTyping = createAction<boolean>(
-  AddNewConnectionActionTypes.SET_IS_TYPING
+export const setIsLoading = createAction<boolean>(
+  AddNewConnectionActionTypes.SET_IS_LOADING
 );
 
-export const setUserPrefix = createAction<string>(
-  AddNewConnectionActionTypes.SET_USER_PREFIX
+export const setNoMatching = createAction<boolean>(
+  AddNewConnectionActionTypes.SET_NO_MATCHING
 );
