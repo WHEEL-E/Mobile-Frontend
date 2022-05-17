@@ -95,6 +95,9 @@ export default {
       deletingNote: "Error deleting note. Please try again later",
       updatingNote: "Error updating note. Please try again later",
       fetchingNotes: "Error loading note. Please try again later",
+      resetPassword: "Error resetting new password, please try again later",
+      notValidEmail:
+        "Please enter a valid mail and make sure you already have an account.",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
@@ -140,6 +143,22 @@ export default {
       weight: "Weight",
       age: "Age",
       emergencyContact: "Emergency Contact",
+    },
+    forgetPassword: {
+      validMail: "Please enter a valid email",
+      resetPassword: "ٌReset Password",
+      resetText: "A reset password will be sent to your registered email",
+      mailAddress: "ُEmail Address",
+      forgetPassword: "Forget Password",
+      submit: "Submit",
+      password: "Password",
+      confirmPassword: "Confirm Password",
+      validPassword:
+        "password should contain eight characters, one letter, one number and one special character",
+      validConfirmPassword: "Passwords should be matching",
+      backToLogin: "Back To Login",
+      modalText:
+        "Your password is changes successfully, you can try logging back in.",
     },
   },
 };

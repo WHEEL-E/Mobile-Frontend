@@ -2,6 +2,7 @@
     "expo": {
         "name": "WHEEL.E",
         "slug": "wheele-mobile-frontend",
+        "scheme": "wheele",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/logo-b.png",
