@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  emptyList,
   getResultsPatients,
   getResultsSupervisors,
   setIsLoading,
@@ -37,6 +38,9 @@ const addNewConnectionReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setNoMatching, (state, action) => {
       return { ...state, noMatching: true };
+    })
+    .addCase(emptyList, (state, action) => {
+      return { ...state, data: [] };
     })
     .addDefaultCase((reducer) => reducer);
 });

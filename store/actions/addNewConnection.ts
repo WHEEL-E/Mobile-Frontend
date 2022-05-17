@@ -83,3 +83,5 @@ export const setIsLoading = createAction<boolean>(
 export const setNoMatching = createAction<boolean>(
   AddNewConnectionActionTypes.SET_NO_MATCHING
 );
+
+export const emptyList = createAction(AddNewConnectionActionTypes.EMPTY_LIST);

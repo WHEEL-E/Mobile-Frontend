@@ -16,6 +16,7 @@ import InputField from "../components/inputs/InputField";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import {
+  emptyList,
   getResultsPatients,
   setIsLoading,
 } from "../store/actions/addNewConnection";
@@ -48,6 +49,7 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
   };
 
   React.useEffect(() => {
+    dispatch(emptyList());
     const observable = subject
       .pipe(
         map((s) => s.trim()),
