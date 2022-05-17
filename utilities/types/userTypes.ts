@@ -1,31 +1,27 @@
-export interface Supervisor {
+export interface UserMainData {
   userId?: string;
   userName: string;
+  password?: string;
   profilePhoto: string;
   mail: string;
   phone: string;
   address: string;
 }
 
-export interface Patient {
-  userId?: string;
-  userName: string;
-  profilePhoto: string;
+export interface PatientExtradata {
   smoking: boolean;
   age: number;
   height: number;
   weight: number;
   gender: "female" | "male";
-  mail: string;
-  phone: string;
-  address: string;
   emergencyContacts: string[];
   healthRecords: string[];
   healthMonitor: object;
 }
 
 export interface User {
-  mainData: Patient | Supervisor;
+  patientExtraData?: PatientExtradata;
+  userMainData: UserMainData;
   userType: UserTypes;
   token?: string;
 }

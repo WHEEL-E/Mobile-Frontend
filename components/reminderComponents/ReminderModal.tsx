@@ -15,7 +15,7 @@ const ReminderModal = (props: ReminderModalProps) => {
   const dispatch = useDispatch<any>();
 
   const supervisorData = useSelector(
-    (state: RootState) => state.user.userData?.mainData
+    (state: RootState) => state.user.userData?.userMainData
   )!;
 
   const [reminder, setReminder] = React.useState(reminderData);

@@ -56,18 +56,20 @@ export class Patient {
 
   static prepareUserObject = () => {
     const user: User = {
-      mainData: {
+      userMainData: {
         userName: this.userName,
         password: this.password,
         profilePhoto: this.profilePhoto,
+        mail: this.mail,
+        phone: this.phone,
+        address: this.address,
+      },
+      patientExtraData: {
         smoking: this.smoking,
         age: this.age,
         height: this.height,
         weight: this.weight,
         gender: this.gender,
-        mail: this.mail,
-        phone: this.phone,
-        address: this.address,
         emergencyContacts: this.emergencyContacts,
         healthRecords: this.healthRecords,
         healthMonitor: this.healthMonitor,

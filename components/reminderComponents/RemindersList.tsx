@@ -19,7 +19,7 @@ export const RemindersList = (props: RemindersListProps) => {
   );
 
   const userId = useSelector(
-    (state: RootState) => state.user.userData?.mainData.userId
+    (state: RootState) => state.user.userData?.userMainData.userId
   )!;
 
   React.useEffect(() => {

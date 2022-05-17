@@ -16,8 +16,9 @@ const NotesScreen = (props: NotesProps) => {
   const dispatch = useDispatch<any>();
   const [modalVisible, setModalVisible] = React.useState(false);
   const notes = useSelector((state: RootState) => state.notes.allNotes);
+
   const userId = useSelector(
-    (state: RootState) => state.user.userData?.mainData.userId
+    (state: RootState) => state.user.userData?.userMainData.userId
   );
 
   const backgroundColors = [colors.darkGreen, colors.lightPurple];

@@ -10,55 +10,26 @@ import {
   View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import InputField from "../components/inputs/InputField";
-import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
-import fonts from "../utilities/constants/fonts";
-import { BackButton } from "../components/buttons/BackButton";
 import { SignInProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
-import { useAuth } from "../context/AuthContext";
-import { validateMail, validatePassword } from "../utilities/dataValidators";
+import { DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import {
   HeadingText,
-  ImportantText,
   NormalText,
   NoteText,
-  TitleText,
 } from "../utilities/types/fontTypes";
 import {
   PADDING_HORIZONTAL,
   PADDING_VERTICAL,
   SMALL_MARGIN_VERTICAL,
 } from "../utilities/constants/spacing";
+import SignInForm from "../components/signInComponents/SignInForm";
 
 const SignInScreen = (props: SignInProps) => {
   const { t } = useTranslation();
   const { navigation } = props;
-  const { signIn } = useAuth();
-
-  const [userData, setUserData] = React.useState({
-    emailAddress: "",
-    password: "",
-  });
-
-  const [isValid, setIsValid] = React.useState({
-    emailAddress: true,
-    password: true,
-  });
 
   const [isKeyBoardShown, setIsKeyBoardShown] = React.useState(false);
-
-  const signInHandler = () => {
-    if (
-      userData.emailAddress &&
-      userData.password &&
-      isValid.emailAddress &&
-      isValid.password
-    ) {
-      signIn(userData);
-    }
-  };
 
   React.useEffect(() => {
     const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
@@ -104,9 +75,6 @@ const SignInScreen = (props: SignInProps) => {
           imageStyle={styles.imageStyle}
           resizeMethod="auto"
         >
-          <View style={styles.backButton}>
-            <BackButton onPress={() => navigation.goBack()} />
-          </View>
           <View style={{ width: "100%", alignItems: "center" }}>
             <Image
               style={styles.logo}
@@ -114,64 +82,12 @@ const SignInScreen = (props: SignInProps) => {
             />
             <Text style={HeadingText}>{t("signInScreen.WelcomeBack")}</Text>
           </View>
-
-          <View style={styles.inputs}>
-            <InputField
-              placeHolder={t("signInScreen.emailAddress")}
-              fieldStyle={styles.inputField}
-              onChangeText={(text) => {
-                setUserData({ ...userData, emailAddress: text });
-                setIsValid({
-                  ...isValid,
-                  emailAddress: validateMail(text) ? false : true,
-                });
-              }}
-              autoComplete="email"
-              value={userData.emailAddress}
-              onBlur={() => validateMail(userData.emailAddress)}
-            />
-            {!isValid.emailAddress && (
-              <Text style={styles.validationText}>
-                {t("signInScreen.enterValidEmail")}
-              </Text>
-            )}
-            <InputField
-              placeHolder={t("signInScreen.password")}
-              fieldStyle={styles.inputField}
-              onChangeText={(text) => {
-                setUserData({ ...userData, password: text });
-                setIsValid({
-                  ...isValid,
-                  password: validatePassword(text) ? false : true,
-                });
-              }}
-              autoComplete="password"
-              value={userData.password}
-              secureText
-              onBlur={() => validatePassword(userData.password)}
-            />
-            {!isValid.password && (
-              <Text style={styles.validationText}>
-                {t("signInScreen.enterPassword")}
-              </Text>
-            )}
-            <View style={styles.buttons}>
-              <RoundEdgedButton
-                title={t("signInScreen.logIn")}
-                onPress={signInHandler}
-                backgroundColor={colors.darkGreen}
-              />
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("ForgetPassword");
-                }}
-              >
-                <Text style={styles.forgotPasswordText}>
-                  {t("signInScreen.forgotPassword")}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <SignInForm />
+          <TouchableOpacity>
+            <Text style={styles.forgotPasswordText}>
+              {t("signInScreen.forgotPassword")}
+            </Text>
+          </TouchableOpacity>
           {!isKeyBoardShown && (
             <View style={styles.signUp}>
               <Text style={styles.notMemberText}>

@@ -5,7 +5,6 @@ import ReduxThunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from "./store/reducers/rootReducer";
 import LoadingScreen from "./screens/LoadingScreen";
-import { AuthProvider } from "./context/AuthContext";
 import { ErrorModal } from "./components/ErrorHandlingComponents/ErrorModal";
 import * as Sentry from "sentry-expo";
 
@@ -22,9 +21,7 @@ function App() {
   return (
     <Provider store={store}>
       <ErrorModal />
-      <AuthProvider>
-        <LoadingScreen />
-      </AuthProvider>
+      <LoadingScreen />
     </Provider>
   );
 }

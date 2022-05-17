@@ -16,7 +16,7 @@ const PickerComponent = (props: PickerProps) => {
   const [open, setOpen] = React.useState(false);
   const [items, setItems] = React.useState(
     labels.map((prop) => {
-      return { label: t(`signUpScreen.${prop}`), value: prop };
+      return { label: t(`form.${prop}`), value: prop };
     })
   );
 
@@ -32,12 +32,12 @@ const PickerComponent = (props: PickerProps) => {
         textStyle={NormalText}
         dropDownContainerStyle={styles.pickerContainer}
         style={styles.picker}
-        placeholder={t(`signUpScreen.${name}`)}
+        placeholder={t(`form.${name}`)}
         listMode="SCROLLVIEW"
       />
 
       <Text style={styles.validationText}>
-        {meta.invalid && t(meta.warning, { name: t(`signUpScreen.${name}`) })}
+        {meta.invalid && t(meta.warning, { name: t(`form.${name}`) })}
       </Text>
     </View>
   );
