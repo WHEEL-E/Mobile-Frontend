@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 import * as SecureStore from "expo-secure-store";
 import {
   User,
@@ -7,91 +6,112 @@ import {
 } from "../../utilities/types/userTypes";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { ShowModal } from "./errorModal";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { EndPoints } from "../../utilities/constants/endpoints";
 
-export const signIn = (data: SignInData) => {
-  return async (dispatch: Dispatch<any>) => {
-    const response = await fetch(
-      "https://wheel--e-default-rtdb.firebaseio.com/users.json"
-    );
+export const signIn = createAsyncThunk(
+  UserActionTypes.SIGN_IN,
+  async (data: SignInData, thunkAPI) => {
+    let endpoint = EndPoints.supervisorLogin;
+    if (data.type === UserTypes.PATIENT) {
+      endpoint = EndPoints.patientLogin;
+    }
+
+    const response = await fetch(endpoint);
 
     if (!response.ok) {
-      dispatch(ShowModal("errorModal.signIn"));
+      thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }
-    const resData = await response.json();
 
+    const resData = await response.json();
     const getUser = () => {
       for (const field in resData) {
-        if (resData[field].mainData.emailAddress === data.emailAddress) {
-          return resData[field];
+        if (resData[field].userMainData?.mail === data.emailAddress) {
+          const userData: User = {
+            token: resData[field].token,
+            userType: resData[field].userType,
+            userMainData: resData[field].userMainData,
+          };
+
+          if (data.type === UserTypes.PATIENT) {
+            userData.patientExtraData = resData[field].patientExtraData;
+          }
+
+          return userData;
         }
       }
+      //TODO: MODAL this email don't exist
+      return null;
     };
 
-    const user: User = getUser();
-    dispatch({ type: UserActionTypes.SIGN_IN, data: user });
-
+    const user: User = getUser()!;
     try {
-      await SecureStore.setItemAsync("userdata", JSON.stringify(user));
+      await SecureStore.setItemAsync("userData", JSON.stringify(user));
     } catch (e) {
       throw e;
     }
-  };
-};
+    return user;
+  }
+);
 
-export const signOut = () => {
-  return async (dispatch: Dispatch<any>) => {
+export const signOut = createAsyncThunk(
+  UserActionTypes.SIGN_OUT,
+  async (data: null, thunkAPI) => {
     try {
-      await SecureStore.deleteItemAsync("userdata");
+      await SecureStore.deleteItemAsync("userData");
     } catch (e) {
-      dispatch(ShowModal("errorModal.signOut"));
+      thunkAPI.dispatch(ShowModal("errorModal.signOut"));
       throw e;
     }
-    dispatch({ type: UserActionTypes.SIGN_OUT });
-  };
-};
+  }
+);
 
-export const restoreUser = () => {
-  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
+export const restoreUser = createAsyncThunk(
+  UserActionTypes.RESTORE_USER,
+  async () => {
     let userData: string | null = null;
     try {
       userData = await SecureStore.getItemAsync("userData");
       if (userData) {
-        const user = JSON.parse(userData);
-        dispatch({ type: UserActionTypes.RESTORE_USER, data: user });
+        return JSON.parse(userData);
       } else {
-        dispatch({ type: UserActionTypes.SIGN_OUT });
+        return null;
       }
     } catch (e) {
-      dispatch({ type: UserActionTypes.SIGN_OUT });
+      return null;
       throw e;
     }
-  };
-};
+  }
+);
 
-export const signUp = (data: User) => {
-  return async (dispatch: Dispatch<{ type: UserActionTypes; data?: User }>) => {
-    const response = await fetch(
-      "https://wheel--e-default-rtdb.firebaseio.com/users.json",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+export const signUp = createAsyncThunk(
+  UserActionTypes.SIGN_IN,
+  async (data: User, thunkAPI) => {
+    const response = await fetch(EndPoints.signUp, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
     if (!response.ok) {
       throw new Error(response.statusText);
     }
 
     const resData = await response.json();
-    dispatch({
-      type: UserActionTypes.SIGN_IN,
-      data: {
-        ...data,
-        id: resData.name,
-      },
-    });
-  };
-};
+    const user = {
+      ...data,
+      id: resData.name,
+    };
+
+    const signInData: SignInData = {
+      emailAddress: data.userMainData.mail,
+      password: data.userMainData.password!,
+      type: data.userType,
+    };
+    thunkAPI.dispatch(signIn(signInData));
+
+    return user;
+  }
+);

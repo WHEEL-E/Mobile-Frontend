@@ -2,11 +2,10 @@ import "./lang";
 import "react-native-gesture-handler";
 import React from "react";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
 import ReduxThunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
 import reducer from "./store/reducers/rootReducer";
 import LoadingScreen from "./screens/LoadingScreen";
-import { AuthProvider } from "./context/AuthContext";
 import { ErrorModal } from "./components/ErrorHandlingComponents/ErrorModal";
 import * as Sentry from "sentry-expo";
 
@@ -17,14 +16,13 @@ Sentry.init({
   debug: true,
 });
 
-const store = createStore(reducer, applyMiddleware(ReduxThunk));
+const store = configureStore({ reducer, middleware: [ReduxThunk] });
+
 function App() {
   return (
     <Provider store={store}>
       <ErrorModal />
-      <AuthProvider>
-        <LoadingScreen />
-      </AuthProvider>
+      <LoadingScreen />
     </Provider>
   );
 }

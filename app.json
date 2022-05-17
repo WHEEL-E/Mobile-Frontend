@@ -1,7 +1,8 @@
 {
     "expo": {
-        "name": "wheele-mobile-frontend",
+        "name": "WHEEL.E",
         "slug": "wheele-mobile-frontend",
+        "scheme": "wheele",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/logo-b.png",
@@ -15,13 +16,16 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "buildNumber": "1.0.0"
         },
         "android": {
+            "versionCode": 1,
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/logo-b.png",
                 "backgroundColor": "#FFFFFF"
-            }
+            },
+            "package": "com.wheele.wheelemobileapp"
         },
         "web": {
             "favicon": "./assets/images/logo-b.png"
@@ -41,7 +45,7 @@
                 "config": {
                     "organization": "wheel_e",
                     "project": "react-native-wheel-e",
-                    "authToken": "1d87bfdec79311ec9a530e7f15d8d524"
+                    "authToken": "8a365ba4b7db46d591cda7932924ff60334792d251cf4159bced015ca15a4ea9"
                 }
             }]
         }

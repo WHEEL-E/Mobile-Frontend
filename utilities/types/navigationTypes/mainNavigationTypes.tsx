@@ -1,15 +1,26 @@
+import React from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { BackButton } from "../../../components/buttons/BackButton";
+import { UserMainData, PatientExtradata } from "../userTypes";
+import { ScreenNameText } from "../fontTypes";
+import { RouteProp } from "@react-navigation/native";
 import { StackNavigationOptions } from "@react-navigation/stack";
-import fonts from "../../constants/fonts";
 
-export const mainStackOptions: StackNavigationOptions = {
+export const mainStackOptions: (props: {
+  route: RouteProp<MainStackParamList, keyof MainStackParamList>;
+  navigation: any;
+}) => StackNavigationOptions = (navigation: any) => ({
   headerTransparent: true,
   headerShown: true,
   headerTitleAlign: "center",
-  headerTitleStyle: {
-    fontFamily: fonts.CairoBold,
+  headerStyle: {
+    height: "10%",
   },
-};
+  headerTitleStyle: { ...ScreenNameText, marginTop: "30%" },
+  headerBackImage: () => {
+    return <BackButton onPress={() => navigation.goBack()} />;
+  },
+});
 
 export type MainStackParamList = {
   HomeScreen: undefined;
@@ -19,11 +30,11 @@ export type MainStackParamList = {
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
-  SupervisedPatient: undefined;
+  SupervisedPatient: { patient: PatientExtradata & UserMainData };
   AssociatedPatients: undefined;
-  Reminders: undefined;
+  Reminders: { patientId?: string; receiver?: string };
   FreeDrive: undefined;
-  AddNewConnection:undefined
+  AddNewConnection: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<

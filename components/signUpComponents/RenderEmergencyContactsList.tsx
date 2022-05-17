@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import fonts from "../../utilities/constants/fonts";
 import colors from "../../utilities/constants/colors";
-import { EmergencyContactField } from "./EmergencyContactsField";
+import { EmergencyContactField } from "../formComponents/EmergencyContactsField";
 import {
   PADDING_VERTICAL,
   SMALL_MARGIN_VERTICAL,

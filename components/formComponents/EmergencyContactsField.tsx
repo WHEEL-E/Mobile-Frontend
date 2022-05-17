@@ -21,8 +21,8 @@ export const EmergencyContactField = (props: EmergencyContactFieldProps) => {
           newValues[index] = data;
           onChange(newValues);
         }}
-        placeholder={t(`signUpScreen.emergencyContact`)}
-        autoCompleteType="name"
+        placeholder={t(`form.emergencyContact`)}
+        autoComplete="name"
         value={value[index]}
       />
       <Ionicons

@@ -4,12 +4,29 @@ import AssociatedPatientCard from "../components/associatedPatientComponents/Ass
 import colors from "../utilities/constants/colors";
 import { BackButton } from "../components/buttons/BackButton";
 import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { UserMainData, PatientExtradata } from "../utilities/types/userTypes";
 
 const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
   const { navigation } = props;
 
-  const patientName = "Emelia Erheart";
-  const location = "Atlantic ocean";
+  const patient: UserMainData & PatientExtradata = {
+    userId: "id",
+    userName: "Emelia Erheart",
+    address: "Atlantic ocean",
+    phone: "123456",
+    emergencyContacts: ["123"],
+    mail: "patientMail@gmail.com",
+    smoking: false,
+    height: 170,
+    weight: 80,
+    age: 25,
+    gender: "female",
+    profilePhoto:
+      "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
+    healthMonitor: [],
+    healthRecords: [],
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -23,16 +40,20 @@ const AssociatedPatientsScreen = (props: AssociatedPatientsProps) => {
         <View style={styles.innerContainer}>
           <Text style={styles.title}>Associated Patients</Text>
           <AssociatedPatientCard
-            onPress={() => navigation.navigate("SupervisedPatient")}
-            patientName={patientName}
+            onPress={() =>
+              navigation.navigate("SupervisedPatient", { patient: patient })
+            }
+            patientName={patient.userName}
             backgroundColor={colors.darkGreen}
-            patientAddress={location}
+            patientAddress={patient.address}
           />
           <AssociatedPatientCard
-            onPress={() => navigation.navigate("SupervisedPatient")}
-            patientName={patientName}
+            onPress={() =>
+              navigation.navigate("SupervisedPatient", { patient: patient })
+            }
+            patientName={patient.userName}
             backgroundColor={colors.lightGray}
-            patientAddress={location}
+            patientAddress={patient.address}
           />
         </View>
       </ImageBackground>

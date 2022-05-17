@@ -1,26 +1,30 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { getReminders } from "../../store/actions/reminders";
+import { RootState } from "../../store/reducers/rootReducer";
 import colors from "../../utilities/constants/colors";
-import { Reminder } from "../../utilities/types/remindersTypes";
+import {
+  Reminder,
+  RemindersListProps,
+} from "../../utilities/types/remindersTypes";
 import ReminderCard from "./ReminderCard";
 
-export const RemindersList = () => {
-  const reminders: Reminder[] = [
-    {
-      reminderBody: "take the medicine",
-      reminderTitle: "medicine",
-      patientId: "1",
-      supervisorId: "2",
-      id: "3",
-    },
-    {
-      reminderBody: "Visit your doctor",
-      reminderTitle: "visit",
-      patientId: "1",
-      supervisorId: "2",
-      id: "4",
-    },
-  ];
+export const RemindersList = (props: RemindersListProps) => {
+  const dispatch = useDispatch<any>();
+  const { enableEdit, receiver } = props;
+
+  const reminders: Reminder[] = useSelector(
+    (state: RootState) => state.reminders.allReminders
+  );
+
+  const userId = useSelector(
+    (state: RootState) => state.user.userData?.userMainData.userId
+  )!;
+
+  React.useEffect(() => {
+    dispatch(getReminders(userId));
+  }, [dispatch, getReminders]);
 
   return (
     <FlatList
@@ -31,11 +35,14 @@ export const RemindersList = () => {
         return (
           <ReminderCard
             identifier={itemData.item.id}
-            sender={itemData.item.supervisorId}
+            sender={enableEdit ? undefined : itemData.item.supervisorName}
+            receiver={receiver}
             reminderTitle={itemData.item.reminderTitle}
             reminderBody={itemData.item.reminderBody}
-            backgroundColor={colors.darkGreen}
-            enableEdit={true}
+            backgroundColor={
+              itemData.index % 2 == 0 ? colors.darkGreen : colors.lightPurple
+            }
+            enableEdit={enableEdit}
           />
         );
       }}

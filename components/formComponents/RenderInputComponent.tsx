@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { WrappedFieldProps } from "redux-form";
 import InputField from "../inputs/InputField";
 import { Text } from "react-native";
-import fonts from "../../utilities/constants/fonts";
 import { SMALL_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
 import { NoteText } from "../../utilities/types/fontTypes";
 
@@ -24,12 +23,12 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
       <InputField
         fieldStyle={styles.inputField}
         onChangeText={onChange}
-        placeHolder={t(`signUpScreen.${name}`)}
+        placeHolder={t(`form.${name}`)}
         autoComplete="name"
         value={value}
       />
       <Text style={styles.validationText}>
-        {meta.invalid && t(meta.warning, { name: t(`signUpScreen.${name}`) })}
+        {meta.invalid && t(meta.warning, { name: t(`form.${name}`) })}
       </Text>
     </View>
   );

@@ -1,4 +1,4 @@
-export interface Supervisor {
+export interface UserMainData {
   userId?: string;
   userName: string;
   password?: string;
@@ -8,26 +8,20 @@ export interface Supervisor {
   address: string;
 }
 
-export interface Patient {
-  userId?: string;
-  userName: string;
-  password?: string;
-  profilePhoto: string;
+export interface PatientExtradata {
   smoking: boolean;
   age: number;
   height: number;
   weight: number;
   gender: "female" | "male";
-  mail: string;
-  phone: string;
-  address: string;
   emergencyContacts: string[];
   healthRecords: string[];
   healthMonitor: object;
 }
 
 export interface User {
-  mainData: Patient | Supervisor;
+  patientExtraData?: PatientExtradata;
+  userMainData: UserMainData;
   userType: UserTypes;
   token?: string;
 }
@@ -36,11 +30,6 @@ export enum UserActionTypes {
   SIGN_IN = "SIGN_IN",
   SIGN_OUT = "SIGN_OUT",
   RESTORE_USER = "RESTORE_USER",
-}
-
-export interface UserAction {
-  data?: User;
-  type: UserActionTypes;
 }
 
 export enum UserTypes {

@@ -16,7 +16,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
   const { t } = useTranslation();
 
   const userName = useSelector(
-    (state: RootState) => state.user.userData?.mainData.userName
+    (state: RootState) => state.user.userData?.userMainData.userName
   )?.split(" ")[0];
 
   return (
@@ -121,7 +121,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               backgroundColor: colors.lightGreen,
             }}
             onPress={() => {
-              navigation.navigate("Reminders");
+              navigation.navigate("Reminders", {});
             }}
           />
           <MainButton
