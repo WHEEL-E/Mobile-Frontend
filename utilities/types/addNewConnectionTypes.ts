@@ -4,3 +4,8 @@ export enum AddNewConnectionActionTypes {
   SET_IS_LOADING = "SET_IS_LOADING",
   SET_NO_MATCHING = "SET_NO_MATCHING",
 }
+
+export interface UserCardProps {
+  name: string;
+  imageUri: string;
+}

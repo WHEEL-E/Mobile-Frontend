@@ -20,6 +20,9 @@ import {
   setIsLoading,
 } from "../store/actions/addNewConnection";
 import { Ionicons } from "@expo/vector-icons";
+import { SearchList } from "../components/addConnectionComponents/SearchList";
+import { Loading } from "../components/addConnectionComponents/Loading";
+import { NonMatching } from "../components/addConnectionComponents/NonMatching";
 
 const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
   const { t } = useTranslation();
@@ -33,8 +36,8 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
     (state: RootState) => state.addNewConnectionReducer.loading
   );
 
-  const results = useSelector(
-    (state: RootState) => state.addNewConnectionReducer.data
+  const nonMatching = useSelector(
+    (state: RootState) => state.addNewConnectionReducer.noMatching
   );
 
   const textChangeHandler = (text: string) => {
@@ -57,8 +60,6 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
             dispatch(getResultsPatients(term))
           )
         )
-
-        // switchMap((term: string) => dispatch(setIsLoading(true)))
       )
       .subscribe();
     return () => {
@@ -79,16 +80,12 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
           autoComplete="off"
           onChangeText={textChangeHandler}
           placeHolder="who are you looking for"
-          fieldStyle={{}}
+          fieldStyle={{ width: "80%" }}
           value={value}
         />
-        {isLoading && <Text>LOADING</Text>}
-        {results.map(({ name, profilePhoto, id }, index) => (
-          <View key={index}>
-            <Text>{name}</Text>
-            <Ionicons name="airplane" />
-          </View>
-        ))}
+        {isLoading && <Loading />}
+        {nonMatching && <NonMatching />}
+        <SearchList />
       </ImageBackground>
     </View>
   );
@@ -101,6 +98,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
+    paddingTop: "35%",
+    paddingBottom: "20%",
   },
   backgroundImage: {
     flex: 1,
