@@ -1,5 +1,7 @@
 import React from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import {
   BehaviorSubject,
   debounceTime,
@@ -10,20 +12,19 @@ import {
   of,
   switchMap,
 } from "rxjs";
-import { useTranslation } from "react-i18next";
 import { AddNewConnectionProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import InputField from "../components/inputs/InputField";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import {
   emptyList,
   getResultsPatients,
+  getResultsSupervisors,
   setIsLoading,
 } from "../store/actions/addNewConnection";
-import { Ionicons } from "@expo/vector-icons";
 import { SearchList } from "../components/addConnectionComponents/SearchList";
 import { Loading } from "../components/addConnectionComponents/Loading";
 import { NonMatching } from "../components/addConnectionComponents/NonMatching";
+import { UserTypes } from "../utilities/types/userTypes";
 
 const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
   const { t } = useTranslation();
@@ -41,10 +42,22 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
     (state: RootState) => state.addNewConnectionReducer.noMatching
   );
 
+  const userType = useSelector(
+    (state: RootState) => state.user.userData?.userType
+  );
+
   const textChangeHandler = (text: string) => {
     setValue(text);
     if (subject) {
       return subject.next(text);
+    }
+  };
+
+  const getResults = (text: string) => {
+    if (userType === UserTypes.PATIENT) {
+      dispatch(getResultsPatients(text));
+    } else {
+      dispatch(getResultsSupervisors(text));
     }
   };
 
@@ -57,10 +70,7 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
         filter((s) => s.length >= 2),
         debounceTime(500),
         switchMap((term) =>
-          merge(
-            of(dispatch(setIsLoading(true))),
-            dispatch(getResultsPatients(term))
-          )
+          merge(of(dispatch(setIsLoading(true)), getResults(term)))
         )
       )
       .subscribe();

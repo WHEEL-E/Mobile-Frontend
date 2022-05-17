@@ -21,7 +21,9 @@ export const getResultsPatients = createAsyncThunk(
           profilePhoto: resData[data].uri,
         });
       }
-
+      if (matchingUsers.length == 0) {
+        thunkAPI.dispatch(setNoMatching(true));
+      }
       return matchingUsers;
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal.fetchingMatchingPatients"));
@@ -45,6 +47,9 @@ export const getResultsSupervisors = createAsyncThunk(
           id: resData[data].id,
           profilePhoto: resData[data].profilePhoto,
         });
+      }
+      if (matchingUsers.length == 0) {
+        thunkAPI.dispatch(setNoMatching(true));
       }
       return matchingUsers;
     } catch (e) {
