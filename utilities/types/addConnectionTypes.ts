@@ -1,4 +1,4 @@
-export enum AddNewConnectionActionTypes {
+export enum AddConnectionActionTypes {
   GET_RESULTS_PATIENTS = "GET_RESULTS_PATIENTS",
   GET_RESULTS_SUPERVISORS = "GET_RESULTS_SUPERVISORS",
   SET_IS_LOADING = "SET_IS_LOADING",
@@ -18,4 +18,16 @@ export interface AddUserModalProps {
   id: string;
   modalVisible: boolean;
   setModalVisible: (state: boolean) => void;
+}
+
+export interface searchUser {
+  id: string;
+  name: string;
+  profilePhoto: string;
+}
+
+export interface AddConnectionState {
+  data: searchUser[];
+  loading: boolean;
+  noMatching: boolean;
 }

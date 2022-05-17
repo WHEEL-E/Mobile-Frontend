@@ -12,7 +12,7 @@ import {
   of,
   switchMap,
 } from "rxjs";
-import { AddNewConnectionProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { AddConnectionProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import InputField from "../components/inputs/InputField";
 import { RootState } from "../store/reducers/rootReducer";
 import {
@@ -20,13 +20,13 @@ import {
   getResultsPatients,
   getResultsSupervisors,
   setIsLoading,
-} from "../store/actions/addNewConnection";
+} from "../store/actions/addConnection";
 import { SearchList } from "../components/addConnectionComponents/SearchList";
 import { Loading } from "../components/addConnectionComponents/Loading";
 import { NonMatching } from "../components/addConnectionComponents/NonMatching";
 import { UserTypes } from "../utilities/types/userTypes";
 
-const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
+const AddConnectionScreen = (props: AddConnectionProps) => {
   const { t } = useTranslation();
   const sub = new BehaviorSubject("");
   const dispatch = useDispatch<any>();
@@ -35,11 +35,11 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
   const [subject] = React.useState(sub);
 
   const isLoading = useSelector(
-    (state: RootState) => state.addNewConnectionReducer.loading
+    (state: RootState) => state.addConnectionReducer.loading
   );
 
   const nonMatching = useSelector(
-    (state: RootState) => state.addNewConnectionReducer.noMatching
+    (state: RootState) => state.addConnectionReducer.noMatching
   );
 
   const userType = useSelector(
@@ -91,7 +91,7 @@ const AddNewConnectionScreen = (props: AddNewConnectionProps) => {
         <InputField
           autoComplete="off"
           onChangeText={textChangeHandler}
-          placeHolder="who are you looking for"
+          placeHolder={t("addConnection.placeHolder")}
           fieldStyle={{ width: "80%" }}
           value={value}
         />
@@ -120,4 +120,4 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
-export default AddNewConnectionScreen;
+export default AddConnectionScreen;

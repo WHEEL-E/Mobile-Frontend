@@ -80,7 +80,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               backgroundColor: colors.lightPurple,
             }}
             onPress={() => {
-              navigation.navigate("AddNewConnection");
+              navigation.navigate("AddConnection");
             }}
           />
           <SquareButton

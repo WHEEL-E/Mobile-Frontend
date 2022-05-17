@@ -120,10 +120,6 @@ export default {
       settings: "الإعدادات",
       language: "تغيير اللغة",
     },
-    AddNewConnection: {
-      PatientTitle: "أضف مشرف جديد",
-      SupervisotTitle: "أضف مريض جديد",
-    },
     form: {
       emergencyContact: "رقم الطوارئ",
       gender: "النوع",
@@ -158,6 +154,18 @@ export default {
       validConfirmPassword: "كلمة المرور غير متطابقة",
       backToLogin: "تسجيل الدخول",
       modalText: "تم تغيير كلمة المرور بنجاح, يمكنك تسجيل الدخول مرة أخرى",
+    },
+    addConnection: {
+      noMatchingText:
+        "لم يتم العثور على أسماء متطابقة, من فضلك تأكد من كتابة الاسم بطريقة صحيحة",
+      newConnection: "أضف مستخدم",
+      confirmAddNewUser: "هل أنت متأكد من إضافة {{name}} إلى قائمة الاتصال",
+      cancel: "إلغاء",
+      send: "إرسال",
+      loading: "جاري التحميل...",
+      placeHolder: "أدخل الاسم الذي تريد البحث عنه",
+      PatientTitle: "أضف مشرف جديد",
+      SupervisotTitle: "أضف مريض جديد",
     },
   },
 };

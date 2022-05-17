@@ -12,7 +12,7 @@ import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import { RootState } from "../store/reducers/rootReducer";
 import SettingScreen from "../screens/SettingScreen";
 import SoundSettingScreen from "../screens/SoundSettingScreen";
-import AddNewConnection from "../screens/AddNewConnectionScreen";
+import AddConnection from "../screens/AddConnectionScreen";
 import {
   mainStackOptions,
   MainStackParamList,
@@ -75,12 +75,12 @@ export function MainNavigation() {
         component={SupervisedPatientScreen}
       />
       <MainStack.Screen
-        name="AddNewConnection"
-        component={AddNewConnection}
+        name="AddConnection"
+        component={AddConnection}
         options={{
           title: isPatient
-            ? t("AddNewConnection.PatientTitle")
-            : t("AddNewConnection.SupervisotTitle"),
+            ? t("AddConnection.patientTitle")
+            : t("AddConnection.supervisorTitle"),
         }}
       />
     </MainStack.Navigator>

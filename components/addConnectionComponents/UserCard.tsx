@@ -1,16 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { UserCardProps } from "../../utilities/types/addNewConnectionTypes";
+import { UserCardProps } from "../../utilities/types/addConnectionTypes";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { TitleText } from "../../utilities/types/fontTypes";
 import colors from "../../utilities/constants/colors";
-import { useDispatch } from "react-redux";
 import { AddUserModal } from "./AddUserModal";
 
 export const UserCard = (props: UserCardProps) => {
   const { name, imageUri, id } = props;
-  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = React.useState(false);
 
   return (

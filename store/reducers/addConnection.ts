@@ -1,22 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { AddConnectionState } from "../../utilities/types/addConnectionTypes";
 import {
   emptyList,
   getResultsPatients,
   getResultsSupervisors,
   setIsLoading,
-} from "../actions/addNewConnection";
-
-export interface searchUser {
-  id: string;
-  name: string;
-  profilePhoto: string;
-}
-
-export interface AddConnectionState {
-  data: searchUser[];
-  loading: boolean;
-  noMatching: boolean;
-}
+} from "../actions/addConnection";
 
 const initialState: AddConnectionState = {
   data: [],

@@ -1,12 +1,14 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { AddNewConnectionActionTypes } from "../../utilities/types/addNewConnectionTypes";
-import { searchUser } from "../reducers/addNewConnection";
+import {
+  AddConnectionActionTypes,
+  searchUser,
+} from "../../utilities/types/addConnectionTypes";
 import { ShowModal } from "./errorModal";
 
 export const getResultsPatients = createAsyncThunk(
-  AddNewConnectionActionTypes.GET_RESULTS_PATIENTS,
+  AddConnectionActionTypes.GET_RESULTS_PATIENTS,
   async (prefix: string, thunkAPI) => {
     try {
       const response = await fetch(EndPoints.searchConnection + prefix);
@@ -30,7 +32,7 @@ export const getResultsPatients = createAsyncThunk(
 );
 
 export const getResultsSupervisors = createAsyncThunk(
-  AddNewConnectionActionTypes.GET_RESULTS_SUPERVISORS,
+  AddConnectionActionTypes.GET_RESULTS_SUPERVISORS,
   async (prefix: string, thunkAPI) => {
     try {
       const response = await fetch(EndPoints.searchConnection + prefix);
@@ -54,7 +56,7 @@ export const getResultsSupervisors = createAsyncThunk(
 );
 
 export const sendConnectionRequest = createAsyncThunk(
-  AddNewConnectionActionTypes.GET_RESULTS_SUPERVISORS,
+  AddConnectionActionTypes.GET_RESULTS_SUPERVISORS,
   async (data: { sendingId: string; receivingId: string }, thunkAPI) => {
     try {
       const response = await axios.post(`${EndPoints.searchConnection}`, {
@@ -76,7 +78,7 @@ export const sendConnectionRequest = createAsyncThunk(
 );
 
 export const setIsLoading = createAction<boolean>(
-  AddNewConnectionActionTypes.SET_IS_LOADING
+  AddConnectionActionTypes.SET_IS_LOADING
 );
 
-export const emptyList = createAction(AddNewConnectionActionTypes.EMPTY_LIST);
+export const emptyList = createAction(AddConnectionActionTypes.EMPTY_LIST);

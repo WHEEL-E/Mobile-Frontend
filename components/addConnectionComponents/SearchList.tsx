@@ -8,11 +8,11 @@ import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
 export const SearchList = () => {
   const results = useSelector(
-    (state: RootState) => state.addNewConnectionReducer.data
+    (state: RootState) => state.addConnectionReducer.data
   );
 
   const notLoading = !useSelector(
-    (state: RootState) => state.addNewConnectionReducer.loading
+    (state: RootState) => state.addConnectionReducer.loading
   );
 
   return (

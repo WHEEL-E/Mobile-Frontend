@@ -124,10 +124,6 @@ export default {
       settings: "Settings",
       language: "Change Language",
     },
-    AddNewConnection: {
-      PatientTitle: "Add New Supervisor",
-      SupervisotTitle: "Add New Patient",
-    },
     form: {
       name: "Name",
       emailAddress: "EmailAddress",
@@ -163,6 +159,19 @@ export default {
       backToLogin: "Back To Login",
       modalText:
         "Your password is changes successfully, you can try logging back in.",
+    },
+    addConnection: {
+      noMatchingText:
+        "No users found, make sure you're typing the correct name",
+      newConnection: "New Connection",
+      confirmAddNewUser:
+        "Are you sure you want to add {{name}} to your connection list?",
+      cancel: "Cancel",
+      send: "Send",
+      loading: "Loading...",
+      placeHolder: "who are you looking for",
+      PatientTitle: "Add New Supervisor",
+      SupervisotTitle: "Add New Patient",
     },
   },
 };

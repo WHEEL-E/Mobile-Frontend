@@ -1,18 +1,15 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 import colors from "../../utilities/constants/colors";
-import {
-  HeadingText,
-  ScreenNameText,
-  TitleText,
-} from "../../utilities/types/fontTypes";
+import { ScreenNameText } from "../../utilities/types/fontTypes";
 
 export const NonMatching = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        No users found, make sure you're typing the correct name
-      </Text>
+      <Text style={styles.text}>{t("addConnection.noMatchingText")}</Text>
     </View>
   );
 };

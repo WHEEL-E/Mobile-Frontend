@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  Image,
-  ImageBackground,
-  Modal,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ImageBackground, Modal, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { Ionicons } from "@expo/vector-icons";
 import colors from "../../utilities/constants/colors";
 import {
   DEVICE_HEIGHT,
@@ -16,12 +10,10 @@ import {
 } from "../../utilities/constants/dimentions";
 import fonts from "../../utilities/constants/fonts";
 import { SquareButton } from "../buttons/SquareButton";
-import { hideModal } from "../../store/actions/errorModal";
 import { RootState } from "../../store/reducers/rootReducer";
-import { Ionicons } from "@expo/vector-icons";
-import { AddUserModalProps } from "../../utilities/types/addNewConnectionTypes";
+import { AddUserModalProps } from "../../utilities/types/addConnectionTypes";
 import { NormalText } from "../../utilities/types/fontTypes";
-import { sendConnectionRequest } from "../../store/actions/addNewConnection";
+import { sendConnectionRequest } from "../../store/actions/addConnection";
 
 export const AddUserModal = (props: AddUserModalProps) => {
   const { name, id, modalVisible, setModalVisible } = props;
@@ -42,24 +34,24 @@ export const AddUserModal = (props: AddUserModalProps) => {
           source={require("../../assets/images/Union.png")}
           style={styles.background}
         >
-          <Text style={styles.title}>New Connection</Text>
+          <Text style={styles.title}> {t("addConnection.newConnection")}</Text>
           <Ionicons
             name="person-add"
             size={DEVICE_WIDTH * 0.25}
             color={colors.darkBlue}
           />
           <Text style={styles.mainText}>
-            Are you sure you want to add {name} to your connection list?
+            {t("addConnection.confirmAddNewUser", { name: name })}
           </Text>
           <View style={styles.buttonsList}>
             <SquareButton
-              title={t("CANCEL")}
+              title={t("addConnection.cancel")}
               titleStyle={styles.buttonTitleStyle}
               onPress={() => setModalVisible(false)}
               buttonStyle={styles.cancelButton}
             />
             <SquareButton
-              title={t("SEND")}
+              title={t("addConnection.send")}
               titleStyle={styles.buttonTitleStyle}
               onPress={() => submitHandler()}
               buttonStyle={styles.sendButton}
