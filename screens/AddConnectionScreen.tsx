@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    paddingTop: "40%",
+    paddingTop: "50%",
     paddingBottom: "20%",
   },
   backgroundImage: {
@@ -120,4 +120,5 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
+
 export default AddConnectionScreen;

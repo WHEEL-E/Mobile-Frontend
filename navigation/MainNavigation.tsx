@@ -79,8 +79,8 @@ export function MainNavigation() {
         component={AddConnection}
         options={{
           title: isPatient
-            ? t("AddConnection.patientTitle")
-            : t("AddConnection.supervisorTitle"),
+            ? t("addConnection.patientTitle")
+            : t("addConnection.supervisorTitle"),
         }}
       />
     </MainStack.Navigator>

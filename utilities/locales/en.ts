@@ -161,8 +161,8 @@ export default {
         "Your password is changes successfully, you can try logging back in.",
     },
     addConnection: {
-      noMatchingText:
-        "No users found, make sure you're typing the correct name",
+      noMatchingMainText: "No users found!",
+      noMatchingText: "Try another name",
       newConnection: "New Connection",
       confirmAddNewUser:
         "Are you sure you want to add {{name}} to your connection list?",

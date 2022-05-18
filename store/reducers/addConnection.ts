@@ -33,7 +33,7 @@ const addNewConnectionReducer = createReducer(initialState, (builder) => {
       return { ...state, loading: action.payload };
     })
     .addCase(emptyList, (state, action) => {
-      return { ...state, data: [] };
+      return { ...state, data: [], noMatching: false };
     })
     .addDefaultCase((reducer) => reducer);
 });
