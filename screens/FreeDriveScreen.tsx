@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import colors from "../utilities/constants/colors";
@@ -6,10 +6,19 @@ import DriveWheel from "../components/freeDriveComponents/DriveWheel";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
 import { FreeDriveProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import io, { Socket } from "socket.io-client";
+
+const ENDPOINT = "http://192.168.1.17:3000";
+let socket: Socket;
 
 const FreeDriveScreen = (props: FreeDriveProps) => {
   const { navigation } = props;
   const { t } = useTranslation();
+  const [test, setTest] = React.useState(true);
+
+  React.useEffect(() => {
+    socket = io(ENDPOINT, { transports: ["websocket"] });
+  }, [test]);
 
   return (
     <View style={styles.container}>

@@ -63,7 +63,8 @@
     "redux": "^4.2.0",
     "redux-form": "^8.3.8",
     "redux-thunk": "^2.4.1",
-    "sentry-expo": "^4.1.1"
+    "sentry-expo": "^4.1.1",
+    "socket.io-client": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -77,6 +78,7 @@
     "@types/react-native": "~0.67.6",
     "@types/react-test-renderer": "^18.0.0",
     "@types/redux-form": "^8.3.5",
+    "@types/socket.io-client": "^3.0.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "i": "^0.3.7",
     "i18next-scanner": "^3.1.0",
