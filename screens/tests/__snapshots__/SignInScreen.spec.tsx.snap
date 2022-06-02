@@ -138,6 +138,165 @@ exports[`SignInScreen Make sure screen matches snapShot 1`] = `
               translated text
             </Text>
           </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <TextInput
+              autoComplete="name"
+              onChangeText={[Function]}
+              placeholder="translated text"
+              style={
+                Object {
+                  "backgroundColor": "#F2F3F7",
+                  "borderRadius": 15,
+                  "fontFamily": "Cairo-Medium",
+                  "fontSize": 26.68,
+                  "height": 70,
+                  "marginVertical": 10.672,
+                  "padding": 26.68,
+                  "width": "80%",
+                }
+              }
+              testID="signInpassword"
+              value=""
+            />
+            <Text
+              style={
+                Object {
+                  "color": "red",
+                  "fontFamily": "Cairo-Regular",
+                  "fontSize": 20.009999999999998,
+                  "textAlign": "center",
+                  "width": "80%",
+                }
+              }
+              testID="warningText"
+            >
+              translated text
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "width": "100%",
+                  },
+                  Object {
+                    "zIndex": 5000,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              <View
+                accessibilityState={
+                  Object {
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                forwardedRef={[Function]}
+                onClick={[Function]}
+                onLayout={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "backgroundColor": "#F2F3F7",
+                    "borderColor": "#000",
+                    "borderRadius": 15,
+                    "borderWidth": 0,
+                    "flexDirection": "row",
+                    "height": 70,
+                    "justifyContent": "space-between",
+                    "minHeight": 50,
+                    "opacity": 1,
+                    "paddingHorizontal": 10,
+                    "paddingVertical": 3,
+                    "width": "80%",
+                    "zIndex": 0,
+                  }
+                }
+                testID="signIntype"
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#000",
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": "Cairo-Medium",
+                        "fontSize": 26.68,
+                      },
+                      false,
+                      Object {},
+                    ]
+                  }
+                >
+                  translated text
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "marginLeft": 10,
+                      },
+                      Object {},
+                    ]
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Array [
+                        Object {
+                          "height": 20,
+                          "width": 20,
+                        },
+                        Object {},
+                      ]
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "red",
+                  "fontFamily": "Cairo-Regular",
+                  "fontSize": 20.009999999999998,
+                }
+              }
+              testID="warningText"
+            >
+              translated text
+            </Text>
+          </View>
         </View>
       </RCTScrollView>
       <View

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInForm makes sure image source is passed properly 1`] = `
+exports[`SignInForm Make sure form matches snapshot 1`] = `
 <View
   style={
     Object {

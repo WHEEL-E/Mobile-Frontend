@@ -1,13 +1,13 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
-import renderer from "react-test-renderer";
-import SignInScreen from "../SignInScreen";
-import * as roundEdgedButton from "../../components/buttons/RoundEdgedButton";
-import { RoundEdgedButton } from "../../components/buttons/RoundEdgedButton";
 import ReduxThunk from "redux-thunk";
-import { configureStore } from "@reduxjs/toolkit";
-import reducer from "../../store/reducers/rootReducer";
+import renderer from "react-test-renderer";
 import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import { render } from "@testing-library/react-native";
+import SignInScreen from "../SignInScreen";
+import reducer from "../../store/reducers/rootReducer";
+import { RoundEdgedButton } from "../../components/buttons/RoundEdgedButton";
+import * as roundEdgedButton from "../../components/buttons/RoundEdgedButton";
 
 jest.mock("react-i18next", () => ({
   ...jest.requireActual("react-i18next"),
@@ -39,10 +39,8 @@ describe("SignInScreen", () => {
     expect(RoundEdgedButton).toBeCalledTimes(1);
   });
 
-  it("makes sure text is translated", () => {
-    const dummyProp: any = () => {};
+  it("Make sure text is translated", () => {
     const { getByTestId } = render(Screen);
-
     const welcomeBackText = getByTestId("welcomeBackText");
     expect(welcomeBackText.children).toContain("translated text");
   });
