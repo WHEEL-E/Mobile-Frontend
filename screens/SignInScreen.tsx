@@ -41,7 +41,9 @@ const SignInScreen = (props: SignInProps) => {
             style={styles.logo}
             source={require("../assets/images/logo-b-app.png")}
           />
-          <Text style={HeadingText}>{t("signInScreen.WelcomeBack")}</Text>
+          <Text style={HeadingText} testID="welcomeBackText">
+            {t("signInScreen.WelcomeBack")}
+          </Text>
         </View>
         <SignInForm />
         <TouchableOpacity>
