@@ -4,4 +4,5 @@ export enum EndPoints {
   patientLogin = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   supervisorLogin = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   signUp = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
+  forgetPassword = "http://192.168.1.32:3000/api/resetPass",
 }
