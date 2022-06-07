@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Path } from "react-native-svg";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import colors from "../../utilities/constants/colors";
 import { DriveWheelButtonProps, archs } from "../../utilities/driveWheelUtils";
 import { Gradientfilling } from "./GradientFilling";
 import { View } from "react-native";
+import io, { Socket } from "socket.io-client";
+
+const socketEndpoint = "http://192.168.1.17:3000";
+
+let socket: Socket;
 
 export const DriveWheelButton = (props: DriveWheelButtonProps) => {
   const { index, value } = props;
@@ -15,6 +20,20 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
     "url(#GradientFilling)",
   ]);
 
+  useEffect(function didMount() {
+    socket = io(socketEndpoint, {
+      transports: ["websocket"],
+    });
+
+    socket.io.on("open", () => console.log("Connected"));
+    socket.io.on("close", () => console.log("Disconnected"));
+    
+    return function didUnmount() {
+      socket.disconnect();
+      socket.removeAllListeners();
+    };
+  }, []);
+ 
   return (
     <View>
       <Gradientfilling />
@@ -31,11 +50,13 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
         onPressIn={() => {
           const newColors = [...color];
           newColors[index] = "white";
+          socket.emit("action", value);
           setColor(newColors);
         }}
         onPressOut={() => {
           const newColors = [...color];
           newColors[index] = "url(#GradientFilling)";
+          socket.emit("action-stop", "stop");
           setColor(newColors);
         }}
       />
