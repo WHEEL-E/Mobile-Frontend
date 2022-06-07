@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInScreen makes sure screen matches snapShot 1`] = `
+exports[`SignInScreen Make sure screen matches snapShot 1`] = `
 <View
   style={
     Object {
@@ -14,14 +14,16 @@ exports[`SignInScreen makes sure screen matches snapShot 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "justifyContent": "center",
-        "paddingVertical": "30%",
-        "resizeMode": "center",
+        "alignSelf": "center",
+        "flex": 1,
+        "paddingTop": "30%",
         "width": "100%",
       }
     }
   >
     <Image
+      resizeMethod="auto"
+      resizeMode="contain"
       source={1}
       style={
         Array [
@@ -36,129 +38,270 @@ exports[`SignInScreen makes sure screen matches snapShot 1`] = `
             "height": undefined,
             "width": "100%",
           },
-          undefined,
+          Object {
+            "height": 525,
+            "position": "absolute",
+            "top": 0,
+            "width": 750,
+          },
         ]
       }
     />
-    <Image
-      source={1}
-      style={
-        Object {
-          "alignSelf": "center",
-          "height": 40,
-          "resizeMode": "center",
-          "width": "70%",
-        }
-      }
-    />
-    <Text
-      style={
-        Object {
-          "fontFamily": "Cairo-Bold",
-          "fontSize": 27,
-        }
-      }
-    >
-      signInScreen.WelcomeBack
-    </Text>
-  </View>
-  <View
-    style={
-      Object {
-        "left": "8%",
-        "position": "absolute",
-        "top": "7%",
-      }
-    }
-  >
-    <View
-      accessible={true}
-      focusable={false}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
-          "borderColor": "#EBEAEC",
-          "borderRadius": 56.25,
-          "borderWidth": 0.7,
-          "height": 112.5,
-          "justifyContent": "center",
-          "opacity": 1,
-          "width": 112.5,
-        }
-      }
-    >
-      <Text />
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-        "width": "100%",
-      }
-    }
-  >
-    <TextInput
-      allowFontScaling={true}
-      autoCompleteType="email"
-      onBlur={[Function]}
-      onChangeText={[Function]}
-      placeholder="signInScreen.emailAddress"
-      rejectResponderTermination={true}
-      style={
-        Object {
-          "backgroundColor": "#F2F3F7",
-          "borderRadius": 15,
-          "height": 70,
-          "marginBottom": 15,
-          "padding": 20,
-          "width": "80%",
-        }
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
-    <TextInput
-      allowFontScaling={true}
-      autoCompleteType="password"
-      onBlur={[Function]}
-      onChangeText={[Function]}
-      placeholder="signInScreen.password"
-      rejectResponderTermination={true}
-      secureTextEntry={true}
-      style={
-        Object {
-          "backgroundColor": "#F2F3F7",
-          "borderRadius": 15,
-          "height": 70,
-          "marginBottom": 15,
-          "padding": 20,
-          "width": "80%",
-        }
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
     <View
       style={
         Object {
           "alignItems": "center",
-          "justifyContent": "center",
           "width": "100%",
         }
       }
     >
+      <Image
+        source={1}
+        style={
+          Object {
+            "alignSelf": "center",
+            "height": 40,
+            "resizeMode": "center",
+            "width": "70%",
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "fontFamily": "Cairo-Bold",
+            "fontSize": 53.36,
+          }
+        }
+        testID="welcomeBackText"
+      >
+        translated text
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+            "paddingVertical": 26.68,
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <TextInput
+              autoComplete="name"
+              onChangeText={[Function]}
+              placeholder="translated text"
+              style={
+                Object {
+                  "backgroundColor": "#F2F3F7",
+                  "borderRadius": 15,
+                  "fontFamily": "Cairo-Medium",
+                  "fontSize": 26.68,
+                  "height": 70,
+                  "marginVertical": 10.672,
+                  "padding": 26.68,
+                  "width": "80%",
+                }
+              }
+              testID="signInemailAddress"
+              value=""
+            />
+            <Text
+              style={
+                Object {
+                  "color": "red",
+                  "fontFamily": "Cairo-Regular",
+                  "fontSize": 20.009999999999998,
+                  "textAlign": "center",
+                  "width": "80%",
+                }
+              }
+              testID="warningText"
+            >
+              translated text
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <TextInput
+              autoComplete="name"
+              onChangeText={[Function]}
+              placeholder="translated text"
+              style={
+                Object {
+                  "backgroundColor": "#F2F3F7",
+                  "borderRadius": 15,
+                  "fontFamily": "Cairo-Medium",
+                  "fontSize": 26.68,
+                  "height": 70,
+                  "marginVertical": 10.672,
+                  "padding": 26.68,
+                  "width": "80%",
+                }
+              }
+              testID="signInpassword"
+              value=""
+            />
+            <Text
+              style={
+                Object {
+                  "color": "red",
+                  "fontFamily": "Cairo-Regular",
+                  "fontSize": 20.009999999999998,
+                  "textAlign": "center",
+                  "width": "80%",
+                }
+              }
+              testID="warningText"
+            >
+              translated text
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "width": "100%",
+                  },
+                  Object {
+                    "zIndex": 5000,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              <View
+                accessibilityState={
+                  Object {
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                forwardedRef={[Function]}
+                onClick={[Function]}
+                onLayout={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "backgroundColor": "#F2F3F7",
+                    "borderColor": "#000",
+                    "borderRadius": 15,
+                    "borderWidth": 0,
+                    "flexDirection": "row",
+                    "height": 70,
+                    "justifyContent": "space-between",
+                    "minHeight": 50,
+                    "opacity": 1,
+                    "paddingHorizontal": 10,
+                    "paddingVertical": 3,
+                    "width": "80%",
+                    "zIndex": 0,
+                  }
+                }
+                testID="signIntype"
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#000",
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": "Cairo-Medium",
+                        "fontSize": 26.68,
+                      },
+                      false,
+                      Object {},
+                    ]
+                  }
+                >
+                  translated text
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "marginLeft": 10,
+                      },
+                      Object {},
+                    ]
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Array [
+                        Object {
+                          "height": 20,
+                          "width": 20,
+                        },
+                        Object {},
+                      ]
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "red",
+                  "fontFamily": "Cairo-Regular",
+                  "fontSize": 20.009999999999998,
+                }
+              }
+              testID="warningText"
+            >
+              translated text
+            </Text>
+          </View>
+        </View>
+      </RCTScrollView>
       <View
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -191,63 +334,14 @@ exports[`SignInScreen makes sure screen matches snapShot 1`] = `
             }
           }
         >
-          signInScreen.logIn
-        </Text>
-      </View>
-      <View
-        accessible={true}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "opacity": 1,
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "fontFamily": "Cairo-Regular",
-              "fontSize": 26.68,
-              "paddingHorizontal": 5,
-            }
-          }
-        >
-          signInScreen.forgotPassword
+          translated text
         </Text>
       </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "justifyContent": "center",
-        "padding": 20,
-      }
-    }
-  >
-    <Text
-      style={
-        Object {
-          "fontFamily": "Cairo-Regular",
-          "fontSize": 33.35,
-          "paddingHorizontal": 5,
-        }
-      }
-    >
-      signInScreen.notMember
-    </Text>
     <View
       accessible={true}
-      focusable={true}
+      collapsable={false}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -264,15 +358,67 @@ exports[`SignInScreen makes sure screen matches snapShot 1`] = `
       <Text
         style={
           Object {
-            "color": "#11698E",
             "fontFamily": "Cairo-Regular",
-            "fontSize": 33.35,
-            "paddingHorizontal": 5,
+            "fontSize": 20.009999999999998,
+            "marginVertical": 10.672,
+            "paddingHorizontal": 7.5,
           }
         }
       >
-        signInScreen.signUp
+        translated text
       </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "padding": 26.68,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontFamily": "Cairo-Medium",
+            "fontSize": 26.68,
+            "paddingHorizontal": 7.5,
+          }
+        }
+      >
+        translated text
+      </Text>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#11698E",
+              "fontFamily": "Cairo-Medium",
+              "fontSize": 26.68,
+              "paddingHorizontal": 7.5,
+            }
+          }
+        >
+          translated text
+        </Text>
+      </View>
     </View>
   </View>
 </View>

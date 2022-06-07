@@ -26,7 +26,7 @@ export const signIn = createAsyncThunk(
     const resData = await response.json();
     const getUser = () => {
       for (const field in resData) {
-        if (resData[field].userMainData?.mail === data.emailAddress) {
+        if (resData[field].userMainData.mail === data.emailAddress) {
           const userData: User = {
             token: resData[field].token,
             userType: resData[field].userType,
