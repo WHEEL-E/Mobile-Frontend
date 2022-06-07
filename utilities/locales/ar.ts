@@ -155,5 +155,17 @@ export default {
       backToLogin: "تسجيل الدخول",
       modalText: "تم تغيير كلمة المرور بنجاح, يمكنك تسجيل الدخول مرة أخرى",
     },
+    addConnection: {
+      noMatchingMainText: "لم نعثر على نتائج!",
+      noMatchingText: "حاول مرة أخرى",
+      newConnection: "أضف مستخدم",
+      confirmAddNewUser: "هل أنت متأكد من إضافة {{name}} إلى قائمة الاتصال",
+      cancel: "إلغاء",
+      send: "إرسال",
+      loading: "جاري التحميل...",
+      placeHolder: "أدخل الاسم الذي تريد البحث عنه",
+      patientTitle: "أضف مشرف جديد",
+      supervisorTitle: "أضف مريض جديد",
+    },
   },
 };

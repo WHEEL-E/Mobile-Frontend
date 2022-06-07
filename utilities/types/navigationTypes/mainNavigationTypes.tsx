@@ -1,7 +1,7 @@
 import React from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { BackButton } from "../../../components/buttons/BackButton";
-import { Patient } from "../userTypes";
+import { UserMainData, PatientExtradata } from "../userTypes";
 import { ScreenNameText } from "../fontTypes";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationOptions } from "@react-navigation/stack";
@@ -30,10 +30,11 @@ export type MainStackParamList = {
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
-  SupervisedPatient: { patient: Patient };
+  SupervisedPatient: { patient: PatientExtradata & UserMainData };
   AssociatedPatients: undefined;
   Reminders: { patientId?: string; receiver?: string };
   FreeDrive: undefined;
+  AddConnection: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<
@@ -88,4 +89,9 @@ export type SettingProps = NativeStackScreenProps<
 export type SoundSettings = NativeStackScreenProps<
   MainStackParamList,
   "SoundSettings"
+>;
+
+export type AddConnectionProps = NativeStackScreenProps<
+  MainStackParamList,
+  "AddConnection"
 >;
