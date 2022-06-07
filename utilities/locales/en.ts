@@ -160,5 +160,18 @@ export default {
       modalText:
         "Your password is changes successfully, you can try logging back in.",
     },
+    addConnection: {
+      noMatchingMainText: "No users found!",
+      noMatchingText: "Try another name",
+      newConnection: "New Connection",
+      confirmAddNewUser:
+        "Are you sure you want to add {{name}} to your connection list?",
+      cancel: "Cancel",
+      send: "Send",
+      loading: "Loading...",
+      placeHolder: "who are you looking for",
+      PatientTitle: "Add New Supervisor",
+      SupervisotTitle: "Add New Patient",
+    },
   },
 };
