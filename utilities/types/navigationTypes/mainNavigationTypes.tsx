@@ -30,8 +30,8 @@ export type MainStackParamList = {
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
-  SupervisedPatient: { patient: PatientExtradata & UserMainData };
-  AssociatedPatients: undefined;
+  SupervisedPatient: { patientId: string };
+  AssociatedUsers: undefined;
   Reminders: { patientId?: string; receiver?: string };
   FreeDrive: undefined;
   AddConnection: undefined;
@@ -64,7 +64,7 @@ export type FreeDriveProps = NativeStackScreenProps<
 
 export type AssociatedPatientsProps = NativeStackScreenProps<
   MainStackParamList,
-  "AssociatedPatients"
+  "AssociatedUsers"
 >;
 
 export type RemindersProps = NativeStackScreenProps<
