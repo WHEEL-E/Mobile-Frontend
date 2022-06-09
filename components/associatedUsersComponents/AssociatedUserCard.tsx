@@ -12,8 +12,8 @@ import {
   BIG_MARGIN_HORIZONTAL,
   BIG_MARGIN_VERTICAL,
   PADDING_VERTICAL,
-  SMALL_MARGIN_HORIZONTAL,
 } from "../../utilities/constants/spacing";
+import { RemoveUserModal } from "./RemoveUserModal";
 
 export const AssociatedUserCard = (props: AssociatedUserProps) => {
   const {
@@ -41,6 +41,10 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
 
   return (
     <View style={{ ...styles.container, backgroundColor }}>
+      <RemoveUserModal
+        setModalVisible={setModalVisible}
+        modalVisible={modalVisible}
+      />
       <View style={styles.cardContent}>
         <View>
           <Text style={{ ...styles.title, color: textColor }}>{userName}</Text>
