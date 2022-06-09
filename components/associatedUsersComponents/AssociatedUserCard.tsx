@@ -1,19 +1,20 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { AssociatedUserProps } from "../../utilities/types/componentsTypes";
-import colors from "../../utilities/constants/colors";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import colors from "../../utilities/constants/colors";
+import { AssociatedUserProps } from "../../utilities/types/componentsTypes";
 import { RootState } from "../../store/reducers/rootReducer";
 import { UserTypes } from "../../utilities/types/userTypes";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { SquareButton } from "../buttons/SquareButton";
 import { ImportantText, NormalText } from "../../utilities/types/fontTypes";
+import { RemoveUserModal } from "./RemoveUserModal";
 import {
   BIG_MARGIN_HORIZONTAL,
   BIG_MARGIN_VERTICAL,
   PADDING_VERTICAL,
 } from "../../utilities/constants/spacing";
-import { RemoveUserModal } from "./RemoveUserModal";
 
 export const AssociatedUserCard = (props: AssociatedUserProps) => {
   const {
@@ -23,6 +24,8 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
   } = props;
 
   const [modalVisible, setModalVisible] = React.useState(false);
+
+  const { t } = useTranslation();
 
   const textColor =
     backgroundColor === colors.darkGreen ? "white" : colors.darkGreen;
@@ -44,6 +47,7 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
       <RemoveUserModal
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}
+        name={userName}
       />
       <View style={styles.cardContent}>
         <View>
@@ -65,14 +69,14 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
       </View>
       <View style={styles.buttonsList}>
         <SquareButton
-          title="Remove"
+          title={t("associatedUsers.remove")}
           titleStyle={styles.buttonTitleStyle}
           onPress={removeHandler}
           buttonStyle={styles.removeButton}
         />
         {userType === UserTypes.SUPERVISOR && (
           <SquareButton
-            title="View"
+            title={t("associatedUsers.view")}
             titleStyle={styles.buttonTitleStyle}
             onPress={viewHandler}
             buttonStyle={styles.viewButton}

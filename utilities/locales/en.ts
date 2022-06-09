@@ -173,5 +173,14 @@ export default {
       PatientTitle: "Add New Supervisor",
       SupervisotTitle: "Add New Patient",
     },
+    associatedUsers: {
+      remove: "Remove",
+      view: "View",
+      removeUser: "Remove User",
+      confirmremoveUser:
+        "Are you sure you want to remove {{name}} from your connection list?",
+      cancel: "Cancel",
+      associatedUsers: "Associated Users",
+    },
   },
 };

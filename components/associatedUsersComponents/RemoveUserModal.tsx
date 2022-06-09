@@ -16,7 +16,7 @@ import {
 export const RemoveUserModal = (props: RemoveUserModalProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<any>();
-  const { modalVisible, setModalVisible } = props;
+  const { modalVisible, setModalVisible, name } = props;
 
   const removeHandler = () => {};
 
@@ -28,16 +28,14 @@ export const RemoveUserModal = (props: RemoveUserModalProps) => {
             source={require("../../assets/images/Union.png")}
             style={styles.background}
           >
-            <Text style={styles.title}>
-              {t("associatedUsers.newConnection")}
-            </Text>
+            <Text style={styles.title}>{t("associatedUsers.removeUser")}</Text>
             <Ionicons
               name="person-remove"
               size={DEVICE_WIDTH * 0.25}
               color={colors.darkBlue}
             />
             <Text style={styles.mainText}>
-              {t("associatedUsers.confirmAddNewUser", { name: "name" })}
+              {t("associatedUsers.confirmremoveUser", { name: name })}
             </Text>
             <View style={styles.buttonsList}>
               <SquareButton

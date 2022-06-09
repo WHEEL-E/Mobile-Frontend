@@ -69,6 +69,9 @@ export function MainNavigation() {
       <MainStack.Screen
         name="AssociatedUsers"
         component={AssociatedUsersScreen}
+        options={{
+          title: t("associatedUsers.associatedUsers"),
+        }}
       />
       <MainStack.Screen
         name="SupervisedPatient"

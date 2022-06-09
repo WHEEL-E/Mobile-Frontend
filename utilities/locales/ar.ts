@@ -167,5 +167,13 @@ export default {
       patientTitle: "أضف مشرف جديد",
       supervisorTitle: "أضف مريض جديد",
     },
+    associatedUsers: {
+      remove: "حذف",
+      view: "عرض",
+      removeUser: "حذف مستخدم",
+      confirmremoveUser: "هل أنت متأكد من حذف {{name}} من قائمة الاتصال",
+      cancel: "إلغاء",
+      associatedUsers: "قائمة الاتصال",
+    },
   },
 };
