@@ -58,14 +58,7 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
           </Text>
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
-          <Image
-            source={{
-              uri: profilePhoto,
-              width: DEVICE_WIDTH * 0.2,
-              height: DEVICE_WIDTH * 0.2,
-            }}
-            style={styles.image}
-          />
+          <Image source={{ uri: profilePhoto }} style={styles.image} />
         </View>
       </View>
       <View style={styles.buttonsList}>
@@ -132,13 +125,12 @@ const styles = StyleSheet.create({
   removeButton: {
     backgroundColor: colors.darkPink,
     flex: 1,
-    height: 50,
+    paddingVertical: "3%",
     marginRight: BIG_MARGIN_HORIZONTAL,
   },
   viewButton: {
     backgroundColor: colors.lightGreen,
     flex: 1,
-    height: 50,
     marginLeft: BIG_MARGIN_HORIZONTAL,
   },
   buttonsList: {

@@ -61,6 +61,7 @@ export default {
       freeDriving: "Free Driving",
       wishGoodDay: "We wish you have a good day!",
       morning: "Good Morning, ",
+      associatedUsers: "Associated Users",
     },
     getStartedScreen: {
       wheelE: "Wheel.e gets you everywhere",

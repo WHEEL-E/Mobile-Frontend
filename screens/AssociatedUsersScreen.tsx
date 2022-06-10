@@ -1,10 +1,10 @@
 import React from "react";
 import { FlatList, ImageBackground, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import colors from "../utilities/constants/colors";
 import { AssociatedUserCard } from "../components/associatedUsersComponents/AssociatedUserCard";
 import { getAssociatedUsers } from "../store/actions/associatedUsers";
 import { RootState } from "../store/reducers/rootReducer";
-import colors from "../utilities/constants/colors";
 import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
@@ -31,7 +31,6 @@ const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
     <View style={styles.container}>
       <ImageBackground
         source={require("../assets/images/Vector.png")}
-        resizeMode="cover"
         style={styles.content}
       >
         <FlatList
@@ -56,22 +55,21 @@ const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: "50%",
-    paddingBottom: "20%",
-    paddingHorizontal: "5%",
+    backgroundColor: "white",
   },
   content: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    resizeMode: "cover",
+    width: "100%",
+    paddingTop: "50%",
+    paddingBottom: "20%",
   },
   list: {
-    width: "100%",
+    width: "90%",
   },
 });
 

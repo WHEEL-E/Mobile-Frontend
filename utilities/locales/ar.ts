@@ -60,6 +60,7 @@ export default {
       freeDriving: "القيادة بحرية",
       wishGoodDay: "نتمنى لك يومًا سعيدًا",
       morning: "صباح الخير, ",
+      associatedUsers: "قائمة الاتصال",
     },
     getStartedScreen: {
       wheelE: "نحن نصطحبك إلى أي مكان",
