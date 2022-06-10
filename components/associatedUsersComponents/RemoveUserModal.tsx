@@ -12,13 +12,16 @@ import {
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
 } from "../../utilities/constants/dimentions";
+import { removeUser } from "../../store/actions/associatedUsers";
 
 export const RemoveUserModal = (props: RemoveUserModalProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<any>();
-  const { modalVisible, setModalVisible, name } = props;
+  const { modalVisible, setModalVisible, name, id } = props;
 
-  const removeHandler = () => {};
+  const removeHandler = () => {
+    dispatch(removeUser(id));
+  };
 
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>

@@ -8,12 +8,37 @@ import colors from "../utilities/constants/colors";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 import fonts from "../utilities/constants/fonts";
 import { SupervisedPatientProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { User, UserTypes } from "../utilities/types/userTypes";
 
 const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
   const { navigation, route } = props;
   const { t } = useTranslation();
 
-  const patient = route.params.patient;
+  const patientId = route.params.patientId;
+
+  // TODO:Use the id to get the patient data
+  const patient: User = {
+    userMainData: {
+      userId: "id",
+      userName: "Emelia Erheart",
+      address: "Atlantic ocean",
+      phone: "123456",
+      mail: "patientMail@gmail.com",
+      profilePhoto:
+        "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
+    },
+    patientExtraData: {
+      emergencyContacts: ["123"],
+      smoking: false,
+      height: 170,
+      weight: 80,
+      age: 25,
+      gender: "female",
+      healthMonitor: [],
+      healthRecords: [],
+    },
+    userType: UserTypes.PATIENT,
+  };
 
   return (
     <View style={styles.container}>
@@ -35,7 +60,9 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
               source={require("../assets/images/IdPlaceHolder.png")}
             />
           </View>
-          <Text style={styles.patientName}>{patient.userName}</Text>
+          <Text style={styles.patientName}>
+            {patient.userMainData.userName}
+          </Text>
         </View>
         <View style={styles.buttons}>
           <MainButton
@@ -50,8 +77,8 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
               title={t("supervisedPatientScreen.reminders")}
               onPress={() => {
                 navigation.navigate("Reminders", {
-                  patientId: patient.userId,
-                  receiver: patient.userName,
+                  patientId: patient.userMainData.userId,
+                  receiver: patient.userMainData.userName,
                 });
               }}
               buttonStyle={styles.remindersButton}

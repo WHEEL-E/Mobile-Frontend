@@ -48,6 +48,7 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}
         name={userName}
+        id={userId}
       />
       <View style={styles.cardContent}>
         <View>

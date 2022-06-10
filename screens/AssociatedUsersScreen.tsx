@@ -1,42 +1,31 @@
 import React from "react";
 import { FlatList, ImageBackground, StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { AssociatedUserCard } from "../components/associatedUsersComponents/AssociatedUserCard";
+import { getAssociatedUsers } from "../store/actions/associatedUsers";
+import { RootState } from "../store/reducers/rootReducer";
 import colors from "../utilities/constants/colors";
 import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
   const { navigation } = props;
 
-  const associatedUsers = [
-    {
-      userId: "id",
-      userName: "Emelia Erheart",
-      address: "Atlantic ocean",
-      profilePhoto:
-        "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-    },
-    {
-      userId: "id",
-      userName: "Emelia Erheart",
-      address: "Atlantic ocean",
-      profilePhoto:
-        "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-    },
-    {
-      userId: "id",
-      userName: "Emelia Erheart",
-      address: "Atlantic ocean",
-      profilePhoto:
-        "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-    },
-    {
-      userId: "id",
-      userName: "Emelia Erheart",
-      address: "Atlantic ocean",
-      profilePhoto:
-        "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-    },
-  ];
+  const dispatch = useDispatch<any>();
+
+  const associatedUsers = useSelector(
+    (state: RootState) => state.associatedUsers.associatedUsers
+  );
+
+  const userData = useSelector((state: RootState) => state.user.userData)!;
+
+  React.useEffect(() => {
+    dispatch(
+      getAssociatedUsers({
+        userId: userData?.userMainData.userId!,
+        userType: userData.userType,
+      })
+    );
+  });
 
   return (
     <View style={styles.container}>

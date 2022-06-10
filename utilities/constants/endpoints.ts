@@ -7,4 +7,5 @@ export enum EndPoints {
   forgetPassword = "http://192.168.1.32:3000/api/resetPass",
   searchConnection = "https://fa-search-backend.herokuapp.com/search?delay=true&term=",
   sendConnection = "",
+  associatedUsers = "https://wheel-e.herokuapp.com/api/patients/",
 }

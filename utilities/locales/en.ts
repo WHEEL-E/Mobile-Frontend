@@ -98,6 +98,9 @@ export default {
       resetPassword: "Error resetting new password, please try again later",
       notValidEmail:
         "Please enter a valid mail and make sure you already have an account.",
+      getAssociatedUsers:
+        "Error loading associated users. Please try again later",
+      removeUser: "Error removing User. Please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
