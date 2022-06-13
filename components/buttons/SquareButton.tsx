@@ -3,12 +3,13 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { SquareButtonProps } from "../../utilities/types/buttonTypes";
 
 export const SquareButton = (props: SquareButtonProps) => {
-  const { title, buttonStyle, titleStyle, onPress } = props;
+  const { title, buttonStyle, titleStyle, onPress, disabled } = props;
 
   return (
     <TouchableOpacity
       style={{ ...styles.button, ...buttonStyle }}
       onPress={onPress}
+      disabled={disabled}
     >
       <Text style={titleStyle}>{title}</Text>
     </TouchableOpacity>

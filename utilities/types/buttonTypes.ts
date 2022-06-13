@@ -24,4 +24,5 @@ export interface SquareButtonProps {
   buttonStyle: object;
   titleStyle: object;
   onPress: () => void;
+  disabled?: boolean;
 }

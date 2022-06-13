@@ -105,13 +105,15 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             image={{ url: require("../assets/images/health-state.png") }}
           />
           <SquareButton
-            title={t("patientHomeScreen.getChair")}
+            title={t("SentInvitatins")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
               backgroundColor: colors.darkGreen,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("SentInvitations");
+            }}
           />
           <SquareButton
             title={t("patientHomeScreen.reminders")}
