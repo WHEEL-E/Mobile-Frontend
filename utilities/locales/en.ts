@@ -173,5 +173,12 @@ export default {
       PatientTitle: "Add New Supervisor",
       SupervisotTitle: "Add New Patient",
     },
+    signOut: {
+      noteText:
+        "By signing-out you will not receive any notifications or reminders until you log back in.",
+      confirmText: "Are you sure you want to logout?",
+      cancel: "Cancel",
+      confirm: "Confirm",
+    },
   },
 };
