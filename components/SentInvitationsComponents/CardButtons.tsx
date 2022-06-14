@@ -9,9 +9,15 @@ import {
   BIG_MARGIN_VERTICAL,
   SMALL_MARGIN_HORIZONTAL,
 } from "../../utilities/constants/spacing";
+import { useDispatch } from "react-redux";
+import {
+  resendInvitation,
+  unsendInvitation,
+} from "../../store/actions/invitations";
 
 export const CardButtons = (props: CardButtonsProps) => {
-  const { reInvitable, unsendable, timeOut } = props;
+  const { reInvitable, unsendable, timeOut, invitationId } = props;
+  const dispatch = useDispatch<any>();
 
   return (
     <View
@@ -24,7 +30,9 @@ export const CardButtons = (props: CardButtonsProps) => {
         <SquareButton
           title="Unsend"
           titleStyle={styles.buttonTitleStyle}
-          onPress={() => {}}
+          onPress={() => {
+            dispatch(unsendInvitation(invitationId));
+          }}
           buttonStyle={styles.cancelButton}
         />
       )}
@@ -35,7 +43,9 @@ export const CardButtons = (props: CardButtonsProps) => {
             ...styles.buttonTitleStyle,
             color: timeOut ? "white" : "black",
           }}
-          onPress={() => {}}
+          onPress={() => {
+            dispatch(resendInvitation(invitationId));
+          }}
           buttonStyle={{
             ...styles.sendButton,
             backgroundColor: timeOut ? colors.lightGreen : colors.lightGray,

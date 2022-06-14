@@ -23,28 +23,22 @@ import { CardButtons } from "./CardButtons";
 
 export const InvitationCard = (props: InvitationCardProps) => {
   const {
-    invitaion: {
-      id,
-      supervisorName,
-      status,
-      sentAt,
-      supervisorId,
-      supervisorPhoto,
-    },
+    invitaion: { _id, to_Name, status, updated_at, to_id, to_ProfilePhoto },
     backgroundColor,
   } = props;
 
   const sevenDays = 7 * 24 * 60 * 60 * 1000;
-  const countDownDate = sevenDays - (Date.now() - sentAt.getTime());
+  const countDownDate =
+    sevenDays - (Date.now() - new Date(updated_at).getTime());
   const [countDown, setCountDown] = React.useState(countDownDate);
   const [days, hours, minutes, seconds] = getReturnValues(countDown);
 
   const textColor =
     backgroundColor === colors.darkBlue ? "white" : colors.darkBlue;
 
-  const unsendable = status === "sent";
-  const reinvitable = status !== "accepted";
-  const showCountDown = countDown > 0 && status !== "accepted";
+  const unsendable = status === "Pending";
+  const reinvitable = status !== "Accepted";
+  const showCountDown = countDown > 0 && status !== "Accepted";
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -58,27 +52,26 @@ export const InvitationCard = (props: InvitationCardProps) => {
 
   return (
     <View
-      key={id}
+      key={_id}
       style={{ ...styles.container, backgroundColor: backgroundColor }}
     >
       <View style={styles.content}>
         <View>
-          <Text style={{ ...styles.name, color: textColor }}>
-            {supervisorName}
-          </Text>
+          <Text style={{ ...styles.name, color: textColor }}>{to_Name}</Text>
           <Text style={{ ...styles.status, color: textColor }}>
             Status:{" "}
             <Text style={{ ...NormalText, color: textColor }}>{status}</Text>
           </Text>
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
-          <Image source={{ uri: supervisorPhoto }} style={styles.image} />
+          <Image source={{ uri: to_ProfilePhoto }} style={styles.image} />
         </View>
       </View>
       <CardButtons
         reInvitable={reinvitable}
         unsendable={unsendable}
         timeOut={countDown <= 0}
+        invitationId={_id}
       />
       {showCountDown && (
         <Text style={{ ...NoteText, color: textColor, textAlign: "center" }}>
