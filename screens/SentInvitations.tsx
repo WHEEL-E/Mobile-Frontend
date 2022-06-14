@@ -52,7 +52,7 @@ const SentInvitations = (props: SentInvitationsProps) => {
         renderItem={({ item, index }) => (
           <InvitationCard
             invitaion={item}
-            backGroundColor={
+            backgroundColor={
               index % 2 == 0 ? colors.darkBlue : colors.lightPurple
             }
           />
@@ -71,31 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: "35%",
     paddingBottom: "20%",
-  },
-  title: {
-    fontSize: 27,
-    fontFamily: "Cairo-Bold",
-  },
-  buttons: {
-    marginBottom: 70,
-    width: 300,
-  },
-  button: {
-    borderWidth: 2,
-    borderColor: "white",
-    borderRadius: 30,
-    justifyContent: "center",
-    padding: 15,
-    height: 150,
-    width: 200,
-    marginHorizontal: 50,
-    marginVertical: 10,
-  },
-  ButtonText: {
-    fontFamily: "Cairo-Bold",
-    color: "white",
-    fontSize: 20,
-    textAlign: "center",
   },
 });
 

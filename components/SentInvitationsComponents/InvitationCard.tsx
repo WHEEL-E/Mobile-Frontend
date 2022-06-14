@@ -31,7 +31,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
       supervisorId,
       supervisorPhoto,
     },
-    backGroundColor,
+    backgroundColor,
   } = props;
 
   const sevenDays = 7 * 24 * 60 * 60 * 1000;
@@ -40,7 +40,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
   const [days, hours, minutes, seconds] = getReturnValues(countDown);
 
   const textColor =
-    backGroundColor === colors.darkBlue ? "white" : colors.darkBlue;
+    backgroundColor === colors.darkBlue ? "white" : colors.darkBlue;
 
   const unsendable = status === "sent";
   const reinvitable = status !== "accepted";
@@ -59,7 +59,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
   return (
     <View
       key={id}
-      style={{ ...styles.container, backgroundColor: backGroundColor }}
+      style={{ ...styles.container, backgroundColor: backgroundColor }}
     >
       <View style={styles.content}>
         <View>

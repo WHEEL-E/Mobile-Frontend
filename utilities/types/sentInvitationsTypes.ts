@@ -9,7 +9,7 @@ export interface InvitationData {
 
 export interface InvitationCardProps {
   invitaion: InvitationData;
-  backGroundColor: string;
+  backgroundColor: string;
 }
 
 export interface CardButtonsProps {
