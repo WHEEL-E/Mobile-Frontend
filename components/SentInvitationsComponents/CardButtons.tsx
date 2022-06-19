@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import colors from "../../utilities/constants/colors";
 import { SquareButton } from "../buttons/SquareButton";
 import { CardButtonsProps } from "../../utilities/types/sentInvitationsTypes";
@@ -18,6 +19,7 @@ import {
 export const CardButtons = (props: CardButtonsProps) => {
   const { reInvitable, unsendable, timeOut, invitationId } = props;
   const dispatch = useDispatch<any>();
+  const { t } = useTranslation();
 
   return (
     <View
@@ -28,7 +30,7 @@ export const CardButtons = (props: CardButtonsProps) => {
     >
       {unsendable && (
         <SquareButton
-          title="Unsend"
+          title={t("sentInvitations.unsend")}
           titleStyle={styles.buttonTitleStyle}
           onPress={() => {
             dispatch(unsendInvitation(invitationId));
@@ -38,7 +40,7 @@ export const CardButtons = (props: CardButtonsProps) => {
       )}
       {reInvitable && (
         <SquareButton
-          title="Reinvite"
+          title={t("sentInvitations.reinvite")}
           titleStyle={{
             ...styles.buttonTitleStyle,
             color: timeOut ? "white" : "black",

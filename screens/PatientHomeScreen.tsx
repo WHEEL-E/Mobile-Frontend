@@ -105,7 +105,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             image={{ url: require("../assets/images/health-state.png") }}
           />
           <SquareButton
-            title={t("SentInvitatins")}
+            title={t("patientHomeScreen.sentInvitations")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,

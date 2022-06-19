@@ -1,10 +1,10 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import colors from "../../utilities/constants/colors";
-import {
-  getReturnValues,
-  InvitationCardProps,
-} from "../../utilities/types/sentInvitationsTypes";
+import { InvitationCardProps } from "../../utilities/types/sentInvitationsTypes";
+import { CardButtons } from "./CardButtons";
+import { useCountdown } from "../../context/CountDown";
 import {
   BIG_MARGIN_VERTICAL,
   SMALL_MARGIN_HORIZONTAL,
@@ -19,8 +19,6 @@ import {
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
 } from "../../utilities/constants/dimentions";
-import { CardButtons } from "./CardButtons";
-import { useCountdown } from "../../context/CountDown";
 
 export const InvitationCard = (props: InvitationCardProps) => {
   const {
@@ -28,6 +26,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
     backgroundColor,
   } = props;
 
+  const { t } = useTranslation();
   const [days, hours, minutes, seconds] = useCountdown(updated_at);
 
   const textColor =
@@ -47,8 +46,10 @@ export const InvitationCard = (props: InvitationCardProps) => {
         <View>
           <Text style={{ ...styles.name, color: textColor }}>{to_Name}</Text>
           <Text style={{ ...styles.status, color: textColor }}>
-            Status:{" "}
-            <Text style={{ ...NormalText, color: textColor }}>{status}</Text>
+            {t("sentInvitations.status")}
+            <Text style={{ ...NormalText, color: textColor }}>
+              {t(`sentInvitations.${status}`)}
+            </Text>
           </Text>
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
@@ -63,8 +64,8 @@ export const InvitationCard = (props: InvitationCardProps) => {
       />
       {showCountDown && (
         <Text style={{ ...NoteText, color: textColor, textAlign: "center" }}>
-          You can resend invitation in:{" "}
-          {`${days}d, ${hours}h, ${minutes}m, ${seconds}s`}
+          {t("sentInvitations.resendNote")}
+          {t("sentInvitations.time", { days, hours, minutes, seconds })}
         </Text>
       )}
     </View>

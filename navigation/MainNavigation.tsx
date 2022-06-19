@@ -88,7 +88,7 @@ export function MainNavigation() {
         name="SentInvitations"
         component={SentInvitations}
         options={{
-          title: "Sent Invitations",
+          title: t("sentInvitations.sentInvitations"),
         }}
       />
     </MainStack.Navigator>

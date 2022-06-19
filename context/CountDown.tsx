@@ -12,9 +12,7 @@ const useCountdown = (targetDate: any) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountDown(
-        (t) => sevenDays + new Date(targetDate).getTime() - Date.now()
-      );
+      setCountDown(sevenDays + new Date(targetDate).getTime() - Date.now());
     }, 1000);
     if (countDown <= 0) {
       clearInterval(interval);
