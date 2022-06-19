@@ -20,6 +20,7 @@ import {
   DEVICE_WIDTH,
 } from "../../utilities/constants/dimentions";
 import { CardButtons } from "./CardButtons";
+import { useCountdown } from "../../context/CountDown";
 
 export const InvitationCard = (props: InvitationCardProps) => {
   const {
@@ -27,28 +28,15 @@ export const InvitationCard = (props: InvitationCardProps) => {
     backgroundColor,
   } = props;
 
-  const sevenDays = 7 * 24 * 60 * 60 * 1000;
-  const countDownDate =
-    sevenDays - (Date.now() - new Date(updated_at).getTime());
-  const [countDown, setCountDown] = React.useState(countDownDate);
-  const [days, hours, minutes, seconds] = getReturnValues(countDown);
+  const [days, hours, minutes, seconds] = useCountdown(updated_at);
 
   const textColor =
     backgroundColor === colors.darkBlue ? "white" : colors.darkBlue;
 
+  const timeOut = days + hours + minutes + seconds <= 0;
   const unsendable = status === "Pending";
   const reinvitable = status !== "Accepted";
-  const showCountDown = countDown > 0 && status !== "Accepted";
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCountDown(countDown - 1000);
-    }, 1000);
-    if (countDown <= 0) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [countDownDate]);
+  const showCountDown = !timeOut && status !== "Accepted";
 
   return (
     <View
@@ -70,7 +58,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
       <CardButtons
         reInvitable={reinvitable}
         unsendable={unsendable}
-        timeOut={countDown <= 0}
+        timeOut={timeOut}
         invitationId={_id}
       />
       {showCountDown && (
