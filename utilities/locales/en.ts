@@ -184,5 +184,12 @@ export default {
       reinvite: "Reinvite",
       time: "{{days}}d, {{hours}}h, {{minutes}}m, {{seconds}}s",
     },
+    signOut: {
+      noteText:
+        "By signing-out you will not receive any notifications or reminders until you log back in.",
+      confirmText: "Are you sure you want to logout?",
+      cancel: "Cancel",
+      confirm: "Confirm",
+    },
   },
 };

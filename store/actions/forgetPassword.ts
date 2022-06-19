@@ -5,49 +5,53 @@ import { EndPoints } from "../../utilities/constants/endpoints";
 import { ShowModal } from "./errorModal";
 import { ForgetPasswordActionType } from "../../utilities/forgetPasswordUtils";
 
-export const sendResetEmail = async (emailAddress: string, dispatch: any) => {
-  const link = ExpoLinking.createURL("resetPassword");
+export const sendResetEmail = createAsyncThunk(
+  ForgetPasswordActionType.GET_TOKEN,
+  async (emailAddress: string, thunkAPI) => {
+    try {
+      const link = ExpoLinking.createURL("resetPassword");
 
-  const response = await axios.post(
-    "https://wheel-e.herokuapp.com/api/invitations",
-    {
-      from_id: "627ecb1d08d1463ebdeedba7",
-      to_id: "627ecb1d08d1463ebdeedba7",
+      const response = await axios.post(`${EndPoints.forgetPassword}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emailAddress: emailAddress, resetUri: link }),
+      });
+
+      if (response.status / 100 !== 2) {
+        //TODO: we have two cases: error making the API call, user entering non-existing mailAddress.
+        //TODO: we need to handle them both depending on the status code returned
+        thunkAPI.dispatch(ShowModal("errorModal.notValidEmail"));
+      }
+    } catch (err) {
+      thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));
+      throw new Error("Can't get token");
     }
-  );
+  }
+);
 
-  console.log(response);
-};
+export const changePassword = createAsyncThunk(
+  ForgetPasswordActionType.CHANGE_PASSWORD,
+  async (data: { password: string; token: string }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`${EndPoints.forgetPassword}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-export const changePassword = async (
-  data: { password: string; token: string },
-  dispatch: any
-) => {
-  try {
-    const response = await axios.patch(`${EndPoints.forgetPassword}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+      if (response.status / 100 !== 2) {
+        thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));
+        throw new Error("Can't change password");
+      }
 
-    if (response.status / 100 !== 2) {
-      dispatch(ShowModal("errorModal.resetPassword"));
+      return response.data;
+    } catch (err) {
+      thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));
       throw new Error("Can't change password");
     }
-  } catch (err) {
-    dispatch(ShowModal("errorModal.resetPassword"));
-    throw new Error("Can't change password");
   }
-};
-
-const a = {
-  _id: "62a83bd02bad3535adf96f78",
-  from_id: "627ecb1d08d1463ebdeedba7",
-  to_id: "627ecb1d08d1463ebdeedba7",
-  status: "Pending",
-  created_at: "2022-06-14T07:42:08.533Z",
-  updated_at: "2022-06-14T07:42:08.533Z",
-  __v: 0,
-};
+);
