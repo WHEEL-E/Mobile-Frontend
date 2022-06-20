@@ -6,10 +6,17 @@ import DriveWheel from "../components/freeDriveComponents/DriveWheel";
 import fonts from "../utilities/constants/fonts";
 import { BackButton } from "../components/buttons/BackButton";
 import { FreeDriveProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { useDispatch } from "react-redux";
+import { initSocket } from "../store/actions/socket";
 
 const FreeDriveScreen = (props: FreeDriveProps) => {
+  const dispatch = useDispatch<any>();
   const { navigation } = props;
   const { t } = useTranslation();
+
+  useEffect(() => {
+    dispatch(initSocket());
+  }, []);
 
   return (
     <View style={styles.container}>

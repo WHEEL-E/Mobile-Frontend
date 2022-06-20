@@ -98,6 +98,8 @@ export default {
       resetPassword: "Error resetting new password, please try again later",
       notValidEmail:
         "Please enter a valid mail and make sure you already have an account.",
+      socketconnection:
+        "Error connecting to socket. Please try again later or reload screen",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",

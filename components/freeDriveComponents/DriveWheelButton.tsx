@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Path } from "react-native-svg";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import colors from "../../utilities/constants/colors";
 import { DriveWheelButtonProps, archs } from "../../utilities/driveWheelUtils";
 import { Gradientfilling } from "./GradientFilling";
 import { View } from "react-native";
-import io, { Socket } from "socket.io-client";
-
-const socketEndpoint = "http://192.168.1.17:3000";
-
-let socket: Socket;
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducers/rootReducer";
+import { Socket } from "socket.io-client";
 
 export const DriveWheelButton = (props: DriveWheelButtonProps) => {
   const { index, value } = props;
@@ -19,21 +17,10 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
     "url(#GradientFilling)",
     "url(#GradientFilling)",
   ]);
+  const socket = useSelector(
+    (state: RootState) => state.socket.socket
+  ) as Socket;
 
-  useEffect(function didMount() {
-    socket = io(socketEndpoint, {
-      transports: ["websocket"],
-    });
-
-    socket.io.on("open", () => console.log("Connected"));
-    socket.io.on("close", () => console.log("Disconnected"));
-    
-    return function didUnmount() {
-      socket.disconnect();
-      socket.removeAllListeners();
-    };
-  }, []);
- 
   return (
     <View>
       <Gradientfilling />
