@@ -53,7 +53,7 @@ export function MainNavigation() {
       />
       <MainStack.Screen
         name="Settings"
-        component={FreeDriveScreen}
+        component={SettingScreen}
         options={{ title: t("screenTitles.settings") }}
       />
 

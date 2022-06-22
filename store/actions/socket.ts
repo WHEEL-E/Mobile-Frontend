@@ -5,7 +5,7 @@ import { ShowModal } from "./errorModal";
 
 export const initSocket = createAsyncThunk(
   SocketActionTypes.INIT_SOCKET,
-  async (thunkAPI) => {
+  async (undefined, thunkAPI) => {
     try {
       const socketEndpoint = "http://192.168.1.17:3000";
 
@@ -14,9 +14,7 @@ export const initSocket = createAsyncThunk(
       });
       return socket;
     } catch (err) {
-      thunkAPI.dispatch(
-        ShowModal("errorModal.socketconnection")
-      );
+      thunkAPI.dispatch(ShowModal("errorModal.socketconnection"));
       throw err;
     }
   }
