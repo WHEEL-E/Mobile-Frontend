@@ -5,6 +5,7 @@ import notesReducer from "./notes";
 import userReducer from "./user";
 import remindersReducer from "./reminders";
 import addConnectionReducer from "./addConnection";
+import healthMonitoring from "./healthMonitoring";
 
 const reducers = {
   form: formReducer,
@@ -13,6 +14,7 @@ const reducers = {
   errorModalReducer: errorModalReducer,
   notes: notesReducer,
   addConnectionReducer: addConnectionReducer,
+  healthMonitoring: healthMonitoring,
 };
 
 const rootReducer = combineReducers(reducers);
