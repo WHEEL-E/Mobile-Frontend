@@ -17,7 +17,7 @@ const HealthMonitoringScreen = () => {
   }, []);
 
   if (socket) {
-    socket.on("message", (message) => {
+    socket.on("data", (message) => {
       console.log(message);
     });
   }

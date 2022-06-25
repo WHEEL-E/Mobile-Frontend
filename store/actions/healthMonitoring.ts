@@ -6,7 +6,7 @@ export const startConnection = createAsyncThunk(
   "INIT_SOCKET",
   async (undefined, thunkAPI) => {
     try {
-      const socketEndpoint = "http://192.168.166.26:3000";
+      const socketEndpoint = "http://192.168.1.115:5000";
 
       const socket: Socket = io(socketEndpoint, {
         transports: ["websocket"],
