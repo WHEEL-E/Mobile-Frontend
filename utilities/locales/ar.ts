@@ -52,7 +52,7 @@ export default {
       map: "الخارطة",
       healthStatus: "الحالة الصحية",
       emergencyCall: "مكالمة الطوارئ",
-      getChair: "أحضر كرسيي",
+      sentInvitations: "الطلبات المرسلة",
       reminders: "ملاحظات الطبيب",
       addSupervisor: "أضف مشرف",
       help: "المساعدة",
@@ -178,6 +178,24 @@ export default {
       confirmremoveUser: "هل أنت متأكد من حذف {{name}} من قائمة الاتصال",
       cancel: "إلغاء",
       associatedUsers: "قائمة الاتصال",
+    },
+    sentInvitations: {
+      sentInvitations: "الطلبات المرسلة",
+      Pending: "معلق",
+      Accepted: "تم الإضافة",
+      Rejected: "مرفوض",
+      status: "الحالة: ",
+      resendNote: "يمكنك إرسال طلب آخر خلال: ",
+      unsend: "حذف",
+      reinvite: "إعادة إرسال",
+      time: "{{days}}ي, {{hours}}س, {{minutes}}د, {{seconds}}ث",
+    },
+    signOut: {
+      noteText:
+        "إذا قمت بتسجيل الخروج, لن تتلقى أي إشعارات أو تنبيهات حتى تقوم بتسجيل الدخول مرة اخرى",
+      confirmText: "هل انت متأكد من رغبتك بتسجيل الخروج؟",
+      cancel: "إلغاء",
+      confirm: "تأكيد",
     },
   },
 };

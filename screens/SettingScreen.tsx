@@ -10,13 +10,12 @@ import {
   PADDING_HORIZONTAL,
   SMALL_MARGIN_VERTICAL,
 } from "../utilities/constants/spacing";
-import { useDispatch } from "react-redux";
-import { signOut } from "../store/actions/user";
+import { SignOutModal } from "../components/settingsComponents/SignOutModal.";
 
 const SettingScreen = (props: SettingProps) => {
   const { navigation } = props;
-  const dispatch = useDispatch<any>();
   const { t } = useTranslation();
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const screenItems = [
     {
@@ -44,13 +43,17 @@ const SettingScreen = (props: SettingProps) => {
       name: t("settings.logout"),
       icon: "person",
       PressingFunction: () => {
-        dispatch(signOut(null));
+        setModalVisible(true);
       },
     },
   ];
 
   return (
     <View style={styles.container}>
+      <SignOutModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
       <View style={styles.itemsContainer}>
         {screenItems.map((item) => (
           <View style={styles.Item} key={item.name}>

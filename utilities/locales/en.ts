@@ -53,7 +53,7 @@ export default {
       map: "Map",
       healthStatus: "Health Status",
       emergencyCall: "Emergency Call",
-      getChair: "GetMyChair",
+      sentInvitations: "Sent Invitations",
       reminders: "Reminders",
       addSupervisor: "Add a Supervisor",
       help: "Help",
@@ -185,6 +185,24 @@ export default {
         "Are you sure you want to remove {{name}} from your connection list?",
       cancel: "Cancel",
       associatedUsers: "Associated Users",
+    },
+    sentInvitations: {
+      sentInvitations: "Sent Invitations",
+      Pending: "Pending",
+      Accepted: "Accepted",
+      Rejected: "Rejected",
+      status: "status: ",
+      resendNote: "You can resend invitation in: ",
+      unsend: "Unsend",
+      reinvite: "Reinvite",
+      time: "{{days}}d, {{hours}}h, {{minutes}}m, {{seconds}}s",
+    },
+    signOut: {
+      noteText:
+        "By signing-out you will not receive any notifications or reminders until you log back in.",
+      confirmText: "Are you sure you want to logout?",
+      cancel: "Cancel",
+      confirm: "Confirm",
     },
   },
 };
