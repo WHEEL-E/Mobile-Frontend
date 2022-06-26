@@ -36,7 +36,8 @@ const notesReducer = createReducer(initialState, (builder) => {
       if (updatedNoteIndex > -1) {
         updatedNotes[updatedNoteIndex] = {
           ...updatedNotes[updatedNoteIndex],
-          ...updatedNote,
+          description: updatedNote.description,
+          title: updatedNote.title,
         };
       }
       return {

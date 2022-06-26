@@ -32,8 +32,6 @@ export const removeNote = createAsyncThunk(
   NotesActionTypes.REMOVE_NOTE,
   async (noteId: string, thunkAPI) => {
     try {
-      console.log(noteId);
-
       const response = await axios.delete(`${EndPoints.Notes}/${noteId}`);
       console.log(response, noteId);
       if (response.data.status !== "Success") {

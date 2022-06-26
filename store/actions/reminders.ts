@@ -16,12 +16,12 @@ export const getReminders = createAsyncThunk(
         `${EndPoints.Reminders}/user/6263ce0577164ec6745e3bd7`
       );
 
-      if (response.data.status === "Success") {
+      if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.fetchingReminders"));
         throw new Error("can't get reminders");
       }
 
-      const resData = await response.data.data.json();
+      const resData = await response.data.data;
       const allReminders: Reminder[] = [];
       for (const data in resData) {
         allReminders.push({
