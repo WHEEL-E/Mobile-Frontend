@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { getReturnValues } from "../utilities/types/sentInvitationsTypes";
+import { getReturnValues } from "../utilities/sentInvitationUtils";
 
 const useCountdown = (targetDate: any) => {
   const sevenDays = 7 * 24 * 60 * 60 * 1000;
