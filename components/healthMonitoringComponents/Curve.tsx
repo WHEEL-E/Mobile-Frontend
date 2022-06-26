@@ -2,16 +2,40 @@ import React from "react";
 import { View } from "react-native";
 import { Path } from "react-native-svg";
 import * as shape from "d3-shape";
+import { BehaviorSubject, delay } from "rxjs";
+
 import colors from "../../utilities/constants/colors";
 import { CurveProps } from "../../utilities/types/healthMonitoringTypes";
 
 export const Curve = (props: CurveProps) => {
   const { data } = props;
-
-  const [minX, minY] = data.reduce(([a, b], [c, d]) => [
-    Math.min(a, c),
-    Math.min(b, d),
+  const placeHolder: [number, number] = [0, 0];
+  const sub = new BehaviorSubject(placeHolder);
+  const [subject] = React.useState(sub);
+  const [sensorsData, setSensorsData] = React.useState([
+    [0, 0],
+    [0, 0],
+    [0, 0],
   ]);
+  const minX = data[0][0];
+
+  React.useEffect(() => {
+    for (const d of data) {
+      subject.next(d);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const observable = subject.pipe(delay(1000)).subscribe((term) => {
+      console.log(term);
+      setSensorsData([...sensorsData, term]);
+      return sensorsData;
+    });
+    return () => {
+      observable.unsubscribe();
+      subject.unsubscribe();
+    };
+  }, [subject]);
 
   return (
     <View>

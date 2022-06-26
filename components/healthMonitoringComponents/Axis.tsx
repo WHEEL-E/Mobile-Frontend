@@ -3,11 +3,8 @@ import { View } from "react-native";
 import { Path } from "react-native-svg";
 import * as shape from "d3-shape";
 import colors from "../../utilities/constants/colors";
-import { AxisProps } from "../../utilities/types/healthMonitoringTypes";
 
-export const Axis = (props: AxisProps) => {
-  const { data } = props;
-
+export const Axis = () => {
   return (
     <View>
       <Path

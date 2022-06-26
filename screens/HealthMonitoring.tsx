@@ -17,8 +17,36 @@ import {
 const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
   const dispatch = useDispatch<any>();
 
-  const initialData: UserSensors[] = [];
+  //TODO: will be deleted later
+  const initialData: UserSensors[] = [
+    { SPO2: 400, user_id: 1, Pulse: 400, time: "19:33:14" },
+    { SPO2: 500, user_id: 1, Pulse: 500, time: "19:33:15" },
+    { SPO2: 400, user_id: 1, Pulse: 600, time: "19:33:16" },
+    { SPO2: 650, user_id: 1, Pulse: 650, time: "19:33:17" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:18" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:19" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:20" },
+    { SPO2: 655, user_id: 1, Pulse: 420, time: "19:33:21" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:22" },
+    { SPO2: 400, user_id: 1, Pulse: 400, time: "19:33:23" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:24" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:25" },
+    { SPO2: 600, user_id: 1, Pulse: 600, time: "19:33:26" },
+    { SPO2: 500, user_id: 1, Pulse: 500, time: "19:33:27" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:28" },
+    { SPO2: 430, user_id: 1, Pulse: 430, time: "19:33:29" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:30" },
+    { SPO2: 600, user_id: 1, Pulse: 600, time: "19:33:31" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:32" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:33" },
+    { SPO2: 430, user_id: 1, Pulse: 430, time: "19:33:34" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:35" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:36" },
+    { SPO2: 655, user_id: 1, Pulse: 655, time: "19:33:37" },
+  ];
+
   const [sensorsData, setSensorsData] = React.useState(initialData);
+
   const socket: Socket | undefined = useSelector(
     (state: RootState) => state.healthMonitoring.socket
   );
@@ -38,7 +66,7 @@ const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
     data: sensorsData.map((field) => {
       const split = field.time.split(":").map((a) => +a);
       const xAxis = +split.reduce((a, b) => a + b);
-      return [xAxis, (3 * (field.Pulse - 400)) / 260 + 97];
+      return [xAxis, (40 * (field.Pulse - 400)) / 260 + 60];
     }),
   };
 
@@ -51,7 +79,7 @@ const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
     }),
   };
 
-  const allData = [dataPulse, dataSaturation];
+  const allData = [dataSaturation, dataPulse];
 
   return (
     <View style={styles.container}>
