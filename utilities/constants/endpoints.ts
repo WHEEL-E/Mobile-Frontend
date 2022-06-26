@@ -8,4 +8,5 @@ export enum EndPoints {
   searchConnection = "https://fa-search-backend.herokuapp.com/search?delay=true&term=",
   invitations = "https://wheel-e.herokuapp.com/api/invitations",
   sendConnection = "",
+  associatedUsers = "https://wheel-e.herokuapp.com/api/patients/",
 }

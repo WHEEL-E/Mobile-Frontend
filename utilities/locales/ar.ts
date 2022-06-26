@@ -60,6 +60,7 @@ export default {
       freeDriving: "القيادة بحرية",
       wishGoodDay: "نتمنى لك يومًا سعيدًا",
       morning: "صباح الخير, ",
+      associatedUsers: "قائمة الاتصال",
     },
     getStartedScreen: {
       wheelE: "نحن نصطحبك إلى أي مكان",
@@ -94,6 +95,9 @@ export default {
       fetchingNotes: "حدث خطأ أثناء تحميل الملاحظات, برجاء المحاولة لاحقًا",
       resetPassword: "حدث خطأ أثناء تغيير رمز الدخول, برجاء المحاولة لاحقًا",
       notValidEmail: "من فضلك أدخل بريد الكتروني صحيح وتأكد ان لديك حساب مسجل",
+      getAssociatedUsers:
+        "حدث خطأ أثناء تحميل قائمة الاتصال, برجاء المحاولة لاحقًا",
+      removeUser: "حدث خطأ أثناء حذف المستخدم, برجاء المحاولة لاحقًا",
     },
     notesScreen: {
       modalHeader: "قم بملئ البيانات لإاضافة ملاحظة",
@@ -166,6 +170,14 @@ export default {
       placeHolder: "أدخل الاسم الذي تريد البحث عنه",
       patientTitle: "أضف مشرف جديد",
       supervisorTitle: "أضف مريض جديد",
+    },
+    associatedUsers: {
+      remove: "حذف",
+      view: "عرض",
+      removeUser: "حذف مستخدم",
+      confirmremoveUser: "هل أنت متأكد من حذف {{name}} من قائمة الاتصال",
+      cancel: "إلغاء",
+      associatedUsers: "قائمة الاتصال",
     },
     sentInvitations: {
       sentInvitations: "الطلبات المرسلة",

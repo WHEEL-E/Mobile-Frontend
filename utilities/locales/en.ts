@@ -61,6 +61,7 @@ export default {
       freeDriving: "Free Driving",
       wishGoodDay: "We wish you have a good day!",
       morning: "Good Morning, ",
+      associatedUsers: "Associated Users",
     },
     getStartedScreen: {
       wheelE: "Wheel.e gets you everywhere",
@@ -98,6 +99,9 @@ export default {
       resetPassword: "Error resetting new password, please try again later",
       notValidEmail:
         "Please enter a valid mail and make sure you already have an account.",
+      getAssociatedUsers:
+        "Error loading associated users. Please try again later",
+      removeUser: "Error removing User. Please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
@@ -172,6 +176,15 @@ export default {
       placeHolder: "who are you looking for",
       PatientTitle: "Add New Supervisor",
       SupervisotTitle: "Add New Patient",
+    },
+    associatedUsers: {
+      remove: "Remove",
+      view: "View",
+      removeUser: "Remove User",
+      confirmremoveUser:
+        "Are you sure you want to remove {{name}} from your connection list?",
+      cancel: "Cancel",
+      associatedUsers: "Associated Users",
     },
     sentInvitations: {
       sentInvitations: "Sent Invitations",

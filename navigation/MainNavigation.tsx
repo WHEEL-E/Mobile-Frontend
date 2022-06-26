@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
-import AssociatedPatientsScreen from "../screens/AssociatedPatientsScreen";
+import AssociatedUsersScreen from "../screens/AssociatedUsersScreen";
 import FreeDriveScreen from "../screens/FreeDriveScreen";
 import PatientHomeScreen from "../screens/PatientHomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
@@ -68,8 +68,11 @@ export function MainNavigation() {
         options={{ title: t("screenTitles.language") }}
       />
       <MainStack.Screen
-        name="AssociatedPatients"
-        component={AssociatedPatientsScreen}
+        name="AssociatedUsers"
+        component={AssociatedUsersScreen}
+        options={{
+          title: t("associatedUsers.associatedUsers"),
+        }}
       />
       <MainStack.Screen
         name="SupervisedPatient"
