@@ -84,13 +84,15 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
           />
           <SquareButton
-            title={t("patientHomeScreen.help")}
+            title={t("Health Monitor")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
               backgroundColor: colors.lightGreen,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("HealthMonitoring");
+            }}
           />
         </View>
         <View style={styles.buttonsCol}>

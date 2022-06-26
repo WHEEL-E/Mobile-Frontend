@@ -8,7 +8,6 @@ import { VisibleNavigation } from "../navigation/VisibleNavigation";
 import { fetchFonts } from "../utilities/fetchFonts";
 import { restoreUser } from "../store/actions/user";
 import { linking } from "../utilities/forgetPasswordUtils";
-import HealthMonitoringScreen from "./HealthMonitoring";
 
 const getCurrentLanguage = async () => {
   return await SecureStore.getItemAsync("CurrentLang");
@@ -51,7 +50,7 @@ const App = () => {
 
   return (
     <NavigationContainer linking={linking}>
-      <HealthMonitoringScreen />
+      <VisibleNavigation />
     </NavigationContainer>
   );
 };
