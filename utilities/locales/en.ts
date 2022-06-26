@@ -53,7 +53,7 @@ export default {
       map: "Map",
       healthStatus: "Health Status",
       emergencyCall: "Emergency Call",
-      getChair: "GetMyChair",
+      sentInvitations: "Sent Invitations",
       reminders: "Reminders",
       addSupervisor: "Add a Supervisor",
       help: "Help",
@@ -172,6 +172,17 @@ export default {
       placeHolder: "who are you looking for",
       PatientTitle: "Add New Supervisor",
       SupervisotTitle: "Add New Patient",
+    },
+    sentInvitations: {
+      sentInvitations: "Sent Invitations",
+      Pending: "Pending",
+      Accepted: "Accepted",
+      Rejected: "Rejected",
+      status: "status: ",
+      resendNote: "You can resend invitation in: ",
+      unsend: "Unsend",
+      reinvite: "Reinvite",
+      time: "{{days}}d, {{hours}}h, {{minutes}}m, {{seconds}}s",
     },
     signOut: {
       noteText:

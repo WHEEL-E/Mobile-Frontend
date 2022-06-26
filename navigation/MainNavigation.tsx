@@ -19,6 +19,7 @@ import {
 } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
+import SentInvitations from "../screens/SentInvitations";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
@@ -81,6 +82,13 @@ export function MainNavigation() {
           title: isPatient
             ? t("addConnection.patientTitle")
             : t("addConnection.supervisorTitle"),
+        }}
+      />
+      <MainStack.Screen
+        name="SentInvitations"
+        component={SentInvitations}
+        options={{
+          title: t("sentInvitations.sentInvitations"),
         }}
       />
     </MainStack.Navigator>
