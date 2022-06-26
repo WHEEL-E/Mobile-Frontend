@@ -1,10 +1,20 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ImageSourcePropType } from "react-native";
 import { AutoCompleteType } from "./autoCompleteType";
+import { MainStackParamList } from "./navigationTypes/mainNavigationTypes";
 
-export interface AssociatedPatientProps {
-  patientName: string;
-  patientAddress: string;
-  onPress: () => void;
+export interface AssociatedUserProps {
+  userInfo: {
+    userId: string;
+    userName: string;
+    address: string;
+    profilePhoto: string;
+  };
+  navigation: NativeStackNavigationProp<
+    MainStackParamList,
+    "AssociatedUsers",
+    undefined
+  >;
   backgroundColor: string;
 }
 
