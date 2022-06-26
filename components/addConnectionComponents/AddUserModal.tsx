@@ -13,7 +13,6 @@ import { SquareButton } from "../buttons/SquareButton";
 import { RootState } from "../../store/reducers/rootReducer";
 import { AddUserModalProps } from "../../utilities/types/addConnectionTypes";
 import { NormalText } from "../../utilities/types/fontTypes";
-import { sendConnectionRequest } from "../../store/actions/addConnection";
 
 export const AddUserModal = (props: AddUserModalProps) => {
   const { name, id, modalVisible, setModalVisible } = props;
@@ -25,7 +24,8 @@ export const AddUserModal = (props: AddUserModalProps) => {
   );
 
   const submitHandler = () => {
-    dispatch(sendConnectionRequest({ receivingId: id, sendingId: sendingId! }));
+    // TODO: send invitation
+    // dispatch(sendConnectionRequest({ receivingId: id, sendingId: sendingId! }));
   };
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>

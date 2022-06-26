@@ -21,7 +21,7 @@ export interface AddUserModalProps {
 }
 
 export interface searchUser {
-  id: string;
+  _id: string;
   name: string;
   profilePhoto: string;
 }

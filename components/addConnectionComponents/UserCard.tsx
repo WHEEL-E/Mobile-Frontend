@@ -1,6 +1,5 @@
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { UserCardProps } from "../../utilities/types/addConnectionTypes";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { TitleText } from "../../utilities/types/fontTypes";
@@ -28,9 +27,10 @@ export const UserCard = (props: UserCardProps) => {
           backgroundColor: colors.lightGray,
           alignItems: "center",
           justifyContent: "center",
+          overflow: "hidden",
         }}
       >
-        <Ionicons name="airplane" size={DEVICE_WIDTH * 0.1} />
+        <Image source={{ uri: imageUri }} style={styles.image} />
       </View>
       <Text style={styles.name}>{name}</Text>
     </TouchableOpacity>
@@ -38,11 +38,12 @@ export const UserCard = (props: UserCardProps) => {
 };
 
 const styles = StyleSheet.create({
-  name: TitleText,
+  name: { ...TitleText, flex: 1, textAlign: "center", width: "80%" },
   card: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     marginVertical: "10%",
   },
+  image: { width: "100%", height: "100%" },
 });
