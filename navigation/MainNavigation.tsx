@@ -19,6 +19,7 @@ import {
 } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
+import HealthMonitoring from "../screens/HealthMonitoring";
 import SentInvitations from "../screens/SentInvitations";
 
 const MainStack = createStackNavigator<MainStackParamList>();
@@ -77,6 +78,11 @@ export function MainNavigation() {
       <MainStack.Screen
         name="SupervisedPatient"
         component={SupervisedPatientScreen}
+      />
+      <MainStack.Screen
+        name="HealthMonitoring"
+        component={HealthMonitoring}
+        options={{ title: t("Health Monitoring") }}
       />
       <MainStack.Screen
         name="AddConnection"
