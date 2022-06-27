@@ -1,14 +1,13 @@
 import Svg from "react-native-svg";
-import {
-  DEVICE_HEIGHT,
-  DEVICE_WIDTH,
-} from "../../utilities/constants/dimentions";
 import { ChartProps } from "../../utilities/types/healthMonitoringTypes";
 import { Axis } from "./Axis";
 import { AxisNumbers } from "./AxisNumbers";
 import { Curve } from "./Curve";
 import { Grid } from "./Grid";
-import { Curve } from "./Curve";
+import {
+  DEVICE_HEIGHT,
+  DEVICE_WIDTH,
+} from "../../utilities/constants/dimentions";
 
 export const Chart = (props: ChartProps) => {
   const { data } = props;

@@ -15,7 +15,7 @@ import Data from "../data/healthMonitoringDummydata.json";
 const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
   const dispatch = useDispatch<any>();
 
-  //TODO: will be deleted later
+  //TODO: will be an empty array later
   const initialData = Data.data;
 
   const [sensorsData, setSensorsData] = React.useState(initialData);
