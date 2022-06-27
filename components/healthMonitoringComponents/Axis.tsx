@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Path } from "react-native-svg";
 import * as shape from "d3-shape";
 import colors from "../../utilities/constants/colors";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
 export const Axis = () => {
   return (
@@ -14,7 +15,7 @@ export const Axis = () => {
             [0, -200],
           ])!
           .toString()}
-        strokeWidth={3}
+        strokeWidth={DEVICE_WIDTH * 0.005}
         stroke={colors.lightPurple}
       />
 
@@ -25,7 +26,7 @@ export const Axis = () => {
             [400, 0],
           ])!
           .toString()}
-        strokeWidth={3}
+        strokeWidth={DEVICE_WIDTH * 0.005}
         stroke={colors.lightPurple}
       />
     </View>

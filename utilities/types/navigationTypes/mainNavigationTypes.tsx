@@ -1,7 +1,6 @@
 import React from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { BackButton } from "../../../components/buttons/BackButton";
-import { UserMainData, PatientExtradata } from "../userTypes";
 import { ScreenNameText } from "../fontTypes";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationOptions } from "@react-navigation/stack";
@@ -30,12 +29,13 @@ export type MainStackParamList = {
   PatientHome: undefined;
   SupervisorHome: undefined;
   ChangeLanguage: undefined;
-  SupervisedPatient: { patient: PatientExtradata & UserMainData };
-  AssociatedPatients: undefined;
+  SupervisedPatient: { patientId: string };
+  AssociatedUsers: undefined;
   Reminders: { patientId?: string; receiver?: string };
   FreeDrive: undefined;
   AddConnection: undefined;
   HealthMonitoring: undefined;
+  SentInvitations: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<
@@ -65,7 +65,7 @@ export type FreeDriveProps = NativeStackScreenProps<
 
 export type AssociatedPatientsProps = NativeStackScreenProps<
   MainStackParamList,
-  "AssociatedPatients"
+  "AssociatedUsers"
 >;
 
 export type RemindersProps = NativeStackScreenProps<
@@ -100,4 +100,9 @@ export type AddConnectionProps = NativeStackScreenProps<
 export type HealthMonitoringProps = NativeStackScreenProps<
   MainStackParamList,
   "HealthMonitoring"
+>;
+
+export type SentInvitationsProps = NativeStackScreenProps<
+  MainStackParamList,
+  "SentInvitations"
 >;

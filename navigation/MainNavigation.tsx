@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
-import AssociatedPatientsScreen from "../screens/AssociatedPatientsScreen";
+import AssociatedUsersScreen from "../screens/AssociatedUsersScreen";
 import FreeDriveScreen from "../screens/FreeDriveScreen";
 import PatientHomeScreen from "../screens/PatientHomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
@@ -20,6 +20,7 @@ import {
 import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
 import HealthMonitoring from "../screens/HealthMonitoring";
+import SentInvitations from "../screens/SentInvitations";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
@@ -68,8 +69,11 @@ export function MainNavigation() {
         options={{ title: t("screenTitles.language") }}
       />
       <MainStack.Screen
-        name="AssociatedPatients"
-        component={AssociatedPatientsScreen}
+        name="AssociatedUsers"
+        component={AssociatedUsersScreen}
+        options={{
+          title: t("associatedUsers.associatedUsers"),
+        }}
       />
       <MainStack.Screen
         name="SupervisedPatient"
@@ -87,6 +91,13 @@ export function MainNavigation() {
           title: isPatient
             ? t("addConnection.patientTitle")
             : t("addConnection.supervisorTitle"),
+        }}
+      />
+      <MainStack.Screen
+        name="SentInvitations"
+        component={SentInvitations}
+        options={{
+          title: t("sentInvitations.sentInvitations"),
         }}
       />
     </MainStack.Navigator>

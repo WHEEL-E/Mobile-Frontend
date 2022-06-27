@@ -8,6 +8,7 @@ import { Axis } from "./Axis";
 import { AxisNumbers } from "./AxisNumbers";
 import { Curve } from "./Curve";
 import { Grid } from "./Grid";
+import { Curve } from "./Curve";
 
 export const Chart = (props: ChartProps) => {
   const { data } = props;

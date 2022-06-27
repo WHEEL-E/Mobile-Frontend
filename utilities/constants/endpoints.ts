@@ -6,5 +6,7 @@ export enum EndPoints {
   signUp = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   forgetPassword = "http://192.168.1.32:3000/api/resetPass",
   searchConnection = "https://fa-search-backend.herokuapp.com/search?delay=true&term=",
+  invitations = "https://wheel-e.herokuapp.com/api/invitations",
   sendConnection = "",
+  associatedUsers = "https://wheel-e.herokuapp.com/api/patients/",
 }

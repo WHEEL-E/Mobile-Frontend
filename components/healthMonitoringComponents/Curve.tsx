@@ -3,9 +3,9 @@ import { View } from "react-native";
 import { Path } from "react-native-svg";
 import * as shape from "d3-shape";
 import { BehaviorSubject, delay } from "rxjs";
-
 import colors from "../../utilities/constants/colors";
 import { CurveProps } from "../../utilities/types/healthMonitoringTypes";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
 export const Curve = (props: CurveProps) => {
   const { data } = props;
@@ -46,7 +46,7 @@ export const Curve = (props: CurveProps) => {
             data.map(([x, y]) => [(x - minX) * 10, -1 * y])
           )!
           .toString()}
-        strokeWidth={5}
+        strokeWidth={DEVICE_WIDTH * 0.01}
         stroke={colors.lightPurple}
       />
     </View>
