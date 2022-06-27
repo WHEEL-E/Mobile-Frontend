@@ -10,7 +10,6 @@ import { AddUserModal } from "./AddUserModal";
 export const UserCard = (props: UserCardProps) => {
   const { name, imageUri, id } = props;
   const [modalVisible, setModalVisible] = React.useState(false);
-
   return (
     <TouchableOpacity style={styles.card} onPress={() => setModalVisible(true)}>
       <AddUserModal
