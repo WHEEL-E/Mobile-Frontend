@@ -26,7 +26,7 @@ export const ForgetPasswordScreen = () => {
     if (!isValid) {
       return;
     }
-    dispatch(sendResetEmail(emailAddress));
+    dispatch(sendResetEmail(emailAddress, dispatch));
   };
   return (
     <BaseScreen title={t("forgetPassword.forgetPassword")}>

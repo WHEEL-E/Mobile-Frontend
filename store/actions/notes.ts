@@ -2,7 +2,6 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { Note, NotesActionTypes } from "../../utilities/types/notesTypes";
-import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
 import { ShowModal } from "./errorModal";
 
 export const getNotes = createAsyncThunk(
@@ -14,21 +13,12 @@ export const getNotes = createAsyncThunk(
         `${EndPoints.Notes}/user/6263ce0577164ec6745e3bd7`
       );
 
-      if (response.data.status === "Success") {
+      if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.fetchingNotes"));
         throw new Error("can't get notes");
       }
 
-      const resData = await response.data.data.json();
-      const allNotes: Note[] = [];
-      for (const data in resData) {
-        allNotes.push({
-          id: data,
-          user_id: resData[data].user_id,
-          title: resData[data].title,
-          description: resData[data].description,
-        });
-      }
+      const allNotes: Note[] = await response.data.data;
 
       return allNotes;
     } catch (err) {
@@ -42,11 +32,9 @@ export const removeNote = createAsyncThunk(
   NotesActionTypes.REMOVE_NOTE,
   async (noteId: string, thunkAPI) => {
     try {
-      const response = await axios.delete(`${EndPoints.Notes}/${noteId}`, {
-        method: "DELETE",
-      });
-
-      if (response.data.status === "Success") {
+      const response = await axios.delete(`${EndPoints.Notes}/${noteId}`);
+      console.log(response, noteId);
+      if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.deletingNote"));
         throw new Error("Can't delete note");
       }
@@ -61,22 +49,17 @@ export const removeNote = createAsyncThunk(
 export const addNote = createAsyncThunk(
   NotesActionTypes.ADD_NOTE,
   async (newNote: Note, thunkAPI) => {
+    const sentData = { ...newNote, user_id: "6263ce0577164ec6745e3bd7" };
     try {
-      const response = await axios.post(`${EndPoints.Notes}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newNote),
-      });
+      const response = await axios.post(`${EndPoints.Notes}`, sentData);
 
-      if (response.data.status === "Success") {
+      if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.addingNote"));
         throw new Error("can't add note");
       }
 
-      const resData = await response.data.json();
-      const note = { ...newNote, id: resData.name };
+      const resData = await response.data.data;
+      const note = { ...newNote, id: resData.id };
 
       return note;
     } catch (err) {
@@ -88,17 +71,21 @@ export const addNote = createAsyncThunk(
 
 export const updateNote = createAsyncThunk(
   NotesActionTypes.UPDATE_NOTE,
-  async (newNote: Partial<Note>, thunkAPI) => {
+  async (
+    newNote: {
+      id: string;
+      title: string;
+      description: string;
+    },
+    thunkAPI
+  ) => {
     try {
-      const response = await axios.patch(`${EndPoints.Notes}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newNote),
-      });
+      const response = await axios.put(
+        `${EndPoints.Notes}/${newNote.id}`,
+        newNote
+      );
 
-      if (response.status % 100 !== 2) {
+      if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
         throw new Error("can't update note");
       }

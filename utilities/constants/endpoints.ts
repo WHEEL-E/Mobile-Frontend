@@ -1,12 +1,11 @@
 export enum EndPoints {
-  Notes = "http://192.168.1.32:3000/api/notes", // You need to change this ip based on your Laptop IP
-  Reminders = "http://192.168.1.32:3000/api/reminders",
+  Notes = "https://wheel-e.herokuapp.com/api/notes", // You need to change this ip based on your Laptop IP
+  Reminders = "https://wheel-e.herokuapp.com/api/reminders",
   patientLogin = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   supervisorLogin = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   signUp = "https://wheel--e-default-rtdb.firebaseio.com/users.json",
   forgetPassword = "http://192.168.1.32:3000/api/resetPass",
-  searchConnection = "https://fa-search-backend.herokuapp.com/search?delay=true&term=",
+  searchConnection = "https://wheel-e.herokuapp.com/api/supervisor/search?name=",
   invitations = "https://wheel-e.herokuapp.com/api/invitations",
-  sendConnection = "",
   associatedUsers = "https://wheel-e.herokuapp.com/api/patients/",
 }

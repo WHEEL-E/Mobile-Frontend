@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { SetPasswordProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
-import { changePassword } from "../store/actions/forgetPassword";
 import * as Linking from "expo-linking";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -10,7 +9,6 @@ import {
   validatePassword,
   validateMatching,
 } from "../utilities/dataValidators";
-import { ShowModal } from "../store/actions/errorModal";
 import colors from "../utilities/constants/colors";
 import {
   BIG_MARGIN_VERTICAL,

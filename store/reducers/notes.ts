@@ -13,7 +13,6 @@ const notesReducer = createReducer(initialState, (builder) => {
     })
     .addCase(addNote.fulfilled, (state, action) => {
       const newNote = action.payload;
-
       const allNotes = [...state.allNotes, newNote];
       return {
         allNotes,
@@ -22,7 +21,7 @@ const notesReducer = createReducer(initialState, (builder) => {
     .addCase(removeNote.fulfilled, (state, action) => {
       const removedNote = action.payload;
       const newNotes = [...state.allNotes].filter(
-        (note) => note.id !== removedNote
+        (note) => note._id !== removedNote
       );
       return {
         allNotes: newNotes,
@@ -32,12 +31,13 @@ const notesReducer = createReducer(initialState, (builder) => {
       const updatedNote = action.payload;
       const updatedNotes = [...state.allNotes];
       const updatedNoteIndex = updatedNotes.findIndex(
-        (note) => note.id === updatedNote.id
+        (note) => note._id === updatedNote.id
       );
       if (updatedNoteIndex > -1) {
         updatedNotes[updatedNoteIndex] = {
           ...updatedNotes[updatedNoteIndex],
-          ...updatedNote,
+          description: updatedNote.description,
+          title: updatedNote.title,
         };
       }
       return {

@@ -35,6 +35,7 @@ export type MainStackParamList = {
   Reminders: { patientId?: string; receiver?: string };
   FreeDrive: undefined;
   AddConnection: undefined;
+  HealthMonitoring: undefined;
   SentInvitations: undefined;
 };
 
@@ -95,6 +96,11 @@ export type SoundSettings = NativeStackScreenProps<
 export type AddConnectionProps = NativeStackScreenProps<
   MainStackParamList,
   "AddConnection"
+>;
+
+export type HealthMonitoringProps = NativeStackScreenProps<
+  MainStackParamList,
+  "HealthMonitoring"
 >;
 
 export type SentInvitationsProps = NativeStackScreenProps<

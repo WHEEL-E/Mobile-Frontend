@@ -1,11 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AddConnectionState } from "../../utilities/types/addConnectionTypes";
-import {
-  emptyList,
-  getResultsPatients,
-  getResultsSupervisors,
-  setIsLoading,
-} from "../actions/addConnection";
+import { emptyList, getResults, setIsLoading } from "../actions/addConnection";
 
 const initialState: AddConnectionState = {
   data: [],
@@ -15,14 +10,7 @@ const initialState: AddConnectionState = {
 
 const addNewConnectionReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(getResultsPatients.fulfilled, (state, action) => {
-      return {
-        data: action.payload,
-        loading: false,
-        noMatching: action.payload.length === 0,
-      };
-    })
-    .addCase(getResultsSupervisors.fulfilled, (state, action) => {
+    .addCase(getResults.fulfilled, (state, action) => {
       return {
         data: action.payload,
         loading: false,
@@ -30,7 +18,7 @@ const addNewConnectionReducer = createReducer(initialState, (builder) => {
       };
     })
     .addCase(setIsLoading, (state, action) => {
-      return { ...state, loading: action.payload };
+      return { ...state, loading: action.payload, noMatching: !action.payload };
     })
     .addCase(emptyList, (state, action) => {
       return { data: [], noMatching: false, loading: false };

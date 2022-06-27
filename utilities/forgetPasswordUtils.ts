@@ -4,12 +4,6 @@ import { ShowModal } from "../store/actions/errorModal";
 import { changePassword } from "../store/actions/forgetPassword";
 import { GetStartedStackParamList } from "./types/navigationTypes/getStartedNavigationTypes";
 
-export enum ForgetPasswordActionType {
-  GET_TOKEN = "GET_TOKEN",
-  SEND_EMAIL = "SEND_EMAIL",
-  CHANGE_PASSWORD = "CHANGE_PASSWORD",
-}
-
 export interface ChangedPasswordModalProps {
   modalVisible: boolean;
   setModalVisible: (state: boolean) => void;
@@ -52,10 +46,13 @@ export const submitResetPasswordHandler = (
     }
 
     dispatch(
-      changePassword({
-        password: password,
-        token: token,
-      })
+      changePassword(
+        {
+          password: password,
+          token: token,
+        },
+        dispatch
+      )
     );
   } catch (e) {
     dispatch(ShowModal("errorModal.resetPassword"));

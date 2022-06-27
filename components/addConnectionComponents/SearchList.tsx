@@ -28,7 +28,7 @@ export const SearchList = () => {
                 key={itemData.index}
                 name={itemData.item.name}
                 imageUri={itemData.item.profilePhoto}
-                id={itemData.item.id}
+                id={itemData.item._id}
               />
             );
           }}
