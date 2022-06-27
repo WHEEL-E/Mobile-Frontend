@@ -20,7 +20,7 @@ export const Chart = (props: ChartProps) => {
       viewBox={`-3 -200 ${width} ${height}`}
     >
       <Curve data={data} />
-      <Axis data={data} />
+      <Axis />
     </Svg>
   );
 };

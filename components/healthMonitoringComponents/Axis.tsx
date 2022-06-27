@@ -3,11 +3,9 @@ import { View } from "react-native";
 import { Path } from "react-native-svg";
 import * as shape from "d3-shape";
 import colors from "../../utilities/constants/colors";
-import { AxisProps } from "../../utilities/types/healthMonitoringTypes";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
-export const Axis = (props: AxisProps) => {
-  const { data } = props;
-
+export const Axis = () => {
   return (
     <View>
       <Path
@@ -17,7 +15,7 @@ export const Axis = (props: AxisProps) => {
             [0, -200],
           ])!
           .toString()}
-        strokeWidth={3}
+        strokeWidth={DEVICE_WIDTH * 0.005}
         stroke={colors.lightPurple}
       />
 
@@ -28,7 +26,7 @@ export const Axis = (props: AxisProps) => {
             [400, 0],
           ])!
           .toString()}
-        strokeWidth={3}
+        strokeWidth={DEVICE_WIDTH * 0.005}
         stroke={colors.lightPurple}
       />
     </View>

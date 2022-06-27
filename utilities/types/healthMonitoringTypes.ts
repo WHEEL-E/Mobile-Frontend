@@ -6,10 +6,6 @@ export interface ChartProps {
   data: [number, number][];
 }
 
-export interface AxisProps {
-  data: [number, number][];
-}
-
 export interface SensorData {
   name: string;
   data: [number, number][];
