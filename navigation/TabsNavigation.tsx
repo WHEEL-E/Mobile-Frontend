@@ -21,8 +21,16 @@ const TabsNavigator = () => {
       initialRouteName="Home"
       backBehavior="history"
     >
-      <Tab.Screen name="News" component={NotificationsScreen} />
-      <Tab.Screen name="Home" component={MainNavigation} />
+      <Tab.Screen
+        name="News"
+        component={NotificationsScreen}
+        options={{ title: "Notifications" }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={MainNavigation}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name="Notes" component={NotesScreen} />
     </Tab.Navigator>
   );
