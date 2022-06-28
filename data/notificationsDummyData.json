@@ -1,53 +1,58 @@
 {
     "data": [{
             "_id": "6263665730feb5cb656d291a",
-            "user_id": 1,
-            "title": "Emergency Call",
-            "description": "You received a call from Rory, please reach out to the patient",
+            "user_id": "1",
+            "title": "EMERGENCY_CALL",
+            "description": "RECEIVED_EMERGENCY_CALL",
             "isRead": true,
             "type": "EMERGENCY_CALL",
             "created_at": "2022-04-23T02:37:11.163+00:00",
-            "updated_at": "2022-06-03T15:37:10.757+00:00"
+            "updated_at": "2022-06-03T15:37:10.757+00:00",
+            "from_name": "Rory"
         },
         {
             "_id": "6263665730feb5cb656d291a",
-            "user_id": 1,
-            "title": "PATIENT UPDATES",
-            "description": "Your patient Medusa added a new health record file",
+            "user_id": "1",
+            "title": "PATIENT_UPDATES",
+            "description": "NEW_RECORD",
             "isRead": true,
             "type": "PATIENT_UPDATES",
             "created_at": "2022-04-23T02:37:11.163+00:00",
-            "updated_at": "2022-06-03T15:37:10.757+00:00"
+            "updated_at": "2022-06-03T15:37:10.757+00:00",
+            "from_name": "Rory"
         },
         {
             "_id": "6263665730feb5cb656d291a",
-            "user_id": 1,
+            "user_id": "1",
             "title": "CONNECTIONS",
-            "description": "You received a new connection request, you can view it inside your invitations screen",
+            "description": "RECEIVED_CONNECTION",
             "isRead": true,
             "type": "CONNECTIONS",
             "created_at": "2022-04-23T02:37:11.163+00:00",
-            "updated_at": "2022-06-03T15:37:10.757+00:00"
+            "updated_at": "2022-06-03T15:37:10.757+00:00",
+            "from_name": "Rory"
         },
         {
             "_id": "6263665730feb5cb656d291a",
-            "user_id": 1,
-            "title": "APP NEWS",
-            "description": "A new update is available, you can download it from your favourite app store",
+            "user_id": "1",
+            "title": "APP_NEWS",
+            "description": "NEW_UPDATE",
             "isRead": true,
             "type": "APP_NEWS",
             "created_at": "2022-04-23T02:37:11.163+00:00",
-            "updated_at": "2022-06-03T15:37:10.757+00:00"
+            "updated_at": "2022-06-03T15:37:10.757+00:00",
+            "from_name": "Rory"
         },
         {
             "_id": "6263665730feb5cb656d291a",
-            "user_id": 1,
-            "title": "New Reminder",
-            "description": "Your supervisor Ted added a new reminder for you, don't miss it!",
+            "user_id": "1",
+            "title": "NEW_REMINDER",
+            "description": "RECEIVED_NEW_REMINDER",
             "isRead": true,
             "type": "NEW_REMINDER",
             "created_at": "2022-04-23T02:37:11.163+00:00",
-            "updated_at": "2022-06-03T15:37:10.757+00:00"
+            "updated_at": "2022-06-03T15:37:10.757+00:00",
+            "from_name": "Rory"
         }
     ]
 }

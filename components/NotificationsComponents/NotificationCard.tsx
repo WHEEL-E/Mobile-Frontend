@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text } from "react-native";
 import GestureRecognizer from "react-native-swipe-gestures";
 import colors from "../../utilities/constants/colors";
@@ -15,12 +16,14 @@ import {
 import {
   NotificationCardProps,
   NotificationColors,
-} from "../../utilities/types/NotificationsTypes";
+} from "../../utilities/types/notificationsTypes";
 
 export const NotificationCard = (props: NotificationCardProps) => {
   const {
-    notificationData: { _id, updated_at, description, title, type },
+    notificationData: { _id, updated_at, description, title, type, from_name },
   } = props;
+
+  const { t } = useTranslation();
 
   const deleteHandler = () => {
     // delete action
@@ -68,12 +71,15 @@ export const NotificationCard = (props: NotificationCardProps) => {
         transform: [{ translateX: translationX }],
       }}
     >
-      <Text style={{ ...styles.title, color: textColor }}>{title}</Text>
+      <Text style={{ ...styles.title, color: textColor }}>
+        {t(`notifications.${title}`)}
+      </Text>
       <Text style={{ ...styles.description, color: textColor }}>
-        {description}
+        {t(`notifications.${description}`, { name: from_name })}
       </Text>
       <Text style={{ ...styles.date, color: textColor }}>
-        Received at {new Date(updated_at).toLocaleDateString()}
+        {t("notifications.receivedAt")}
+        {new Date(updated_at).toLocaleDateString()}
       </Text>
     </GestureRecognizer>
   );

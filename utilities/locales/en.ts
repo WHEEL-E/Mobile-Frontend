@@ -210,5 +210,29 @@ export default {
       cancel: "Cancel",
       confirm: "Confirm",
     },
+    notifications: {
+      RECEIVED_CONNECTION:
+        "You've received a new connection request, you can view it inside your invitation screen",
+      REJECTED_CONNECTION:
+        "{{name}} has rejected your connection request, you can resend it again in a week",
+      ACCEPTED_CONNECTION:
+        "{{name}} has accepted your connection reqest, yu can view him in your connection list",
+      NEW_UPDATE:
+        "A new update is now available, you can download it from your favorite app store",
+      RECEIVED_NEW_REMINDER:
+        "your supervisor {{name}} has added a new reminder for you, you can view it inside your reminder screen",
+      NEW_RECORD:
+        "Your patient {{name}} has uploaded a new health record, you can view it now from your patent screen",
+      UNHEALTHY_PATIENT:
+        "{{name}} health data haven't been normal, we recommend checking on him as soon as possible",
+      RECEIVED_EMERGENCY_CALL:
+        "Your patient {{name}} has sent you an emergency call, please check on him now",
+      CONNECTIONS: "CONNECTIONS",
+      APP_NEWS: "APP NEWS",
+      NEW_REMINDER: "NEW REMINDER",
+      PATIENT_UPDATES: "PATIENT UPDATES",
+      EMERGENCY_CALL: "EMERGENCY CALL",
+      receivedAt: "Received At",
+    },
   },
 };

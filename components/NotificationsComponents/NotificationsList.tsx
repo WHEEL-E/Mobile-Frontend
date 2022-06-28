@@ -5,7 +5,7 @@ import { NotificationCard } from "./NotificationCard";
 import {
   NotificationData,
   NotificationType,
-} from "../../utilities/types/NotificationsTypes";
+} from "../../utilities/types/notificationsTypes";
 
 export const NotificationsList = (props: any) => {
   const userNotifications: NotificationData[] = Data.data.map((data) => {
