@@ -48,7 +48,11 @@ export function MainNavigation() {
           options={{ title: "" }}
         />
       )}
-      <MainStack.Screen name="FreeDrive" component={FreeDriveScreen} />
+      <MainStack.Screen
+        name="FreeDrive"
+        component={FreeDriveScreen}
+        options={{ title: t("freeDriveScreen.freeDrive") }}
+      />
       <MainStack.Screen
         name="Reminders"
         component={RemindersScreen}
