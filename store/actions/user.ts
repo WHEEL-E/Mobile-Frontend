@@ -18,6 +18,7 @@ export const signIn = createAsyncThunk(
     }
 
     const response = await fetch(endpoint);
+    console.log(response);
 
     if (!response.ok) {
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
@@ -26,7 +27,7 @@ export const signIn = createAsyncThunk(
     const resData = await response.json();
     const getUser = () => {
       for (const field in resData) {
-        if (resData[field].userMainData?.mail === data.emailAddress) {
+        if (resData[field].userMainData.mail === data.emailAddress) {
           const userData: User = {
             token: resData[field].token,
             userType: resData[field].userType,
@@ -56,7 +57,7 @@ export const signIn = createAsyncThunk(
 
 export const signOut = createAsyncThunk(
   UserActionTypes.SIGN_OUT,
-  async (data: null, thunkAPI) => {
+  async (data: undefined, thunkAPI) => {
     try {
       await SecureStore.deleteItemAsync("userData");
     } catch (e) {

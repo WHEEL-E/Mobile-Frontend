@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
-import AssociatedPatientsScreen from "../screens/AssociatedPatientsScreen";
+import AssociatedUsersScreen from "../screens/AssociatedUsersScreen";
 import FreeDriveScreen from "../screens/FreeDriveScreen";
 import PatientHomeScreen from "../screens/PatientHomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
@@ -12,12 +12,15 @@ import SupervisorHomeScreen from "../screens/SupervisorHomeScreen";
 import { RootState } from "../store/reducers/rootReducer";
 import SettingScreen from "../screens/SettingScreen";
 import SoundSettingScreen from "../screens/SoundSettingScreen";
+import AddConnection from "../screens/AddConnectionScreen";
 import {
   mainStackOptions,
   MainStackParamList,
 } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
+import HealthMonitoring from "../screens/HealthMonitoring";
+import SentInvitations from "../screens/SentInvitations";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
@@ -66,12 +69,36 @@ export function MainNavigation() {
         options={{ title: t("screenTitles.language") }}
       />
       <MainStack.Screen
-        name="AssociatedPatients"
-        component={AssociatedPatientsScreen}
+        name="AssociatedUsers"
+        component={AssociatedUsersScreen}
+        options={{
+          title: t("associatedUsers.associatedUsers"),
+        }}
       />
       <MainStack.Screen
         name="SupervisedPatient"
         component={SupervisedPatientScreen}
+      />
+      <MainStack.Screen
+        name="HealthMonitoring"
+        component={HealthMonitoring}
+        options={{ title: t("Health Monitoring") }}
+      />
+      <MainStack.Screen
+        name="AddConnection"
+        component={AddConnection}
+        options={{
+          title: isPatient
+            ? t("addConnection.patientTitle")
+            : t("addConnection.supervisorTitle"),
+        }}
+      />
+      <MainStack.Screen
+        name="SentInvitations"
+        component={SentInvitations}
+        options={{
+          title: t("sentInvitations.sentInvitations"),
+        }}
       />
     </MainStack.Navigator>
   );

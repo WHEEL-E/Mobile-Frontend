@@ -53,7 +53,7 @@ export default {
       map: "Map",
       healthStatus: "Health Status",
       emergencyCall: "Emergency Call",
-      getChair: "GetMyChair",
+      sentInvitations: "Sent Invitations",
       reminders: "Reminders",
       addSupervisor: "Add a Supervisor",
       help: "Help",
@@ -61,6 +61,7 @@ export default {
       freeDriving: "Free Driving",
       wishGoodDay: "We wish you have a good day!",
       morning: "Good Morning, ",
+      associatedUsers: "Associated Users",
     },
     getStartedScreen: {
       wheelE: "Wheel.e gets you everywhere",
@@ -100,6 +101,9 @@ export default {
         "Please enter a valid mail and make sure you already have an account.",
       socketconnection:
         "Error connecting to socket. Please try again later or reload screen",
+      getAssociatedUsers:
+        "Error loading associated users. Please try again later",
+      removeUser: "Error removing User. Please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
@@ -161,6 +165,46 @@ export default {
       backToLogin: "Back To Login",
       modalText:
         "Your password is changes successfully, you can try logging back in.",
+    },
+    addConnection: {
+      noMatchingMainText: "No users found!",
+      noMatchingText: "Try another name",
+      newConnection: "New Connection",
+      confirmAddNewUser:
+        "Are you sure you want to add {{name}} to your connection list?",
+      cancel: "Cancel",
+      send: "Send",
+      loading: "Loading...",
+      placeHolder: "who are you looking for",
+      PatientTitle: "Add New Supervisor",
+      SupervisotTitle: "Add New Patient",
+    },
+    associatedUsers: {
+      remove: "Remove",
+      view: "View",
+      removeUser: "Remove User",
+      confirmremoveUser:
+        "Are you sure you want to remove {{name}} from your connection list?",
+      cancel: "Cancel",
+      associatedUsers: "Associated Users",
+    },
+    sentInvitations: {
+      sentInvitations: "Sent Invitations",
+      Pending: "Pending",
+      Accepted: "Accepted",
+      Rejected: "Rejected",
+      status: "status: ",
+      resendNote: "You can resend invitation in: ",
+      unsend: "Unsend",
+      reinvite: "Reinvite",
+      time: "{{days}}d, {{hours}}h, {{minutes}}m, {{seconds}}s",
+    },
+    signOut: {
+      noteText:
+        "By signing-out you will not receive any notifications or reminders until you log back in.",
+      confirmText: "Are you sure you want to logout?",
+      cancel: "Cancel",
+      confirm: "Confirm",
     },
   },
 };

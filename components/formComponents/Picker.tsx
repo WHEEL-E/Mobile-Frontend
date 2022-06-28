@@ -34,9 +34,10 @@ const PickerComponent = (props: PickerProps) => {
         style={styles.picker}
         placeholder={t(`form.${name}`)}
         listMode="SCROLLVIEW"
+        testID={`signIn${name}`}
       />
 
-      <Text style={styles.validationText}>
+      <Text style={styles.validationText} testID="warningText">
         {meta.invalid && t(meta.warning, { name: t(`form.${name}`) })}
       </Text>
     </View>
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 15,
     padding: PADDING_VERTICAL,
-    zIndex: 1,
+    position: "relative",
+    top: 0,
   },
   picker: {
     width: "80%",

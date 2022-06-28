@@ -26,10 +26,13 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
         placeHolder={t(`form.${name}`)}
         autoComplete="name"
         value={value}
+        testId={`signIn${name}`}
       />
-      <Text style={styles.validationText}>
-        {meta.invalid && t(meta.warning, { name: t(`form.${name}`) })}
-      </Text>
+      {meta.invalid && (
+        <Text style={styles.validationText} testID="warningText">
+          {t(meta.warning, { name: t(`form.${name}`) })}
+        </Text>
+      )}
     </View>
   );
 };

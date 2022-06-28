@@ -27,10 +27,7 @@ const SignInForm = (props: InjectedFormProps<SignInData>) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.scrollView}
-        nestedScrollEnabled={true}
-      >
+      <ScrollView contentContainerStyle={styles.scrollView}>
         <Field
           name="emailAddress"
           component={RenderInputComponent}
@@ -63,14 +60,12 @@ const SignInForm = (props: InjectedFormProps<SignInData>) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: "100%",
   },
   scrollView: {
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: PADDING_VERTICAL,
-    flex: 1,
   },
 });
 

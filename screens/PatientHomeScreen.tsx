@@ -41,14 +41,16 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
       <View style={styles.buttons}>
         <View style={styles.buttonsCol}>
           <MainButton
-            title={t("patientHomeScreen.map")}
+            title={t("patientHomeScreen.associatedUsers")}
             titleStyle={{ ...styles.bigButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.mainButton,
               backgroundColor: colors.darkGreen,
             }}
-            onPress={() => {}}
-            image={{ url: require("../assets/images/map.png") }}
+            onPress={() => {
+              navigation.navigate("AssociatedUsers");
+            }}
+            image={{ url: require("../assets/images/new-patient.png") }}
           />
           <SquareButton
             title={t("patientHomeScreen.emergencyCall")}
@@ -79,16 +81,20 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.smallButton,
               backgroundColor: colors.lightPurple,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("AddConnection");
+            }}
           />
           <SquareButton
-            title={t("patientHomeScreen.help")}
+            title={t("Health Monitor")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
               backgroundColor: colors.lightGreen,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("HealthMonitoring");
+            }}
           />
         </View>
         <View style={styles.buttonsCol}>
@@ -103,13 +109,15 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             image={{ url: require("../assets/images/health-state.png") }}
           />
           <SquareButton
-            title={t("patientHomeScreen.getChair")}
+            title={t("patientHomeScreen.sentInvitations")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
               backgroundColor: colors.darkGreen,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("SentInvitations");
+            }}
           />
           <SquareButton
             title={t("patientHomeScreen.reminders")}
@@ -193,6 +201,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.CairoBold,
     fontSize: 30,
     lineHeight: 40,
+    textAlign: "center",
   },
   smallButtonTitle: {
     fontFamily: fonts.CairoSemiBold,
