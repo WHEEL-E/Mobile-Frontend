@@ -5,6 +5,7 @@ import { ShowModal } from "./errorModal";
 import {
   NotificationActionTypes,
   NotificationData,
+  sentNotification,
 } from "../../utilities/types/notificationsTypes";
 
 export const getNotifications = createAsyncThunk(
@@ -49,10 +50,9 @@ export const removeNotification = createAsyncThunk(
   }
 );
 
-export const sendNotification = async (newNotifiction: Notification) => {
-  const sentData = { ...newNotifiction, user_id: 1 };
+export const sendNotification = async (newNotifiction: sentNotification) => {
   try {
-    const response = await axios.post(`${EndPoints.Notes}`, sentData);
+    const response = await axios.post(`${EndPoints.Notes}`, newNotifiction);
 
     if (response.data.status !== "Success") {
       throw new Error("can't send notification");
