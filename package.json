@@ -2,7 +2,6 @@
     "name": "wheele-mobile-frontend",
     "version": "1.0.0",
     "main": "node_modules/expo/AppEntry.js",
-    "proxy": "http://localhost:3000",
     "scripts": {
         "start": "expo start",
         "android": "expo start --android",
@@ -70,7 +69,8 @@
         "rxjs": "^7.5.5",
         "sentry-expo": "^4.1.1",
         "socket.io-client": "^4.3.2",
-        "ts-jest": "^28.0.0-next.3"
+        "ts-jest": "^28.0.0-next.3",
+        "expo-notifications": "~0.15.4"
     },
     "devDependencies": {
         "@babel/core": "^7.17.10",

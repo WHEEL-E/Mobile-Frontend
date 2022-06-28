@@ -8,6 +8,7 @@ import { SignInData } from "../../utilities/types/signInTypes";
 import { ShowModal } from "./errorModal";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
+import { registerForPushNotificationsAsync } from "../../utilities/signUpUtils";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
@@ -18,7 +19,6 @@ export const signIn = createAsyncThunk(
     }
 
     const response = await fetch(endpoint);
-    console.log(response);
 
     if (!response.ok) {
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
@@ -88,12 +88,17 @@ export const restoreUser = createAsyncThunk(
 export const signUp = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: User, thunkAPI) => {
+    let notificationToken;
+    registerForPushNotificationsAsync(thunkAPI.dispatch).then((token) => {
+      notificationToken = token;
+    });
+
     const response = await fetch(EndPoints.signUp, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, notificationToken }),
     });
 
     if (!response.ok) {

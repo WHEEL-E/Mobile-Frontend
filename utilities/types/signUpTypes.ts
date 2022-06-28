@@ -1,9 +1,5 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Dispatch } from "redux";
 import { EventOrValueHandler, WrappedFieldProps } from "redux-form";
-import { Patient } from "../../models/patient";
-import { Supervisor } from "../../models/supervisor";
-import { signUp } from "../../store/actions/user";
 import { GetStartedStackParamList } from "./navigationTypes/getStartedNavigationTypes";
 import { UserTypes } from "./userTypes";
 
@@ -34,32 +30,6 @@ export interface SignUpAdditionalDataValues {
   smoke: "yes" | "no";
   emergencyContacts: string[];
 }
-
-export const submitSignUpMainForm = (
-  values: signUpMainFormValues,
-  dispatch: any,
-  props: signUpMainFormProps
-) => {
-  const { setScreen } = props;
-  const { type } = values;
-  if (type === UserTypes.SUPERVISOR) {
-    Supervisor.addMainFormData(values);
-    const user = Supervisor.prepareUserObject();
-    dispatch(signUp(user));
-  } else {
-    Patient.addMainFormData(values);
-    setScreen("SecondPage");
-  }
-};
-
-export const submitSignUpAdditionalData = (
-  values: SignUpAdditionalDataValues,
-  dispatch: Dispatch<any>
-) => {
-  Patient.addAdditionalFormData(values);
-  const user = Patient.prepareUserObject();
-  dispatch(signUp(user));
-};
 
 export interface PickerProps {
   fieldProps: WrappedFieldProps;

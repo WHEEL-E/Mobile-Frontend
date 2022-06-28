@@ -15,8 +15,8 @@ import { ImagePickerComponent } from "./ImagePicker";
 import {
   signUpMainFormValues,
   signUpMainFormProps,
-  submitSignUpMainForm,
 } from "../../utilities/types/signUpTypes";
+import { submitSignUpMainForm } from "../../utilities/signUpUtils";
 import {
   validateMail,
   validateNotEmpty,

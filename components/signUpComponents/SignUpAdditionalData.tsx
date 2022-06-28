@@ -15,8 +15,8 @@ import { RenderEmergencyContactsList } from "./RenderEmergencyContactsList";
 import {
   SignUpAdditionalDataValues,
   SignUpAdditionalDataProps,
-  submitSignUpAdditionalData,
 } from "../../utilities/types/signUpTypes";
+import { submitSignUpAdditionalData } from "../../utilities/signUpUtils";
 import {
   validateArray,
   validateNotEmpty,
