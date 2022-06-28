@@ -30,3 +30,8 @@ export interface NotificationData {
 export interface NotificationCardProps {
   notificationData: NotificationData;
 }
+
+export enum NotificationActionTypes {
+  GET_ALL = "GET_ALL",
+  REMOVE_NOTIFICATION = "REMOVE_NOTIFICATION",
+}

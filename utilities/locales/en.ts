@@ -104,6 +104,10 @@ export default {
       getAssociatedUsers:
         "Error loading associated users. Please try again later",
       removeUser: "Error removing User. Please try again later",
+      fetchingNotifications:
+        "Error loading notifications, please try again later",
+      deletingNotification:
+        "Error deleting notification, please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
