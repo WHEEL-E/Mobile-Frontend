@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-svg";
+import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
 export const AxisNumbers = () => {
   const xAxis: number[] = [];
@@ -19,7 +20,7 @@ export const AxisNumbers = () => {
       {yAxis.map((data) => {
         return (
           <Text
-            fontSize={5}
+            fontSize={DEVICE_WIDTH * 0.02}
             fill="white"
             textAnchor="end"
             x={-3}

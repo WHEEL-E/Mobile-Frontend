@@ -17,7 +17,9 @@ export const Curve = (props: CurveProps) => {
     [0, 0],
     [0, 0],
   ]);
-  const minX = data[0][0];
+
+  let minX = 0;
+  if (data.length > 0) minX = data[0][0];
 
   React.useEffect(() => {
     for (const d of data) {

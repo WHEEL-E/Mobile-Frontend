@@ -9,14 +9,15 @@ import { Chart } from "../components/healthMonitoringComponents/Chart";
 import { LinearGradient } from "expo-linear-gradient";
 import { ImportantText } from "../utilities/types/fontTypes";
 import { HealthMonitoringProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
-import { SensorData } from "../utilities/types/healthMonitoringTypes";
-import Data from "../data/healthMonitoringDummydata.json";
+import {
+  SensorData,
+  UserSensors,
+} from "../utilities/types/healthMonitoringTypes";
 
 const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
   const dispatch = useDispatch<any>();
 
-  //TODO: will be an empty array later
-  const initialData = Data.data;
+  const initialData: UserSensors[] = [];
 
   const [sensorsData, setSensorsData] = React.useState(initialData);
 
