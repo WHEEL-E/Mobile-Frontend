@@ -4,6 +4,7 @@ import errorModalReducer from "./errorModal";
 import notesReducer from "./notes";
 import userReducer from "./user";
 import remindersReducer from "./reminders";
+import SocketReducer from "./socket";
 import addConnectionReducer from "./addConnection";
 import healthMonitoring from "./healthMonitoring";
 import associatedUsersReducer from "./associatedUsers";
@@ -15,6 +16,7 @@ const reducers = {
   reminders: remindersReducer,
   errorModalReducer: errorModalReducer,
   notes: notesReducer,
+  socket: SocketReducer,
   addConnectionReducer: addConnectionReducer,
   healthMonitoring: healthMonitoring,
   associatedUsers: associatedUsersReducer,
