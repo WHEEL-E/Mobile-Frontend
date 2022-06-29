@@ -136,6 +136,7 @@ export const acceptInvitation = createAsyncThunk(
       return updatedInvitation;
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal"));
+      console.log(e);
       throw new Error();
     }
   }
