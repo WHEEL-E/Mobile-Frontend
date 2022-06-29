@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import RNImmediatePhoneCall from "react-native-immediate-phone-call";
 import { useTranslation } from "react-i18next";
 import colors from "../utilities/constants/colors";
 import fonts from "../utilities/constants/fonts";
@@ -61,6 +62,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
             onPress={() => {
               setIsModalVisible(true);
+              RNImmediatePhoneCall.immediatePhoneCall("01026412148");
             }}
           />
           <SquareButton
