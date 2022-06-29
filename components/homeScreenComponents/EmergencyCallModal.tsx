@@ -17,10 +17,15 @@ import fonts from "../../utilities/constants/fonts";
 import { EmergencyCallModalProps } from "../../utilities/types/componentsTypes";
 import { SquareButton } from "../buttons/SquareButton";
 import { WarningIcon } from "./WarningIcon";
+import makePhoneCall from "./makePhoneCall";
 
 export const EmergencyCallModal = (props: EmergencyCallModalProps) => {
   const { isModalVisible, setIsModalVisible } = props;
   const { t } = useTranslation();
+
+  React.useEffect(() => {
+    makePhoneCall();
+  }, []);
 
   return (
     <Modal animationType="slide" transparent={true} visible={isModalVisible}>
