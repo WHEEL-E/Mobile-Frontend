@@ -12,7 +12,7 @@ export default {
     supervisorHomeScreen: {
       profile: "Profile",
       WelcomeBack: "Welcome Back!",
-      newPatient: "Add New Patient",
+      invitation: "Invitations",
       patientsStatus: "Patients Status",
       help: "Help",
       wishGoodDay: "We wish you a good day!",
@@ -205,6 +205,15 @@ export default {
       confirmText: "Are you sure you want to logout?",
       cancel: "Cancel",
       confirm: "Confirm",
+    },
+    RecievedInvitations: {
+      RecievedInvitations: "Recieved Invitations",
+      gender: "Gender : ",
+      male: "Male",
+      female: "Female",
+      age: "Age : ",
+      reject: "Reject",
+      accept: "Accept",
     },
   },
 };

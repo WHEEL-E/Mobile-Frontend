@@ -37,6 +37,7 @@ export type MainStackParamList = {
   AddConnection: undefined;
   HealthMonitoring: undefined;
   SentInvitations: undefined;
+  RecievedInvitations: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<
@@ -106,4 +107,9 @@ export type HealthMonitoringProps = NativeStackScreenProps<
 export type SentInvitationsProps = NativeStackScreenProps<
   MainStackParamList,
   "SentInvitations"
+>;
+
+export type RecievedInvitationsProps = NativeStackScreenProps<
+  MainStackParamList,
+  "RecievedInvitations"
 >;

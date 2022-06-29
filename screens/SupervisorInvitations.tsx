@@ -1,30 +1,15 @@
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import colors from "../utilities/constants/colors";
-import { SentInvitationsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { InvitationCard } from "../components/SentInvitationsComponents/InvitationCard";
+import colors from "../utilities/constants/colors";
 import { InvitationData } from "../utilities/types/sentInvitationsTypes";
-import { getInvitations } from "../store/actions/invitations";
+import { useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 
-const SentInvitations = (props: SentInvitationsProps) => {
-  const dispatch = useDispatch<any>();
-
+export default function SupervisorInvitations() {
   const invitations: InvitationData[] = useSelector(
     (state: RootState) => state.invitations.invitations
   );
-
-  const userData = useSelector((state: RootState) => state.user.userData);
-
-  React.useEffect(() => {
-    dispatch(
-      getInvitations({
-        userType: userData!.userType,
-        userId: userData?.userMainData.userId!,
-      })
-    );
-  });
 
   return (
     <View style={styles.container}>
@@ -36,14 +21,14 @@ const SentInvitations = (props: SentInvitationsProps) => {
             backgroundColor={
               index % 2 == 0 ? colors.darkBlue : colors.lightPurple
             }
-            userRole="Patient"
+            userRole="Supervisor"
           />
         )}
         style={{ width: "90%" }}
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -55,5 +40,3 @@ const styles = StyleSheet.create({
     paddingBottom: "20%",
   },
 });
-
-export default SentInvitations;

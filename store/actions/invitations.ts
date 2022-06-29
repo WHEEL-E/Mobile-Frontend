@@ -100,3 +100,43 @@ export const resendInvitation = createAsyncThunk(
     }
   }
 );
+
+export const rejectInvitation = createAsyncThunk(
+  InvitationsActionTypes.REJECT_INVITATION,
+  async (invitationId: string, thunkAPI) => {
+    try {
+      console.log("Test");
+      const response = await axios.put(
+        `${EndPoints.invitations}/reject/${invitationId}`
+      );
+
+      const resData = await response.data.data;
+      const updatedInvitation: InvitationData = resData;
+      console.log(resData);
+      return updatedInvitation;
+    } catch (e) {
+      thunkAPI.dispatch(ShowModal("errorModal"));
+      console.log(e);
+      throw new Error();
+    }
+  }
+);
+
+export const acceptInvitation = createAsyncThunk(
+  InvitationsActionTypes.ACCEPT_INVITATION,
+  async (invitationId: string, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        `${EndPoints.invitations}/accept/${invitationId}`
+      );
+
+      const resData = await response.data.data;
+      const updatedInvitation: InvitationData = resData;
+
+      return updatedInvitation;
+    } catch (e) {
+      thunkAPI.dispatch(ShowModal("errorModal"));
+      throw new Error();
+    }
+  }
+);

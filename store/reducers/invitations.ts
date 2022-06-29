@@ -4,11 +4,25 @@ import {
   resendInvitation,
   sendInvitation,
   unsendInvitation,
+  acceptInvitation,
+  rejectInvitation,
 } from "../actions/invitations";
 import { InvitationsState } from "../../utilities/types/sentInvitationsTypes";
 
 const initialState: InvitationsState = {
-  invitations: [],
+  invitations: [
+    {
+      _id: "62bcba0ed6af48efb30d0369",
+      from_id: "627ecb1d08d1463ebdeedba7",
+      to_id: "627ecb0508d1463ebdeedba3",
+      status: "Pending",
+      updated_at: "2022-06-29T20:46:06.646Z",
+      to_Name: "Mohammed Hassam",
+      from_Name: "Rania",
+      to_ProfilePhoto: "",
+      from_ProfilePhoto: "",
+    },
+  ],
 };
 
 const invitationsReducer = createReducer(initialState, (builder) => {
@@ -33,22 +47,27 @@ const invitationsReducer = createReducer(initialState, (builder) => {
         invitations: updatedInvitations,
       };
     })
-    .addCase(resendInvitation.fulfilled, (state, action) => {
-      const updatedInvitation = action.payload;
-      const updatedInvitations = [...state.invitations];
-      const updatedInvitationIndex = updatedInvitations.findIndex(
-        (invitaion) => invitaion._id === updatedInvitation._id
-      );
-      if (updatedInvitationIndex > -1) {
-        updatedInvitations[updatedInvitationIndex] = {
-          ...updatedInvitations[updatedInvitationIndex],
-          ...updatedInvitation,
+    .addCase(
+      resendInvitation.fulfilled ||
+        rejectInvitation.fulfilled ||
+        acceptInvitation.fulfilled,
+      (state, action) => {
+        const updatedInvitation = action.payload;
+        const updatedInvitations = [...state.invitations];
+        const updatedInvitationIndex = updatedInvitations.findIndex(
+          (invitaion) => invitaion._id === updatedInvitation._id
+        );
+        if (updatedInvitationIndex > -1) {
+          updatedInvitations[updatedInvitationIndex] = {
+            ...updatedInvitations[updatedInvitationIndex],
+            ...updatedInvitation,
+          };
+        }
+        return {
+          invitations: updatedInvitations,
         };
       }
-      return {
-        invitations: updatedInvitations,
-      };
-    });
+    );
 });
 
 export default invitationsReducer;
