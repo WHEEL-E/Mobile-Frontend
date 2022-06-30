@@ -206,5 +206,14 @@ export default {
       cancel: "Cancel",
       confirm: "Confirm",
     },
+    mailVerification: {
+      mainText: "Please verify your email address first!",
+      description:
+        "We have sent an email to your registered email address, you can follow the instruction to varify you email",
+      resendQuestion: "Haven't received an email? ",
+      resend: "Send another email",
+      counter: "You can resend verification email in ",
+      signUp: "Back to sign up",
+    },
   },
 };
