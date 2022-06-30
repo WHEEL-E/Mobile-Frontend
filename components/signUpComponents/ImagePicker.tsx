@@ -3,7 +3,6 @@ import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { WrappedFieldProps } from "redux-form";
 import { useTranslation } from "react-i18next";
-import lang from "../../lang";
 import colors from "../../utilities/constants/colors";
 import {
   PADDING_VERTICAL,
@@ -68,7 +67,8 @@ const styles = StyleSheet.create({
   },
   buttonView: {
     width: "100%",
-    flexDirection: lang.language === "en" ? "row" : "row-reverse",
+    height: "100%",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },

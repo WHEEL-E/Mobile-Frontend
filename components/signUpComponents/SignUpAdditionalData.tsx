@@ -11,18 +11,18 @@ import { RoundEdgedButton } from "../buttons/RoundEdgedButton";
 import colors from "../../utilities/constants/colors";
 import PickerComponent from "../formComponents/Picker";
 import { RenderInputComponent } from "../formComponents/RenderInputComponent";
-import { RenderEmergencyContactsList } from "./RenderEmergencyContactsList";
 import {
   SignUpAdditionalDataValues,
   SignUpAdditionalDataProps,
   submitSignUpAdditionalData,
 } from "../../utilities/types/signUpTypes";
 import {
-  validateArray,
   validateNotEmpty,
+  validatePhone,
   validateThreeDigitNum,
 } from "../../utilities/dataValidators";
 import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
+import { DateInput } from "../formComponents/DateInput";
 
 const SignUpAdditionalData = (
   props: InjectedFormProps<
@@ -32,7 +32,6 @@ const SignUpAdditionalData = (
 ) => {
   const { t } = useTranslation();
   const { handleSubmit } = props;
-  const genderLabels = ["male", "female"];
   const smokeLabels = ["yes", "no"];
 
   return (
@@ -51,27 +50,25 @@ const SignUpAdditionalData = (
           warn={validateThreeDigitNum}
         />
         <Field
-          name="age"
-          component={RenderInputComponent}
+          name="dob"
+          component={DateInput}
           validate={validateThreeDigitNum}
           warn={validateThreeDigitNum}
         />
         <Field
-          name="emergencyContacts"
-          component={RenderEmergencyContactsList}
-          validate={validateArray}
-          warn={validateArray}
+          name="emergency_number"
+          component={RenderInputComponent}
+          validate={validatePhone}
+          warn={validatePhone}
         />
         <Field
-          name="gender"
-          component={(props: WrappedFieldProps) => (
-            <PickerComponent fieldProps={props} labels={genderLabels} />
-          )}
+          name="address"
+          component={RenderInputComponent}
           validate={validateNotEmpty}
           warn={validateNotEmpty}
         />
         <Field
-          name="smoke"
+          name="smoking"
           component={(props: WrappedFieldProps) => (
             <PickerComponent fieldProps={props} labels={smokeLabels} />
           )}

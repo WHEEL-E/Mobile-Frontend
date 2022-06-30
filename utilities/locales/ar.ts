@@ -144,6 +144,10 @@ export default {
       female: "أنثى",
       yes: "نعم",
       no: "لا",
+      dob: "تتاريخ الميلاد",
+      year: "العام",
+      month: "الشهر",
+      day: "اليوم",
     },
     forgetPassword: {
       validMail: "من فضلك أدخل بريد الكتروني صحيح",

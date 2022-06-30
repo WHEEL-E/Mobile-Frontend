@@ -13,7 +13,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(signIn.fulfilled, (state, action) => {
       state.isRestoringData = false;
       state.userData = action.payload;
-      state.isLoggedIn = true;
+      state.isLoggedIn = action.payload ? true : false;
     })
     .addCase(signOut.fulfilled, (state) => {
       state.isRestoringData = false;

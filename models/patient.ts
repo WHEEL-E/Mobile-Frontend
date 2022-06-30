@@ -1,3 +1,7 @@
+import {
+  SignUpAdditionalDataValues,
+  SignUpMainFormValues,
+} from "../utilities/types/signUpTypes";
 import { User, UserTypes } from "../utilities/types/userTypes";
 
 export class Patient {
@@ -5,74 +9,56 @@ export class Patient {
   static password: string = "";
   static profilePhoto: string = "";
   static smoking: boolean = false;
-  static age: number = 0;
+  static dob: string = "";
   static height: number = 0;
   static weight: number = 0;
   static gender: "female" | "male" = "male";
   static mail: string = "";
-  static phone: string = "";
+  static phone: number = 0;
   static address: string = "";
-  static emergencyContacts: string[] = [];
-  static healthRecords: string[] = [];
-  static healthMonitor: object = {};
+  static emergencyContacts: number = 0;
 
-  static addMainFormData = (mainFormValues: {
-    name: string;
-    emailAddress: string;
-    password: string;
-    address: string;
-    phoneNumber: string;
-    profilePhoto: string;
-  }) => {
-    const { name, emailAddress, password, address, phoneNumber, profilePhoto } =
+  static addMainFormData = (mainFormValues: SignUpMainFormValues) => {
+    const { name, email, password, phone, profile_picture, gender } =
       mainFormValues;
 
     this.userName = name;
-    this.mail = emailAddress;
+    this.mail = email;
     this.password = password;
-    this.address = address;
-    this.phone = phoneNumber;
-    this.profilePhoto = profilePhoto;
+    this.phone = phone;
+    this.profilePhoto = profile_picture;
+    this.gender = gender;
   };
 
-  static addAdditionalFormData = (additionalFormValues: {
-    height: number;
-    weight: number;
-    age: number;
-    gender: "female" | "male";
-    smoke: "yes" | "no";
-    emergencyContacts: string[];
-  }) => {
-    const { height, weight, age, gender, smoke, emergencyContacts } =
+  static addAdditionalFormData = (
+    additionalFormValues: SignUpAdditionalDataValues
+  ) => {
+    const { height, weight, dob, smoking, emergency_number, address } =
       additionalFormValues;
 
-    this.smoking = smoke === "yes" ? true : false;
+    this.smoking = smoking;
     this.weight = weight;
     this.height = height;
-    this.age = age;
-    this.gender = gender;
-    this.emergencyContacts = emergencyContacts;
+    this.address = address;
+    this.dob = `${(dob[0], dob[1].toFixed(2), dob[2].toFixed(2))}`;
+    this.emergencyContacts = emergency_number;
   };
 
   static prepareUserObject = () => {
-    const user: User = {
-      userMainData: {
-        userName: this.userName,
+    const user = {
+      data: {
+        name: this.userName,
         password: this.password,
-        profilePhoto: this.profilePhoto,
-        mail: this.mail,
+        profile_picture: this.profilePhoto,
+        email: this.mail,
         phone: this.phone,
-        address: this.address,
-      },
-      patientExtraData: {
+        gender: this.gender,
         smoking: this.smoking,
-        age: this.age,
+        dob: this.dob,
         height: this.height,
         weight: this.weight,
-        gender: this.gender,
-        emergencyContacts: this.emergencyContacts,
-        healthRecords: this.healthRecords,
-        healthMonitor: this.healthMonitor,
+        emergency_number: this.emergencyContacts,
+        address: this.address,
       },
       userType: UserTypes.PATIENT,
     };
