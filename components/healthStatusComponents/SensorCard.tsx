@@ -31,7 +31,6 @@ export const SensorCard = (props: SensorCardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: DEVICE_HEIGHT * 0.15,
     width: "90%",
     flexDirection: "row",
     marginVertical: BIG_MARGIN_VERTICAL,
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightPurple,
     borderColor: colors.darkPurple,
     borderWidth: DEVICE_WIDTH * 0.01,
-    shadowOffset: { width: 3, height: 3 },
+    shadowOffset: { width: DEVICE_WIDTH * 0.2, height: DEVICE_WIDTH * 0.2 },
     shadowOpacity: 0.8,
     shadowColor: "black",
     shadowRadius: DEVICE_WIDTH * 0.2,

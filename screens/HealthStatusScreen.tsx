@@ -60,11 +60,12 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
         source={require("../assets/images/Vector.png")}
         style={styles.backgroundImage}
       >
-        <View style={{}}>
-          {sensorsValues.map((item, index) => (
+        <FlatList
+          data={sensorsValues}
+          renderItem={({ item, index }) => (
             <SensorCard sensor={item} key={index} />
-          ))}
-        </View>
+          )}
+        />
         <View style={{ alignItems: "center" }}>
           <Text style={styles.note}>{t("healthStatus.note")}</Text>
           <Text style={ImportantNote}>
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "center",
     resizeMode: "cover",
     paddingTop: "40%",
     paddingBottom: "20%",
