@@ -7,7 +7,7 @@ import { DriveWheelButton } from "./DriveWheelButton";
 import { DriveWheelInnershape } from "./DriveWheelInnershape";
 
 const DriveWheel = () => {
-  const buttons = ["right", "up", "left", "down"];
+  const buttons = ["d", "w", "a", "s"];
 
   return (
     <View style={styles.container}>
