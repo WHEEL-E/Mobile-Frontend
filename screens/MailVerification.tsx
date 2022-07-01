@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import * as Linking from "expo-linking";
 import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import { useCountdown } from "../context/CountDown";
 import { signOut } from "../store/actions/user";
@@ -20,20 +21,39 @@ import {
   NormalText,
   NoteText,
 } from "../utilities/types/fontTypes";
-import { MailVerificationProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
+import {
+  sendVerificationEmail,
+  verifyEmail,
+} from "../store/actions/mailVerification";
+import { RootState } from "../store/reducers/rootReducer";
+import { UserTypes } from "../utilities/types/userTypes";
 
-const MailVerificationScreen = (props: MailVerificationProps) => {
+const MailVerificationScreen = () => {
+  const link = Linking.useURL();
+  const dispatch = useDispatch<any>();
+
+  const userdata = useSelector((state: RootState) => state.user.userData);
+  const userType =
+    userdata?.userType === UserTypes.PATIENT ? "Patient" : "Supervisor";
+  const user_id = userdata?.userMainData._id!;
+  const name = userdata?.userMainData.name!;
+  const email = userdata?.userMainData.email!;
+
+  if (link) {
+    const token = Linking.parse(link!).queryParams!.token?.toString()!;
+    dispatch(verifyEmail({ verificationToken: token, userType, user_id }));
+  }
+
   const [isDisabled, setIsDisabled] = useState(false);
   const [initialTimer, setInitialTimer] = useState(Date.now() + 5 * 60000);
   const [days, hours, minutes, seconds] = useCountdown(initialTimer);
 
   const { t } = useTranslation();
-  const { navigation } = props;
-  const dispatch = useDispatch<any>();
 
   const resendColor = isDisabled ? colors.darkGrey : colors.darkBlue;
 
   const resendHandler = () => {
+    sendVerificationEmail({ user_id, userName: name, email: email }, dispatch);
     setIsDisabled(true);
     setInitialTimer(Date.now() + 5 * 60000);
   };
@@ -82,7 +102,6 @@ const MailVerificationScreen = (props: MailVerificationProps) => {
           title={t("mailVerification.signUp")}
           onPress={() => {
             dispatch(signOut());
-            navigation.navigate("SignUp");
           }}
         />
       </ImageBackground>

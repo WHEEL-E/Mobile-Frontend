@@ -9,4 +9,5 @@ export enum EndPoints {
   invitations = "https://wheel-e.herokuapp.com/api/invitations",
   sendConnection = "",
   associatedUsers = "https://wheel-e.herokuapp.com/api/patients/",
+  mailVerification = "https://wheel-e.herokuapp.com/api/users/verify-mail/",
 }

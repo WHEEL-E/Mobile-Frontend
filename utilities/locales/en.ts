@@ -104,6 +104,9 @@ export default {
       getAssociatedUsers:
         "Error loading associated users. Please try again later",
       removeUser: "Error removing User. Please try again later",
+      mailVerification: "Can't verify email, please try again later",
+      sendVerificationEmail:
+        "Can't send verification email, please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
