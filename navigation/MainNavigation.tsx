@@ -83,7 +83,11 @@ export function MainNavigation() {
         component={HealthMonitoring}
         options={{ title: t("Health Monitoring") }}
       />
-      <MainStack.Screen name="HealthStatus" component={HealthStatusScreen} />
+      <MainStack.Screen
+        name="HealthStatus"
+        component={HealthStatusScreen}
+        options={{ title: t("healthStatus.healthStatus") }}
+      />
       <MainStack.Screen
         name="AddConnection"
         component={AddConnection}

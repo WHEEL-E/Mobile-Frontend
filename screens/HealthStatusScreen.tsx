@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   FlatList,
   ImageBackground,
@@ -15,6 +16,7 @@ import { ImportantNote, NormalText } from "../utilities/types/fontTypes";
 import { HealthStatusScreenProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const HealthStatusScreen = (props: HealthStatusScreenProps) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch<any>();
   const [sensorsData, setSensorsData] = React.useState({
     SPO2: 0,
@@ -39,16 +41,16 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
 
   const sensorsValues = [
     {
-      sensorName: "Oxygen Saturation",
+      sensorName: t("healthStatus.oxygenSaturation"),
       image: require("../assets/images/bloodDrop.png"),
       value: sensorsData.SPO2,
-      unit: "mm Hg",
+      unit: t("healthStatus.mmhg"),
     },
     {
-      sensorName: "Heart Rate",
+      sensorName: t("healthStatus.heartRate"),
       image: require("../assets/images/heart.png"),
       value: sensorsData.Pulse,
-      unit: "BPM",
+      unit: t("healthStatus.bpm"),
     },
   ];
 
@@ -64,11 +66,11 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
           ))}
         </View>
         <View style={{ alignItems: "center" }}>
-          <Text style={styles.note}>
-            To get updated values please place your hands at the sensors placed
-            by your chair
+          <Text style={styles.note}>{t("healthStatus.note")}</Text>
+          <Text style={ImportantNote}>
+            {t("healthStatus.lastUpdate")}
+            {sensorsData.time}
           </Text>
-          <Text style={ImportantNote}>Last Updated at: {sensorsData.time}</Text>
         </View>
       </ImageBackground>
     </View>

@@ -198,5 +198,14 @@ export default {
       cancel: "إلغاء",
       confirm: "تأكيد",
     },
+    healthStatus: {
+      healthStatus: "الحالة الصحية",
+      oxygenSaturation: "تشبع الدم",
+      heartRate: "نبض القلب",
+      mmhg: "مم زئبقي",
+      bpm: "نبضة في الدقيقة",
+      note: "للحصول على النتائج المحدثة, من فضلك ضع يدك على أجهزة الاستقبال الملحقة بالكرسي",
+      lastUpdate: "آخر تحديث في: ",
+    },
   },
 };
