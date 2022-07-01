@@ -28,8 +28,12 @@ export const registerForPushNotificationsAsync = async (
     if (finalStatus !== "granted") {
       return;
     }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
+
+    try {
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+    } catch (e) {
+      throw e;
+    }
   } else {
     dispatch(ShowModal("Must use physical device for Push Notifications"));
   }
