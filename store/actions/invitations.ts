@@ -105,18 +105,15 @@ export const rejectInvitation = createAsyncThunk(
   InvitationsActionTypes.REJECT_INVITATION,
   async (invitationId: string, thunkAPI) => {
     try {
-      console.log("Test");
       const response = await axios.put(
         `${EndPoints.invitations}/reject/${invitationId}`
       );
 
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
-      console.log(resData);
       return updatedInvitation;
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal"));
-      console.log(e);
       throw new Error();
     }
   }
