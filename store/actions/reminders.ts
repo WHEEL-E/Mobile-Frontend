@@ -6,6 +6,11 @@ import {
 } from "../../utilities/types/remindersTypes";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { ShowModal } from "./errorModal";
+import { sendNotification } from "./notifications";
+import {
+  NotificationDescriptions,
+  NotificationType,
+} from "../../utilities/types/notificationsTypes";
 
 export const getReminders = createAsyncThunk(
   RemindersActionTypes.GET_ALL,
@@ -84,6 +89,14 @@ export const addReminder = createAsyncThunk(
 
       const resData = await response.data.json();
       const reminder = { ...newReminder, id: resData.name };
+
+      sendNotification({
+        title: NotificationType.NEW_REMINDER,
+        user_id: newReminder.patientId,
+        description: NotificationDescriptions.RECEIVED_NEW_REMINDER,
+        type: NotificationType.NEW_REMINDER,
+        from_name: newReminder.supervisorName,
+      });
 
       return reminder;
     } catch (err) {

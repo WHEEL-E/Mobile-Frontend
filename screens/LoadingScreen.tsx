@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
+import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
 import * as SecureStore from "expo-secure-store";
 import lang from "../lang";
@@ -13,9 +14,28 @@ const getCurrentLanguage = async () => {
   return await SecureStore.getItemAsync("CurrentLang");
 };
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 const App = () => {
   const dispatch = useDispatch<any>();
   const [appReady, setAppReady] = React.useState(false);
+
+  const responseListener = React.useRef({ remove: () => {} });
+
+  React.useEffect(() => {
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener(() => {});
+
+    return () => {
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
 
   const prepareResources = async () => {
     const bootstrapAsync = async () => {

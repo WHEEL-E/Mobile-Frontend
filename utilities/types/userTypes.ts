@@ -1,22 +1,21 @@
 export interface UserMainData {
-  userId?: string;
-  userName: string;
+  _id?: string;
+  name: string;
   password?: string;
-  profilePhoto: string;
-  mail: string;
-  phone: string;
-  address: string;
+  profile_picture: string;
+  email: string;
+  phone: number;
+  gender: "female" | "male";
+  isVerified?: boolean;
 }
 
 export interface PatientExtradata {
   smoking: boolean;
-  age: number;
+  dob: string;
   height: number;
   weight: number;
-  gender: "female" | "male";
-  emergencyContacts: string[];
-  healthRecords: string[];
-  healthMonitor: object;
+  address: string;
+  emergency_number: number;
 }
 
 export interface User {
@@ -30,6 +29,7 @@ export enum UserActionTypes {
   SIGN_IN = "SIGN_IN",
   SIGN_OUT = "SIGN_OUT",
   RESTORE_USER = "RESTORE_USER",
+  VERIFY_EMAIL = "VERIFY_EMAIL",
 }
 
 export enum UserTypes {

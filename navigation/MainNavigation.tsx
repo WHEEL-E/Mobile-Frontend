@@ -21,6 +21,7 @@ import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
 import HealthMonitoring from "../screens/HealthMonitoring";
 import SentInvitations from "../screens/SentInvitations";
+import HealthStatusScreen from "../screens/HealthStatusScreen";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
@@ -63,9 +64,7 @@ export function MainNavigation() {
         component={SettingScreen}
         options={{ title: t("screenTitles.settings") }}
       />
-
       <MainStack.Screen name="SoundSettings" component={SoundSettingScreen} />
-
       <MainStack.Screen name="Profile" component={ProfileScreen} />
       <MainStack.Screen
         name="ChangeLanguage"
@@ -87,6 +86,11 @@ export function MainNavigation() {
         name="HealthMonitoring"
         component={HealthMonitoring}
         options={{ title: t("Health Monitoring") }}
+      />
+      <MainStack.Screen
+        name="HealthStatus"
+        component={HealthStatusScreen}
+        options={{ title: t("healthStatus.healthStatus") }}
       />
       <MainStack.Screen
         name="AddConnection"

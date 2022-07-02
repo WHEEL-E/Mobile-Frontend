@@ -104,6 +104,13 @@ export default {
       getAssociatedUsers:
         "Error loading associated users. Please try again later",
       removeUser: "Error removing User. Please try again later",
+      fetchingNotifications:
+        "Error loading notifications, please try again later",
+      deletingNotification:
+        "Error deleting notification, please try again later",
+      mailVerification: "Can't verify email, please try again later",
+      sendVerificationEmail:
+        "Can't send verification email, please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
@@ -132,10 +139,10 @@ export default {
     },
     form: {
       name: "Name",
-      emailAddress: "EmailAddress",
+      email: "Email Address",
       password: "Password",
       address: "Address",
-      phoneNumber: "PhoneNumber",
+      phone: "PhoneNumber",
       SUPERVISOR: "Supervisor",
       PATIENT: "Patient",
       gender: "Gender",
@@ -147,8 +154,11 @@ export default {
       type: "type",
       height: "Height",
       weight: "Weight",
-      age: "Age",
-      emergencyContact: "Emergency Contact",
+      emergency_number: "Emergency Contact",
+      dob: "Date of Birth",
+      year: "Year",
+      month: "Month",
+      day: "Day",
     },
     forgetPassword: {
       validMail: "Please enter a valid email",
@@ -205,6 +215,48 @@ export default {
       confirmText: "Are you sure you want to logout?",
       cancel: "Cancel",
       confirm: "Confirm",
+    },
+    notifications: {
+      RECEIVED_CONNECTION:
+        "You've received a new connection request, you can view it inside your invitation screen",
+      REJECTED_CONNECTION:
+        "{{name}} has rejected your connection request, you can resend it again in a week",
+      ACCEPTED_CONNECTION:
+        "{{name}} has accepted your connection reqest, yu can view him in your connection list",
+      NEW_UPDATE:
+        "A new update is now available, you can download it from your favorite app store",
+      RECEIVED_NEW_REMINDER:
+        "your supervisor {{name}} has added a new reminder for you, you can view it inside your reminder screen",
+      NEW_RECORD:
+        "Your patient {{name}} has uploaded a new health record, you can view it now from your patent screen",
+      UNHEALTHY_PATIENT:
+        "{{name}} health data haven't been normal, we recommend checking on him as soon as possible",
+      RECEIVED_EMERGENCY_CALL:
+        "Your patient {{name}} has sent you an emergency call, please check on him now",
+      CONNECTIONS: "CONNECTIONS",
+      APP_NEWS: "APP NEWS",
+      NEW_REMINDER: "NEW REMINDER",
+      PATIENT_UPDATES: "PATIENT UPDATES",
+      EMERGENCY_CALL: "EMERGENCY CALL",
+      receivedAt: "Received At",
+    },
+    mailVerification: {
+      mainText: "Please verify your email address first!",
+      description:
+        "We have sent an email to your registered email address, you can follow the instruction to varify you email",
+      resendQuestion: "Haven't received an email? ",
+      resend: "Send another email",
+      counter: "You can resend verification email in ",
+      signUp: "Back to sign up",
+    },
+    healthStatus: {
+      healthStatus: "Health Status",
+      oxygenSaturation: "Oxygen Saturation",
+      heartRate: "Heart Rate",
+      mmhg: "mm Hg",
+      bpm: "BPM",
+      note: " To get updated values please place your hands at the sensors attached to your chair",
+      lastUpdate: "Last update at: ",
     },
   },
 };

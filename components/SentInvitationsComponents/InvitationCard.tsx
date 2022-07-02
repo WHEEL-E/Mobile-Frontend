@@ -27,7 +27,11 @@ export const InvitationCard = (props: InvitationCardProps) => {
   } = props;
 
   const { t } = useTranslation();
-  const [days, hours, minutes, seconds] = useCountdown(updated_at);
+
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  const [days, hours, minutes, seconds] = useCountdown(
+    new Date(updated_at).getTime() + sevenDays
+  );
 
   const textColor =
     backgroundColor === colors.darkBlue ? "white" : colors.darkBlue;

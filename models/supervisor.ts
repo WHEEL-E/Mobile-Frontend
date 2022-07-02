@@ -1,3 +1,7 @@
+import {
+  SignUpMainFormValues,
+  SignUpRequest,
+} from "../utilities/types/signUpTypes";
 import { User, UserTypes } from "../utilities/types/userTypes";
 
 export class Supervisor {
@@ -5,37 +9,30 @@ export class Supervisor {
   static password: string = "";
   static profilePhoto: string = "";
   static mail: string = "";
-  static phone: string = "";
-  static address: string = "";
+  static phone: number = 0;
+  static gender: "male" | "female" = "male";
 
-  static addMainFormData = (mainFormValues: {
-    name: string;
-    emailAddress: string;
-    password: string;
-    address: string;
-    phoneNumber: string;
-    profilePhoto: string;
-  }) => {
-    const { name, emailAddress, password, address, phoneNumber, profilePhoto } =
+  static addMainFormData = (mainFormValues: SignUpMainFormValues) => {
+    const { name, email, password, phone, profile_picture, gender } =
       mainFormValues;
 
     this.userName = name;
-    this.mail = emailAddress;
+    this.mail = email;
     this.password = password;
-    this.address = address;
-    this.phone = phoneNumber;
-    this.profilePhoto = profilePhoto;
+    this.phone = phone;
+    this.profilePhoto = profile_picture;
+    this.gender = gender;
   };
 
   static prepareUserObject = () => {
-    const user: User = {
-      userMainData: {
-        userName: this.userName,
+    const user: SignUpRequest = {
+      data: {
+        name: this.userName,
         password: this.password,
-        profilePhoto: this.profilePhoto,
-        mail: this.mail,
+        profile_picture: this.profilePhoto,
+        email: this.mail,
         phone: this.phone,
-        address: this.address,
+        gender: this.gender,
       },
       userType: UserTypes.SUPERVISOR,
     };

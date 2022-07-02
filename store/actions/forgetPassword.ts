@@ -6,7 +6,7 @@ import { ShowModal } from "./errorModal";
 import { ForgetPasswordActionType } from "../../utilities/forgetPasswordUtils";
 
 export const sendResetEmail = createAsyncThunk(
-  ForgetPasswordActionType.GET_TOKEN,
+  "ForgetPasswordActionType.GET_TOKEN",
   async (emailAddress: string, thunkAPI) => {
     try {
       const link = ExpoLinking.createURL("resetPassword");
@@ -32,7 +32,7 @@ export const sendResetEmail = createAsyncThunk(
 );
 
 export const changePassword = createAsyncThunk(
-  ForgetPasswordActionType.CHANGE_PASSWORD,
+  " ForgetPasswordActionType.CHANGE_PASSWORD",
   async (data: { password: string; token: string }, thunkAPI) => {
     try {
       const response = await axios.patch(`${EndPoints.forgetPassword}`, {

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "924883324782",
+    "firebase_url": "https://wheel--e-default-rtdb.firebaseio.com",
+    "project_id": "wheel--e",
+    "storage_bucket": "wheel--e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924883324782:android:0f2b9a9af8a90ddaf83b7f",
+        "android_client_info": {
+          "package_name": "com.wheel.e.mobileApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924883324782-hacjhfcp2igsnkd88qu6ju8e13pqljd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8G-6pUexQnUwA-pDibDN7R6cW42omNXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924883324782-hacjhfcp2igsnkd88qu6ju8e13pqljd1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -25,7 +25,8 @@
                 "foregroundImage": "./assets/images/logo-b.png",
                 "backgroundColor": "#FFFFFF"
             },
-            "package": "com.wheele.wheelemobileapp"
+            "package": "com.wheele.wheelemobileapp",
+            "googleServicesFile": "./data/google-services.json"
         },
         "web": {
             "favicon": "./assets/images/logo-b.png"
@@ -35,6 +36,14 @@
                 "expo-image-picker",
                 {
                     "photosPermission": "The app accesses your photos to let you share your identity with connections."
+                }
+            ],
+            [
+                "expo-notifications",
+                {
+                    "icon": "./assets/images/logo-b.png",
+                    "color": "white",
+                    "sounds": []
                 }
             ],
             "sentry-expo"

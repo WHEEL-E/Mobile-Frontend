@@ -9,6 +9,7 @@ import addConnectionReducer from "./addConnection";
 import healthMonitoring from "./healthMonitoring";
 import associatedUsersReducer from "./associatedUsers";
 import invitationsReducer from "./invitations";
+import notificationReducer from "./notifications";
 
 const reducers = {
   form: formReducer,
@@ -21,6 +22,7 @@ const reducers = {
   healthMonitoring: healthMonitoring,
   associatedUsers: associatedUsersReducer,
   invitations: invitationsReducer,
+  notifications: notificationReducer,
 };
 
 const rootReducer = combineReducers(reducers);
