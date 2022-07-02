@@ -8,14 +8,17 @@ import { EndPoints } from "../../utilities/constants/endpoints";
 import { SignUpRequest } from "../../utilities/types/signUpTypes";
 import { registerForPushNotificationsAsync } from "../../utilities/signUpUtils";
 import {
+  PatientExtradata,
   User,
   UserActionTypes,
+  UserMainData,
   UserTypes,
 } from "../../utilities/types/userTypes";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: SignInData, thunkAPI) => {
+    console.log(data);
     const response = await axios.post(EndPoints.login, {
       email: data.emailAddress,
       password: data.password,
@@ -26,13 +29,47 @@ export const signIn = createAsyncThunk(
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }
 
-    const resData = await response.data.data;
+    let user: User;
+    if (data.type === UserTypes.SUPERVISOR) {
+      const resData: UserMainData & {token:string} = await response.data.data;
+      user = {
+        userMainData: {
+          _id:resData._id,
+          name: resData.name,
+          email: resData.email,
+          phone: resData.phone,
+          isVerified: resData.isVerified,
+          profile_picture: resData.profile_picture,
+          gender: resData.gender,
+        },
+        userType: data.type,
+        token:resData.token
+      };
+    } else {
+      const resData: UserMainData & PatientExtradata & {token:string} = await response.data.data;
+      user = {
+        userMainData: {
+          _id:resData._id,
+          name: resData.name,
+          email: resData.email,
+          phone: resData.phone,
+          isVerified: resData.isVerified,
+          profile_picture: resData.profile_picture,
+          gender: resData.gender,
+        },
+        userType: data.type,
+        patientExtraData: {
+          smoking: resData.smoking,
+          address: resData.address,
+          dob: resData.dob,
+          height: resData.height,
+          emergency_number: resData.emergency_number,
+          weight: resData.weight,
+        },
+        token:resData.token
+      };
+    }
 
-    const user: User = {
-      userMainData: resData,
-      userType: data.type,
-      patientExtraData: data.type === UserTypes.PATIENT ? resData : undefined,
-    };
     try {
       await SecureStore.setItemAsync("userData", JSON.stringify(user));
     } catch (e) {
@@ -79,31 +116,32 @@ export const signUp = async (
 ) => {
   try {
     let notification_token;
-    registerForPushNotificationsAsync(dispatch).then((token) => {
+    await registerForPushNotificationsAsync(dispatch).then((token) => {
       notification_token = token;
     });
 
     const { data } = signUpData;
     const sentdata = { ...data, notification_token };
+    console.log(sentdata);
 
-    let endpoint = EndPoints.signUpSupervisor;
-    if (signUpData.userType === UserTypes.PATIENT) {
-      endpoint = EndPoints.signUpPatient;
-    }
+    // let endpoint = EndPoints.signUpSupervisor;
+    // if (signUpData.userType === UserTypes.PATIENT) {
+    //   endpoint = EndPoints.signUpPatient;
+    // }
 
-    const response = await axios.post(endpoint, sentdata);
+    // const response = await axios.post(endpoint, sentdata);
 
-    if (response.data.status !== "Success") {
-      throw new Error(response.statusText);
-    }
+    // if (response.data.status !== "Success") {
+    //   throw new Error(response.statusText);
+    // }
 
-    const signInData: SignInData = {
-      emailAddress: data.email,
-      password: data.password,
-      type: signUpData.userType,
-    };
+    // const signInData: SignInData = {
+    //   emailAddress: data.email,
+    //   password: data.password,
+    //   type: signUpData.userType,
+    // };
 
-    dispatch(signIn(signInData));
+    // dispatch(signIn(signInData));
   } catch (e) {
     console.log(e);
     throw e;

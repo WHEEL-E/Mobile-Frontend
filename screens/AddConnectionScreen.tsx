@@ -17,14 +17,12 @@ import InputField from "../components/inputs/InputField";
 import { RootState } from "../store/reducers/rootReducer";
 import {
   emptyList,
-  getResultsPatients,
-  getResultsSupervisors,
+  getResults,
   setIsLoading,
 } from "../store/actions/addConnection";
 import { SearchList } from "../components/addConnectionComponents/SearchList";
 import { Loading } from "../components/addConnectionComponents/Loading";
 import { NonMatching } from "../components/addConnectionComponents/NonMatching";
-import { UserTypes } from "../utilities/types/userTypes";
 
 const AddConnectionScreen = (props: AddConnectionProps) => {
   const { t } = useTranslation();
@@ -53,12 +51,8 @@ const AddConnectionScreen = (props: AddConnectionProps) => {
     }
   };
 
-  const getResults = (text: string) => {
-    if (userType === UserTypes.PATIENT) {
-      dispatch(getResultsPatients(text));
-    } else {
-      dispatch(getResultsSupervisors(text));
-    }
+  const getSearchResults = (text: string) => {
+    dispatch(getResults(text));
   };
 
   React.useEffect(() => {
@@ -70,7 +64,7 @@ const AddConnectionScreen = (props: AddConnectionProps) => {
         filter((s) => s.length >= 2),
         debounceTime(500),
         switchMap((term) =>
-          merge(of(dispatch(setIsLoading(true)), getResults(term)))
+          merge(of(dispatch(setIsLoading(true)), getSearchResults(term)))
         )
       )
       .subscribe();

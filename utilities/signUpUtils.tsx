@@ -67,9 +67,12 @@ export const submitSignUpMainForm = (
 
 export const submitSignUpAdditionalData = (
   values: SignUpAdditionalDataValues,
-  dispatch: Dispatch<any>
+  dispatch: any,
 ) => {
-  Patient.addAdditionalFormData(values);
-  const user = Patient.prepareUserObject();
-  signUp(user, dispatch);
+  console.log("user is here")
+
+  // Patient.addAdditionalFormData(values);
+  // const user = Patient.prepareUserObject();
+  // console.log("user is",user)
+  // signUp(user, dispatch);
 };

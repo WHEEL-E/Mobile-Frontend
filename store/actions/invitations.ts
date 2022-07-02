@@ -11,6 +11,7 @@ import {
   NotificationDescriptions,
   NotificationType,
 } from "../../utilities/types/notificationsTypes";
+import { RootState } from "../reducers/rootReducer";
 
 export const getInvitations = createAsyncThunk(
   InvitationsActionTypes.GET_INVITATIONS,
@@ -51,7 +52,15 @@ export const sendInvitation = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      const response = await axios.post(EndPoints.invitations, data);
+      const { user } = thunkAPI.getState() as RootState;
+
+      const response = await axios.post(EndPoints.invitations, {
+        from_id: data.from_id,
+        to_id: data.to_id,
+      },{
+        headers: { token: user.userData?.token! },
+      });
+      console.log(response)
       const resData = await response.data.data;
 
       const invitation: InvitationData = {

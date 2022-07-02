@@ -12,15 +12,14 @@ export function VisibleNavigation() {
 
   const isLoggedIn = useSelector((store: RootState) => store.user.isLoggedIn);
 
-  const isAuthenticated = isVerified && isLoggedIn;
 
-  if (!isAuthenticated) {
+  if (!isLoggedIn) {
     return <GetStartedNavigation />;
   }
 
-  if (!isVerified) {
-    return <MailVerificationScreen />;
-  }
+  // if (!isVerified) {
+  //   return <MailVerificationScreen />;
+  // }
 
   return <TabsNavigator />;
 }

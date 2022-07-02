@@ -5,74 +5,33 @@ import {
   AddConnectionActionTypes,
   searchUser,
 } from "../../utilities/types/addConnectionTypes";
+import { RootState } from "../reducers/rootReducer";
 import { ShowModal } from "./errorModal";
 
-export const getResultsPatients = createAsyncThunk(
+export const getResults = createAsyncThunk(
   AddConnectionActionTypes.GET_RESULTS_PATIENTS,
   async (prefix: string, thunkAPI) => {
     try {
-      const response = await fetch(EndPoints.searchConnection + prefix);
+      const { user } = thunkAPI.getState() as RootState;
+      const response = await axios.get(EndPoints.searchConnection + prefix, {
+        headers: { token: user.userData?.token! },
+      });
 
-      const matchingUsers: searchUser[] = [];
+      const matchingUsers: searchUser[] = response.data.data.map(
+        (data: searchUser) => {
+          return {
+            ...data,
+            profilePhoto:
+              "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
+          };
+        }
+      );
 
-      const resData = await response.json();
-      for (const data in resData) {
-        matchingUsers.push({
-          name: resData[data].name,
-          id: resData[data].id,
-          profilePhoto: resData[data].uri,
-        });
-      }
       return matchingUsers;
     } catch (e) {
+      console.log(e);
       thunkAPI.dispatch(ShowModal("errorModal.fetchingMatchingPatients"));
       throw new Error("can't fetch matching patients");
-    }
-  }
-);
-
-export const getResultsSupervisors = createAsyncThunk(
-  AddConnectionActionTypes.GET_RESULTS_SUPERVISORS,
-  async (prefix: string, thunkAPI) => {
-    try {
-      const response = await fetch(EndPoints.searchConnection + prefix);
-
-      const matchingUsers: searchUser[] = [];
-
-      const resData = await response.json();
-      for (const data in resData) {
-        matchingUsers.push({
-          name: resData[data].userName,
-          id: resData[data].id,
-          profilePhoto: resData[data].profilePhoto,
-        });
-      }
-      return matchingUsers;
-    } catch (e) {
-      thunkAPI.dispatch(ShowModal("errorModal.fetchingMatchingSupervisors"));
-      throw new Error("can't fetch matching supervisors");
-    }
-  }
-);
-
-export const sendConnectionRequest = createAsyncThunk(
-  AddConnectionActionTypes.GET_RESULTS_SUPERVISORS,
-  async (data: { sendingId: string; receivingId: string }, thunkAPI) => {
-    try {
-      const response = await axios.post(`${EndPoints.searchConnection}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.data.status === "Success") {
-        thunkAPI.dispatch(ShowModal("errorModal.sendingConnection"));
-        throw new Error("Can't send connection");
-      }
-    } catch (e) {
-      thunkAPI.dispatch(ShowModal("errorModal.sendingConnection"));
-      throw new Error("Can't send connection");
     }
   }
 );
