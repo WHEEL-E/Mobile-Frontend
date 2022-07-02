@@ -5,31 +5,37 @@ import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 
 export const DriveWheelInnershape = () => {
   return (
-    <LinearGradient
-      colors={["#000000", "#000000", "#949494"]}
-      style={styles.secondLinearGradient}
-    >
+    <View style={styles.container}>
       <LinearGradient
-        colors={["#949494", "#000000", "#000000"]}
-        style={styles.ThirdLinearGradient}
+        colors={["#000000", "#000000", "#949494"]}
+        style={styles.secondLinearGradient}
       >
         <LinearGradient
-          colors={["#949494", "#000000", "#000000", "#949494"]}
-          style={styles.fourthLinearGradient}
+          colors={["#949494", "#000000", "#000000"]}
+          style={styles.ThirdLinearGradient}
         >
-          <View style={styles.whiteDot} />
+          <LinearGradient
+            colors={["#949494", "#000000", "#000000", "#949494"]}
+            style={styles.fourthLinearGradient}
+          >
+            <View style={styles.whiteDot} />
+          </LinearGradient>
         </LinearGradient>
       </LinearGradient>
-    </LinearGradient>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    position: "absolute",
+    width: DEVICE_WIDTH,
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+  },
   secondLinearGradient: {
-    transform: [
-      { translateX: DEVICE_WIDTH * 0.15 },
-      { translateY: DEVICE_WIDTH * 0.15 },
-    ],
     borderRadius: DEVICE_WIDTH * 0.3,
     width: DEVICE_WIDTH * 0.6,
     height: DEVICE_WIDTH * 0.6,

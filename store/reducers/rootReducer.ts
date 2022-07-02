@@ -6,6 +6,7 @@ import userReducer from "./user";
 import remindersReducer from "./reminders";
 import SocketReducer from "./socket";
 import addConnectionReducer from "./addConnection";
+import healthMonitoring from "./healthMonitoring";
 import associatedUsersReducer from "./associatedUsers";
 import invitationsReducer from "./invitations";
 import notificationReducer from "./notifications";
@@ -18,6 +19,7 @@ const reducers = {
   notes: notesReducer,
   socket: SocketReducer,
   addConnectionReducer: addConnectionReducer,
+  healthMonitoring: healthMonitoring,
   associatedUsers: associatedUsersReducer,
   invitations: invitationsReducer,
   notifications: notificationReducer,

@@ -48,7 +48,7 @@ export const registerForPushNotificationsAsync = async (
 };
 
 export const submitSignUpMainForm = (
-  values: SignUpMainFormValues & { type: UserTypes },,
+  values: SignUpMainFormValues & { type: UserTypes },
   dispatch: any,
   props: SignUpMainFormProps
 ) => {

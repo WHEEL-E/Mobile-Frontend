@@ -10,29 +10,35 @@ const DriveWheel = () => {
   const buttons = ["d", "w", "a", "s"];
 
   return (
-    <View style={styles.container}>
-      <Svg width="100%" height="100%">
-        {buttons.map((value: string, index: number) => (
-          <DriveWheelButton
-            key={index.toString()}
-            value={value}
-            index={index}
-          />
-        ))}
+    <View style={styles.centered}>
+      <View style={styles.container}>
+        <Svg width="100%" height="100%">
+          {buttons.map((value: string, index: number) => (
+            <DriveWheelButton
+              key={index.toString()}
+              value={value}
+              index={index}
+            />
+          ))}
+        </Svg>
         <DriveWheelInnershape />
-      </Svg>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+  },
   container: {
     borderRadius: DEVICE_WIDTH * 0.45,
     width: DEVICE_WIDTH * 0.9,
     height: DEVICE_WIDTH * 0.9,
     backgroundColor: colors.offWhite,
-    marginTop: 50,
-    marginBottom: 30,
   },
 });
 

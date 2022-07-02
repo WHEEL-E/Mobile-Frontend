@@ -13,8 +13,7 @@ const NavigationBar = (props: navigationBarProps) => {
   return (
     <View style={styles.container} testID={testID}>
       {state.routes.map((route, index) => {
-        // @ts-ignore
-        const label: NavigationScreens = route.name;
+        const label: NavigationScreens = route.name as NavigationScreens;
 
         return (
           <NavigationComponent
@@ -29,14 +28,11 @@ const NavigationBar = (props: navigationBarProps) => {
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
+    justifyContent: "center",
     position: "absolute",
-    alignSelf: "center",
     flexDirection: "row",
-    bottom: 10,
-  },
-  title: {
-    fontSize: 27,
-    fontFamily: "Cairo-Bold",
+    bottom: "2%",
   },
 });
 export default NavigationBar;
