@@ -69,12 +69,7 @@ const SignUpMainForm = (
           validate={validatePhone}
           warn={validatePhone}
         />
-        <Field
-          name="profile_picture"
-          component={ImagePickerComponent}
-          validate={validateNotEmpty}
-          warn={validateNotEmpty}
-        />
+        <Field name="profile_picture" component={ImagePickerComponent} />
         <Field
           name="gender"
           component={(props: WrappedFieldProps) => (
