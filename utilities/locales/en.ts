@@ -104,6 +104,10 @@ export default {
       getAssociatedUsers:
         "Error loading associated users. Please try again later",
       removeUser: "Error removing User. Please try again later",
+      fetchingNotifications:
+        "Error loading notifications, please try again later",
+      deletingNotification:
+        "Error deleting notification, please try again later",
       mailVerification: "Can't verify email, please try again later",
       sendVerificationEmail:
         "Can't send verification email, please try again later",
@@ -211,6 +215,30 @@ export default {
       confirmText: "Are you sure you want to logout?",
       cancel: "Cancel",
       confirm: "Confirm",
+    },
+    notifications: {
+      RECEIVED_CONNECTION:
+        "You've received a new connection request, you can view it inside your invitation screen",
+      REJECTED_CONNECTION:
+        "{{name}} has rejected your connection request, you can resend it again in a week",
+      ACCEPTED_CONNECTION:
+        "{{name}} has accepted your connection reqest, yu can view him in your connection list",
+      NEW_UPDATE:
+        "A new update is now available, you can download it from your favorite app store",
+      RECEIVED_NEW_REMINDER:
+        "your supervisor {{name}} has added a new reminder for you, you can view it inside your reminder screen",
+      NEW_RECORD:
+        "Your patient {{name}} has uploaded a new health record, you can view it now from your patent screen",
+      UNHEALTHY_PATIENT:
+        "{{name}} health data haven't been normal, we recommend checking on him as soon as possible",
+      RECEIVED_EMERGENCY_CALL:
+        "Your patient {{name}} has sent you an emergency call, please check on him now",
+      CONNECTIONS: "CONNECTIONS",
+      APP_NEWS: "APP NEWS",
+      NEW_REMINDER: "NEW REMINDER",
+      PATIENT_UPDATES: "PATIENT UPDATES",
+      EMERGENCY_CALL: "EMERGENCY CALL",
+      receivedAt: "Received At",
     },
     mailVerification: {
       mainText: "Please verify your email address first!",

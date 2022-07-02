@@ -14,8 +14,8 @@ import { RenderInputComponent } from "../formComponents/RenderInputComponent";
 import {
   SignUpAdditionalDataValues,
   SignUpAdditionalDataProps,
-  submitSignUpAdditionalData,
 } from "../../utilities/types/signUpTypes";
+import { submitSignUpAdditionalData } from "../../utilities/signUpUtils";
 import {
   validateNotEmpty,
   validatePhone,

@@ -8,6 +8,7 @@ import SocketReducer from "./socket";
 import addConnectionReducer from "./addConnection";
 import associatedUsersReducer from "./associatedUsers";
 import invitationsReducer from "./invitations";
+import notificationReducer from "./notifications";
 
 const reducers = {
   form: formReducer,
@@ -19,6 +20,7 @@ const reducers = {
   addConnectionReducer: addConnectionReducer,
   associatedUsers: associatedUsersReducer,
   invitations: invitationsReducer,
+  notifications: notificationReducer,
 };
 
 const rootReducer = combineReducers(reducers);

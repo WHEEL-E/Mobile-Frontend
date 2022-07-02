@@ -14,9 +14,9 @@ import { RenderInputComponent } from "../formComponents/RenderInputComponent";
 import { ImagePickerComponent } from "./ImagePicker";
 import {
   SignUpMainFormValues,
-  signUpMainFormProps,
-  submitSignUpMainForm,
+  SignUpMainFormProps,
 } from "../../utilities/types/signUpTypes";
+import { submitSignUpMainForm } from "../../utilities/signUpUtils";
 import {
   validateMail,
   validateNotEmpty,
@@ -29,7 +29,7 @@ import { UserTypes } from "../../utilities/types/userTypes";
 const SignUpMainForm = (
   props: InjectedFormProps<
     SignUpMainFormValues & { type: UserTypes },
-    signUpMainFormProps
+    SignUpMainFormProps
   >
 ) => {
   const { t } = useTranslation();
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
 
 const Form = reduxForm<
   SignUpMainFormValues & { type: UserTypes },
-  signUpMainFormProps
+  SignUpMainFormProps
 >({
   form: "SignUpMainForm",
 })(SignUpMainForm);

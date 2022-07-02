@@ -2,9 +2,16 @@ import {
   BottomTabNavigationOptions,
   BottomTabScreenProps,
 } from "@react-navigation/bottom-tabs";
+import { ScreenNameText } from "../fontTypes";
 
 export const bottomNavOptions: BottomTabNavigationOptions = {
-  headerShown: false,
+  headerTransparent: true,
+  headerShown: true,
+  headerTitleAlign: "center",
+  headerStyle: {
+    height: "10%",
+  },
+  headerTitleStyle: { ...ScreenNameText, marginTop: "30%" },
 };
 
 export type BottomTabParamList = {

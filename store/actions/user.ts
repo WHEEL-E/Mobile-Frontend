@@ -1,16 +1,17 @@
+import axios from "axios";
+import { Dispatch } from "react";
 import * as SecureStore from "expo-secure-store";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ShowModal } from "./errorModal";
+import { SignInData } from "../../utilities/types/signInTypes";
+import { EndPoints } from "../../utilities/constants/endpoints";
+import { SignUpRequest } from "../../utilities/types/signUpTypes";
+import { registerForPushNotificationsAsync } from "../../utilities/signUpUtils";
 import {
   User,
   UserActionTypes,
   UserTypes,
 } from "../../utilities/types/userTypes";
-import { SignInData } from "../../utilities/types/signInTypes";
-import { ShowModal } from "./errorModal";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { EndPoints } from "../../utilities/constants/endpoints";
-import axios from "axios";
-import { SignUpRequest } from "../../utilities/types/signUpTypes";
-import { Dispatch } from "react";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
@@ -77,6 +78,10 @@ export const signUp = async (
   dispatch: Dispatch<any>
 ) => {
   try {
+    let notificationToken;
+    registerForPushNotificationsAsync(dispatch).then((token) => {
+      notificationToken = token;
+    });
     const { data } = signUpData;
     let endpoint = EndPoints.signUpSupervisor;
     if (signUpData.userType === UserTypes.PATIENT) {
@@ -89,8 +94,8 @@ export const signUp = async (
     }
 
     const signInData: SignInData = {
-      emailAddress: "mh249688@yahoo.com",
-      password: "12345678",
+      emailAddress: data.email,
+      password: data.password,
       type: signUpData.userType,
     };
 

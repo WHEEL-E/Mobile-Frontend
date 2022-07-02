@@ -1,18 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { NewsProps } from "../utilities/types/navigationTypes/tabNavigationTypes";
-import { SquareButton } from "../components/buttons/SquareButton";
+import { NotificationsList } from "../components/NotificationsComponents/NotificationsList";
 
 const NotificationsScreen = (props: NewsProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Notifications Screen</Text>
-      <SquareButton
-        title="Notes"
-        buttonStyle={styles.button}
-        titleStyle={styles.buttonTitle}
-        onPress={() => props.navigation.navigate("Notes")}
-      />
+      <ImageBackground
+        source={require("../assets/images/Vector.png")}
+        style={styles.backgroundImage}
+        resizeMode="stretch"
+      >
+        <NotificationsList />
+      </ImageBackground>
     </View>
   );
 };
@@ -24,21 +24,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  title: {
-    fontSize: 27,
-    fontFamily: "Cairo-Bold",
-  },
-  button: {
-    backgroundColor: "#11698E",
-    width: 300,
-    marginHorizontal: 50,
-    marginVertical: 10,
-    height: 50,
-  },
-  buttonTitle: {
-    fontFamily: "Cairo-Regular",
-    color: "white",
-    fontSize: 20,
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: "40%",
+    paddingBottom: "20%",
   },
 });
 

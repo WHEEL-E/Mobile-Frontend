@@ -6,6 +6,11 @@ import {
   InvitationData,
   InvitationsActionTypes,
 } from "../../utilities/types/sentInvitationsTypes";
+import { sendNotification } from "./notifications";
+import {
+  NotificationDescriptions,
+  NotificationType,
+} from "../../utilities/types/notificationsTypes";
 
 export const getInvitations = createAsyncThunk(
   InvitationsActionTypes.GET_INVITATIONS,
@@ -41,7 +46,10 @@ export const getInvitations = createAsyncThunk(
 
 export const sendInvitation = createAsyncThunk(
   InvitationsActionTypes.SEND_INVITATION,
-  async (data: { from_id: string; to_id: string }, thunkAPI) => {
+  async (
+    data: { from_id: string; to_id: string; user_name: string },
+    thunkAPI
+  ) => {
     try {
       const response = await axios.post(EndPoints.invitations, data);
       const resData = await response.data.data;
@@ -55,6 +63,14 @@ export const sendInvitation = createAsyncThunk(
         from_ProfilePhoto:
           "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
       };
+
+      sendNotification({
+        title: NotificationType.CONNECTIONS,
+        user_id: data.to_id,
+        description: NotificationDescriptions.RECEIVED_CONNECTION,
+        type: NotificationType.CONNECTIONS,
+        from_name: data.user_name,
+      });
 
       return invitation;
     } catch (e) {
