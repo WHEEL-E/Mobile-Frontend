@@ -1,11 +1,13 @@
 import Svg from "react-native-svg";
+import { ChartProps } from "../../utilities/types/healthMonitoringTypes";
+import { Axis } from "./Axis";
+import { AxisNumbers } from "./AxisNumbers";
+import { Curve } from "./Curve";
+import { Grid } from "./Grid";
 import {
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
 } from "../../utilities/constants/dimentions";
-import { ChartProps } from "../../utilities/types/healthMonitoringTypes";
-import { Axis } from "./Axis";
-import { Curve } from "./Curve";
 
 export const Chart = (props: ChartProps) => {
   const { data } = props;
@@ -17,10 +19,12 @@ export const Chart = (props: ChartProps) => {
     <Svg
       width={"90%"}
       height={DEVICE_HEIGHT * 0.25}
-      viewBox={`-3 -200 ${width} ${height}`}
+      viewBox={`-20 -150 ${width} ${height}`}
     >
+      <Grid />
       <Curve data={data} />
       <Axis />
+      <AxisNumbers />
     </Svg>
   );
 };

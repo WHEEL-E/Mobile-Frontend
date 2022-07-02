@@ -1,10 +1,6 @@
 export const emailRegex =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-// Minimum eight characters, at least one letter, one number and one special character:
-export const passwordRegex =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-
 //can start with + and contains only numbers and - after
 export const phoneRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
 
@@ -20,24 +16,11 @@ export const validateMail = (text: string | undefined) => {
 };
 
 export const validatePassword = (text: string | undefined) => {
-  if (!(text && passwordRegex.test(text))) {
+  if (!(text && text.length >= 8)) {
     return "signUpScreen.warningPassword";
   } else {
     return undefined;
   }
-};
-
-export const validateArray = (data: string[] | undefined) => {
-  if (!data) {
-    return "signUpScreen.warningText";
-  }
-  if (data.length === 0) {
-    return "signUpScreen.warningText";
-  }
-  if (data.filter((text) => text.trim().length !== 0).length == 0) {
-    return "signUpScreen.warningText";
-  }
-  return undefined;
 };
 
 export const validateNotEmpty = (text: string | undefined) => {

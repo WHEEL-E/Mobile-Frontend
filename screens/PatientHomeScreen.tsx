@@ -16,7 +16,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
   const { t } = useTranslation();
 
   const userName = useSelector(
-    (state: RootState) => state.user.userData?.userMainData.userName
+    (state: RootState) => state.user.userData?.userMainData.name
   )?.split(" ")[0];
 
   return (
@@ -105,7 +105,9 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               ...styles.mainButton,
               backgroundColor: colors.lightPurple,
             }}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("HealthStatus");
+            }}
             image={{ url: require("../assets/images/health-state.png") }}
           />
           <SquareButton

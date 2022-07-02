@@ -19,23 +19,21 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
   // TODO:Use the id to get the patient data
   const patient: User = {
     userMainData: {
-      userId: "id",
-      userName: "Emelia Erheart",
-      address: "Atlantic ocean",
-      phone: "123456",
-      mail: "patientMail@gmail.com",
-      profilePhoto:
+      _id: "id",
+      name: "Emelia Erheart",
+      phone: 123456,
+      email: "patientMail@gmail.com",
+      profile_picture:
         "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
+      gender: "female",
     },
     patientExtraData: {
-      emergencyContacts: ["123"],
+      address: "Atlantic ocean",
+      emergency_number: 123,
       smoking: false,
       height: 170,
       weight: 80,
-      age: 25,
-      gender: "female",
-      healthMonitor: [],
-      healthRecords: [],
+      dob: "2015-03-22",
     },
     userType: UserTypes.PATIENT,
   };
@@ -60,9 +58,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
               source={require("../assets/images/IdPlaceHolder.png")}
             />
           </View>
-          <Text style={styles.patientName}>
-            {patient.userMainData.userName}
-          </Text>
+          <Text style={styles.patientName}>{patient.userMainData.name}</Text>
         </View>
         <View style={styles.buttons}>
           <MainButton
@@ -77,8 +73,8 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
               title={t("supervisedPatientScreen.reminders")}
               onPress={() => {
                 navigation.navigate("Reminders", {
-                  patientId: patient.userMainData.userId,
-                  receiver: patient.userMainData.userName,
+                  patientId: patient.userMainData._id,
+                  receiver: patient.userMainData.name,
                 });
               }}
               buttonStyle={styles.remindersButton}

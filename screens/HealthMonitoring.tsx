@@ -1,22 +1,46 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { startConnection } from "../store/actions/healthMonitoring";
+import { RootState } from "../store/reducers/rootReducer";
+import { Socket } from "socket.io-client";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 import { Chart } from "../components/healthMonitoringComponents/Chart";
 import { LinearGradient } from "expo-linear-gradient";
 import { ImportantText } from "../utilities/types/fontTypes";
 import { HealthMonitoringProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
-import { SensorData } from "../utilities/types/healthMonitoringTypes";
-import Data from "../data/healthMonitoringDummydata.json";
+import {
+  SensorData,
+  UserSensors,
+} from "../utilities/types/healthMonitoringTypes";
 
-const HealthMonitoring = (props: HealthMonitoringProps) => {
-  const sensorsData = Data.data;
+const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
+  const dispatch = useDispatch<any>();
+
+  const initialData: UserSensors[] = [];
+
+  const [sensorsData, setSensorsData] = React.useState(initialData);
+
+  const socket: Socket | undefined = useSelector(
+    (state: RootState) => state.healthMonitoring.socket
+  );
+
+  React.useEffect(() => {
+    dispatch(startConnection());
+  }, []);
+
+  if (socket) {
+    socket.on("data", (message) => {
+      setSensorsData([...sensorsData, message]);
+    });
+  }
 
   const dataPulse: SensorData = {
     name: "Heart Rate",
     data: sensorsData.map((field) => {
       const split = field.time.split(":").map((a) => +a);
       const xAxis = +split.reduce((a, b) => a + b);
-      return [xAxis, (3 * (field.Pulse - 400)) / 260 + 97];
+      return [xAxis, (40 * (field.Pulse - 400)) / 260 + 60];
     }),
   };
 
@@ -29,7 +53,7 @@ const HealthMonitoring = (props: HealthMonitoringProps) => {
     }),
   };
 
-  const allData = [dataPulse, dataSaturation];
+  const allData = [dataSaturation, dataPulse];
 
   return (
     <View style={styles.container}>
@@ -55,6 +79,7 @@ const HealthMonitoring = (props: HealthMonitoringProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     paddingTop: "50%",
@@ -76,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HealthMonitoring;
+export default HealthMonitoringScreen;

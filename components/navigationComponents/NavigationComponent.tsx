@@ -4,6 +4,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { navigationComponentProps } from "../../utilities/types/navigationTypes/navigationComponentsTypes";
 import { useTranslation } from "react-i18next";
 import colors from "../../utilities/constants/colors";
+import { NoteText } from "../../utilities/types/fontTypes";
+import { PADDING_HORIZONTAL } from "../../utilities/constants/spacing";
 
 export const NavigationComponent = (props: navigationComponentProps) => {
   const { navigation, title, isFocused, iconName } = props;
@@ -41,18 +43,17 @@ export const NavigationComponent = (props: navigationComponentProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 60,
+    width: "17%",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    fontSize: 13,
-    fontFamily: "Cairo-Light",
+    ...NoteText,
   },
   iconBackground: {
-    width: 45,
-    height: 45,
-    padding: 10,
+    width: "80%",
+    height: "100%",
+    padding: PADDING_HORIZONTAL,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",

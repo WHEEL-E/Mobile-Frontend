@@ -1,15 +1,7 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
-import colors from "../../utilities/constants/colors";
-import {
-  BIG_MARGIN_VERTICAL,
-  SMALL_MARGIN_VERTICAL,
-} from "../../utilities/constants/spacing";
-import {
-  NormalText,
-  NoteText,
-  ScreenNameText,
-} from "../../utilities/types/fontTypes";
+import { BIG_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
+import { ScreenNameText } from "../../utilities/types/fontTypes";
 
 export const BaseScreen = (props: {
   title: string;

@@ -1,54 +1,42 @@
+import axios from "axios";
+import { Dispatch } from "react";
 import * as SecureStore from "expo-secure-store";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ShowModal } from "./errorModal";
+import { SignInData } from "../../utilities/types/signInTypes";
+import { EndPoints } from "../../utilities/constants/endpoints";
+import { SignUpRequest } from "../../utilities/types/signUpTypes";
+import { registerForPushNotificationsAsync } from "../../utilities/signUpUtils";
 import {
   User,
   UserActionTypes,
   UserTypes,
 } from "../../utilities/types/userTypes";
-import { SignInData } from "../../utilities/types/signInTypes";
-import { ShowModal } from "./errorModal";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { EndPoints } from "../../utilities/constants/endpoints";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: SignInData, thunkAPI) => {
-    let endpoint = EndPoints.supervisorLogin;
-    if (data.type === UserTypes.PATIENT) {
-      endpoint = EndPoints.patientLogin;
-    }
+    const response = await axios.post(EndPoints.login, {
+      email: data.emailAddress,
+      password: data.password,
+      role: data.type === UserTypes.PATIENT ? "Patient" : "Supervisor",
+    });
 
-    const response = await fetch(endpoint);
-    console.log(response);
-
-    if (!response.ok) {
+    if (response.data.status !== "Success") {
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }
 
-    const resData = await response.json();
-    const getUser = () => {
-      for (const field in resData) {
-        if (resData[field].userMainData.mail === data.emailAddress) {
-          const userData: User = {
-            token: resData[field].token,
-            userType: resData[field].userType,
-            userMainData: resData[field].userMainData,
-          };
+    const resData = await response.data.data;
 
-          if (data.type === UserTypes.PATIENT) {
-            userData.patientExtraData = resData[field].patientExtraData;
-          }
-
-          return userData;
-        }
-      }
-      //TODO: MODAL this email don't exist
-      return null;
+    const user: User = {
+      userMainData: resData,
+      userType: data.type,
+      patientExtraData: data.type === UserTypes.PATIENT ? resData : undefined,
     };
-
-    const user: User = getUser()!;
     try {
       await SecureStore.setItemAsync("userData", JSON.stringify(user));
     } catch (e) {
+      console.log(e);
       throw e;
     }
     return user;
@@ -85,34 +73,39 @@ export const restoreUser = createAsyncThunk(
   }
 );
 
-export const signUp = createAsyncThunk(
-  UserActionTypes.SIGN_IN,
-  async (data: User, thunkAPI) => {
-    const response = await fetch(EndPoints.signUp, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+export const signUp = async (
+  signUpData: SignUpRequest,
+  dispatch: Dispatch<any>
+) => {
+  try {
+    let notification_token;
+    registerForPushNotificationsAsync(dispatch).then((token) => {
+      notification_token = token;
     });
 
-    if (!response.ok) {
+    const { data } = signUpData;
+    const sentdata = { ...data, notification_token };
+
+    let endpoint = EndPoints.signUpSupervisor;
+    if (signUpData.userType === UserTypes.PATIENT) {
+      endpoint = EndPoints.signUpPatient;
+    }
+
+    const response = await axios.post(endpoint, sentdata);
+
+    if (response.data.status !== "Success") {
       throw new Error(response.statusText);
     }
 
-    const resData = await response.json();
-    const user = {
-      ...data,
-      id: resData.name,
-    };
-
     const signInData: SignInData = {
-      emailAddress: data.userMainData.mail,
-      password: data.userMainData.password!,
-      type: data.userType,
+      emailAddress: data.email,
+      password: data.password,
+      type: signUpData.userType,
     };
-    thunkAPI.dispatch(signIn(signInData));
 
-    return user;
+    dispatch(signIn(signInData));
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
-);
+};

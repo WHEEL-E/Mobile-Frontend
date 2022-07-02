@@ -11,7 +11,7 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
   const { navigation } = props;
   const { t } = useTranslation();
   const userName = useSelector(
-    (state: RootState) => state.user.userData?.userMainData.userName
+    (state: RootState) => state.user.userData?.userMainData.name
   )?.split(" ")[0];
 
   return (

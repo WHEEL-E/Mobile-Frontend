@@ -3,10 +3,9 @@ import * as ExpoLinking from "expo-linking";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { ShowModal } from "./errorModal";
-import { ForgetPasswordActionType } from "../../utilities/forgetPasswordUtils";
 
 export const sendResetEmail = createAsyncThunk(
-  ForgetPasswordActionType.GET_TOKEN,
+  "ForgetPasswordActionType.GET_TOKEN",
   async (emailAddress: string, thunkAPI) => {
     try {
       const link = ExpoLinking.createURL("resetPassword");
@@ -32,7 +31,7 @@ export const sendResetEmail = createAsyncThunk(
 );
 
 export const changePassword = createAsyncThunk(
-  ForgetPasswordActionType.CHANGE_PASSWORD,
+  " ForgetPasswordActionType.CHANGE_PASSWORD",
   async (data: { password: string; token: string }, thunkAPI) => {
     try {
       const response = await axios.patch(`${EndPoints.forgetPassword}`, {

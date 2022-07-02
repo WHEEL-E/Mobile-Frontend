@@ -6,6 +6,7 @@ import InputField from "../inputs/InputField";
 import { Text } from "react-native";
 import { SMALL_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
 import { NoteText } from "../../utilities/types/fontTypes";
+import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
 
 export const RenderInputComponent = (props: WrappedFieldProps) => {
   const { input, meta } = props;
@@ -24,7 +25,7 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
         fieldStyle={styles.inputField}
         onChangeText={onChange}
         placeHolder={t(`form.${name}`)}
-        autoComplete="name"
+        autoComplete="off"
         value={value}
         testId={`signIn${name}`}
       />
@@ -40,7 +41,7 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
 const styles = StyleSheet.create({
   inputField: {
     width: "80%",
-    height: 70,
+    height: DEVICE_HEIGHT * 0.08,
     marginVertical: SMALL_MARGIN_VERTICAL,
   },
   validationText: {

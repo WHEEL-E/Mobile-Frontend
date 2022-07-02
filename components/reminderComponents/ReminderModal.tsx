@@ -36,8 +36,8 @@ const ReminderModal = (props: ReminderModalProps) => {
         addReminder({
           ...reminder,
           id: "",
-          supervisorId: supervisorData.userId!,
-          supervisorName: supervisorData.userName,
+          supervisorId: supervisorData._id!,
+          supervisorName: supervisorData.name,
           patientId: props.patientId!,
         })
       );

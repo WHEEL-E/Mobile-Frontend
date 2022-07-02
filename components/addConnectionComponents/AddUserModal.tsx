@@ -21,7 +21,7 @@ export const AddUserModal = (props: AddUserModalProps) => {
   const dispatch = useDispatch<any>();
 
   const sendingId = useSelector(
-    (state: RootState) => state.user.userData?.userMainData.userId
+    (state: RootState) => state.user.userData?.userMainData._id
   );
 
   const submitHandler = () => {

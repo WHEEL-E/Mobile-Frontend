@@ -13,15 +13,16 @@ import { RootState } from "../store/reducers/rootReducer";
 import SettingScreen from "../screens/SettingScreen";
 import SoundSettingScreen from "../screens/SoundSettingScreen";
 import AddConnection from "../screens/AddConnectionScreen";
-import {
-  mainStackOptions,
-  MainStackParamList,
-} from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
 import HealthMonitoring from "../screens/HealthMonitoring";
 import SentInvitations from "../screens/SentInvitations";
 import SupervisorInvitations from "../screens/SupervisorInvitations";
+import HealthStatusScreen from "../screens/HealthStatusScreen";
+import {
+  mainStackOptions,
+  MainStackParamList,
+} from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
@@ -49,7 +50,11 @@ export function MainNavigation() {
           options={{ title: "" }}
         />
       )}
-      <MainStack.Screen name="FreeDrive" component={FreeDriveScreen} />
+      <MainStack.Screen
+        name="FreeDrive"
+        component={FreeDriveScreen}
+        options={{ title: t("freeDriveScreen.freeDrive") }}
+      />
       <MainStack.Screen
         name="Reminders"
         component={RemindersScreen}
@@ -60,9 +65,7 @@ export function MainNavigation() {
         component={SettingScreen}
         options={{ title: t("screenTitles.settings") }}
       />
-
       <MainStack.Screen name="SoundSettings" component={SoundSettingScreen} />
-
       <MainStack.Screen name="Profile" component={ProfileScreen} />
       <MainStack.Screen
         name="ChangeLanguage"
@@ -84,6 +87,11 @@ export function MainNavigation() {
         name="HealthMonitoring"
         component={HealthMonitoring}
         options={{ title: t("Health Monitoring") }}
+      />
+      <MainStack.Screen
+        name="HealthStatus"
+        component={HealthStatusScreen}
+        options={{ title: t("healthStatus.healthStatus") }}
       />
       <MainStack.Screen
         name="AddConnection"

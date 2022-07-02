@@ -2,9 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { getReturnValues } from "../utilities/sentInvitationUtils";
 
 const useCountdown = (targetDate: any) => {
-  const sevenDays = 7 * 24 * 60 * 60 * 1000;
   const countDownDate = useMemo(
-    () => sevenDays + new Date(targetDate).getTime() - Date.now(),
+    () => new Date(targetDate).getTime() - Date.now(),
     []
   );
 
@@ -12,7 +11,7 @@ const useCountdown = (targetDate: any) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountDown(sevenDays + new Date(targetDate).getTime() - Date.now());
+      setCountDown(new Date(targetDate).getTime() - Date.now());
     }, 1000);
     if (countDown <= 0) {
       clearInterval(interval);
