@@ -1,7 +1,6 @@
 import React from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { BackButton } from "../../../components/buttons/BackButton";
-import { UserMainData, PatientExtradata } from "../userTypes";
 import { ScreenNameText } from "../fontTypes";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationOptions } from "@react-navigation/stack";
@@ -37,6 +36,7 @@ export type MainStackParamList = {
   AddConnection: undefined;
   HealthMonitoring: undefined;
   SentInvitations: undefined;
+  HealthStatus: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<
@@ -106,4 +106,9 @@ export type HealthMonitoringProps = NativeStackScreenProps<
 export type SentInvitationsProps = NativeStackScreenProps<
   MainStackParamList,
   "SentInvitations"
+>;
+
+export type HealthStatusScreenProps = NativeStackScreenProps<
+  MainStackParamList,
+  "HealthStatus"
 >;

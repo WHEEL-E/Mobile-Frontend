@@ -7,7 +7,7 @@ export const initSocket = createAsyncThunk(
   SocketActionTypes.INIT_SOCKET,
   async (undefined, thunkAPI) => {
     try {
-      const socketEndpoint = "http://192.168.1.17:3000";
+      const socketEndpoint = "http://raspberrypi.local:3000";
 
       const socket: Socket = io(socketEndpoint, {
         transports: ["websocket"],

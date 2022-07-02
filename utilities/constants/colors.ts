@@ -5,8 +5,9 @@ export default {
   lightGray: "#F2F3F7",
   darkGrey: "#8F9198",
   lightPurple: "#E7D9EA",
+  darkPurple: "#67027d",
   lightBrown: "#D9C9AC",
   darkBlue: "#19456B",
   offWhite: "#F0E9DC",
-  lightBlack: "#3f414e"
+  lightBlack: "#3f414e",
 };

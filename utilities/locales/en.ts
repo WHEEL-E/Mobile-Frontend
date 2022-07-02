@@ -221,5 +221,14 @@ export default {
       counter: "You can resend verification email in ",
       signUp: "Back to sign up",
     },
+    healthStatus: {
+      healthStatus: "Health Status",
+      oxygenSaturation: "Oxygen Saturation",
+      heartRate: "Heart Rate",
+      mmhg: "mm Hg",
+      bpm: "BPM",
+      note: " To get updated values please place your hands at the sensors attached to your chair",
+      lastUpdate: "Last update at: ",
+    },
   },
 };
