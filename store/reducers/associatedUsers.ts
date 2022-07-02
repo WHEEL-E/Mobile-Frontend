@@ -1,6 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AssocitedUsersState } from "../../utilities/types/associatedUsersTypes";
-import { getAssociatedUsers, removeUser } from "../actions/associatedUsers";
+import {
+  getAssociatedUsers,
+  getUserById,
+  removeUser,
+} from "../actions/associatedUsers";
 
 const initialState: AssocitedUsersState = {
   associatedUsers: [],
@@ -9,7 +13,7 @@ const initialState: AssocitedUsersState = {
 const associatedUsersReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getAssociatedUsers.fulfilled, (state, action) => {
-      return { associatedUsers: action.payload };
+      return { ...state, associatedUsers: action.payload };
     })
     .addCase(removeUser.fulfilled, (state, action) => {
       const removedUser = action.payload;
@@ -17,8 +21,12 @@ const associatedUsersReducer = createReducer(initialState, (builder) => {
         (user) => user.userId !== removedUser
       );
       return {
+        ...state,
         associatedUsers: newUsers,
       };
+    })
+    .addCase(getUserById.fulfilled, (state, action) => {
+      return { ...state, associatedUser: action.payload };
     });
 });
 

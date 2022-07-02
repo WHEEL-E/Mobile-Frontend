@@ -20,7 +20,7 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
   const {
     navigation,
     backgroundColor,
-    userInfo: { userId, userName, profilePhoto, address },
+    userInfo: { _id, name, profile_picture, address },
   } = props;
 
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -35,7 +35,7 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
   )!;
 
   const viewHandler = () => {
-    navigation.navigate("SupervisedPatient", { patientId: userId });
+    navigation.navigate("SupervisedPatient", { patientId: _id });
   };
 
   const removeHandler = () => {
@@ -47,27 +47,27 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
       <RemoveUserModal
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}
-        name={userName}
-        id={userId}
+        name={name}
+        id={_id}
       />
       <View style={styles.cardContent}>
         <View>
-          <Text style={{ ...styles.title, color: textColor }}>{userName}</Text>
+          <Text style={{ ...styles.title, color: textColor }}>{name}</Text>
           <Text style={{ ...styles.location, color: textColor }}>
             {address}
           </Text>
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
-          <Image source={{ uri: profilePhoto }} style={styles.image} />
+          <Image source={{ uri: profile_picture }} style={styles.image} />
         </View>
       </View>
       <View style={styles.buttonsList}>
-        <SquareButton
+        {/* <SquareButton
           title={t("associatedUsers.remove")}
           titleStyle={styles.buttonTitleStyle}
           onPress={removeHandler}
           buttonStyle={styles.removeButton}
-        />
+        /> */}
         {userType === UserTypes.SUPERVISOR && (
           <SquareButton
             title={t("associatedUsers.view")}

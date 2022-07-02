@@ -7,6 +7,12 @@ export interface UserMainData {
   phone: number;
   gender: "female" | "male";
   isVerified?: boolean;
+  associatedUsers: {
+    name: string;
+    address: string;
+    profile_picture: string;
+    _id: string;
+  }[];
 }
 
 export interface PatientExtradata {

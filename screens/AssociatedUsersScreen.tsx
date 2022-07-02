@@ -10,22 +10,9 @@ import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/main
 const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
   const { navigation } = props;
 
-  const dispatch = useDispatch<any>();
-
-  const associatedUsers = useSelector(
-    (state: RootState) => state.associatedUsers.associatedUsers
-  );
-
   const userData = useSelector((state: RootState) => state.user.userData)!;
 
-  React.useEffect(() => {
-    dispatch(
-      getAssociatedUsers({
-        userId: userData?.userMainData._id!,
-        userType: userData.userType,
-      })
-    );
-  });
+  const associatedUsers = userData.userMainData.associatedUsers;
 
   return (
     <View style={styles.container}>
@@ -42,7 +29,7 @@ const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
                 index % 2 == 0 ? colors.darkGreen : colors.lightPurple
               }
               navigation={navigation}
-              key={item.userId}
+              key={item._id}
             />
           )}
           style={styles.list}

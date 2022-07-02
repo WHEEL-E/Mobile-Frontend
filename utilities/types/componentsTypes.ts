@@ -5,10 +5,10 @@ import { MainStackParamList } from "./navigationTypes/mainNavigationTypes";
 
 export interface AssociatedUserProps {
   userInfo: {
-    userId: string;
-    userName: string;
+    _id: string;
+    name: string;
     address: string;
-    profilePhoto: string;
+    profile_picture: string;
   };
   navigation: NativeStackNavigationProp<
     MainStackParamList,

@@ -1,9 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
-import { BackButton } from "../components/buttons/BackButton";
+import { useDispatch, useSelector } from "react-redux";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
+import { getUserById } from "../store/actions/associatedUsers";
+import { RootState } from "../store/reducers/rootReducer";
 import colors from "../utilities/constants/colors";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 import fonts from "../utilities/constants/fonts";
@@ -16,27 +18,27 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
 
   const patientId = route.params.patientId;
 
-  // TODO:Use the id to get the patient data
-  const patient: User = {
+  const dispatch = useDispatch<any>();
+  let tempData: User = {
     userMainData: {
-      _id: "id",
-      name: "Emelia Erheart",
-      phone: 123456,
-      email: "patientMail@gmail.com",
-      profile_picture:
-        "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
+      _id: "",
+      name: "",
+      email: "",
+      associatedUsers: [],
       gender: "female",
-    },
-    patientExtraData: {
-      address: "Atlantic ocean",
-      emergency_number: 123,
-      smoking: false,
-      height: 170,
-      weight: 80,
-      dob: "2015-03-22",
+      profile_picture: "",
+      phone: 0,
     },
     userType: UserTypes.PATIENT,
   };
+
+  const patient =
+    useSelector((state: RootState) => state.associatedUsers.associatedUser) ||
+    tempData;
+
+  React.useEffect(() => {
+    dispatch(getUserById({ userId: patientId, userType: UserTypes.PATIENT }));
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -44,9 +46,6 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
         source={require("../assets/images/Union.png")}
         style={styles.backgroundImage}
       >
-        <View style={styles.backButton}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
         <Image
           style={styles.logo}
           source={require("../assets/images/logo-b-app.png")}
@@ -110,7 +109,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     resizeMode: "stretch",
-    paddingVertical: "10%",
+    paddingTop: "20%",
+    paddingBottom: "10%",
     paddingHorizontal: "5%",
   },
   backButton: {
@@ -139,7 +139,8 @@ const styles = StyleSheet.create({
     height: DEVICE_HEIGHT * 0.1,
   },
   logo: {
-    height: 40,
+    height: "5%",
+    marginBottom: "10%",
     resizeMode: "center",
     width: "70%",
     alignSelf: "center",

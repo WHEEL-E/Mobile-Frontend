@@ -1,3 +1,5 @@
+import { User } from "@sentry/react-native";
+
 export interface RemoveUserModalProps {
   modalVisible: boolean;
   setModalVisible: (state: boolean) => void;
@@ -19,4 +21,5 @@ export interface AssociatedUserData {
 
 export interface AssocitedUsersState {
   associatedUsers: AssociatedUserData[];
+  associatedUser?: User;
 }

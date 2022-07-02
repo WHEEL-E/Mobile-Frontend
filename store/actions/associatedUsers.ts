@@ -2,11 +2,12 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { ShowModal } from "./errorModal";
-import { UserTypes } from "../../utilities/types/userTypes";
+import { User, UserTypes } from "../../utilities/types/userTypes";
 import {
   AssociatedUserData,
   AssociatedUsersActionTypes,
 } from "../../utilities/types/associatedUsersTypes";
+import { RootState } from "../reducers/rootReducer";
 
 export const getAssociatedUsers = createAsyncThunk(
   AssociatedUsersActionTypes.GET_ALL,
@@ -61,6 +62,60 @@ export const removeUser = createAsyncThunk(
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.removeUser"));
       throw err;
+    }
+  }
+);
+
+export const getUserById = createAsyncThunk(
+  "",
+  async (data: { userId: string; userType: UserTypes }, thunkAPI) => {
+    try {
+      const { user } = thunkAPI.getState() as RootState;
+      const { userId, userType } = data;
+      let endpoint = `${EndPoints.supervisor}/${userId}`;
+      if (userType === UserTypes.PATIENT) {
+        endpoint = `${EndPoints.patients}/patient/${userId}`;
+      }
+
+      const response = await axios.get(`${endpoint}`, {
+        headers: { token: user.userData?.token! },
+      });
+
+      const resData = response.data.data;
+      const userData: User = {
+        userMainData: {
+          _id: resData._id,
+          name: resData.name,
+          email: resData.email,
+          phone: resData.phone,
+          isVerified: resData.isVerified,
+          profile_picture: resData.profile_picture,
+          gender: resData.gender,
+          associatedUsers: resData.associatedUsers,
+        },
+        userType: userType,
+        patientExtraData:
+          userType === UserTypes.PATIENT
+            ? {
+                smoking: resData.smoking,
+                address: resData.address,
+                dob: resData.dob,
+                height: resData.height,
+                emergency_number: resData.emergency_number,
+                weight: resData.weight,
+              }
+            : undefined,
+        token: resData.token,
+      };
+
+      if (response.data.status !== "Success") {
+        throw new Error(response.statusText);
+      }
+      console.log(userData);
+      return userData;
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
   }
 );

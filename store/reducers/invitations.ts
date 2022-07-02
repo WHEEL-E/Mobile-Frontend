@@ -1,4 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { AnyAction, createReducer } from "@reduxjs/toolkit";
 import {
   getInvitations,
   resendInvitation,

@@ -82,6 +82,7 @@ export function MainNavigation() {
       <MainStack.Screen
         name="SupervisedPatient"
         component={SupervisedPatientScreen}
+        options={{ title: t("") }}
       />
       <MainStack.Screen
         name="HealthMonitoring"

@@ -14,6 +14,7 @@ import {
   UserMainData,
   UserTypes,
 } from "../../utilities/types/userTypes";
+import { RootState } from "../reducers/rootReducer";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
@@ -31,31 +32,35 @@ export const signIn = createAsyncThunk(
 
     let user: User;
     if (data.type === UserTypes.SUPERVISOR) {
-      const resData: UserMainData & {token:string} = await response.data.data;
+      const resData: UserMainData & { token: string } = await response.data
+        .data;
       user = {
         userMainData: {
-          _id:resData._id,
+          _id: resData._id,
           name: resData.name,
           email: resData.email,
           phone: resData.phone,
           isVerified: resData.isVerified,
           profile_picture: resData.profile_picture,
           gender: resData.gender,
+          associatedUsers: resData.associatedUsers,
         },
         userType: data.type,
-        token:resData.token
+        token: resData.token,
       };
     } else {
-      const resData: UserMainData & PatientExtradata & {token:string} = await response.data.data;
+      const resData: UserMainData & PatientExtradata & { token: string } =
+        await response.data.data;
       user = {
         userMainData: {
-          _id:resData._id,
+          _id: resData._id,
           name: resData.name,
           email: resData.email,
           phone: resData.phone,
           isVerified: resData.isVerified,
           profile_picture: resData.profile_picture,
           gender: resData.gender,
+          associatedUsers: resData.associatedUsers,
         },
         userType: data.type,
         patientExtraData: {
@@ -66,7 +71,7 @@ export const signIn = createAsyncThunk(
           emergency_number: resData.emergency_number,
           weight: resData.weight,
         },
-        token:resData.token
+        token: resData.token,
       };
     }
 
