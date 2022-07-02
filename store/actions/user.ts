@@ -78,13 +78,13 @@ export const signUp = async (
   dispatch: Dispatch<any>
 ) => {
   try {
-    let notificationToken;
+    let notification_token;
     registerForPushNotificationsAsync(dispatch).then((token) => {
-      notificationToken = token;
+      notification_token = token;
     });
 
     const { data } = signUpData;
-    const sentdata = { ...data, notificationToken };
+    const sentdata = { ...data, notification_token };
 
     let endpoint = EndPoints.signUpSupervisor;
     if (signUpData.userType === UserTypes.PATIENT) {

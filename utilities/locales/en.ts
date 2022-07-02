@@ -38,8 +38,7 @@ export default {
       profilePhoto: "Profile Photo",
       emergencyContacts: "Emergency Contacts",
       warningText: "{{name}} is a required field",
-      warningPassword:
-        "password should contain eight characters, one letter, one number and one special character",
+      warningPassword: "password should contain at least eight digits",
       warningMail: "please enter a valid email address",
       warningphone: "please enter a valid phone number",
       warningNumber: "please enter a valid {{name}}",
@@ -148,7 +147,7 @@ export default {
       gender: "Gender",
       male: "Male",
       female: "Female",
-      smoke: "smoking state",
+      smoking: "smoking state",
       yes: "Yes",
       no: "No",
       type: "type",

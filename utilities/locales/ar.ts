@@ -37,8 +37,7 @@ export default {
       profilePhoto: "الصورة الشخصية",
       emergencyContacts: "ارقام الطوارئ",
       warningText: "يجب إدخال {{name}}",
-      warningPassword:
-        "كلمة المرور يجب أن تحتوي على ثمانية أحرف أو اكثر مكونة من حروف إنجليزية, رقم أو أكثر, رمز أو أكثر",
+      warningPassword: "كلمة المرور يجب أن تحتوي على 8 خانات او أكثر",
       warningMail: "من فضلك أدخل بريد الكتروني صحيح",
       warningphone: "من فضلك ادخل رقم هاتف صحيح",
       warningNumber: "من فضلك أدخل {{name}} الصحيح",
@@ -132,9 +131,9 @@ export default {
       language: "تغيير اللغة",
     },
     form: {
-      emergencyContact: "رقم الطوارئ",
+      emergency_number: "رقم الطوارئ",
       gender: "النوع",
-      smoke: "حالة التدخين",
+      smoking: "حالة التدخين",
       name: "الاسم",
       emailAddress: "البريد الإلكتروني",
       password: "رمز الدخول",
@@ -154,6 +153,8 @@ export default {
       year: "العام",
       month: "الشهر",
       day: "اليوم",
+      email: "البريد الالكتروني",
+      phone: "رقم الهاتف",
     },
     forgetPassword: {
       validMail: "من فضلك أدخل بريد الكتروني صحيح",

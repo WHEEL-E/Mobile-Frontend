@@ -16,7 +16,7 @@ export const validateMail = (text: string | undefined) => {
 };
 
 export const validatePassword = (text: string | undefined) => {
-  if (!(text && text.length < 8)) {
+  if (!(text && text.length >= 8)) {
     return "signUpScreen.warningPassword";
   } else {
     return undefined;
