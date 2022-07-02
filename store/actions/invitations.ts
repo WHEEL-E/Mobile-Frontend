@@ -33,7 +33,12 @@ export const getInvitations = createAsyncThunk(
 
       const resData: InvitationData[] = await response.data.data;
       console.log(resData);
-      const invitations: InvitationData[] = resData.map((value) => {
+      const invitations =
+        type === "Supervisor"
+          ? resData.filter((invitation) => invitation.status === "Pending")
+          : resData;
+
+      const finalInvitations: InvitationData[] = invitations.map((value) => {
         return {
           ...value,
           to_Name: "Random Name",
@@ -45,7 +50,7 @@ export const getInvitations = createAsyncThunk(
         };
       });
 
-      return invitations;
+      return finalInvitations;
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal"));
       throw new Error();
@@ -105,8 +110,12 @@ export const unsendInvitation = createAsyncThunk(
   InvitationsActionTypes.UNSEND_INVITATION,
   async (invitationId: string, thunkAPI) => {
     try {
+      const { user } = thunkAPI.getState() as RootState;
       const response = await axios.delete(
-        `${EndPoints.invitations}/${invitationId}`
+        `${EndPoints.invitations}/${invitationId}`,
+        {
+          headers: { token: user.userData?.token! },
+        }
       );
 
       const resData = await response.data;
@@ -123,8 +132,15 @@ export const resendInvitation = createAsyncThunk(
   InvitationsActionTypes.RESEND_INVITATION,
   async (invitationId: string, thunkAPI) => {
     try {
+      const { user } = thunkAPI.getState() as RootState;
+      console.log(user.userData?.token);
+
       const response = await axios.put(
-        `${EndPoints.invitations}/${invitationId}`
+        `${EndPoints.invitations}/${invitationId}`,
+        {},
+        {
+          headers: { token: user.userData?.token! },
+        }
       );
 
       const resData = await response.data.data;
@@ -144,18 +160,19 @@ export const rejectInvitation = createAsyncThunk(
     try {
       console.log(invitationId);
       const { user } = thunkAPI.getState() as RootState;
-
+      console.log("Token", user.userData?.token);
       const response = await axios.put(
         `${EndPoints.invitations}/reject/${invitationId}`,
+        {},
         {
-          headers: { token: user.userData?.token },
+          headers: { token: user.userData?.token! },
         }
       );
 
       console.log("Tesssssssssst", response.data);
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
-      return updatedInvitation;
+      return invitationId;
     } catch (e) {
       console.log(e);
       // thunkAPI.dispatch(ShowModal("errorModal"));
@@ -173,6 +190,7 @@ export const acceptInvitation = createAsyncThunk(
     try {
       const response = await axios.put(
         `${EndPoints.invitations}/accept/${invitationId}`,
+        {},
         {
           headers: { token: user.userData?.token! },
         }
