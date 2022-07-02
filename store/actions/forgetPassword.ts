@@ -3,7 +3,6 @@ import * as ExpoLinking from "expo-linking";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { ShowModal } from "./errorModal";
-import { ForgetPasswordActionType } from "../../utilities/forgetPasswordUtils";
 
 export const sendResetEmail = createAsyncThunk(
   "ForgetPasswordActionType.GET_TOKEN",

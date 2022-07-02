@@ -56,7 +56,7 @@ const ProfileScreen = (props: ProfileProps) => {
           backgroundColor: colors.lightBrown,
         }}
         titleStyle={styles.ButtonText}
-        onPress={() => dispatch(signOut(null))}
+        onPress={() => dispatch(signOut())}
         icon={{ name: "log-out-outline", size: 40, color: "black" }}
       />
     </View>

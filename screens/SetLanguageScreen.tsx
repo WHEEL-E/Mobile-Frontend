@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
 import lang from "../lang";

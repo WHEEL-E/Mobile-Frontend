@@ -13,15 +13,15 @@ import { RootState } from "../store/reducers/rootReducer";
 import SettingScreen from "../screens/SettingScreen";
 import SoundSettingScreen from "../screens/SoundSettingScreen";
 import AddConnection from "../screens/AddConnectionScreen";
-import {
-  mainStackOptions,
-  MainStackParamList,
-} from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
 import HealthMonitoring from "../screens/HealthMonitoring";
 import SentInvitations from "../screens/SentInvitations";
 import HealthStatusScreen from "../screens/HealthStatusScreen";
+import {
+  mainStackOptions,
+  MainStackParamList,
+} from "../utilities/types/navigationTypes/mainNavigationTypes";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 

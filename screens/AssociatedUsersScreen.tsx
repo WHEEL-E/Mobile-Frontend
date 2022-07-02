@@ -21,7 +21,7 @@ const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
   React.useEffect(() => {
     dispatch(
       getAssociatedUsers({
-        userId: userData?.userMainData.userId!,
+        userId: userData?.userMainData._id!,
         userType: userData.userType,
       })
     );

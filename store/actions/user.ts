@@ -82,12 +82,16 @@ export const signUp = async (
     registerForPushNotificationsAsync(dispatch).then((token) => {
       notificationToken = token;
     });
+
     const { data } = signUpData;
+    const sentdata = { ...data, notificationToken };
+
     let endpoint = EndPoints.signUpSupervisor;
     if (signUpData.userType === UserTypes.PATIENT) {
       endpoint = EndPoints.signUpPatient;
     }
-    const response = await axios.post(endpoint, data);
+
+    const response = await axios.post(endpoint, sentdata);
 
     if (response.data.status !== "Success") {
       throw new Error(response.statusText);
