@@ -102,6 +102,9 @@ export default {
       fetchingNotifications:
         "حدث خطأ أثناء تحميل الإشعارات, برجاء المحاولة لاحقًا",
       deletingNotification: "حدث خطأ أثناء حذف الإشعار, برجاء المحاولة لاحقًا",
+      mailVerification: "لم نتمكن من تفعيل الحساب, برجاء المحاولة لاحقًا",
+      sendVerificationEmail:
+        "لم نتمكن من ارسال البريد الالكتروني, برجاء المحاولة لاحقًا",
     },
     notesScreen: {
       modalHeader: "قم بملئ البيانات لإاضافة ملاحظة",
@@ -147,6 +150,10 @@ export default {
       female: "أنثى",
       yes: "نعم",
       no: "لا",
+      dob: "تاريخ الميلاد",
+      year: "العام",
+      month: "الشهر",
+      day: "اليوم",
     },
     forgetPassword: {
       validMail: "من فضلك أدخل بريد الكتروني صحيح",
@@ -223,6 +230,24 @@ export default {
       PATIENT_UPDATES: "تحديثات المرضى",
       EMERGENCY_CALL: "مكالمة طوارئ",
       receivedAt: "تم الإرسال في",
+    },
+    mailVerification: {
+      mainText: "من فضلك قم بتأكيد الحساب أولًا",
+      description:
+        "لقد قمنا بإرسال رسالة إلى البريد الغلكتروني الخاص بك, يمكنك اتباع التعليمات المرسلة لتأكيد الحساب",
+      resendQuestion: "لم تستلم رسالة؟ ",
+      resend: "أرسل رسالة أخرى",
+      counter: "يمكنك إرسال رسالة أخرى في خلال ",
+      signUp: "التسجيل مرة اخرى",
+    },
+    healthStatus: {
+      healthStatus: "الحالة الصحية",
+      oxygenSaturation: "تشبع الدم",
+      heartRate: "نبض القلب",
+      mmhg: "مم زئبقي",
+      bpm: "نبضة في الدقيقة",
+      note: "للحصول على النتائج المحدثة, من فضلك ضع يدك على أجهزة الاستقبال الملحقة بالكرسي",
+      lastUpdate: "آخر تحديث في: ",
     },
   },
 };

@@ -1,6 +1,7 @@
-import { UserState } from "../../utilities/types/userTypes";
+import { UserMainData, UserState } from "../../utilities/types/userTypes";
 import { createReducer } from "@reduxjs/toolkit";
 import { restoreUser, signIn, signOut } from "../actions/user";
+import { verifyEmail } from "../actions/mailVerification";
 
 const initialState: UserState = {
   userData: null,
@@ -13,7 +14,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(signIn.fulfilled, (state, action) => {
       state.isRestoringData = false;
       state.userData = action.payload;
-      state.isLoggedIn = true;
+      state.isLoggedIn = action.payload ? true : false;
     })
     .addCase(signOut.fulfilled, (state) => {
       state.isRestoringData = false;
@@ -24,6 +25,15 @@ const userReducer = createReducer(initialState, (builder) => {
       state.isRestoringData = false;
       state.userData = action.payload;
       state.isLoggedIn = action.payload === null ? false : true;
+    })
+    .addCase(verifyEmail.fulfilled, (state, action) => {
+      const userMainData: UserMainData = {
+        ...state.userData?.userMainData!,
+        isVerified: action.payload === "Success" ? true : false,
+      };
+      state.userData = { ...state.userData!, userMainData };
+      state.isLoggedIn = true;
+      state.isRestoringData = false;
     });
 });
 

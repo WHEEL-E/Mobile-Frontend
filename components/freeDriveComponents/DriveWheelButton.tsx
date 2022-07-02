@@ -43,7 +43,7 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
         onPressOut={() => {
           const newColors = [...color];
           newColors[index] = "url(#GradientFilling)";
-          socket.emit("action-stop", "stop");
+          socket.emit("action-stop", "o");
           setColor(newColors);
         }}
       />

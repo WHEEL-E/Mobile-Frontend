@@ -9,8 +9,8 @@ import { signUp } from "../store/actions/user";
 import { ShowModal } from "../store/actions/errorModal";
 import {
   SignUpAdditionalDataValues,
-  signUpMainFormProps,
-  signUpMainFormValues,
+  SignUpMainFormProps,
+  SignUpMainFormValues,
 } from "./types/signUpTypes";
 
 export const registerForPushNotificationsAsync = async (
@@ -48,9 +48,9 @@ export const registerForPushNotificationsAsync = async (
 };
 
 export const submitSignUpMainForm = (
-  values: signUpMainFormValues,
+  values: SignUpMainFormValues & { type: UserTypes },,
   dispatch: any,
-  props: signUpMainFormProps
+  props: SignUpMainFormProps
 ) => {
   const { setScreen } = props;
   const { type } = values;
@@ -58,7 +58,7 @@ export const submitSignUpMainForm = (
   if (type === UserTypes.SUPERVISOR) {
     Supervisor.addMainFormData(values);
     const user = Supervisor.prepareUserObject();
-    dispatch(signUp(user));
+    signUp(user, dispatch);
   } else {
     Patient.addMainFormData(values);
     setScreen("SecondPage");
@@ -71,5 +71,5 @@ export const submitSignUpAdditionalData = (
 ) => {
   Patient.addAdditionalFormData(values);
   const user = Patient.prepareUserObject();
-  dispatch(signUp(user));
+  signUp(user, dispatch);
 };

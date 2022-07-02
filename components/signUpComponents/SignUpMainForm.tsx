@@ -13,8 +13,8 @@ import PickerComponent from "../formComponents/Picker";
 import { RenderInputComponent } from "../formComponents/RenderInputComponent";
 import { ImagePickerComponent } from "./ImagePicker";
 import {
-  signUpMainFormValues,
-  signUpMainFormProps,
+  SignUpMainFormValues,
+  SignUpMainFormProps,
 } from "../../utilities/types/signUpTypes";
 import { submitSignUpMainForm } from "../../utilities/signUpUtils";
 import {
@@ -27,11 +27,16 @@ import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
 import { UserTypes } from "../../utilities/types/userTypes";
 
 const SignUpMainForm = (
-  props: InjectedFormProps<signUpMainFormValues, signUpMainFormProps>
+  props: InjectedFormProps<
+    SignUpMainFormValues & { type: UserTypes },
+    SignUpMainFormProps
+  >
 ) => {
   const { t } = useTranslation();
   const { handleSubmit } = props;
   const [type, setType] = React.useState(UserTypes.PATIENT);
+
+  const genderLabels = ["male", "female"];
   const typeLabels = [UserTypes.SUPERVISOR, UserTypes.PATIENT];
 
   return (
@@ -47,7 +52,7 @@ const SignUpMainForm = (
           warn={validateNotEmpty}
         />
         <Field
-          name="emailAddress"
+          name="email"
           component={RenderInputComponent}
           validate={validateMail}
           warn={validateMail}
@@ -59,20 +64,22 @@ const SignUpMainForm = (
           warn={validatePassword}
         />
         <Field
-          name="address"
-          component={RenderInputComponent}
-          validate={validateNotEmpty}
-          warn={validateNotEmpty}
-        />
-        <Field
-          name="phoneNumber"
+          name="phone"
           component={RenderInputComponent}
           validate={validatePhone}
           warn={validatePhone}
         />
         <Field
-          name="profilePhoto"
+          name="profile_picture"
           component={ImagePickerComponent}
+          validate={validateNotEmpty}
+          warn={validateNotEmpty}
+        />
+        <Field
+          name="gender"
+          component={(props: WrappedFieldProps) => (
+            <PickerComponent fieldProps={props} labels={genderLabels} />
+          )}
           validate={validateNotEmpty}
           warn={validateNotEmpty}
         />
@@ -114,7 +121,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const Form = reduxForm<signUpMainFormValues, signUpMainFormProps>({
+const Form = reduxForm<
+  SignUpMainFormValues & { type: UserTypes },
+  SignUpMainFormProps
+>({
   form: "SignUpMainForm",
 })(SignUpMainForm);
 

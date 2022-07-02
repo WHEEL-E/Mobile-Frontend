@@ -3,7 +3,7 @@ import { EventOrValueHandler, WrappedFieldProps } from "redux-form";
 import { GetStartedStackParamList } from "./navigationTypes/getStartedNavigationTypes";
 import { UserTypes } from "./userTypes";
 
-export interface signUpMainFormProps {
+export interface SignUpMainFormProps {
   navigation: NativeStackNavigationProp<GetStartedStackParamList, "SignUp">;
   setScreen: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -12,23 +12,29 @@ export interface SignUpAdditionalDataProps {
   navigation: NativeStackNavigationProp<GetStartedStackParamList, "SignUp">;
 }
 
-export interface signUpMainFormValues {
+export interface SignUpMainFormValues {
   name: string;
-  emailAddress: string;
+  email: string;
   password: string;
-  address: string;
-  phoneNumber: string;
-  type: UserTypes;
-  profilePhoto: string;
+  phone: number;
+  gender: "female" | "male";
+  profile_picture: string;
 }
 
 export interface SignUpAdditionalDataValues {
   height: number;
   weight: number;
-  age: number;
-  gender: "female" | "male";
-  smoke: "yes" | "no";
-  emergencyContacts: string[];
+  dob: number[];
+  smoking: boolean;
+  emergency_number: number;
+  address: string;
+}
+
+export interface SignUpRequest {
+  data:
+    | SignUpMainFormValues
+    | (SignUpMainFormValues & SignUpAdditionalDataValues);
+  userType: UserTypes;
 }
 
 export interface PickerProps {
