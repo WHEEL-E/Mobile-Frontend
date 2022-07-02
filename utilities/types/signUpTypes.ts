@@ -16,27 +16,33 @@ export interface SignUpAdditionalDataProps {
   navigation: NativeStackNavigationProp<GetStartedStackParamList, "SignUp">;
 }
 
-export interface signUpMainFormValues {
+export interface SignUpMainFormValues {
   name: string;
-  emailAddress: string;
+  email: string;
   password: string;
-  address: string;
-  phoneNumber: string;
-  type: UserTypes;
-  profilePhoto: string;
+  phone: number;
+  gender: "female" | "male";
+  profile_picture: string;
 }
 
 export interface SignUpAdditionalDataValues {
   height: number;
   weight: number;
-  age: number;
-  gender: "female" | "male";
-  smoke: "yes" | "no";
-  emergencyContacts: string[];
+  dob: number[];
+  smoking: boolean;
+  emergency_number: number;
+  address: string;
+}
+
+export interface SignUpRequest {
+  data:
+    | SignUpMainFormValues
+    | (SignUpMainFormValues & SignUpAdditionalDataValues);
+  userType: UserTypes;
 }
 
 export const submitSignUpMainForm = (
-  values: signUpMainFormValues,
+  values: SignUpMainFormValues & { type: UserTypes },
   dispatch: any,
   props: signUpMainFormProps
 ) => {
@@ -45,7 +51,7 @@ export const submitSignUpMainForm = (
   if (type === UserTypes.SUPERVISOR) {
     Supervisor.addMainFormData(values);
     const user = Supervisor.prepareUserObject();
-    dispatch(signUp(user));
+    signUp(user, dispatch);
   } else {
     Patient.addMainFormData(values);
     setScreen("SecondPage");
@@ -58,7 +64,7 @@ export const submitSignUpAdditionalData = (
 ) => {
   Patient.addAdditionalFormData(values);
   const user = Patient.prepareUserObject();
-  dispatch(signUp(user));
+  signUp(user, dispatch);
 };
 
 export interface PickerProps {

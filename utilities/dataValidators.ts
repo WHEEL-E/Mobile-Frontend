@@ -27,19 +27,6 @@ export const validatePassword = (text: string | undefined) => {
   }
 };
 
-export const validateArray = (data: string[] | undefined) => {
-  if (!data) {
-    return "signUpScreen.warningText";
-  }
-  if (data.length === 0) {
-    return "signUpScreen.warningText";
-  }
-  if (data.filter((text) => text.trim().length !== 0).length == 0) {
-    return "signUpScreen.warningText";
-  }
-  return undefined;
-};
-
 export const validateNotEmpty = (text: string | undefined) => {
   if (!text || text.trim().length === 0) {
     return "signUpScreen.warningText";

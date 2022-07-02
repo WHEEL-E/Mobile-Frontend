@@ -104,6 +104,9 @@ export default {
       getAssociatedUsers:
         "Error loading associated users. Please try again later",
       removeUser: "Error removing User. Please try again later",
+      mailVerification: "Can't verify email, please try again later",
+      sendVerificationEmail:
+        "Can't send verification email, please try again later",
     },
     notesScreen: {
       modalHeader: "Fill the required fields to add new note",
@@ -132,10 +135,10 @@ export default {
     },
     form: {
       name: "Name",
-      emailAddress: "EmailAddress",
+      email: "Email Address",
       password: "Password",
       address: "Address",
-      phoneNumber: "PhoneNumber",
+      phone: "PhoneNumber",
       SUPERVISOR: "Supervisor",
       PATIENT: "Patient",
       gender: "Gender",
@@ -147,8 +150,11 @@ export default {
       type: "type",
       height: "Height",
       weight: "Weight",
-      age: "Age",
-      emergencyContact: "Emergency Contact",
+      emergency_number: "Emergency Contact",
+      dob: "Date of Birth",
+      year: "Year",
+      month: "Month",
+      day: "Day",
     },
     forgetPassword: {
       validMail: "Please enter a valid email",
@@ -205,6 +211,15 @@ export default {
       confirmText: "Are you sure you want to logout?",
       cancel: "Cancel",
       confirm: "Confirm",
+    },
+    mailVerification: {
+      mainText: "Please verify your email address first!",
+      description:
+        "We have sent an email to your registered email address, you can follow the instruction to varify you email",
+      resendQuestion: "Haven't received an email? ",
+      resend: "Send another email",
+      counter: "You can resend verification email in ",
+      signUp: "Back to sign up",
     },
     healthStatus: {
       healthStatus: "Health Status",

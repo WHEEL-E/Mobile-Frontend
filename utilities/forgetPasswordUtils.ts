@@ -21,14 +21,14 @@ export interface ChangedPasswordModalProps {
 }
 
 export const linking = {
-  prefixes: [ExpoLinking.createURL("/"), "wheele://"],
+  prefixes: [ExpoLinking.createURL("/")],
   config: {
     screens: {
       SetPassword: {
         path: "resetPassword",
       },
-      GetStarted: {
-        path: "getStarted",
+      verifyMail: {
+        path: "verifyMail",
       },
     },
   },

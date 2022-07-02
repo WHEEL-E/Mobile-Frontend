@@ -99,6 +99,9 @@ export default {
       getAssociatedUsers:
         "حدث خطأ أثناء تحميل قائمة الاتصال, برجاء المحاولة لاحقًا",
       removeUser: "حدث خطأ أثناء حذف المستخدم, برجاء المحاولة لاحقًا",
+      mailVerification: "لم نتمكن من تفعيل الحساب, برجاء المحاولة لاحقًا",
+      sendVerificationEmail:
+        "لم نتمكن من ارسال البريد الالكتروني, برجاء المحاولة لاحقًا",
     },
     notesScreen: {
       modalHeader: "قم بملئ البيانات لإاضافة ملاحظة",
@@ -144,6 +147,10 @@ export default {
       female: "أنثى",
       yes: "نعم",
       no: "لا",
+      dob: "تاريخ الميلاد",
+      year: "العام",
+      month: "الشهر",
+      day: "اليوم",
     },
     forgetPassword: {
       validMail: "من فضلك أدخل بريد الكتروني صحيح",
@@ -197,6 +204,15 @@ export default {
       confirmText: "هل انت متأكد من رغبتك بتسجيل الخروج؟",
       cancel: "إلغاء",
       confirm: "تأكيد",
+    },
+    mailVerification: {
+      mainText: "من فضلك قم بتأكيد الحساب أولًا",
+      description:
+        "لقد قمنا بإرسال رسالة إلى البريد الغلكتروني الخاص بك, يمكنك اتباع التعليمات المرسلة لتأكيد الحساب",
+      resendQuestion: "لم تستلم رسالة؟ ",
+      resend: "أرسل رسالة أخرى",
+      counter: "يمكنك إرسال رسالة أخرى في خلال ",
+      signUp: "التسجيل مرة اخرى",
     },
     healthStatus: {
       healthStatus: "الحالة الصحية",
