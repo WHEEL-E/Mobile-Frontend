@@ -102,7 +102,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
         unsendable={unsendable}
         timeOut={userRole === "Patient" ? timeOut : true}
         invitationId={_id}
-        userRole="Supervisor"
+        userRole={userRole}
       />
       {showCountDown && userRole === "Patient" && (
         <Text style={{ ...NoteText, color: textColor, textAlign: "center" }}>

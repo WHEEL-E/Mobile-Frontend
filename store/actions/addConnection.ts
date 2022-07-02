@@ -12,7 +12,7 @@ export const getResults = createAsyncThunk(
   AddConnectionActionTypes.GET_RESULTS_PATIENTS,
   async (prefix: string, thunkAPI) => {
     try {
-      const { user } = thunkAPI.getState() as RootState;
+      const { user,invitations } = thunkAPI.getState() as RootState;
       const response = await axios.get(EndPoints.searchConnection + prefix, {
         headers: { token: user.userData?.token! },
       });

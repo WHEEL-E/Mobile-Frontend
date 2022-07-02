@@ -24,7 +24,7 @@ const SentInvitations = (props: SentInvitationsProps) => {
         userId: userData?.userMainData._id!,
       })
     );
-  });
+  },[]);
 
   return (
     <View style={styles.container}>

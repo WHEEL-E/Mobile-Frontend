@@ -12,19 +12,27 @@ import {
   NotificationType,
 } from "../../utilities/types/notificationsTypes";
 import { RootState } from "../reducers/rootReducer";
+import { UserTypes } from "../../utilities/types/userTypes";
 
 export const getInvitations = createAsyncThunk(
   InvitationsActionTypes.GET_INVITATIONS,
   async (data: { userId: string; userType: string }, thunkAPI) => {
-    const id = "627ecb1d08d1463ebdeedba7";
-    const type = "Patient";
-
     try {
+      console.log(data);
+      const { userId, userType } = data;
+
+      const type = userType === UserTypes.PATIENT ? "Patient" : "Supervisor";
+      const { user } = thunkAPI.getState() as RootState;
       const response = await axios.get(
-        `${EndPoints.invitations}/userInvitations/${id}?userType=${type}`
+        `${EndPoints.invitations}/userInvitations/${userId}?userType=${type}`,
+        {
+          headers: { token: user.userData?.token! },
+        }
       );
+      console.log(user.userData?.token!);
 
       const resData: InvitationData[] = await response.data.data;
+      console.log(resData);
       const invitations: InvitationData[] = resData.map((value) => {
         return {
           ...value,
@@ -53,14 +61,17 @@ export const sendInvitation = createAsyncThunk(
   ) => {
     try {
       const { user } = thunkAPI.getState() as RootState;
-
-      const response = await axios.post(EndPoints.invitations, {
-        from_id: data.from_id,
-        to_id: data.to_id,
-      },{
-        headers: { token: user.userData?.token! },
-      });
-      console.log(response)
+      console.log(user.userData?.token!);
+      const response = await axios.post(
+        EndPoints.invitations,
+        {
+          from_id: data.from_id,
+          to_id: data.to_id,
+        },
+        {
+          headers: { token: user.userData?.token! },
+        }
+      );
       const resData = await response.data.data;
 
       const invitation: InvitationData = {
@@ -83,6 +94,7 @@ export const sendInvitation = createAsyncThunk(
 
       return invitation;
     } catch (e) {
+      console.log(e);
       thunkAPI.dispatch(ShowModal("errorModal"));
       throw new Error();
     }
@@ -130,15 +142,23 @@ export const rejectInvitation = createAsyncThunk(
   InvitationsActionTypes.REJECT_INVITATION,
   async (invitationId: string, thunkAPI) => {
     try {
+      console.log(invitationId);
+      const { user } = thunkAPI.getState() as RootState;
+
       const response = await axios.put(
-        `${EndPoints.invitations}/reject/${invitationId}`
+        `${EndPoints.invitations}/reject/${invitationId}`,
+        {
+          headers: { token: user.userData?.token },
+        }
       );
 
+      console.log("Tesssssssssst", response.data);
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
       return updatedInvitation;
     } catch (e) {
-      thunkAPI.dispatch(ShowModal("errorModal"));
+      console.log(e);
+      // thunkAPI.dispatch(ShowModal("errorModal"));
       throw new Error();
     }
   }
@@ -147,9 +167,15 @@ export const rejectInvitation = createAsyncThunk(
 export const acceptInvitation = createAsyncThunk(
   InvitationsActionTypes.ACCEPT_INVITATION,
   async (invitationId: string, thunkAPI) => {
+    console.log(invitationId);
+    const { user } = thunkAPI.getState() as RootState;
+
     try {
       const response = await axios.put(
-        `${EndPoints.invitations}/accept/${invitationId}`
+        `${EndPoints.invitations}/accept/${invitationId}`,
+        {
+          headers: { token: user.userData?.token! },
+        }
       );
 
       const resData = await response.data.data;
