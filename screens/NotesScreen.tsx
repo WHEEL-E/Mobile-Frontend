@@ -18,7 +18,7 @@ const NotesScreen = (props: NotesProps) => {
   const notes = useSelector((state: RootState) => state.notes.allNotes);
 
   const userId = useSelector(
-    (state: RootState) => state.user.userData?.userMainData.userId
+    (state: RootState) => state.user.userData?.userMainData._id
   );
 
   const backgroundColors = [colors.darkGreen, colors.lightPurple];

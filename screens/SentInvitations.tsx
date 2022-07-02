@@ -21,7 +21,7 @@ const SentInvitations = (props: SentInvitationsProps) => {
     dispatch(
       getInvitations({
         userType: userData!.userType,
-        userId: userData?.userMainData.userId!,
+        userId: userData?.userMainData._id!,
       })
     );
   });

@@ -10,7 +10,7 @@ import {
   PADDING_HORIZONTAL,
   SMALL_MARGIN_VERTICAL,
 } from "../utilities/constants/spacing";
-import { SignOutModal } from "../components/settingsComponents/SignOutModal.";
+import { SignOutModal } from "../components/settingsComponents/SignOutModal";
 
 const SettingScreen = (props: SettingProps) => {
   const { navigation } = props;

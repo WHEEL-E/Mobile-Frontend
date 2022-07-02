@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import colors from "../utilities/constants/colors";
 import DriveWheel from "../components/freeDriveComponents/DriveWheel";
 import fonts from "../utilities/constants/fonts";
-import { BackButton } from "../components/buttons/BackButton";
 import { FreeDriveProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { useDispatch } from "react-redux";
 import { initSocket } from "../store/actions/socket";
