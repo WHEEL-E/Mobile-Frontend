@@ -4,6 +4,8 @@ import {
   resendInvitation,
   sendInvitation,
   unsendInvitation,
+  acceptInvitation,
+  rejectInvitation,
 } from "../actions/invitations";
 import { InvitationsState } from "../../utilities/types/sentInvitationsTypes";
 
@@ -24,15 +26,20 @@ const invitationsReducer = createReducer(initialState, (builder) => {
         invitations,
       };
     })
-    .addCase(unsendInvitation.fulfilled, (state, action) => {
-      const removedInvitation = action.payload;
-      const updatedInvitations = [...state.invitations].filter(
-        (invitaion) => invitaion._id !== removedInvitation
-      );
-      return {
-        invitations: updatedInvitations,
-      };
-    })
+    .addCase(
+      unsendInvitation.fulfilled ||
+        rejectInvitation.fulfilled ||
+        acceptInvitation.fulfilled,
+      (state, action) => {
+        const removedInvitation = action.payload;
+        const updatedInvitations = [...state.invitations].filter(
+          (invitaion) => invitaion._id !== removedInvitation
+        );
+        return {
+          invitations: updatedInvitations,
+        };
+      }
+    )
     .addCase(resendInvitation.fulfilled, (state, action) => {
       const updatedInvitation = action.payload;
       const updatedInvitations = [...state.invitations];

@@ -17,6 +17,7 @@ import { UserTypes } from "../utilities/types/userTypes";
 import { useTranslation } from "react-i18next";
 import HealthMonitoring from "../screens/HealthMonitoring";
 import SentInvitations from "../screens/SentInvitations";
+import SupervisorInvitations from "../screens/SupervisorInvitations";
 import HealthStatusScreen from "../screens/HealthStatusScreen";
 import {
   mainStackOptions,
@@ -106,6 +107,14 @@ export function MainNavigation() {
         component={SentInvitations}
         options={{
           title: t("sentInvitations.sentInvitations"),
+        }}
+      />
+
+      <MainStack.Screen
+        name="RecievedInvitations"
+        component={SupervisorInvitations}
+        options={{
+          title: t("RecievedInvitations.RecievedInvitations"),
         }}
       />
     </MainStack.Navigator>

@@ -22,8 +22,17 @@ import {
 
 export const InvitationCard = (props: InvitationCardProps) => {
   const {
-    invitaion: { _id, to_Name, status, updated_at, to_id, to_ProfilePhoto },
+    invitaion: {
+      _id,
+      to_Name,
+      status,
+      updated_at,
+      to_id,
+      to_ProfilePhoto,
+      from_ProfilePhoto,
+    },
     backgroundColor,
+    userRole,
   } = props;
 
   const { t } = useTranslation();
@@ -32,15 +41,16 @@ export const InvitationCard = (props: InvitationCardProps) => {
   const [days, hours, minutes, seconds] = useCountdown(
     new Date(updated_at).getTime() + sevenDays
   );
+  const photo = userRole === "Patient" ? to_ProfilePhoto : from_ProfilePhoto;
 
   const textColor =
     backgroundColor === colors.darkBlue ? "white" : colors.darkBlue;
 
   const timeOut = days + hours + minutes + seconds <= 0;
-  const unsendable = status === "Pending";
-  const reinvitable = status !== "Accepted";
+  const unsendable = userRole === "Patient" ? status === "Pending" : true;
+  const reinvitable = userRole === "Patient" ? status === "Rejected" : true;
   const showCountDown = !timeOut && status !== "Accepted";
-
+  const age = 15;
   return (
     <View
       key={_id}
@@ -49,24 +59,52 @@ export const InvitationCard = (props: InvitationCardProps) => {
       <View style={styles.content}>
         <View>
           <Text style={{ ...styles.name, color: textColor }}>{to_Name}</Text>
-          <Text style={{ ...styles.status, color: textColor }}>
-            {t("sentInvitations.status")}
-            <Text style={{ ...NormalText, color: textColor }}>
-              {t(`sentInvitations.${status}`)}
+          {userRole === "Patient" && (
+            <Text style={{ ...styles.status, color: textColor }}>
+              {t("sentInvitations.status")}
+              <Text style={{ ...NormalText, color: textColor }}>
+                {t(`sentInvitations.${status}`)}
+              </Text>
             </Text>
-          </Text>
+          )}
+
+          {userRole === "Supervisor" && (
+            <Text style={{ ...styles.status, color: textColor }}>
+              {t("RecievedInvitations.gender")}
+              <Text style={{ ...NormalText, color: textColor }}>
+                {t(`RecievedInvitations.${"male"}`)}
+              </Text>
+            </Text>
+          )}
+
+          {userRole === "Supervisor" && (
+            <Text style={{ ...styles.status, color: textColor }}>
+              {t("RecievedInvitations.age")}
+              <Text style={{ ...NormalText, color: textColor }}>{age}</Text>
+            </Text>
+          )}
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
-          <Image source={{ uri: to_ProfilePhoto }} style={styles.image} />
+          <Image
+            source={
+              photo
+                ? {
+                    uri: photo,
+                  }
+                : require("../../assets/images/avatar.png")
+            }
+            style={styles.image}
+          />
         </View>
       </View>
       <CardButtons
         reInvitable={reinvitable}
         unsendable={unsendable}
-        timeOut={timeOut}
+        timeOut={userRole === "Patient" ? timeOut : true}
         invitationId={_id}
+        userRole="Supervisor"
       />
-      {showCountDown && (
+      {showCountDown && userRole === "Patient" && (
         <Text style={{ ...NoteText, color: textColor, textAlign: "center" }}>
           {t("sentInvitations.resendNote")}
           {t("sentInvitations.time", { days, hours, minutes, seconds })}

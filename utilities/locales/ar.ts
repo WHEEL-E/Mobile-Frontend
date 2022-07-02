@@ -11,7 +11,7 @@ export default {
     },
     supervisorHomeScreen: {
       profile: "الملف الشخضي",
-      newPatient: "أضف مريضًا جديدًا",
+      invitation: "الدعوات",
       wishGoodDay: "نتمني لك يومًا سعيدًا!",
       patientsStatus: "حالات المرضي",
       help: "المساعدة",
@@ -208,6 +208,16 @@ export default {
       confirmText: "هل انت متأكد من رغبتك بتسجيل الخروج؟",
       cancel: "إلغاء",
       confirm: "تأكيد",
+    },
+
+    RecievedInvitations: {
+      RecievedInvitations: "الدعوات المُستقبلة",
+      gender: "النوع : ",
+      male: "ذكر",
+      female: "انثي",
+      age: "السن : ",
+      reject: "رفض",
+      accept: "قبول",
     },
     notifications: {
       RECEIVED_CONNECTION:

@@ -12,12 +12,14 @@ import {
 } from "../../utilities/constants/spacing";
 import { useDispatch } from "react-redux";
 import {
+  acceptInvitation,
+  rejectInvitation,
   resendInvitation,
   unsendInvitation,
 } from "../../store/actions/invitations";
 
 export const CardButtons = (props: CardButtonsProps) => {
-  const { reInvitable, unsendable, timeOut, invitationId } = props;
+  const { reInvitable, unsendable, timeOut, invitationId, userRole } = props;
   const dispatch = useDispatch<any>();
   const { t } = useTranslation();
 
@@ -30,23 +32,36 @@ export const CardButtons = (props: CardButtonsProps) => {
     >
       {unsendable && (
         <SquareButton
-          title={t("sentInvitations.unsend")}
+          title={
+            userRole === "Patient"
+              ? t("sentInvitations.unsend")
+              : t("RecievedInvitations.reject")
+          }
           titleStyle={styles.buttonTitleStyle}
           onPress={() => {
-            dispatch(unsendInvitation(invitationId));
+            userRole === "Patient"
+              ? dispatch(unsendInvitation(invitationId))
+              : dispatch(rejectInvitation(invitationId));
           }}
           buttonStyle={styles.cancelButton}
         />
       )}
+
       {reInvitable && (
         <SquareButton
-          title={t("sentInvitations.reinvite")}
+          title={
+            userRole === "Patient"
+              ? t("sentInvitations.reinvite")
+              : t("RecievedInvitations.accept")
+          }
           titleStyle={{
             ...styles.buttonTitleStyle,
             color: timeOut ? "white" : "black",
           }}
           onPress={() => {
-            dispatch(resendInvitation(invitationId));
+            userRole === "Patient"
+              ? dispatch(resendInvitation(invitationId))
+              : dispatch(acceptInvitation(invitationId));
           }}
           buttonStyle={{
             ...styles.sendButton,
