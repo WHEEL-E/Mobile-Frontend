@@ -2,7 +2,6 @@ import axios from "axios";
 import { Dispatch } from "react";
 import * as SecureStore from "expo-secure-store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ShowModal } from "./errorModal";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { SignUpRequest } from "../../utilities/types/signUpTypes";
@@ -14,12 +13,12 @@ import {
   UserMainData,
   UserTypes,
 } from "../../utilities/types/userTypes";
-import { RootState } from "../reducers/rootReducer";
+import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: SignInData, thunkAPI) => {
-    console.log(data);
+    thunkAPI.dispatch(isLoading());
     const response = await axios.post(EndPoints.login, {
       email: data.emailAddress,
       password: data.password,
@@ -81,6 +80,7 @@ export const signIn = createAsyncThunk(
       console.log(e);
       throw e;
     }
+    thunkAPI.dispatch(notLoading());
     return user;
   }
 );
@@ -127,7 +127,6 @@ export const signUp = async (
 
     const { data } = signUpData;
     const sentdata = { ...data, notification_token };
-    console.log(sentdata);
 
     // let endpoint = EndPoints.signUpSupervisor;
     // if (signUpData.userType === UserTypes.PATIENT) {

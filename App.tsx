@@ -6,7 +6,6 @@ import ReduxThunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from "./store/reducers/rootReducer";
 import LoadingScreen from "./screens/LoadingScreen";
-import { ErrorModal } from "./components/ErrorHandlingComponents/ErrorModal";
 import * as Sentry from "sentry-expo";
 
 Sentry.init({
@@ -21,7 +20,6 @@ const store = configureStore({ reducer, middleware: [ReduxThunk] });
 function App() {
   return (
     <Provider store={store}>
-      <ErrorModal />
       <LoadingScreen />
     </Provider>
   );

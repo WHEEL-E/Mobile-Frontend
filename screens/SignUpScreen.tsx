@@ -7,6 +7,7 @@ import SignUpMainForm from "../components/signUpComponents/SignUpMainForm";
 import SignUpAdditionalData from "../components/signUpComponents/SignUpAdditionalData";
 import { DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import { HeadingText } from "../utilities/types/fontTypes";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 const SignUpScreen = (props: SignUpProps) => {
   const { t } = useTranslation();
@@ -28,15 +29,17 @@ const SignUpScreen = (props: SignUpProps) => {
         imageStyle={styles.imageStyle}
         resizeMethod="auto"
       >
-        <Image
-          style={styles.logo}
-          source={require("../assets/images/logo-b-app.png")}
-        />
-        <Text style={styles.title}>{t("signUpScreen.createAccount")}</Text>
-        <View style={styles.backButton}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
-        {Component}
+        <DataStatus>
+          <Image
+            style={styles.logo}
+            source={require("../assets/images/logo-b-app.png")}
+          />
+          <Text style={styles.title}>{t("signUpScreen.createAccount")}</Text>
+          <View style={styles.backButton}>
+            <BackButton onPress={() => navigation.goBack()} />
+          </View>
+          {Component}
+        </DataStatus>
       </ImageBackground>
     </View>
   );

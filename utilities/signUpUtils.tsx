@@ -6,7 +6,7 @@ import { Supervisor } from "../models/supervisor";
 import { Patient } from "../models/patient";
 import { Dispatch } from "react";
 import { signUp } from "../store/actions/user";
-import { ShowModal } from "../store/actions/errorModal";
+import { ShowModal } from "../store/actions/dataStatus";
 import {
   SignUpAdditionalDataValues,
   SignUpMainFormProps,
@@ -67,9 +67,9 @@ export const submitSignUpMainForm = (
 
 export const submitSignUpAdditionalData = (
   values: SignUpAdditionalDataValues,
-  dispatch: any,
+  dispatch: any
 ) => {
-  console.log("user is here")
+  console.log("user is here");
 
   // Patient.addAdditionalFormData(values);
   // const user = Patient.prepareUserObject();

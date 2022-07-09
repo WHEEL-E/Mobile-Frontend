@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 import { getUserById } from "../store/actions/associatedUsers";
 import { RootState } from "../store/reducers/rootReducer";
 import colors from "../utilities/constants/colors";
@@ -46,54 +47,56 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
         source={require("../assets/images/Union.png")}
         style={styles.backgroundImage}
       >
-        <Image
-          style={styles.logo}
-          source={require("../assets/images/logo-b-app.png")}
-        />
-        <View style={styles.patientCard}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require("../assets/images/IdPlaceHolder.png")}
-            />
-          </View>
-          <Text style={styles.patientName}>{patient.userMainData.name}</Text>
-        </View>
-        <View style={styles.buttons}>
-          <MainButton
-            title={t("supervisedPatientScreen.map")}
-            image={{ url: require("../assets/images/map.png") }}
-            onPress={() => {}}
-            buttonStyle={styles.mapButton}
-            titleStyle={styles.buttonsTitle}
+        <DataStatus>
+          <Image
+            style={styles.logo}
+            source={require("../assets/images/logo-b-app.png")}
           />
-          <View style={styles.smallButtonsContainer}>
-            <SquareButton
-              title={t("supervisedPatientScreen.reminders")}
-              onPress={() => {
-                navigation.navigate("Reminders", {
-                  patientId: patient.userMainData._id,
-                  receiver: patient.userMainData.name,
-                });
-              }}
-              buttonStyle={styles.remindersButton}
+          <View style={styles.patientCard}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={require("../assets/images/IdPlaceHolder.png")}
+              />
+            </View>
+            <Text style={styles.patientName}>{patient.userMainData.name}</Text>
+          </View>
+          <View style={styles.buttons}>
+            <MainButton
+              title={t("supervisedPatientScreen.map")}
+              image={{ url: require("../assets/images/map.png") }}
+              onPress={() => {}}
+              buttonStyle={styles.mapButton}
               titleStyle={styles.buttonsTitle}
             />
-            <SquareButton
-              title={t("settings.settings")}
+            <View style={styles.smallButtonsContainer}>
+              <SquareButton
+                title={t("supervisedPatientScreen.reminders")}
+                onPress={() => {
+                  navigation.navigate("Reminders", {
+                    patientId: patient.userMainData._id,
+                    receiver: patient.userMainData.name,
+                  });
+                }}
+                buttonStyle={styles.remindersButton}
+                titleStyle={styles.buttonsTitle}
+              />
+              <SquareButton
+                title={t("settings.settings")}
+                onPress={() => {}}
+                buttonStyle={styles.profileButton}
+                titleStyle={{ ...styles.buttonsTitle, color: colors.darkGreen }}
+              />
+            </View>
+            <MainButton
+              title={t("supervisedPatientScreen.healthInfo")}
+              image={{ url: require("../assets/images/health-state.png") }}
               onPress={() => {}}
-              buttonStyle={styles.profileButton}
-              titleStyle={{ ...styles.buttonsTitle, color: colors.darkGreen }}
+              buttonStyle={styles.healthButton}
+              titleStyle={styles.buttonsTitle}
             />
           </View>
-          <MainButton
-            title={t("supervisedPatientScreen.healthInfo")}
-            image={{ url: require("../assets/images/health-state.png") }}
-            onPress={() => {}}
-            buttonStyle={styles.healthButton}
-            titleStyle={styles.buttonsTitle}
-          />
-        </View>
+        </DataStatus>
       </ImageBackground>
     </View>
   );

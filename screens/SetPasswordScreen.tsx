@@ -19,6 +19,7 @@ import InputField from "../components/inputs/InputField";
 import ChangedPasswordModal from "../components/ForgetPasswordComponents/ChangedPasswordModal";
 import { BaseScreen } from "../components/ForgetPasswordComponents/BaseScreen";
 import { submitResetPasswordHandler } from "../utilities/forgetPasswordUtils";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 export const SetPasswordScreen = (props: SetPasswordProps) => {
   const { navigation } = props;
@@ -60,54 +61,56 @@ export const SetPasswordScreen = (props: SetPasswordProps) => {
 
   return (
     <BaseScreen title={t("forgetPassword.resetPassword")}>
-      <ChangedPasswordModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        navigation={navigation}
-      />
-      <Text style={styles.fieldTitle}>{t("forgetPassword.password")}</Text>
-      <InputField
-        placeHolder="********"
-        value={userData.password}
-        onChangeText={passwordChangeHandler}
-        fieldStyle={styles.inputField}
-        autoComplete="email"
-        secureText
-      />
-      {!isValid.password && (
-        <Text style={styles.validationText}>
-          {t("forgetPassword.validPassword")}
+      <DataStatus>
+        <ChangedPasswordModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          navigation={navigation}
+        />
+        <Text style={styles.fieldTitle}>{t("forgetPassword.password")}</Text>
+        <InputField
+          placeHolder="********"
+          value={userData.password}
+          onChangeText={passwordChangeHandler}
+          fieldStyle={styles.inputField}
+          autoComplete="email"
+          secureText
+        />
+        {!isValid.password && (
+          <Text style={styles.validationText}>
+            {t("forgetPassword.validPassword")}
+          </Text>
+        )}
+        <Text style={styles.fieldTitle}>
+          {t("forgetPassword.confirmPassword")}
         </Text>
-      )}
-      <Text style={styles.fieldTitle}>
-        {t("forgetPassword.confirmPassword")}
-      </Text>
-      <InputField
-        placeHolder="********"
-        value={userData.confirmPassword}
-        onChangeText={confirmPasswordChangeHandler}
-        fieldStyle={styles.inputField}
-        autoComplete="email"
-        secureText
-      />
-      {!isValid.confirmPassword && (
-        <Text style={styles.validationText}>
-          {t("forgetPassword.validConfirmPassword")}
-        </Text>
-      )}
-      <RoundEdgedButton
-        title={t("forgetPassword.submit")}
-        backgroundColor={colors.darkGreen}
-        onPress={() =>
-          submitResetPasswordHandler(
-            dispatch,
-            link!,
-            setModalVisible,
-            isValid,
-            userData.password
-          )
-        }
-      />
+        <InputField
+          placeHolder="********"
+          value={userData.confirmPassword}
+          onChangeText={confirmPasswordChangeHandler}
+          fieldStyle={styles.inputField}
+          autoComplete="email"
+          secureText
+        />
+        {!isValid.confirmPassword && (
+          <Text style={styles.validationText}>
+            {t("forgetPassword.validConfirmPassword")}
+          </Text>
+        )}
+        <RoundEdgedButton
+          title={t("forgetPassword.submit")}
+          backgroundColor={colors.darkGreen}
+          onPress={() =>
+            submitResetPasswordHandler(
+              dispatch,
+              link!,
+              setModalVisible,
+              isValid,
+              userData.password
+            )
+          }
+        />
+      </DataStatus>
     </BaseScreen>
   );
 };

@@ -2,13 +2,14 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { Note, NotesActionTypes } from "../../utilities/types/notesTypes";
-import { ErrorModalActionTypes } from "../../utilities/types/errorModalTypes";
-import { ShowModal } from "./errorModal";
+import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
 export const getNotes = createAsyncThunk(
   NotesActionTypes.GET_ALL,
   async (userId: string, thunkAPI) => {
     try {
+      thunkAPI.dispatch(isLoading());
+
       // TODO: replace static user Id with variable value
       const response = await axios.get(
         `${EndPoints.Notes}/user/6263ce0577164ec6745e3bd7`
@@ -30,6 +31,7 @@ export const getNotes = createAsyncThunk(
         });
       }
 
+      thunkAPI.dispatch(notLoading());
       return allNotes;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.fetchingNotes"));

@@ -9,6 +9,7 @@ import { RemindersList } from "../components/reminderComponents/RemindersList";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { UserTypes } from "../utilities/types/userTypes";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 const RemindersScreen = (props: RemindersProps) => {
   const { navigation, route } = props;
@@ -35,17 +36,19 @@ const RemindersScreen = (props: RemindersProps) => {
         source={require("../assets/images/cloud-background.png")}
         style={styles.background}
       >
-        <RemindersList enableEdit={enableEdit} receiver={receiver} />
-        {enableEdit && (
-          <View style={styles.buttonContainer}>
-            <SquareButton
-              title={t("remindersScreen.addReminder")}
-              buttonStyle={styles.buttonStyle}
-              titleStyle={styles.titleStyle}
-              onPress={() => setModalVisible(true)}
-            />
-          </View>
-        )}
+        <DataStatus>
+          <RemindersList enableEdit={enableEdit} receiver={receiver} />
+          {enableEdit && (
+            <View style={styles.buttonContainer}>
+              <SquareButton
+                title={t("remindersScreen.addReminder")}
+                buttonStyle={styles.buttonStyle}
+                titleStyle={styles.titleStyle}
+                onPress={() => setModalVisible(true)}
+              />
+            </View>
+          )}
+        </DataStatus>
       </ImageBackground>
     </View>
   );

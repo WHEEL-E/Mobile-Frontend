@@ -10,6 +10,7 @@ import { SMALL_MARGIN_VERTICAL } from "../utilities/constants/spacing";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { getNotes } from "../store/actions/notes";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 const NotesScreen = (props: NotesProps) => {
   const { t } = useTranslation();
@@ -30,38 +31,40 @@ const NotesScreen = (props: NotesProps) => {
 
   return (
     <View style={styles.container}>
-      <NoteModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        noteTitle=""
-        noteDescription=""
-      />
-      <FlatList
-        data={notes}
-        keyExtractor={(info) => info.id!}
-        numColumns={2}
-        renderItem={(info) => {
-          if (info.index % 2 == 1) {
-            colorIndex = 1 - colorIndex;
-          }
-          return (
-            <NoteCard
-              id={info.item.id!}
-              description={info.item.description}
-              title={info.item.title}
-              backgroundColor={backgroundColors[colorIndex]}
-              key={info.item.id}
-            />
-          );
-        }}
-      />
+      <DataStatus>
+        <NoteModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          noteTitle=""
+          noteDescription=""
+        />
+        <FlatList
+          data={notes}
+          keyExtractor={(info) => info.id!}
+          numColumns={2}
+          renderItem={(info) => {
+            if (info.index % 2 == 1) {
+              colorIndex = 1 - colorIndex;
+            }
+            return (
+              <NoteCard
+                id={info.item.id!}
+                description={info.item.description}
+                title={info.item.title}
+                backgroundColor={backgroundColors[colorIndex]}
+                key={info.item.id}
+              />
+            );
+          }}
+        />
 
-      <SquareButton
-        title={t("notesScreen.addNote")}
-        buttonStyle={styles.buttonStyle}
-        titleStyle={styles.titleStyle}
-        onPress={() => setModalVisible(true)}
-      />
+        <SquareButton
+          title={t("notesScreen.addNote")}
+          buttonStyle={styles.buttonStyle}
+          titleStyle={styles.titleStyle}
+          onPress={() => setModalVisible(true)}
+        />
+      </DataStatus>
     </View>
   );
 };

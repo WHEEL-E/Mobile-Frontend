@@ -6,6 +6,7 @@ import { InvitationData } from "../utilities/types/sentInvitationsTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { getInvitations } from "../store/actions/invitations";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 export default function SupervisorInvitations() {
   const dispatch = useDispatch<any>();
@@ -23,23 +24,25 @@ export default function SupervisorInvitations() {
         userId: userData?.userMainData._id!,
       })
     );
-  },[]);  
+  }, []);
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={invitations}
-        renderItem={({ item, index }) => (
-          <InvitationCard
-            invitaion={item}
-            backgroundColor={
-              index % 2 == 0 ? colors.darkBlue : colors.lightPurple
-            }
-            userRole="Supervisor"
-          />
-        )}
-        style={{ width: "90%" }}
-      />
+      <DataStatus>
+        <FlatList
+          data={invitations}
+          renderItem={({ item, index }) => (
+            <InvitationCard
+              invitaion={item}
+              backgroundColor={
+                index % 2 == 0 ? colors.darkBlue : colors.lightPurple
+              }
+              userRole="Supervisor"
+            />
+          )}
+          style={{ width: "90%" }}
+        />
+      </DataStatus>
     </View>
   );
 }

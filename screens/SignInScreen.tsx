@@ -22,6 +22,7 @@ import {
   PADDING_VERTICAL,
   SMALL_MARGIN_VERTICAL,
 } from "../utilities/constants/spacing";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 const SignInScreen = (props: SignInProps) => {
   const { t } = useTranslation();
@@ -36,29 +37,31 @@ const SignInScreen = (props: SignInProps) => {
         imageStyle={styles.imageStyle}
         resizeMethod="auto"
       >
-        <View style={{ width: "100%", alignItems: "center" }}>
-          <Image
-            style={styles.logo}
-            source={require("../assets/images/logo-b-app.png")}
-          />
-          <Text style={HeadingText} testID="welcomeBackText">
-            {t("signInScreen.WelcomeBack")}
-          </Text>
-        </View>
-        <SignInForm />
-        <TouchableOpacity>
-          <Text style={styles.forgotPasswordText}>
-            {t("signInScreen.forgotPassword")}
-          </Text>
-        </TouchableOpacity>
-        <View style={styles.signUp}>
-          <Text style={styles.notMemberText}>
-            {t("signInScreen.notMember")}
-          </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-            <Text style={styles.signUpText}>{t("signInScreen.signUp")}</Text>
+        <DataStatus>
+          <View style={{ width: "100%", alignItems: "center" }}>
+            <Image
+              style={styles.logo}
+              source={require("../assets/images/logo-b-app.png")}
+            />
+            <Text style={HeadingText} testID="welcomeBackText">
+              {t("signInScreen.WelcomeBack")}
+            </Text>
+          </View>
+          <SignInForm />
+          <TouchableOpacity>
+            <Text style={styles.forgotPasswordText}>
+              {t("signInScreen.forgotPassword")}
+            </Text>
           </TouchableOpacity>
-        </View>
+          <View style={styles.signUp}>
+            <Text style={styles.notMemberText}>
+              {t("signInScreen.notMember")}
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+              <Text style={styles.signUpText}>{t("signInScreen.signUp")}</Text>
+            </TouchableOpacity>
+          </View>
+        </DataStatus>
       </ImageBackground>
     </View>
   );

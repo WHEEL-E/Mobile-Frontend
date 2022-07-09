@@ -1,17 +1,19 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { ShowModal } from "./errorModal";
 import {
   NotificationActionTypes,
   NotificationData,
   sentNotification,
 } from "../../utilities/types/notificationsTypes";
+import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
 export const getNotifications = createAsyncThunk(
   NotificationActionTypes.GET_ALL,
   async (userId: string, thunkAPI) => {
     try {
+      thunkAPI.dispatch(isLoading());
+
       // TODO: replace static user Id with variable value
       const response = await axios.get(`${EndPoints.notifications}/1`);
 
@@ -22,6 +24,7 @@ export const getNotifications = createAsyncThunk(
 
       const allNotifications: NotificationData[] = await response.data.data;
 
+      thunkAPI.dispatch(notLoading());
       return allNotifications;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.fetchingNotifications"));
