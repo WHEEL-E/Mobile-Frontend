@@ -40,7 +40,7 @@ const NotesScreen = (props: NotesProps) => {
         />
         <FlatList
           data={notes}
-          keyExtractor={(info) => info.id!}
+          keyExtractor={(info) => info._id!}
           numColumns={2}
           renderItem={(info) => {
             if (info.index % 2 == 1) {
@@ -48,11 +48,11 @@ const NotesScreen = (props: NotesProps) => {
             }
             return (
               <NoteCard
-                id={info.item.id!}
+                id={info.item._id!}
                 description={info.item.description}
                 title={info.item.title}
                 backgroundColor={backgroundColors[colorIndex]}
-                key={info.item.id}
+                key={info.item._id}
               />
             );
           }}
