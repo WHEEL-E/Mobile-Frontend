@@ -13,6 +13,7 @@ import {
   SensorData,
   UserSensors,
 } from "../utilities/types/healthMonitoringTypes";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
   const dispatch = useDispatch<any>();
@@ -57,21 +58,23 @@ const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        style={{ width: "90%" }}
-        data={allData}
-        renderItem={({ item, index }) => {
-          return (
-            <LinearGradient
-              colors={["#000000", "#4E4B4B", "#140707"]}
-              style={styles.graphContainer}
-            >
-              <Text style={styles.title}>{item.name}</Text>
-              <Chart data={item.data} />
-            </LinearGradient>
-          );
-        }}
-      />
+      <DataStatus>
+        <FlatList
+          style={{ width: "90%" }}
+          data={allData}
+          renderItem={({ item, index }) => {
+            return (
+              <LinearGradient
+                colors={["#000000", "#4E4B4B", "#140707"]}
+                style={styles.graphContainer}
+              >
+                <Text style={styles.title}>{item.name}</Text>
+                <Chart data={item.data} />
+              </LinearGradient>
+            );
+          }}
+        />
+      </DataStatus>
     </View>
   );
 };

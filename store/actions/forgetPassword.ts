@@ -2,7 +2,7 @@ import axios from "axios";
 import * as ExpoLinking from "expo-linking";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { ShowModal } from "./errorModal";
+import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
 export const sendResetEmail = createAsyncThunk(
   "ForgetPasswordActionType.GET_TOKEN",
@@ -34,6 +34,7 @@ export const changePassword = createAsyncThunk(
   " ForgetPasswordActionType.CHANGE_PASSWORD",
   async (data: { password: string; token: string }, thunkAPI) => {
     try {
+      thunkAPI.dispatch(isLoading());
       const response = await axios.patch(`${EndPoints.forgetPassword}`, {
         method: "PATCH",
         headers: {
@@ -47,6 +48,7 @@ export const changePassword = createAsyncThunk(
         throw new Error("Can't change password");
       }
 
+      thunkAPI.dispatch(notLoading());
       return response.data;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));

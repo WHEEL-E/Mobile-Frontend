@@ -7,6 +7,7 @@ import fonts from "../utilities/constants/fonts";
 import { FreeDriveProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { useDispatch } from "react-redux";
 import { initSocket } from "../store/actions/socket";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 
 const FreeDriveScreen = (props: FreeDriveProps) => {
   const dispatch = useDispatch<any>();
@@ -24,10 +25,12 @@ const FreeDriveScreen = (props: FreeDriveProps) => {
         source={require("../assets/images/Vector.png")}
         style={styles.backgroundImage}
       >
-        <DriveWheel />
-        <Text testID="instructionText" style={styles.text}>
-          {t("freeDriveScreen.freeDriveText")}
-        </Text>
+        <DataStatus>
+          <DriveWheel />
+          <Text testID="instructionText" style={styles.text}>
+            {t("freeDriveScreen.freeDriveText")}
+          </Text>
+        </DataStatus>
       </ImageBackground>
     </View>
   );

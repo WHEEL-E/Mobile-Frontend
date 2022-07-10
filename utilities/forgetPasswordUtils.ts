@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as ExpoLinking from "expo-linking";
-import { ShowModal } from "../store/actions/errorModal";
+import { ShowModal } from "../store/actions/dataStatus";
 import { changePassword } from "../store/actions/forgetPassword";
 import { GetStartedStackParamList } from "./types/navigationTypes/getStartedNavigationTypes";
 

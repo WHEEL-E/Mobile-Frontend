@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import errorModalReducer from "./errorModal";
+import dataStatusReducer from "./dataStatus";
 import notesReducer from "./notes";
 import userReducer from "./user";
 import remindersReducer from "./reminders";
@@ -15,7 +15,7 @@ const reducers = {
   form: formReducer,
   user: userReducer,
   reminders: remindersReducer,
-  errorModalReducer: errorModalReducer,
+  dataStatus: dataStatusReducer,
   notes: notesReducer,
   socket: SocketReducer,
   addConnectionReducer: addConnectionReducer,

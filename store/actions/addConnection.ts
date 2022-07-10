@@ -6,13 +6,13 @@ import {
   searchUser,
 } from "../../utilities/types/addConnectionTypes";
 import { RootState } from "../reducers/rootReducer";
-import { ShowModal } from "./errorModal";
+import { ShowModal } from "./dataStatus";
 
 export const getResults = createAsyncThunk(
   AddConnectionActionTypes.GET_RESULTS_PATIENTS,
   async (prefix: string, thunkAPI) => {
     try {
-      const { user,invitations } = thunkAPI.getState() as RootState;
+      const { user, invitations } = thunkAPI.getState() as RootState;
       const response = await axios.get(EndPoints.searchConnection + prefix, {
         headers: { token: user.userData?.token! },
       });

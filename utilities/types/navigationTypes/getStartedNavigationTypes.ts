@@ -1,7 +1,9 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackNavigationOptions } from "@react-navigation/stack";
 
-export const mainStackOptions: StackNavigationOptions = { headerShown: false };
+export const mainStackOptions: StackNavigationOptions = {
+  headerShown: false,
+};
 
 export type GetStartedStackParamList = {
   GetStarted: undefined;

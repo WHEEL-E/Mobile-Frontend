@@ -5,17 +5,19 @@ import {
   RemindersActionTypes,
 } from "../../utilities/types/remindersTypes";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { ShowModal } from "./errorModal";
 import { sendNotification } from "./notifications";
 import {
   NotificationDescriptions,
   NotificationType,
 } from "../../utilities/types/notificationsTypes";
+import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
 export const getReminders = createAsyncThunk(
   RemindersActionTypes.GET_ALL,
   async (userId: string, thunkAPI) => {
     try {
+      thunkAPI.dispatch(isLoading());
+
       // TODO: replace static user Id with variable value
       const response = await axios.get(
         `${EndPoints.Reminders}/user/6263ce0577164ec6745e3bd7`
@@ -39,6 +41,7 @@ export const getReminders = createAsyncThunk(
         });
       }
 
+      thunkAPI.dispatch(notLoading());
       return allReminders;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.fetchingReminders"));

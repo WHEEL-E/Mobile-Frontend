@@ -1,9 +1,8 @@
 import React from "react";
 import { FlatList, ImageBackground, StyleSheet, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import colors from "../utilities/constants/colors";
 import { AssociatedUserCard } from "../components/associatedUsersComponents/AssociatedUserCard";
-import { getAssociatedUsers } from "../store/actions/associatedUsers";
 import { RootState } from "../store/reducers/rootReducer";
 import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 

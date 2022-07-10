@@ -16,16 +16,14 @@ import {
 } from "../../utilities/constants/dimentions";
 import fonts from "../../utilities/constants/fonts";
 import { SquareButton } from "../buttons/SquareButton";
-import { hideModal } from "../../store/actions/errorModal";
+import { hideModal } from "../../store/actions/dataStatus";
 import { RootState } from "../../store/reducers/rootReducer";
 import { Ionicons } from "@expo/vector-icons";
 
 export const ErrorModal = () => {
-  const content = useSelector(
-    (store: RootState) => store.errorModalReducer.content
-  );
+  const content = useSelector((store: RootState) => store.dataStatus.content);
   const isVisible = useSelector(
-    (store: RootState) => store.errorModalReducer.isVisible
+    (store: RootState) => store.dataStatus.isVisible
   );
   const { t } = useTranslation();
   const dispatch = useDispatch();

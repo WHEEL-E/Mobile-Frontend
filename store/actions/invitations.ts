@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { ShowModal } from "./errorModal";
+import { ShowModal, isLoading, notLoading } from "./dataStatus";
 import {
   InvitationData,
   InvitationsActionTypes,
@@ -18,7 +18,7 @@ export const getInvitations = createAsyncThunk(
   InvitationsActionTypes.GET_INVITATIONS,
   async (data: { userId: string; userType: string }, thunkAPI) => {
     try {
-      console.log(data);
+      thunkAPI.dispatch(isLoading());
       const { userId, userType } = data;
 
       const type = userType === UserTypes.PATIENT ? "Patient" : "Supervisor";
@@ -29,10 +29,8 @@ export const getInvitations = createAsyncThunk(
           headers: { token: user.userData?.token! },
         }
       );
-      console.log(user.userData?.token!);
 
       const resData: InvitationData[] = await response.data.data;
-      console.log(resData);
       const invitations =
         type === "Supervisor"
           ? resData.filter((invitation) => invitation.status === "Pending")
@@ -50,8 +48,10 @@ export const getInvitations = createAsyncThunk(
         };
       });
 
+      thunkAPI.dispatch(notLoading());
       return finalInvitations;
     } catch (e) {
+      thunkAPI.dispatch(notLoading());
       thunkAPI.dispatch(ShowModal("errorModal"));
       throw new Error();
     }
@@ -66,7 +66,6 @@ export const sendInvitation = createAsyncThunk(
   ) => {
     try {
       const { user } = thunkAPI.getState() as RootState;
-      console.log(user.userData?.token!);
       const response = await axios.post(
         EndPoints.invitations,
         {
@@ -158,9 +157,7 @@ export const rejectInvitation = createAsyncThunk(
   InvitationsActionTypes.REJECT_INVITATION,
   async (invitationId: string, thunkAPI) => {
     try {
-      console.log(invitationId);
       const { user } = thunkAPI.getState() as RootState;
-      console.log("Token", user.userData?.token);
       const response = await axios.put(
         `${EndPoints.invitations}/reject/${invitationId}`,
         {},
@@ -169,7 +166,6 @@ export const rejectInvitation = createAsyncThunk(
         }
       );
 
-      console.log("Tesssssssssst", response.data);
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
       return invitationId;
@@ -184,7 +180,6 @@ export const rejectInvitation = createAsyncThunk(
 export const acceptInvitation = createAsyncThunk(
   InvitationsActionTypes.ACCEPT_INVITATION,
   async (invitationId: string, thunkAPI) => {
-    console.log(invitationId);
     const { user } = thunkAPI.getState() as RootState;
 
     try {

@@ -266,5 +266,8 @@ export default {
       note: " To get updated values please place your hands at the sensors attached to your chair",
       lastUpdate: "Last update at: ",
     },
+    dataStatus: {
+      loading: "Loading...",
+    },
   },
 };

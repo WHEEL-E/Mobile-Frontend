@@ -2,7 +2,7 @@ import axios from "axios";
 import * as ExpoLinking from "expo-linking";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { ShowModal } from "./errorModal";
+import { isLoading, notLoading, ShowModal } from "./dataStatus";
 import {
   sendVerificationEmailData,
   VerifyEmailData,
@@ -32,13 +32,14 @@ export const verifyEmail = createAsyncThunk(
   UserActionTypes.VERIFY_EMAIL,
   async (data: VerifyEmailData, thunkAPI) => {
     try {
+      thunkAPI.dispatch(isLoading());
       const response = await axios.post(`${EndPoints.mailVerification}`, data);
 
       if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.mailVerification"));
         throw new Error("Can't verify mail");
       }
-
+      thunkAPI.dispatch(notLoading());
       return "Success";
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));

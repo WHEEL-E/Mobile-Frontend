@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Socket } from "socket.io-client";
+import { DataStatus } from "../components/generalComponents/DataStatus";
 import { SensorCard } from "../components/healthStatusComponents/SensorCard";
 import { startConnection } from "../store/actions/healthMonitoring";
 import { RootState } from "../store/reducers/rootReducer";
@@ -60,19 +61,21 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
         source={require("../assets/images/Vector.png")}
         style={styles.backgroundImage}
       >
-        <FlatList
-          data={sensorsValues}
-          renderItem={({ item, index }) => (
-            <SensorCard sensor={item} key={index} />
-          )}
-        />
-        <View style={{ alignItems: "center" }}>
-          <Text style={styles.note}>{t("healthStatus.note")}</Text>
-          <Text style={ImportantNote}>
-            {t("healthStatus.lastUpdate")}
-            {sensorsData.time}
-          </Text>
-        </View>
+        <DataStatus>
+          <FlatList
+            data={sensorsValues}
+            renderItem={({ item, index }) => (
+              <SensorCard sensor={item} key={index} />
+            )}
+          />
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.note}>{t("healthStatus.note")}</Text>
+            <Text style={ImportantNote}>
+              {t("healthStatus.lastUpdate")}
+              {sensorsData.time}
+            </Text>
+          </View>
+        </DataStatus>
       </ImageBackground>
     </View>
   );

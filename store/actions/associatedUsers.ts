@@ -1,63 +1,24 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { ShowModal } from "./errorModal";
 import { User, UserTypes } from "../../utilities/types/userTypes";
-import {
-  AssociatedUserData,
-  AssociatedUsersActionTypes,
-} from "../../utilities/types/associatedUsersTypes";
 import { RootState } from "../reducers/rootReducer";
-
-export const getAssociatedUsers = createAsyncThunk(
-  AssociatedUsersActionTypes.GET_ALL,
-  async (userData: { userId: string; userType: UserTypes }, thunkAPI) => {
-    try {
-      const { userId, userType } = userData;
-
-      const response = await axios.get(EndPoints.associatedUsers);
-
-      if (response.data.status !== "Success") {
-        thunkAPI.dispatch(ShowModal("errorModal.getAssociatedUsers"));
-        throw new Error("can't get associated users");
-      }
-
-      const resData = await response.data.data;
-
-      const associatedUsers: AssociatedUserData[] = [];
-      for (const data in resData) {
-        associatedUsers.push({
-          userName: resData[data].name,
-          userId: resData[data]._id,
-          address: resData[data].address,
-          profilePhoto:
-            "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-        });
-      }
-
-      return associatedUsers;
-    } catch (err) {
-      thunkAPI.dispatch(ShowModal("errorModal.getAssociatedUsers"));
-      throw err;
-    }
-  }
-);
+import { isLoading, notLoading, ShowModal } from "./dataStatus";
+import { AssociatedUsersActionTypes } from "../../utilities/types/associatedUsersTypes";
 
 export const removeUser = createAsyncThunk(
   AssociatedUsersActionTypes.REMOVE_User,
   async (userId: string, thunkAPI) => {
     try {
       const response = await axios.delete(
-        `${EndPoints.associatedUsers}/${userId}`,
-        {
-          method: "DELETE",
-        }
+        `${EndPoints.associatedUsers}/${userId}`
       );
 
       if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.removeUser"));
         throw new Error("Can't remove user");
       }
+
       return userId;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.removeUser"));
@@ -70,6 +31,8 @@ export const getUserById = createAsyncThunk(
   "",
   async (data: { userId: string; userType: UserTypes }, thunkAPI) => {
     try {
+      thunkAPI.dispatch(isLoading());
+
       const { user } = thunkAPI.getState() as RootState;
       const { userId, userType } = data;
       let endpoint = `${EndPoints.supervisor}/${userId}`;
@@ -80,6 +43,11 @@ export const getUserById = createAsyncThunk(
       const response = await axios.get(`${endpoint}`, {
         headers: { token: user.userData?.token! },
       });
+
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(notLoading());
+        throw new Error(response.statusText);
+      }
 
       const resData = response.data.data;
       const userData: User = {
@@ -108,13 +76,10 @@ export const getUserById = createAsyncThunk(
         token: resData.token,
       };
 
-      if (response.data.status !== "Success") {
-        throw new Error(response.statusText);
-      }
-      console.log(userData);
+      thunkAPI.dispatch(notLoading());
       return userData;
     } catch (e) {
-      console.log(e);
+      thunkAPI.dispatch(notLoading());
       throw e;
     }
   }
