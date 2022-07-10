@@ -41,6 +41,7 @@ export default {
       warningMail: "من فضلك أدخل بريد الكتروني صحيح",
       warningphone: "من فضلك ادخل رقم هاتف صحيح",
       warningNumber: "من فضلك أدخل {{name}} الصحيح",
+      warningDate: "يجب إدخال تاريخ صحيح",
     },
     navigationBar: {
       Home: "الرئيسية",

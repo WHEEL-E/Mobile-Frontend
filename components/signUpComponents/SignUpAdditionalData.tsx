@@ -17,6 +17,7 @@ import {
 } from "../../utilities/types/signUpTypes";
 import { submitSignUpAdditionalData } from "../../utilities/signUpUtils";
 import {
+  validateDate,
   validateNotEmpty,
   validatePhone,
   validateThreeDigitNum,
@@ -52,8 +53,8 @@ const SignUpAdditionalData = (
         <Field
           name="dob"
           component={DateInput}
-          validate={validateThreeDigitNum}
-          warn={validateThreeDigitNum}
+          validate={validateDate}
+          warn={validateDate}
         />
         <Field
           name="emergency_number"

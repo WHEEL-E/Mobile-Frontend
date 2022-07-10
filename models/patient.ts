@@ -36,11 +36,15 @@ export class Patient {
     const { height, weight, dob, smoking, emergency_number, address } =
       additionalFormValues;
 
+    const year = dob[0];
+    const month = dob[1];
+    const day = dob[2];
+
     this.smoking = smoking;
     this.weight = weight;
     this.height = height;
     this.address = address;
-    this.dob = `${(dob[0], dob[1].toFixed(2), dob[2].toFixed(2))}`;
+    this.dob = `${year}-${month}-${day}`;
     this.emergencyContacts = emergency_number;
   };
 

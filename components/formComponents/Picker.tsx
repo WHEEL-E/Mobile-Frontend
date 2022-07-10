@@ -18,7 +18,15 @@ const PickerComponent = (props: PickerProps) => {
   const [open, setOpen] = React.useState(false);
   const [items, setItems] = React.useState(
     labels.map((prop) => {
-      return { label: t(`form.${prop}`), value: prop };
+      let data: any = prop;
+
+      if (prop === "yes") {
+        data = true;
+      } else if (prop === "no") {
+        data = false;
+      }
+
+      return { label: t(`form.${prop}`), value: data };
     })
   );
 

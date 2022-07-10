@@ -42,6 +42,7 @@ export default {
       warningMail: "please enter a valid email address",
       warningphone: "please enter a valid phone number",
       warningNumber: "please enter a valid {{name}}",
+      warningDate: "please enter a valid date",
     },
     navigationBar: {
       Home: "Home",

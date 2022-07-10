@@ -5,7 +5,7 @@ import { WrappedFieldProps } from "redux-form";
 import colors from "../../utilities/constants/colors";
 import { SMALL_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
 import InputField from "../inputs/InputField";
-import { NormalText } from "../../utilities/types/fontTypes";
+import { NormalText, NoteText } from "../../utilities/types/fontTypes";
 import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
 
 export const DateInput = (props: WrappedFieldProps) => {
@@ -60,6 +60,9 @@ export const DateInput = (props: WrappedFieldProps) => {
           />
         </View>
       </View>
+      <Text style={styles.validationText}>
+        {meta.invalid && t(meta.warning, { name: t(`form.${name}`) })}
+      </Text>
     </View>
   );
 };
@@ -93,5 +96,9 @@ const styles = StyleSheet.create({
     borderRadius: DEVICE_HEIGHT * 0.02,
     textAlign: "center",
     backgroundColor: "white",
+  },
+  validationText: {
+    color: "red",
+    ...NoteText,
   },
 });

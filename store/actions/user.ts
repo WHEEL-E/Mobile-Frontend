@@ -120,6 +120,7 @@ export const signUp = async (
   dispatch: Dispatch<any>
 ) => {
   try {
+    dispatch(isLoading());
     let notification_token;
     await registerForPushNotificationsAsync(dispatch).then((token) => {
       notification_token = token;
@@ -128,25 +129,27 @@ export const signUp = async (
     const { data } = signUpData;
     const sentdata = { ...data, notification_token };
 
-    // let endpoint = EndPoints.signUpSupervisor;
-    // if (signUpData.userType === UserTypes.PATIENT) {
-    //   endpoint = EndPoints.signUpPatient;
-    // }
+    let endpoint = EndPoints.supervisor;
+    if (signUpData.userType === UserTypes.PATIENT) {
+      endpoint = EndPoints.patients;
+    }
 
-    // const response = await axios.post(endpoint, sentdata);
+    const response = await axios.post(endpoint, sentdata);
 
-    // if (response.data.status !== "Success") {
-    //   throw new Error(response.statusText);
-    // }
+    if (response.data.status !== "Success") {
+      dispatch(notLoading());
+      throw new Error(response.statusText);
+    }
 
-    // const signInData: SignInData = {
-    //   emailAddress: data.email,
-    //   password: data.password,
-    //   type: signUpData.userType,
-    // };
+    const signInData: SignInData = {
+      emailAddress: data.email,
+      password: data.password,
+      type: signUpData.userType,
+    };
 
-    // dispatch(signIn(signInData));
+    dispatch(signIn(signInData));
   } catch (e) {
+    dispatch(notLoading());
     console.log(e);
     throw e;
   }

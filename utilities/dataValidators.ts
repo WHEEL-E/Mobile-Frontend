@@ -8,7 +8,7 @@ export const phoneRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
 export const ThreeDigitRegex = /^([0-9]{1}|[0-9]{2}|[0-9]{3})$/;
 
 export const validateMail = (text: string | undefined) => {
-  if (!(text && emailRegex.test(text.toLowerCase()))) {
+  if (!(text && emailRegex.test(text.toLowerCase()) && text.length >= 10)) {
     return "signUpScreen.warningMail";
   } else {
     return undefined;
@@ -23,8 +23,11 @@ export const validatePassword = (text: string | undefined) => {
   }
 };
 
-export const validateNotEmpty = (text: string | undefined) => {
-  if (!text || text.trim().length === 0) {
+export const validateNotEmpty = (text: string | boolean | undefined) => {
+  if (
+    text === undefined ||
+    (typeof text === "string" && text.trim().length < 3)
+  ) {
     return "signUpScreen.warningText";
   }
   return undefined;
@@ -51,5 +54,23 @@ export const validateMatching = (text: string, reference: string) => {
     return "notValid";
   } else {
     return undefined;
+  }
+};
+
+export const validateDate = (data: number[]) => {
+  if (!data) {
+    return "signUpScreen.walrningDate";
+  }
+  if (data.length != 3) {
+    return "signUpScreen.walrningDate";
+  }
+  if (data[0] < 1900) {
+    return "signUpScreen.warningDate";
+  }
+  if (data[1] < 1 || data[1] > 12) {
+    return "signUpScreen.warningDate";
+  }
+  if (data[2] < 1 || data[2] > 30) {
+    return "signUpScreen.warningDate";
   }
 };
