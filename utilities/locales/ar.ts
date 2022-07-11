@@ -77,6 +77,7 @@ export default {
       addReminderIntro: "أدخل المعلومات التي تريد إيصالها للمريض",
       enterTitle: "أدخل عنوان الملاحظة",
       enterDescription: "أدخل محتوى الملاحظة",
+      enterDueDate: "أدخل تاريخ الانتهاء",
       cancel: "إلغاء",
       submit: "حفظ",
     },

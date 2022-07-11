@@ -1,44 +1,35 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { getReminders } from "../../store/actions/reminders";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import colors from "../../utilities/constants/colors";
+import ReminderCard from "./ReminderCard";
 import {
   Reminder,
   RemindersListProps,
 } from "../../utilities/types/remindersTypes";
-import ReminderCard from "./ReminderCard";
 
 export const RemindersList = (props: RemindersListProps) => {
-  const dispatch = useDispatch<any>();
   const { enableEdit, receiver } = props;
 
   const reminders: Reminder[] = useSelector(
     (state: RootState) => state.reminders.allReminders
   );
 
-  const userId = useSelector(
-    (state: RootState) => state.user.userData?.userMainData._id
-  )!;
-
-  React.useEffect(() => {
-    dispatch(getReminders(userId));
-  }, [dispatch, getReminders]);
-
   return (
     <FlatList
       contentContainerStyle={styles.listContainer}
       data={reminders}
-      keyExtractor={(itemData) => itemData.id}
+      keyExtractor={(itemData) => itemData._id}
       renderItem={(itemData) => {
         return (
           <ReminderCard
-            identifier={itemData.item.id}
+            identifier={itemData.item._id}
             sender={enableEdit ? undefined : itemData.item.supervisorName}
             receiver={receiver}
-            reminderTitle={itemData.item.reminderTitle}
-            reminderBody={itemData.item.reminderBody}
+            title={itemData.item.title}
+            due_date={new Date(itemData.item.due_date)}
+            description={itemData.item.description}
             backgroundColor={
               itemData.index % 2 == 0 ? colors.darkGreen : colors.lightPurple
             }

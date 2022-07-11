@@ -6,14 +6,21 @@ import colors from "../utilities/constants/colors";
 import { SquareButton } from "../components/buttons/SquareButton";
 import AddNewReminderModal from "../components/reminderComponents/ReminderModal";
 import { RemindersList } from "../components/reminderComponents/RemindersList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { UserTypes } from "../utilities/types/userTypes";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import { getReminders } from "../store/actions/reminders";
 
 const RemindersScreen = (props: RemindersProps) => {
-  const { navigation, route } = props;
-  const { receiver, patientId } = route.params;
+  const {
+    navigation,
+    route: {
+      params: { receiver, patientId },
+    },
+  } = props;
+
+  const dispatch = useDispatch<any>();
 
   const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
@@ -22,7 +29,15 @@ const RemindersScreen = (props: RemindersProps) => {
     (state: RootState) => state.user.userData?.userType
   );
 
+  const userId = useSelector(
+    (state: RootState) => state.user.userData?.userMainData._id
+  )!;
+
   const enableEdit = userType === UserTypes.SUPERVISOR;
+
+  React.useEffect(() => {
+    dispatch(getReminders(userId));
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -30,7 +45,11 @@ const RemindersScreen = (props: RemindersProps) => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         patientId={patientId}
-        reminderData={{ reminderBody: "", reminderTitle: "" }}
+        reminderData={{
+          title: "",
+          description: "",
+          due_date: new Date(),
+        }}
       />
       <ImageBackground
         source={require("../assets/images/cloud-background.png")}

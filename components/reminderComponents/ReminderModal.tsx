@@ -21,28 +21,28 @@ const ReminderModal = (props: ReminderModalProps) => {
   const [reminder, setReminder] = React.useState(reminderData);
 
   const editTitleHandler = (title: string) => {
-    setReminder({ ...reminder, reminderTitle: title });
+    setReminder({ ...reminder, title });
   };
 
-  const editBodyHandler = (body: string) => {
-    setReminder({ ...reminder, reminderBody: body });
+  const editBodyHandler = (description: string) => {
+    setReminder({ ...reminder, description });
   };
 
   const submitHandler = () => {
     if (identifier) {
-      dispatch(updateReminder({ ...reminder, id: identifier }));
+      dispatch(updateReminder({ ...reminder, _id: identifier }));
     } else {
       dispatch(
         addReminder({
           ...reminder,
-          id: "",
-          supervisorId: supervisorData._id!,
+          _id: "",
+          supervisor_id: supervisorData._id!,
           supervisorName: supervisorData.name,
-          patientId: props.patientId!,
+          patient_id: props.patientId!,
         })
       );
     }
-    setReminder({ reminderTitle: "", reminderBody: "" });
+    setReminder({ title: "", description: "", due_date: new Date(0) });
     return setModalVisible(false);
   };
 
@@ -62,16 +62,16 @@ const ReminderModal = (props: ReminderModalProps) => {
           </Text>
           <InputField
             placeHolder={t("remindersScreen.enterTitle")}
-            value={reminder.reminderTitle}
+            value={reminder.title}
             onChangeText={editTitleHandler}
             fieldStyle={{ width: "100%", marginBottom: 10 }}
             autoComplete="off"
           />
           <InputField
             placeHolder={t("remindersScreen.enterDescription")}
-            value={reminder.reminderBody}
+            value={reminder.description}
             onChangeText={editBodyHandler}
-            fieldStyle={{ width: "100%", height: 100 }}
+            fieldStyle={{ width: "100%", height: 100, marginBottom: 10 }}
             autoComplete="off"
           />
           <View style={styles.buttonsList}>

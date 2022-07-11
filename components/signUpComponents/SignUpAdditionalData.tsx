@@ -23,7 +23,7 @@ import {
   validateThreeDigitNum,
 } from "../../utilities/dataValidators";
 import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
-import { DateInput } from "../formComponents/DateInput";
+import { FormDate } from "../formComponents/FormDate";
 
 const SignUpAdditionalData = (
   props: InjectedFormProps<
@@ -52,7 +52,7 @@ const SignUpAdditionalData = (
         />
         <Field
           name="dob"
-          component={DateInput}
+          component={FormDate}
           validate={validateDate}
           warn={validateDate}
         />

@@ -2,7 +2,7 @@ export interface ReminderModalProps {
   modalVisible: boolean;
   setModalVisible: (modalVisible: boolean) => void;
   identifier?: string;
-  reminderData: { reminderTitle: string; reminderBody: string };
+  reminderData: { title: string; description: string; due_date: Date };
   patientId?: string;
 }
 
@@ -10,8 +10,9 @@ export interface ReminderCardProps {
   identifier: string;
   sender?: string;
   receiver?: string;
-  reminderTitle: string;
-  reminderBody: string;
+  title: string;
+  description: string;
+  due_date: Date;
   backgroundColor: string;
   enableEdit?: boolean;
 }
@@ -22,12 +23,13 @@ export interface RemindersListProps {
 }
 
 export type Reminder = {
-  id: string;
-  supervisorId: string;
+  _id: string;
+  supervisor_id: string;
   supervisorName: string;
-  patientId: string;
-  reminderTitle: string;
-  reminderBody: string;
+  patient_id: string;
+  title: string;
+  due_date: Date;
+  description: string;
 };
 
 export interface RemindersState {

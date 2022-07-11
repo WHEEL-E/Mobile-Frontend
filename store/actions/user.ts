@@ -24,7 +24,7 @@ export const signIn = createAsyncThunk(
       password: data.password,
       role: data.type === UserTypes.PATIENT ? "Patient" : "Supervisor",
     });
-
+    console.log(response.data.status);
     if (response.data.status !== "Success") {
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }

@@ -3,8 +3,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import colors from "../../utilities/constants/colors";
 import fonts from "../../utilities/constants/fonts";
-import { ReminderCardProps } from "../../utilities/types/remindersTypes";
 import ReminderModal from "./ReminderModal";
+import { ReminderCardProps } from "../../utilities/types/remindersTypes";
 import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -15,8 +15,9 @@ const ReminderCard = (props: ReminderCardProps) => {
     identifier,
     sender,
     receiver,
-    reminderTitle,
-    reminderBody,
+    title,
+    description,
+    due_date,
     backgroundColor,
     enableEdit,
   } = props;
@@ -33,13 +34,14 @@ const ReminderCard = (props: ReminderCardProps) => {
   const textColor =
     backgroundColor === colors.darkGreen ? "white" : colors.darkGreen;
 
+  console.log(due_date);
   return (
     <View style={{ ...styles.container, backgroundColor }}>
       <ReminderModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         identifier={identifier}
-        reminderData={{ reminderTitle, reminderBody }}
+        reminderData={{ title, description, due_date }}
       />
       <TouchableOpacity onPress={deleteReminderHandler} style={styles.close}>
         <Ionicons name="ios-close" color={textColor} size={25} />
@@ -54,8 +56,8 @@ const ReminderCard = (props: ReminderCardProps) => {
           {t("remindersScreen.to")} {receiver}
         </Text>
       )}
-      <Text style={{ ...styles.title, color: textColor }}>{reminderTitle}</Text>
-      <Text style={{ ...styles.body, color: textColor }}>{reminderBody}</Text>
+      <Text style={{ ...styles.title, color: textColor }}>{title}</Text>
+      <Text style={{ ...styles.body, color: textColor }}>{description}</Text>
       {enableEdit && (
         <Ionicons
           name="ios-create"

@@ -59,10 +59,10 @@ export const validateMatching = (text: string, reference: string) => {
 
 export const validateDate = (data: number[]) => {
   if (!data) {
-    return "signUpScreen.walrningDate";
+    return "signUpScreen.warningDate";
   }
   if (data.length != 3) {
-    return "signUpScreen.walrningDate";
+    return "signUpScreen.warningDate";
   }
   if (data[0] < 1900) {
     return "signUpScreen.warningDate";

@@ -1,74 +1,70 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { EndPoints } from "../../utilities/constants/endpoints";
+import { ShowModal, isLoading, notLoading } from "./dataStatus";
+import { RootState } from "../reducers/rootReducer";
 import {
   Reminder,
   RemindersActionTypes,
 } from "../../utilities/types/remindersTypes";
-import { EndPoints } from "../../utilities/constants/endpoints";
-import { sendNotification } from "./notifications";
-import {
-  NotificationDescriptions,
-  NotificationType,
-} from "../../utilities/types/notificationsTypes";
-import { ShowModal, isLoading, notLoading } from "./dataStatus";
+import { UserTypes } from "../../utilities/types/userTypes";
 
 export const getReminders = createAsyncThunk(
   RemindersActionTypes.GET_ALL,
   async (userId: string, thunkAPI) => {
     try {
       thunkAPI.dispatch(isLoading());
+      const { user } = thunkAPI.getState() as RootState;
 
-      // TODO: replace static user Id with variable value
+      let type = "supervisors";
+      if (user.userData?.userType === UserTypes.PATIENT) {
+        type = "patients";
+      }
+
       const response = await axios.get(
-        `${EndPoints.Reminders}/user/6263ce0577164ec6745e3bd7`
+        `${EndPoints.Reminders}/${type}/${userId}`,
+        {
+          headers: { token: user.userData?.token! },
+        }
       );
 
-      if (response.data.status === "Success") {
-        thunkAPI.dispatch(ShowModal("errorModal.fetchingReminders"));
+      if (response.data.status !== "Success") {
         throw new Error("can't get reminders");
       }
 
-      const resData = await response.data.data.json();
-      const allReminders: Reminder[] = [];
-      for (const data in resData) {
-        allReminders.push({
-          id: data,
-          supervisorId: resData[data].supervisorId,
-          supervisorName: resData[data].supervisorName,
-          patientId: resData[data].patientId,
-          reminderBody: resData[data].reminderBody,
-          reminderTitle: resData[data].reminderTitle,
-        });
-      }
+      const resData = await response.data.data;
+      console.log(resData);
+      const allNotes: Reminder[] = resData;
 
       thunkAPI.dispatch(notLoading());
-      return allReminders;
+      return allNotes;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.fetchingReminders"));
-      throw new Error("can't get reminders");
+      throw err;
     }
   }
 );
 
 export const removeReminder = createAsyncThunk(
   RemindersActionTypes.REMOVE_REMINDER,
-  async (reminderId: string, thunkAPI) => {
+  async (reminder: string, thunkAPI) => {
     try {
+      const { user } = thunkAPI.getState() as RootState;
+
       const response = await axios.delete(
-        `${EndPoints.Reminders}/${reminderId}`,
+        `${EndPoints.Reminders}/${reminder}`,
         {
-          method: "DELETE",
+          headers: { token: user.userData?.token! },
         }
       );
 
-      if (response.data.status === "Success") {
-        thunkAPI.dispatch(ShowModal("errorModal.deletingReminder"));
+      if (response.data.status !== "Success") {
         throw new Error("Can't delete reminder");
       }
-      return reminderId;
+      return reminder;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.deletingReminder"));
-      throw new Error("Can't delete reminder");
+      throw err;
     }
   }
 );
@@ -77,59 +73,53 @@ export const addReminder = createAsyncThunk(
   RemindersActionTypes.ADD_REMINDER,
   async (newReminder: Reminder, thunkAPI) => {
     try {
-      const response = await axios.post(`${EndPoints.Reminders}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newReminder),
-      });
+      const { user } = thunkAPI.getState() as RootState;
+      const response = await axios.post(
+        `${EndPoints.Reminders}`,
+        { ...newReminder, due_date: new Date() },
+        {
+          headers: { token: user.userData?.token! },
+        }
+      );
 
-      if (response.data.status === "Success") {
-        thunkAPI.dispatch(ShowModal("errorModal.addingReminder"));
-        throw new Error("can't add reminder");
+      if (response.data.status !== "Success") {
+        throw new Error("can't add note");
       }
 
-      const resData = await response.data.json();
-      const reminder = { ...newReminder, id: resData.name };
+      const resData = await response.data.data;
+      const note = { ...newReminder, _id: resData._id };
 
-      sendNotification({
-        title: NotificationType.NEW_REMINDER,
-        user_id: newReminder.patientId,
-        description: NotificationDescriptions.RECEIVED_NEW_REMINDER,
-        type: NotificationType.NEW_REMINDER,
-        from_name: newReminder.supervisorName,
-      });
-
-      return reminder;
+      return note;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.addingReminder"));
-      throw new Error("can't add reminder");
+      throw err;
     }
   }
 );
 
 export const updateReminder = createAsyncThunk(
   RemindersActionTypes.UPDATE_REMINDER,
-  async (updatedReminder: Partial<Reminder>, thunkAPI) => {
+  async (newReminder: Partial<Reminder>, thunkAPI) => {
     try {
-      const response = await axios.patch(`${EndPoints.Reminders}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedReminder),
-      });
+      const { _id, title, description } = newReminder;
+      const { user } = thunkAPI.getState() as RootState;
+      const response = await axios.put(
+        `${EndPoints.Reminders}/${_id}`,
+        { title, description },
+        {
+          headers: { token: user.userData?.token! },
+        }
+      );
 
-      if (response.status % 100 !== 2) {
-        thunkAPI.dispatch(ShowModal("errorModal.updatingReminder"));
-        throw new Error("can't update reminders");
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
+        throw new Error("can't update note");
       }
 
-      return updatedReminder;
+      return newReminder;
     } catch (err) {
-      thunkAPI.dispatch(ShowModal("errorModal.updatingReminder"));
-      throw new Error("can't update reminders");
+      thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
+      throw err;
     }
   }
 );

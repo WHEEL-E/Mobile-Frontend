@@ -82,6 +82,7 @@ export default {
       enterDescription: "Enter Reminder Description",
       cancel: "Cancel",
       submit: "Submit",
+      enterDueDate: "Enter Due Date",
     },
     errorModal: {
       gotIt: "Got It!",

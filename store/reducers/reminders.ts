@@ -27,7 +27,7 @@ const remindersReducer = createReducer(initialState, (builder) => {
     .addCase(removeReminder.fulfilled, (state, action) => {
       const removedReminder = action.payload;
       const newReminders = [...state.allReminders].filter(
-        (reminder) => reminder.id !== removedReminder
+        (reminder) => reminder._id !== removedReminder
       );
       return {
         allReminders: newReminders,
@@ -37,7 +37,7 @@ const remindersReducer = createReducer(initialState, (builder) => {
       const updatedReminder = action.payload;
       const updatedReminders = [...state.allReminders];
       const updatedReminderIndex = updatedReminders.findIndex(
-        (reminder) => reminder.id === updatedReminder.id
+        (reminder) => reminder._id === updatedReminder._id
       );
       if (updatedReminderIndex > -1) {
         updatedReminders[updatedReminderIndex] = {
