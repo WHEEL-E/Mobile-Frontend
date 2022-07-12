@@ -11,11 +11,8 @@ export const sendResetEmail = createAsyncThunk(
       const link = ExpoLinking.createURL("resetPassword");
 
       const response = await axios.post(`${EndPoints.forgetPassword}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emailAddress: emailAddress, resetUri: link }),
+        emailAddress: emailAddress,
+        resetUri: link,
       });
 
       if (response.status / 100 !== 2) {

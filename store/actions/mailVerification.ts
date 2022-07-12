@@ -16,8 +16,12 @@ export const sendVerificationEmail = async (
 ) => {
   try {
     const link = ExpoLinking.createURL("verifyMail");
+    const sentData = { ...data, url: link };
 
-    const response = await axios.post(`${EndPoints.forgetPassword}`, data);
+    const response = await axios.post(
+      `${EndPoints.resendVerification}`,
+      sentData
+    );
 
     if (response.data.status !== "Success") {
       dispatch(ShowModal("errorModal.sendVerificationEmail"));

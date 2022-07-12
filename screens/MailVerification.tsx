@@ -27,8 +27,11 @@ import {
 } from "../store/actions/mailVerification";
 import { RootState } from "../store/reducers/rootReducer";
 import { UserTypes } from "../utilities/types/userTypes";
+import { MailVerificationProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 
-const MailVerificationScreen = () => {
+const MailVerificationScreen = (props?: MailVerificationProps) => {
+  const navigation = props?.navigation;
+
   const link = Linking.useURL();
   const dispatch = useDispatch<any>();
 
@@ -102,6 +105,9 @@ const MailVerificationScreen = () => {
           title={t("mailVerification.signUp")}
           onPress={() => {
             dispatch(signOut());
+            if (navigation) {
+              navigation.navigate("GetStarted");
+            }
           }}
         />
       </ImageBackground>
