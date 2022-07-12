@@ -1,6 +1,10 @@
 import { NotificationData } from "../../utilities/types/notificationsTypes";
 import { createReducer } from "@reduxjs/toolkit";
-import { removeNotification, getNotifications } from "../actions/notifications";
+import {
+  removeNotification,
+  getNotifications,
+  sendNotification,
+} from "../actions/notifications";
 
 const initialState: { allNotifications: NotificationData[] } = {
   allNotifications: [],
@@ -21,7 +25,8 @@ const notificationReducer = createReducer(initialState, (builder) => {
       return {
         allNotifications: newNotifictions,
       };
-    });
+    })
+    .addCase(sendNotification.fulfilled, (state) => state);
 });
 
 export default notificationReducer;

@@ -7,6 +7,7 @@ import {
   sentNotification,
 } from "../../utilities/types/notificationsTypes";
 import { ShowModal, isLoading, notLoading } from "./dataStatus";
+import { RootState } from "../reducers/rootReducer";
 
 export const getNotifications = createAsyncThunk(
   NotificationActionTypes.GET_ALL,
@@ -14,8 +15,10 @@ export const getNotifications = createAsyncThunk(
     try {
       thunkAPI.dispatch(isLoading());
 
-      // TODO: replace static user Id with variable value
-      const response = await axios.get(`${EndPoints.notifications}/1`);
+      const { user } = thunkAPI.getState() as RootState;
+      const response = await axios.get(`${EndPoints.notifications}/${userId}`, {
+        headers: { token: user.userData?.token! },
+      });
 
       if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.fetchingNotifications"));
@@ -37,8 +40,11 @@ export const removeNotification = createAsyncThunk(
   NotificationActionTypes.REMOVE_NOTIFICATION,
   async (notificationId: string, thunkAPI) => {
     try {
+      const { user } = thunkAPI.getState() as RootState;
+      console.log(notificationId);
       const response = await axios.delete(
-        `${EndPoints.notifications}/${notificationId}`
+        `${EndPoints.notifications}/${notificationId}`,
+        { headers: { token: user.userData?.token! } }
       );
 
       if (response.data.status !== "Success") {
@@ -53,14 +59,25 @@ export const removeNotification = createAsyncThunk(
   }
 );
 
-export const sendNotification = async (newNotifiction: sentNotification) => {
-  try {
-    const response = await axios.post(`${EndPoints.Notes}`, newNotifiction);
+export const sendNotification = createAsyncThunk(
+  NotificationActionTypes.SEND_NOTIFICATION,
+  async (newNotifiction: sentNotification, thunkAPI) => {
+    try {
+      const { user } = thunkAPI.getState() as RootState;
 
-    if (response.data.status !== "Success") {
-      throw new Error("can't send notification");
+      const response = await axios.post(
+        `${EndPoints.notifications}`,
+        newNotifiction,
+        {
+          headers: { token: user.userData?.token! },
+        }
+      );
+
+      if (response.data.status !== "Success") {
+        throw new Error("can't send notification");
+      }
+    } catch (err) {
+      throw err;
     }
-  } catch (err) {
-    throw err;
   }
-};
+);

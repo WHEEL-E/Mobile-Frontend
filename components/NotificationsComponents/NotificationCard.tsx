@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text } from "react-native";
 import GestureRecognizer from "react-native-swipe-gestures";
+import { useDispatch } from "react-redux";
+import { removeNotification } from "../../store/actions/notifications";
 import colors from "../../utilities/constants/colors";
 import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
 import {
@@ -20,13 +22,14 @@ import {
 
 export const NotificationCard = (props: NotificationCardProps) => {
   const {
-    notificationData: { _id, updated_at, description, title, type, from_name },
+    notificationData: { _id, updated_at, description, title, type },
   } = props;
 
   const { t } = useTranslation();
+  const dispatch = useDispatch<any>();
 
   const deleteHandler = () => {
-    // delete action
+    dispatch(removeNotification(_id));
   };
 
   const [translationX, setTranslationX] = React.useState(0);
@@ -39,15 +42,7 @@ export const NotificationCard = (props: NotificationCardProps) => {
     backgroundColor === colors.lightPurple ? colors.darkBlue : "white";
 
   const move = React.useCallback((speed: number) => {
-    const interval = setInterval(() => {
-      const newTransaltion = translationX + speed * 1000;
-      setTranslationX(newTransaltion);
-    }, 1000);
-
-    if (translationX < -1000 || translationX > 1000) {
-      deleteHandler();
-      clearInterval(interval);
-    }
+    deleteHandler();
   }, []);
 
   const onSwipe = (gestureState: any) => {
@@ -75,7 +70,7 @@ export const NotificationCard = (props: NotificationCardProps) => {
         {t(`notifications.${title}`)}
       </Text>
       <Text style={{ ...styles.description, color: textColor }}>
-        {t(`notifications.${description}`, { name: from_name })}
+        {t(`notifications.${description}`)}
       </Text>
       <Text style={{ ...styles.date, color: textColor }}>
         {t("notifications.receivedAt")}

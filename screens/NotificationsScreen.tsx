@@ -3,8 +3,32 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import { NewsProps } from "../utilities/types/navigationTypes/tabNavigationTypes";
 import { NotificationsList } from "../components/NotificationsComponents/NotificationsList";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import {
+  getNotifications,
+  sendNotification,
+} from "../store/actions/notifications";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/reducers/rootReducer";
+import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
+import {
+  NotificationDescriptions,
+  NotificationType,
+} from "../utilities/types/notificationsTypes";
+import * as Notifications from "expo-notifications";
 
 const NotificationsScreen = (props: NewsProps) => {
+  const dispatch = useDispatch<any>();
+
+  const userId = useSelector(
+    (state: RootState) => state.user.userData?.userMainData._id
+  );
+
+  React.useEffect(() => {
+    Notifications.getExpoPushTokenAsync().then(({ data }) => console.log(data));
+
+    dispatch(getNotifications(userId!));
+  }, [dispatch, getNotifications]);
+
   return (
     <View style={styles.container}>
       <DataStatus>

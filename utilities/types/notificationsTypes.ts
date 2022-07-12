@@ -13,7 +13,7 @@ export interface sentNotification {
   title: string;
   description: string;
   type: NotificationType;
-  from_name: string;
+  userRole: "Patient" | "Supervisor";
 }
 
 export enum NotificationDescriptions {
@@ -40,11 +40,8 @@ export interface NotificationData {
   user_id: string;
   title: string;
   description: string;
-  isRead: boolean;
   type: NotificationType;
-  created_at: string;
   updated_at: string;
-  from_name: string;
 }
 
 export interface NotificationCardProps {
@@ -54,4 +51,5 @@ export interface NotificationCardProps {
 export enum NotificationActionTypes {
   GET_ALL = "GET_ALL",
   REMOVE_NOTIFICATION = "REMOVE_NOTIFICATION",
+  SEND_NOTIFICATION = "SEND_NOTIFICATION",
 }

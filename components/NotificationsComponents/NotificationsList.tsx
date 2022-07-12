@@ -1,17 +1,14 @@
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import Data from "../../data/notificationsDummyData.json";
 import { NotificationCard } from "./NotificationCard";
-import {
-  NotificationData,
-  NotificationType,
-} from "../../utilities/types/notificationsTypes";
+import { NotificationData } from "../../utilities/types/notificationsTypes";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducers/rootReducer";
 
 export const NotificationsList = (props: any) => {
-  const userNotifications: NotificationData[] = Data.data.map((data) => {
-    const notificationType = data.type as keyof typeof NotificationType;
-    return { ...data, type: NotificationType[notificationType] };
-  });
+  const userNotifications: NotificationData[] = useSelector(
+    (state: RootState) => state.notifications.allNotifications
+  );
 
   return (
     <View style={styles.container}>
