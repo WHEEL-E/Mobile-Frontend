@@ -1,8 +1,5 @@
-import {
-  SignUpMainFormValues,
-  SignUpRequest,
-} from "../utilities/types/signUpTypes";
-import { User, UserTypes } from "../utilities/types/userTypes";
+import { SignUpMainFormValues } from "../utilities/types/signUpTypes";
+import { UserTypes } from "../utilities/types/userTypes";
 
 export class Supervisor {
   static userName: string = "";
@@ -25,15 +22,16 @@ export class Supervisor {
   };
 
   static prepareUserObject = () => {
-    const user: SignUpRequest = {
-      data: {
-        name: this.userName,
-        password: this.password,
-        profile_picture: this.profilePhoto,
-        email: this.mail,
-        phone: this.phone,
-        gender: this.gender,
-      },
+    const formData = new FormData();
+    formData.append("name", this.userName);
+    formData.append("password", this.password);
+    formData.append("profile_picture", this.profilePhoto);
+    formData.append("email", this.mail);
+    formData.append("phone", `${this.phone}`);
+    formData.append("gender", this.gender);
+
+    const user = {
+      formData: formData,
       userType: UserTypes.SUPERVISOR,
     };
     return user;

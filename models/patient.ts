@@ -2,7 +2,7 @@ import {
   SignUpAdditionalDataValues,
   SignUpMainFormValues,
 } from "../utilities/types/signUpTypes";
-import { User, UserTypes } from "../utilities/types/userTypes";
+import { UserTypes } from "../utilities/types/userTypes";
 
 export class Patient {
   static userName: string = "";
@@ -49,21 +49,22 @@ export class Patient {
   };
 
   static prepareUserObject = () => {
+    const formData = new FormData();
+    formData.append("patient_name", this.userName);
+    formData.append("password", this.password);
+    formData.append("profile_picture", this.profilePhoto);
+    formData.append("email", this.mail);
+    formData.append("phone", `${this.phone}`);
+    formData.append("gender", this.gender);
+    formData.append("smoking", `${this.smoking}`);
+    formData.append("dob", this.dob);
+    formData.append("height", `${this.height}`);
+    formData.append("weight", `${this.weight}`);
+    formData.append("emergency_number", `${this.emergencyContacts}`);
+    formData.append("address", this.address);
+
     const user = {
-      data: {
-        name: this.userName,
-        password: this.password,
-        profile_picture: this.profilePhoto,
-        email: this.mail,
-        phone: this.phone,
-        gender: this.gender,
-        smoking: this.smoking,
-        dob: this.dob,
-        height: this.height,
-        weight: this.weight,
-        emergency_number: this.emergencyContacts,
-        address: this.address,
-      },
+      formData: formData,
       userType: UserTypes.PATIENT,
     };
     return user;

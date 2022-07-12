@@ -4,7 +4,6 @@ import * as SecureStore from "expo-secure-store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { SignUpRequest } from "../../utilities/types/signUpTypes";
 import { registerForPushNotificationsAsync } from "../../utilities/signUpUtils";
 import {
   PatientExtradata,
@@ -116,25 +115,29 @@ export const restoreUser = createAsyncThunk(
 );
 
 export const signUp = async (
-  signUpData: SignUpRequest,
+  data: { formData: FormData; userType: UserTypes },
   dispatch: Dispatch<any>
 ) => {
   try {
     dispatch(isLoading());
-    let notification_token;
+
+    const { formData, userType } = data;
+
+    let notification_token: string | undefined;
     await registerForPushNotificationsAsync(dispatch).then((token) => {
       notification_token = token;
     });
 
-    const { data } = signUpData;
-    const sentdata = { ...data, notification_token };
+    formData.append("notification_token", `${notification_token}`);
 
     let endpoint = EndPoints.supervisor;
-    if (signUpData.userType === UserTypes.PATIENT) {
+    if (userType === UserTypes.PATIENT) {
       endpoint = EndPoints.patients;
     }
 
-    const response = await axios.post(endpoint, sentdata);
+    const response = await axios.post(endpoint, formData, {
+      headers: { "content-type": "multipart/form-data" },
+    });
 
     if (response.data.status !== "Success") {
       dispatch(notLoading());
@@ -142,9 +145,9 @@ export const signUp = async (
     }
 
     const signInData: SignInData = {
-      emailAddress: data.email,
-      password: data.password,
-      type: signUpData.userType,
+      emailAddress: response.data.data.email,
+      password: response.data.data.password,
+      type: userType,
     };
 
     dispatch(signIn(signInData));

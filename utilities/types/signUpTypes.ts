@@ -30,13 +30,6 @@ export interface SignUpAdditionalDataValues {
   address: string;
 }
 
-export interface SignUpRequest {
-  data:
-    | SignUpMainFormValues
-    | (SignUpMainFormValues & SignUpAdditionalDataValues);
-  userType: UserTypes;
-}
-
 export interface PickerProps {
   fieldProps: WrappedFieldProps;
   labels: string[];
