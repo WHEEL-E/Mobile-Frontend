@@ -27,7 +27,7 @@ export const linking = {
       SetPassword: {
         path: "resetPassword",
       },
-      verifyMail: {
+      MailVerification: {
         path: "verifyMail",
       },
     },
