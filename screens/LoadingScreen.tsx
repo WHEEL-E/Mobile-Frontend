@@ -9,6 +9,7 @@ import { VisibleNavigation } from "../navigation/VisibleNavigation";
 import { fetchFonts } from "../utilities/fetchFonts";
 import { restoreUser } from "../store/actions/user";
 import { linking } from "../utilities/forgetPasswordUtils";
+import MapScreen from "./MapScreen";
 
 const getCurrentLanguage = async () => {
   return await SecureStore.getItemAsync("CurrentLang");

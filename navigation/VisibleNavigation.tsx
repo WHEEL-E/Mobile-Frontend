@@ -16,9 +16,9 @@ export function VisibleNavigation() {
     return <GetStartedNavigation />;
   }
 
-  if (!isVerified && isLoggedIn) {
-    return <MailVerificationScreen />;
-  }
+  // if (!isVerified && isLoggedIn) {
+  //   return <MailVerificationScreen />;
+  // }
 
   return <TabsNavigator />;
 }

@@ -23,6 +23,7 @@ import {
   mainStackOptions,
   MainStackParamList,
 } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import MapScreen from "../screens/MapScreen";
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
@@ -118,6 +119,7 @@ export function MainNavigation() {
           title: t("RecievedInvitations.RecievedInvitations"),
         }}
       />
+      <MainStack.Screen name="Map" component={MapScreen} />
     </MainStack.Navigator>
   );
 }

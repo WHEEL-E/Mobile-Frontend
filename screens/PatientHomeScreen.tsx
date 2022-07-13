@@ -132,17 +132,23 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               navigation.navigate("Reminders", {});
             }}
           />
-          <MainButton
+          <SquareButton
             title={t("patientHomeScreen.myProfile")}
             titleStyle={styles.profileTitle}
             buttonStyle={styles.myProfileButton}
             onPress={() => {
               navigation.navigate("Profile");
             }}
-            icon={{
-              name: "person-outline",
-              size: 70,
-              color: colors.lightBrown,
+          />
+          <SquareButton
+            title={t("patientHomeScreen.map")}
+            titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
+            buttonStyle={{
+              ...styles.smallButton,
+              backgroundColor: colors.lightGreen,
+            }}
+            onPress={() => {
+              navigation.navigate("Map");
             }}
           />
         </View>

@@ -38,6 +38,7 @@ export type MainStackParamList = {
   SentInvitations: undefined;
   RecievedInvitations: undefined;
   HealthStatus: undefined;
+  Map: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<
@@ -118,3 +119,5 @@ export type HealthStatusScreenProps = NativeStackScreenProps<
   MainStackParamList,
   "HealthStatus"
 >;
+
+export type MapProps = NativeStackScreenProps<MainStackParamList, "Map">;
