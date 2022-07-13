@@ -3,17 +3,9 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import { NewsProps } from "../utilities/types/navigationTypes/tabNavigationTypes";
 import { NotificationsList } from "../components/NotificationsComponents/NotificationsList";
 import { DataStatus } from "../components/generalComponents/DataStatus";
-import {
-  getNotifications,
-  sendNotification,
-} from "../store/actions/notifications";
+import { getNotifications } from "../store/actions/notifications";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
-import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
-import {
-  NotificationDescriptions,
-  NotificationType,
-} from "../utilities/types/notificationsTypes";
 import * as Notifications from "expo-notifications";
 
 const NotificationsScreen = (props: NewsProps) => {
