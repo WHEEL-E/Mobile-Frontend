@@ -33,11 +33,11 @@ export const getReminders = createAsyncThunk(
       }
 
       const resData = await response.data.data;
-      console.log(resData);
-      const allNotes: Reminder[] = resData;
+
+      const allReminders: Reminder[] = resData;
 
       thunkAPI.dispatch(notLoading());
-      return allNotes;
+      return allReminders;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.fetchingReminders"));
       throw err;

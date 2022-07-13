@@ -11,4 +11,5 @@ export enum EndPoints {
   associatedUsers = "http://192.168.1.115:3000/api/patients/",
   notifications = "http://192.168.1.115:3000/api/notifications",
   mailVerification = "http://192.168.1.115:3000/api/users/verify-mail/",
+  resendVerification = "http://192.168.1.115:3000/api/users/resend-verification-mail/",
 }
