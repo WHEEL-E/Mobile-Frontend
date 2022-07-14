@@ -271,5 +271,9 @@ export default {
     dataStatus: {
       loading: "Loading...",
     },
+    mailIsVerified: {
+      successText: "Your mail is Verified successfully",
+      loginText: "Please wait while we log you back in",
+    },
   },
 };

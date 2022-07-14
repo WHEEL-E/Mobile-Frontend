@@ -9,6 +9,7 @@ import {
 } from "../../utilities/types/mailVerificationTypes";
 import { Dispatch } from "react";
 import { UserActionTypes } from "../../utilities/types/userTypes";
+import { signIn } from "./user";
 
 export const sendVerificationEmail = async (
   data: sendVerificationEmailData,
@@ -36,14 +37,13 @@ export const verifyEmail = createAsyncThunk(
   UserActionTypes.VERIFY_EMAIL,
   async (data: VerifyEmailData, thunkAPI) => {
     try {
-      thunkAPI.dispatch(isLoading());
       const response = await axios.post(`${EndPoints.mailVerification}`, data);
 
       if (response.data.status !== "Success") {
         thunkAPI.dispatch(ShowModal("errorModal.mailVerification"));
         throw new Error("Can't verify mail");
       }
-      thunkAPI.dispatch(notLoading());
+      thunkAPI.dispatch(signIn(data.signInData));
       return "Success";
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));

@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { ForgetPasswordScreen } from "../screens/ForgetPasswordScreen";
 import GetStartedScreen from "../screens/GetStartedScreen";
+import MailIsVerififedScreen from "../screens/MailIsVerififed";
 import MailVerificationScreen from "../screens/MailVerification";
 import { SetPasswordScreen } from "../screens/SetPasswordScreen";
 import SignInScreen from "../screens/SignInScreen";
@@ -29,6 +30,10 @@ export function GetStartedNavigation() {
       <GetStartedStack.Screen
         name="MailVerification"
         component={MailVerificationScreen}
+      />
+      <GetStartedStack.Screen
+        name="MailIsVerififed"
+        component={MailIsVerififedScreen}
       />
     </GetStartedStack.Navigator>
   );

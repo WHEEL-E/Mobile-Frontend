@@ -9,10 +9,8 @@ import {
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import * as Linking from "expo-linking";
 import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import { useCountdown } from "../context/CountDown";
-import { signOut } from "../store/actions/user";
 import colors from "../utilities/constants/colors";
 import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
 import {
@@ -21,31 +19,19 @@ import {
   NormalText,
   NoteText,
 } from "../utilities/types/fontTypes";
-import {
-  sendVerificationEmail,
-  verifyEmail,
-} from "../store/actions/mailVerification";
+import { sendVerificationEmail } from "../store/actions/mailVerification";
 import { RootState } from "../store/reducers/rootReducer";
-import { UserTypes } from "../utilities/types/userTypes";
 import { MailVerificationProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 
-const MailVerificationScreen = (props?: MailVerificationProps) => {
-  const navigation = props?.navigation;
+const MailVerificationScreen = (props: MailVerificationProps) => {
+  const { navigation } = props;
 
-  const link = Linking.useURL();
   const dispatch = useDispatch<any>();
 
   const userdata = useSelector((state: RootState) => state.user.userData);
-  const userType =
-    userdata?.userType === UserTypes.PATIENT ? "Patient" : "Supervisor";
   const user_id = userdata?.userMainData._id!;
   const name = userdata?.userMainData.name!;
   const email = userdata?.userMainData.email!;
-
-  if (link) {
-    const token = Linking.parse(link!).queryParams!.token?.toString()!;
-    dispatch(verifyEmail({ verificationToken: token, userType, user_id }));
-  }
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [initialTimer, setInitialTimer] = useState(Date.now() + 5 * 60000);
@@ -104,10 +90,7 @@ const MailVerificationScreen = (props?: MailVerificationProps) => {
           backgroundColor={colors.darkBlue}
           title={t("mailVerification.signUp")}
           onPress={() => {
-            dispatch(signOut());
-            if (navigation) {
-              navigation.navigate("GetStarted");
-            }
+            navigation.navigate("SignUp");
           }}
         />
       </ImageBackground>

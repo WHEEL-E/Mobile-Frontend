@@ -11,7 +11,8 @@ export type GetStartedStackParamList = {
   SignUp: undefined;
   ForgetPassword: undefined;
   SetPassword: { token: string };
-  MailVerification: { token: string };
+  MailVerification: undefined;
+  MailIsVerififed: { token: string };
 };
 
 export type SignInProps = NativeStackScreenProps<
@@ -37,4 +38,9 @@ export type SetPasswordProps = NativeStackScreenProps<
 export type MailVerificationProps = NativeStackScreenProps<
   GetStartedStackParamList,
   "MailVerification"
+>;
+
+export type MailIsVerififedProps = NativeStackScreenProps<
+  GetStartedStackParamList,
+  "MailIsVerififed"
 >;

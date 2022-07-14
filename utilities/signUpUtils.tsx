@@ -8,6 +8,7 @@ import { Dispatch } from "react";
 import { signUp } from "../store/actions/user";
 import { ShowModal } from "../store/actions/dataStatus";
 import {
+  SignUpAdditionalDataProps,
   SignUpAdditionalDataValues,
   SignUpMainFormProps,
   SignUpMainFormValues,
@@ -52,13 +53,14 @@ export const submitSignUpMainForm = (
   dispatch: any,
   props: SignUpMainFormProps
 ) => {
-  const { setScreen } = props;
+  const { setScreen, navigation } = props;
   const { type } = values;
 
   if (type === UserTypes.SUPERVISOR) {
     Supervisor.addMainFormData(values);
     const user = Supervisor.prepareUserObject();
-    signUp(user, dispatch);
+    dispatch(signUp(user));
+    navigation.navigate("MailVerification");
   } else {
     Patient.addMainFormData(values);
     setScreen("SecondPage");
@@ -67,9 +69,13 @@ export const submitSignUpMainForm = (
 
 export const submitSignUpAdditionalData = (
   values: SignUpAdditionalDataValues,
-  dispatch: any
+  dispatch: any,
+  props: SignUpAdditionalDataProps
 ) => {
+  const { navigation } = props;
+
   Patient.addAdditionalFormData(values);
   const user = Patient.prepareUserObject();
-  signUp(user, dispatch);
+  dispatch(signUp(user));
+  navigation.navigate("MailVerification");
 };

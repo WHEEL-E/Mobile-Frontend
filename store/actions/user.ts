@@ -14,6 +14,51 @@ import {
 } from "../../utilities/types/userTypes";
 import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
+const prepareUserObj = (resData: any, type: UserTypes) => {
+  let user: User;
+  if (type === UserTypes.SUPERVISOR) {
+    user = {
+      userMainData: {
+        _id: resData._id,
+        name: resData.name,
+        email: resData.email,
+        phone: resData.phone,
+        isVerified: resData.isVerified,
+        profile_picture: resData.profile_picture,
+        gender: resData.gender,
+        associatedUsers: resData.associatedUsers,
+      },
+      userType: type,
+      token: resData.token,
+    };
+  } else {
+    user = {
+      userMainData: {
+        _id: resData._id,
+        name: resData.name,
+        email: resData.email,
+        phone: resData.phone,
+        isVerified: resData.isVerified,
+        profile_picture: resData.profile_picture,
+        gender: resData.gender,
+        associatedUsers: resData.associatedUsers,
+      },
+      userType: type,
+      patientExtraData: {
+        smoking: resData.smoking,
+        address: resData.address,
+        dob: resData.dob,
+        height: resData.height,
+        emergency_number: resData.emergency_number,
+        weight: resData.weight,
+      },
+      token: resData.token,
+    };
+  }
+
+  return user;
+};
+
 export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: SignInData, thunkAPI) => {
@@ -28,50 +73,7 @@ export const signIn = createAsyncThunk(
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }
 
-    let user: User;
-    if (data.type === UserTypes.SUPERVISOR) {
-      const resData: UserMainData & { token: string } = await response.data
-        .data;
-      user = {
-        userMainData: {
-          _id: resData._id,
-          name: resData.name,
-          email: resData.email,
-          phone: resData.phone,
-          isVerified: resData.isVerified,
-          profile_picture: resData.profile_picture,
-          gender: resData.gender,
-          associatedUsers: resData.associatedUsers,
-        },
-        userType: data.type,
-        token: resData.token,
-      };
-    } else {
-      const resData: UserMainData & PatientExtradata & { token: string } =
-        await response.data.data;
-      user = {
-        userMainData: {
-          _id: resData._id,
-          name: resData.name,
-          email: resData.email,
-          phone: resData.phone,
-          isVerified: resData.isVerified,
-          profile_picture: resData.profile_picture,
-          gender: resData.gender,
-          associatedUsers: resData.associatedUsers,
-        },
-        userType: data.type,
-        patientExtraData: {
-          smoking: resData.smoking,
-          address: resData.address,
-          dob: resData.dob,
-          height: resData.height,
-          emergency_number: resData.emergency_number,
-          weight: resData.weight,
-        },
-        token: resData.token,
-      };
-    }
+    const user: User = prepareUserObj(response.data.data, data.type);
 
     try {
       await SecureStore.setItemAsync("userData", JSON.stringify(user));
@@ -114,46 +116,44 @@ export const restoreUser = createAsyncThunk(
   }
 );
 
-export const signUp = async (
-  data: { formData: FormData; userType: UserTypes },
-  dispatch: Dispatch<any>
-) => {
-  try {
-    dispatch(isLoading());
+export const signUp = createAsyncThunk(
+  UserActionTypes.SIGN_IN,
+  async (data: { formData: FormData; userType: UserTypes }, thunkAPi) => {
+    try {
+      thunkAPi.dispatch(isLoading());
 
-    const { formData, userType } = data;
+      const { formData, userType } = data;
 
-    let notification_token: string | undefined;
-    await registerForPushNotificationsAsync(dispatch).then((token) => {
-      notification_token = token;
-    });
+      let notification_token: string | undefined;
+      await registerForPushNotificationsAsync(thunkAPi.dispatch).then(
+        (token) => {
+          notification_token = token;
+        }
+      );
 
-    formData.append("notification_token", `${notification_token}`);
+      formData.append("notification_token", `${notification_token}`);
 
-    let endpoint = EndPoints.supervisor;
-    if (userType === UserTypes.PATIENT) {
-      endpoint = EndPoints.patients;
+      let endpoint = EndPoints.supervisor;
+      if (userType === UserTypes.PATIENT) {
+        endpoint = EndPoints.patients;
+      }
+
+      const response = await axios.post(endpoint, formData, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+
+      if (response.data.status !== "Success") {
+        thunkAPi.dispatch(notLoading());
+        throw new Error(response.statusText);
+      }
+
+      const user: User = prepareUserObj(response.data.data, userType);
+
+      return user;
+    } catch (e) {
+      thunkAPi.dispatch(notLoading());
+      console.log(e);
+      throw e;
     }
-
-    const response = await axios.post(endpoint, formData, {
-      headers: { "content-type": "multipart/form-data" },
-    });
-
-    if (response.data.status !== "Success") {
-      dispatch(notLoading());
-      throw new Error(response.statusText);
-    }
-
-    const signInData: SignInData = {
-      emailAddress: response.data.data.email,
-      password: response.data.data.password,
-      type: userType,
-    };
-
-    dispatch(signIn(signInData));
-  } catch (e) {
-    dispatch(notLoading());
-    console.log(e);
-    throw e;
   }
-};
+);

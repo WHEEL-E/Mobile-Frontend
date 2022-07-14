@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import MailVerificationScreen from "../screens/MailVerification";
 import { RootState } from "../store/reducers/rootReducer";
 import { GetStartedNavigation } from "./GetStartedNavigation";
 import TabsNavigator from "./TabsNavigation";
@@ -14,10 +13,6 @@ export function VisibleNavigation() {
 
   if (!isLoggedIn) {
     return <GetStartedNavigation />;
-  }
-
-  if (!isVerified && isLoggedIn) {
-    return <MailVerificationScreen />;
   }
 
   return <TabsNavigator />;
