@@ -42,6 +42,8 @@ export default {
       warningphone: "من فضلك ادخل رقم هاتف صحيح",
       warningNumber: "من فضلك أدخل {{name}} الصحيح",
       warningDate: "يجب إدخال تاريخ صحيح",
+      isMember: "لديك حساب؟",
+      signIn: "تسجيل الدخول",
     },
     navigationBar: {
       Home: "الرئيسية",

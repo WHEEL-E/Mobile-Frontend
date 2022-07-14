@@ -26,7 +26,7 @@ export default {
       logIn: "LOG IN",
       forgotPassword: "Forgot Password?",
       notMember: "Not a member?",
-      signUp: "sign up",
+      signUp: "Sign up",
       WelcomeBack: "Welcome Back",
       enterValidEmail: "Please enter a valid email address",
       enterPassword: "Please enter your password",
@@ -43,6 +43,8 @@ export default {
       warningphone: "please enter a valid phone number",
       warningNumber: "please enter a valid {{name}}",
       warningDate: "please enter a valid date",
+      isMember: "Already a member?",
+      signIn: "Sign in",
     },
     navigationBar: {
       Home: "Home",
