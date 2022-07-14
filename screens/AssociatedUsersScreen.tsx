@@ -5,6 +5,7 @@ import colors from "../utilities/constants/colors";
 import { AssociatedUserCard } from "../components/associatedUsersComponents/AssociatedUserCard";
 import { RootState } from "../store/reducers/rootReducer";
 import { AssociatedPatientsProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
+import { NoData } from "../components/generalComponents/NoData";
 
 const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
   const { navigation } = props;
@@ -12,6 +13,7 @@ const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
   const userData = useSelector((state: RootState) => state.user.userData)!;
 
   const associatedUsers = userData.userMainData.associatedUsers;
+  const noData = associatedUsers.length == 0;
 
   return (
     <View style={styles.container}>
@@ -19,6 +21,7 @@ const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
         source={require("../assets/images/Vector.png")}
         style={styles.content}
       >
+        {noData && <NoData />}
         <FlatList
           data={associatedUsers}
           renderItem={({ item, index }) => (

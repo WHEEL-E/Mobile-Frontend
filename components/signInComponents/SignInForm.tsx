@@ -14,13 +14,17 @@ import {
   validateNotEmpty,
   validatePassword,
 } from "../../utilities/dataValidators";
-import { SignInData, submitLoginForm } from "../../utilities/types/signInTypes";
+import {
+  SignInData,
+  SignInFormProps,
+  submitLoginForm,
+} from "../../utilities/types/signInTypes";
 import { UserTypes } from "../../utilities/types/userTypes";
 import { RoundEdgedButton } from "../buttons/RoundEdgedButton";
 import PickerComponent from "../formComponents/Picker";
 import { RenderInputComponent } from "../formComponents/RenderInputComponent";
 
-const SignInForm = (props: InjectedFormProps<SignInData>) => {
+const SignInForm = (props: InjectedFormProps<SignInData, SignInFormProps>) => {
   const typeLabels = [UserTypes.PATIENT, UserTypes.SUPERVISOR];
   const { handleSubmit } = props;
   const { t } = useTranslation();
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Form = reduxForm<SignInData>({
+const Form = reduxForm<SignInData, SignInFormProps>({
   form: "SignInform",
 })(SignInForm);
 

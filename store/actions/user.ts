@@ -63,17 +63,19 @@ export const signIn = createAsyncThunk(
   UserActionTypes.SIGN_IN,
   async (data: SignInData, thunkAPI) => {
     thunkAPI.dispatch(isLoading());
+    const { navigation, emailAddress, password, type } = data;
+
     const response = await axios.post(EndPoints.login, {
-      email: data.emailAddress,
-      password: data.password,
-      role: data.type === UserTypes.PATIENT ? "Patient" : "Supervisor",
+      email: emailAddress,
+      password: password,
+      role: type === UserTypes.PATIENT ? "Patient" : "Supervisor",
     });
-    console.log(response.data.status);
+
     if (response.data.status !== "Success") {
       thunkAPI.dispatch(ShowModal("errorModal.signIn"));
     }
 
-    const user: User = prepareUserObj(response.data.data, data.type);
+    const user: User = prepareUserObj(response.data.data, type);
 
     try {
       await SecureStore.setItemAsync("userData", JSON.stringify(user));
@@ -81,7 +83,17 @@ export const signIn = createAsyncThunk(
       console.log(e);
       throw e;
     }
+
     thunkAPI.dispatch(notLoading());
+
+    if (!user.userMainData.isVerified) {
+      try {
+        navigation.navigate("MailVerification");
+      } catch (e) {
+        console.log(e);
+      }
+      console.log("herehere");
+    }
     return user;
   }
 );
@@ -117,7 +129,7 @@ export const restoreUser = createAsyncThunk(
 );
 
 export const signUp = createAsyncThunk(
-  UserActionTypes.SIGN_IN,
+  UserActionTypes.SIGN_UP,
   async (data: { formData: FormData; userType: UserTypes }, thunkAPi) => {
     try {
       thunkAPi.dispatch(isLoading());

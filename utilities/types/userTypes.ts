@@ -36,6 +36,7 @@ export enum UserActionTypes {
   SIGN_OUT = "SIGN_OUT",
   RESTORE_USER = "RESTORE_USER",
   VERIFY_EMAIL = "VERIFY_EMAIL",
+  SIGN_UP = "SIGN_UP",
 }
 
 export enum UserTypes {

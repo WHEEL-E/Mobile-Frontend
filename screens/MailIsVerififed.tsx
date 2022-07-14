@@ -7,8 +7,10 @@ import { verifyEmail } from "../store/actions/mailVerification";
 import { RootState } from "../store/reducers/rootReducer";
 import { UserTypes } from "../utilities/types/userTypes";
 import { ImportantText, NormalText } from "../utilities/types/fontTypes";
+import { MailIsVerififedProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 
-const MailIsVerififedScreen = () => {
+const MailIsVerififedScreen = (props: MailIsVerififedProps) => {
+  const { navigation } = props;
   const link = Linking.useURL();
   const dispatch = useDispatch<any>();
 
@@ -27,7 +29,7 @@ const MailIsVerififedScreen = () => {
         verificationToken: token,
         userType,
         user_id,
-        signInData: { emailAddress, password, type },
+        signInData: { emailAddress, password, type, navigation },
       })
     );
   }

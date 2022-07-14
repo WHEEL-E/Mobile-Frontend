@@ -47,7 +47,7 @@ const SignInScreen = (props: SignInProps) => {
               {t("signInScreen.WelcomeBack")}
             </Text>
           </View>
-          <SignInForm />
+          <SignInForm navigation={navigation} />
           <TouchableOpacity>
             <Text style={styles.forgotPasswordText}>
               {t("signInScreen.forgotPassword")}
