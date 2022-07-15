@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { getNotes } from "../store/actions/notes";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import { NoData } from "../components/generalComponents/NoData";
 
 const NotesScreen = (props: NotesProps) => {
   const { t } = useTranslation();
@@ -25,6 +26,8 @@ const NotesScreen = (props: NotesProps) => {
   const backgroundColors = [colors.darkGreen, colors.lightPurple];
   let colorIndex = 0;
 
+  const noData = notes.length == 0;
+
   React.useEffect(() => {
     dispatch(getNotes(userId!));
   }, [dispatch, getNotes]);
@@ -38,25 +41,28 @@ const NotesScreen = (props: NotesProps) => {
           noteTitle=""
           noteDescription=""
         />
-        <FlatList
-          data={notes}
-          keyExtractor={(info) => info._id!}
-          numColumns={2}
-          renderItem={(info) => {
-            if (info.index % 2 == 1) {
-              colorIndex = 1 - colorIndex;
-            }
-            return (
-              <NoteCard
-                id={info.item._id!}
-                description={info.item.description}
-                title={info.item.title}
-                backgroundColor={backgroundColors[colorIndex]}
-                key={info.item._id}
-              />
-            );
-          }}
-        />
+        {noData && <NoData screen="notes" />}
+        {!noData && (
+          <FlatList
+            data={notes}
+            keyExtractor={(info) => info._id!}
+            numColumns={2}
+            renderItem={(info) => {
+              if (info.index % 2 == 1) {
+                colorIndex = 1 - colorIndex;
+              }
+              return (
+                <NoteCard
+                  id={info.item._id!}
+                  description={info.item.description}
+                  title={info.item.title}
+                  backgroundColor={backgroundColors[colorIndex]}
+                  key={info.item._id}
+                />
+              );
+            }}
+          />
+        )}
 
         <SquareButton
           title={t("notesScreen.addNote")}

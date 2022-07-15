@@ -8,6 +8,7 @@ import { InvitationData } from "../utilities/types/sentInvitationsTypes";
 import { getInvitations } from "../store/actions/invitations";
 import { RootState } from "../store/reducers/rootReducer";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import { NoData } from "../components/generalComponents/NoData";
 
 const SentInvitations = (props: SentInvitationsProps) => {
   const dispatch = useDispatch<any>();
@@ -17,6 +18,8 @@ const SentInvitations = (props: SentInvitationsProps) => {
   );
 
   const userData = useSelector((state: RootState) => state.user.userData);
+
+  const noData = invitations.length === 0;
 
   React.useEffect(() => {
     dispatch(
@@ -30,19 +33,22 @@ const SentInvitations = (props: SentInvitationsProps) => {
   return (
     <View style={styles.container}>
       <DataStatus>
-        <FlatList
-          data={invitations}
-          renderItem={({ item, index }) => (
-            <InvitationCard
-              invitaion={item}
-              backgroundColor={
-                index % 2 == 0 ? colors.darkBlue : colors.lightPurple
-              }
-              userRole="Patient"
-            />
-          )}
-          style={{ width: "90%" }}
-        />
+        {noData && <NoData screen="sentInvitations" />}
+        {!noData && (
+          <FlatList
+            data={invitations}
+            renderItem={({ item, index }) => (
+              <InvitationCard
+                invitaion={item}
+                backgroundColor={
+                  index % 2 == 0 ? colors.darkBlue : colors.lightPurple
+                }
+                userRole="Patient"
+              />
+            )}
+            style={{ width: "90%" }}
+          />
+        )}
       </DataStatus>
     </View>
   );

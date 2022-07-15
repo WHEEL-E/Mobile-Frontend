@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { getInvitations } from "../store/actions/invitations";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import { NoData } from "../components/generalComponents/NoData";
 
 export default function SupervisorInvitations() {
   const dispatch = useDispatch<any>();
@@ -16,6 +17,8 @@ export default function SupervisorInvitations() {
   );
 
   const userData = useSelector((state: RootState) => state.user.userData);
+
+  const noData = invitations.length === 0;
 
   React.useEffect(() => {
     dispatch(
@@ -29,19 +32,22 @@ export default function SupervisorInvitations() {
   return (
     <View style={styles.container}>
       <DataStatus>
-        <FlatList
-          data={invitations}
-          renderItem={({ item, index }) => (
-            <InvitationCard
-              invitaion={item}
-              backgroundColor={
-                index % 2 == 0 ? colors.darkBlue : colors.lightPurple
-              }
-              userRole="Supervisor"
-            />
-          )}
-          style={{ width: "90%" }}
-        />
+        {noData && <NoData screen="receivedInvitations" />}
+        {!noData && (
+          <FlatList
+            data={invitations}
+            renderItem={({ item, index }) => (
+              <InvitationCard
+                invitaion={item}
+                backgroundColor={
+                  index % 2 == 0 ? colors.darkBlue : colors.lightPurple
+                }
+                userRole="Supervisor"
+              />
+            )}
+            style={{ width: "90%" }}
+          />
+        )}
       </DataStatus>
     </View>
   );

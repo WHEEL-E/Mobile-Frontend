@@ -272,6 +272,22 @@ export default {
     },
     dataStatus: {
       loading: "Loading...",
+      notesMainText: "You have no data here!",
+      notesText: "Try adding some notes",
+      usersMainText: "No users yet!",
+      usersText: "Start connecting with other users",
+      notificationMainText: "No notifications right now!",
+      notificationText: "You are up to date",
+      remindersPatientMainText: "No reminders yet!",
+      remindersPatientText:
+        "You will receive a notification on receiving a new reminder",
+      remindersSupervisorMainText: "No reminders yet!",
+      remindersSupervisorText: "You can start adding some",
+      sentInvitationsMainText: "No invitations yet!",
+      sentInvitationsText: "You can start inviting and connecting with users",
+      receivedInvitationsMainText: "No invitations yet",
+      receivedInvitationsText:
+        "You will receive an invitation on receiving a new invitation",
     },
     mailIsVerified: {
       successText: "Your mail is Verified successfully",

@@ -14,7 +14,6 @@ import { getReminders } from "../store/actions/reminders";
 
 const RemindersScreen = (props: RemindersProps) => {
   const {
-    navigation,
     route: {
       params: { receiver, patientId },
     },

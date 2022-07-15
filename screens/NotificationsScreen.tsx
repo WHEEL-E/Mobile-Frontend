@@ -6,7 +6,6 @@ import { DataStatus } from "../components/generalComponents/DataStatus";
 import { getNotifications } from "../store/actions/notifications";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
-import * as Notifications from "expo-notifications";
 
 const NotificationsScreen = (props: NewsProps) => {
   const dispatch = useDispatch<any>();
@@ -16,8 +15,6 @@ const NotificationsScreen = (props: NewsProps) => {
   );
 
   React.useEffect(() => {
-    Notifications.getExpoPushTokenAsync().then(({ data }) => console.log(data));
-
     dispatch(getNotifications(userId!));
   }, [dispatch, getNotifications]);
 
