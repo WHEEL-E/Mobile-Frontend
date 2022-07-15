@@ -14,6 +14,7 @@ import { RootState } from "../../store/reducers/rootReducer";
 import { AddUserModalProps } from "../../utilities/types/addConnectionTypes";
 import { NormalText } from "../../utilities/types/fontTypes";
 import { sendInvitation } from "../../store/actions/invitations";
+import { ModalBase } from "../generalComponents/ModalBase";
 
 export const AddUserModal = (props: AddUserModalProps) => {
   const { name, id, modalVisible, setModalVisible } = props;
@@ -25,71 +26,41 @@ export const AddUserModal = (props: AddUserModalProps) => {
   );
 
   const submitHandler = () => {
-    dispatch(sendInvitation({ to_id: id, from_id: sendingId! ,user_name:name}));
+    dispatch(
+      sendInvitation({ to_id: id, from_id: sendingId!, user_name: name })
+    );
+    setModalVisible(false);
   };
   return (
-    <Modal animationType="slide" transparent={true} visible={modalVisible}>
-      <View style={styles.mainView}>
-        <ImageBackground
-          source={require("../../assets/images/Union.png")}
-          style={styles.background}
-        >
-          <Text style={styles.title}> {t("addConnection.newConnection")}</Text>
-          <Ionicons
-            name="person-add"
-            size={DEVICE_WIDTH * 0.25}
-            color={colors.darkBlue}
-          />
-          <Text style={styles.mainText}>
-            {t("addConnection.confirmAddNewUser", { name: name })}
-          </Text>
-          <View style={styles.buttonsList}>
-            <SquareButton
-              title={t("addConnection.cancel")}
-              titleStyle={styles.buttonTitleStyle}
-              onPress={() => setModalVisible(false)}
-              buttonStyle={styles.cancelButton}
-            />
-            <SquareButton
-              title={t("addConnection.send")}
-              titleStyle={styles.buttonTitleStyle}
-              onPress={() => submitHandler()}
-              buttonStyle={styles.sendButton}
-            />
-          </View>
-        </ImageBackground>
+    <ModalBase modalVisible={modalVisible} setModalVisible={setModalVisible}>
+      <Text style={styles.title}> {t("addConnection.newConnection")}</Text>
+      <Ionicons
+        name="person-add"
+        size={DEVICE_WIDTH * 0.25}
+        color={colors.darkBlue}
+      />
+      <Text style={styles.mainText}>
+        {t("addConnection.confirmAddNewUser", { name: name })}
+      </Text>
+      <View style={styles.buttonsList}>
+        <SquareButton
+          title={t("addConnection.cancel")}
+          titleStyle={styles.buttonTitleStyle}
+          onPress={() => setModalVisible(false)}
+          buttonStyle={styles.cancelButton}
+        />
+        <SquareButton
+          title={t("addConnection.send")}
+          titleStyle={styles.buttonTitleStyle}
+          onPress={() => submitHandler()}
+          buttonStyle={styles.sendButton}
+        />
       </View>
-    </Modal>
+    </ModalBase>
   );
 };
 
 const styles = StyleSheet.create({
-  mainView: {
-    width: "80%",
-    height: "50%",
-    alignSelf: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-    marginVertical: "50%",
-    borderRadius: 50,
-    overflow: "hidden",
-    borderWidth: 2,
-    paddingHorizontal: "5%",
-    paddingBottom: "5%",
-  },
-  image: {
-    flex: 1,
-    resizeMode: "center",
-    width: "80%",
-  },
-  background: {
-    width: DEVICE_WIDTH * 0.8,
-    height: DEVICE_HEIGHT * 0.5,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: "7%",
-    paddingVertical: "20%",
-  },
   title: {
     flex: 1,
     color: "black",
@@ -108,17 +79,17 @@ const styles = StyleSheet.create({
   cancelButton: {
     backgroundColor: colors.darkPink,
     flex: 1,
-    height: 50,
+    height: DEVICE_WIDTH * 0.122,
   },
   sendButton: {
     backgroundColor: colors.lightGreen,
     flex: 1,
-    height: 50,
+    height: DEVICE_WIDTH * 0.122,
   },
   buttonsList: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 25,
+    marginTop: "10%",
     paddingHorizontal: "10%",
   },
   buttonTitleStyle: {

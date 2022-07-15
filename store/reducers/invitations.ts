@@ -27,7 +27,8 @@ const invitationsReducer = createReducer(initialState, (builder) => {
       const updatedInvitation = action.payload;
       const updatedInvitations = [...state.invitations];
       const updatedInvitationIndex = updatedInvitations.findIndex(
-        (invitaion) => invitaion._id === updatedInvitation._id
+        (invitaion) =>
+          invitaion.invitation._id === updatedInvitation.invitation._id
       );
       if (updatedInvitationIndex > -1) {
         updatedInvitations[updatedInvitationIndex] = {
@@ -42,7 +43,7 @@ const invitationsReducer = createReducer(initialState, (builder) => {
     .addDefaultCase((state, action) => {
       const removedInvitation = action.payload;
       const updatedInvitations = [...state.invitations].filter(
-        (invitaion) => invitaion._id !== removedInvitation
+        (invitaion) => invitaion.invitation._id !== removedInvitation
       );
       return {
         invitations: updatedInvitations,

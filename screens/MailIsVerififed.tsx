@@ -17,7 +17,7 @@ const MailIsVerififedScreen = (props: MailIsVerififedProps) => {
   const userdata = useSelector((state: RootState) => state.user.userData);
   const type = userdata?.userType!;
 
-  const userType = type === UserTypes.PATIENT ? "Patient" : "Supervisor";
+  const userType = type;
   const user_id = userdata?.userMainData._id!;
   const emailAddress = userdata?.userMainData.email!;
   const password = userdata?.userMainData.password!;

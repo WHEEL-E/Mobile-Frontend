@@ -9,6 +9,7 @@ import { DEVICE_WIDTH } from "../../utilities/constants/dimentions";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { removeReminder } from "../../store/actions/reminders";
+import { ImportantText, NormalText } from "../../utilities/types/fontTypes";
 
 const ReminderCard = (props: ReminderCardProps) => {
   const {
@@ -34,7 +35,6 @@ const ReminderCard = (props: ReminderCardProps) => {
   const textColor =
     backgroundColor === colors.darkGreen ? "white" : colors.darkGreen;
 
-  console.log(due_date);
   return (
     <View style={{ ...styles.container, backgroundColor }}>
       <ReminderModal
@@ -79,26 +79,24 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
     elevation: 5,
-    borderRadius: 10,
+    borderRadius: DEVICE_WIDTH * 0.04,
     backgroundColor: "white",
-    marginVertical: 10,
-    padding: 10,
+    marginVertical: "5%",
+    padding: "5%",
     overflow: "hidden",
     width: DEVICE_WIDTH * 0.8,
   },
   title: {
-    fontFamily: fonts.CairoBold,
-    fontSize: 18,
+    ...ImportantText,
   },
   body: {
-    fontFamily: fonts.CairoRegular,
-    fontSize: 15,
+    ...NormalText,
   },
   close: {
     alignItems: "flex-end",
   },
   edit: {
-    marginVertical: 5,
+    marginVertical: "2%",
   },
 });
 

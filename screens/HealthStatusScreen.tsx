@@ -19,10 +19,16 @@ import { HealthStatusScreenProps } from "../utilities/types/navigationTypes/main
 const HealthStatusScreen = (props: HealthStatusScreenProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<any>();
+
+  const user_id = useSelector(
+    (state: RootState) => state.user.userData?.userMainData._id
+  );
+
   const [sensorsData, setSensorsData] = React.useState({
-    SPO2: 0,
-    user_id: 0,
-    Pulse: 0,
+    SPO2: 97,
+    user_id,
+    Pulse: 90,
+    temp: 37,
     time: "0:0:0",
   });
 
@@ -45,13 +51,19 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
       sensorName: t("healthStatus.oxygenSaturation"),
       image: require("../assets/images/bloodDrop.png"),
       value: sensorsData.SPO2,
-      unit: t("healthStatus.mmhg"),
+      unit: "%",
     },
     {
       sensorName: t("healthStatus.heartRate"),
       image: require("../assets/images/heart.png"),
       value: sensorsData.Pulse,
       unit: t("healthStatus.bpm"),
+    },
+    {
+      sensorName: t("healthStatus.temprature"),
+      image: require("../assets/images/temprature.png"),
+      value: sensorsData.temp,
+      unit: t("healthStatus.celsius"),
     },
   ];
 

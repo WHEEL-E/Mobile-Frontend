@@ -58,7 +58,15 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
           </Text>
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
-          <Image source={{ uri: profile_picture }} style={styles.image} />
+          {profile_picture !== "" && (
+            <Image source={{ uri: profile_picture }} style={styles.image} />
+          )}
+          {profile_picture === "" && (
+            <Image
+              source={require("../../assets/images/avatar.png")}
+              style={styles.image}
+            />
+          )}
         </View>
       </View>
       <View style={styles.buttonsList}>

@@ -1,15 +1,12 @@
 import axios from "axios";
-import { Dispatch } from "react";
 import * as SecureStore from "expo-secure-store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { EndPoints } from "../../utilities/constants/endpoints";
 import { registerForPushNotificationsAsync } from "../../utilities/signUpUtils";
 import {
-  PatientExtradata,
   User,
   UserActionTypes,
-  UserMainData,
   UserTypes,
 } from "../../utilities/types/userTypes";
 import { ShowModal, isLoading, notLoading } from "./dataStatus";
@@ -68,7 +65,7 @@ export const signIn = createAsyncThunk(
     const response = await axios.post(EndPoints.login, {
       email: emailAddress,
       password: password,
-      role: type === UserTypes.PATIENT ? "Patient" : "Supervisor",
+      role: type,
     });
 
     if (response.data.status !== "Success") {
@@ -80,20 +77,18 @@ export const signIn = createAsyncThunk(
     try {
       await SecureStore.setItemAsync("userData", JSON.stringify(user));
     } catch (e) {
-      console.log(e);
       throw e;
     }
 
     thunkAPI.dispatch(notLoading());
 
-    if (!user.userMainData.isVerified) {
-      try {
-        navigation.navigate("MailVerification");
-      } catch (e) {
-        console.log(e);
-      }
-      console.log("herehere");
-    }
+    // if (!user.userMainData.isVerified) {
+    //   try {
+    //     navigation.navigate("MailVerification");
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // }
     return user;
   }
 );
@@ -164,7 +159,6 @@ export const signUp = createAsyncThunk(
       return user;
     } catch (e) {
       thunkAPi.dispatch(notLoading());
-      console.log(e);
       throw e;
     }
   }

@@ -6,6 +6,7 @@ import { RootState } from "../reducers/rootReducer";
 import {
   Reminder,
   RemindersActionTypes,
+  SentReminder,
 } from "../../utilities/types/remindersTypes";
 import { UserTypes } from "../../utilities/types/userTypes";
 
@@ -71,7 +72,7 @@ export const removeReminder = createAsyncThunk(
 
 export const addReminder = createAsyncThunk(
   RemindersActionTypes.ADD_REMINDER,
-  async (newReminder: Reminder, thunkAPI) => {
+  async (newReminder: SentReminder, thunkAPI) => {
     try {
       const { user } = thunkAPI.getState() as RootState;
       const response = await axios.post(
@@ -87,9 +88,8 @@ export const addReminder = createAsyncThunk(
       }
 
       const resData = await response.data.data;
-      const note = { ...newReminder, _id: resData._id };
 
-      return note;
+      return resData;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.addingReminder"));
       throw err;
@@ -99,7 +99,10 @@ export const addReminder = createAsyncThunk(
 
 export const updateReminder = createAsyncThunk(
   RemindersActionTypes.UPDATE_REMINDER,
-  async (newReminder: Partial<Reminder>, thunkAPI) => {
+  async (
+    newReminder: { _id: string; title: string; description: string },
+    thunkAPI
+  ) => {
     try {
       const { _id, title, description } = newReminder;
       const { user } = thunkAPI.getState() as RootState;
@@ -115,8 +118,8 @@ export const updateReminder = createAsyncThunk(
         thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
         throw new Error("can't update note");
       }
-
-      return newReminder;
+      console.log(response.data.data);
+      return response.data.data as SentReminder;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
       throw err;

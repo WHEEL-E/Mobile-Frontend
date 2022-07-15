@@ -14,8 +14,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(signIn.fulfilled, (state, action) => {
       state.isRestoringData = false;
       state.userData = action.payload;
-      state.isLoggedIn =
-        action.payload && action.payload.userMainData.isVerified ? true : false;
+      state.isLoggedIn = action.payload ? true : false;
     })
     .addCase(signUp.fulfilled, (state, action) => {
       state.isRestoringData = false;

@@ -146,8 +146,8 @@ export default {
       password: "Password",
       address: "Address",
       phone: "PhoneNumber",
-      SUPERVISOR: "Supervisor",
-      PATIENT: "Patient",
+      Supervisor: "Supervisor",
+      Patient: "Patient",
       gender: "Gender",
       male: "Male",
       female: "Female",
@@ -189,7 +189,7 @@ export default {
       send: "Send",
       loading: "Loading...",
       placeHolder: "who are you looking for",
-      PatientTitle: "Add New Supervisor",
+      patientTitle: "Add New Supervisor",
       SupervisotTitle: "Add New Patient",
     },
     associatedUsers: {
@@ -232,19 +232,15 @@ export default {
       RECEIVED_CONNECTION:
         "You've received a new connection request, you can view it inside your invitation screen",
       REJECTED_CONNECTION:
-        "{{name}} has rejected your connection request, you can resend it again in a week",
+        "Your connection request has been rejected, you can resend it again in a week",
       ACCEPTED_CONNECTION:
-        "{{name}} has accepted your connection reqest, yu can view him in your connection list",
+        "Your connection reqest has been accepted, yu can view it in your connection list",
       NEW_UPDATE:
         "A new update is now available, you can download it from your favorite app store",
       RECEIVED_NEW_REMINDER:
-        "your supervisor {{name}} has added a new reminder for you, you can view it inside your reminder screen",
-      NEW_RECORD:
-        "Your patient {{name}} has uploaded a new health record, you can view it now from your patent screen",
+        "your supervisor has added a new reminder for you, you can view it inside your reminder screen",
       UNHEALTHY_PATIENT:
-        "{{name}} health data haven't been normal, we recommend checking on him as soon as possible",
-      RECEIVED_EMERGENCY_CALL:
-        "Your patient {{name}} has sent you an emergency call, please check on him now",
+        "Your patient's health data haven't been normal, we recommend checking on him as soon as possible",
       CONNECTIONS: "CONNECTIONS",
       APP_NEWS: "APP NEWS",
       NEW_REMINDER: "NEW REMINDER",
@@ -269,6 +265,8 @@ export default {
       bpm: "BPM",
       note: " To get updated values please place your hands at the sensors attached to your chair",
       lastUpdate: "Last update at: ",
+      celsius: "degree celsius",
+      temprature: "Temprature",
     },
     dataStatus: {
       loading: "Loading...",

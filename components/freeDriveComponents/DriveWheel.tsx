@@ -29,10 +29,9 @@ const DriveWheel = () => {
 
 const styles = StyleSheet.create({
   centered: {
-    flex: 1,
     alignItems: "center",
-    justifyContent: "center",
     alignSelf: "center",
+    paddingBottom: "10%",
   },
   container: {
     borderRadius: DEVICE_WIDTH * 0.45,

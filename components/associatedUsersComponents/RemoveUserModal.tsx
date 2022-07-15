@@ -13,6 +13,7 @@ import {
   DEVICE_WIDTH,
 } from "../../utilities/constants/dimentions";
 import { removeUser } from "../../store/actions/associatedUsers";
+import { ModalBase } from "../generalComponents/ModalBase";
 
 export const RemoveUserModal = (props: RemoveUserModalProps) => {
   const { t } = useTranslation();
@@ -24,40 +25,31 @@ export const RemoveUserModal = (props: RemoveUserModalProps) => {
   };
 
   return (
-    <Modal animationType="slide" transparent={true} visible={modalVisible}>
-      <View style={styles.container}>
-        <View style={styles.modalView}>
-          <ImageBackground
-            source={require("../../assets/images/Union.png")}
-            style={styles.background}
-          >
-            <Text style={styles.title}>{t("associatedUsers.removeUser")}</Text>
-            <Ionicons
-              name="person-remove"
-              size={DEVICE_WIDTH * 0.25}
-              color={colors.darkBlue}
-            />
-            <Text style={styles.mainText}>
-              {t("associatedUsers.confirmremoveUser", { name: name })}
-            </Text>
-            <View style={styles.buttonsList}>
-              <SquareButton
-                title={t("associatedUsers.cancel")}
-                titleStyle={styles.buttonTitleStyle}
-                onPress={() => setModalVisible(false)}
-                buttonStyle={styles.cancelButton}
-              />
-              <SquareButton
-                title={t("associatedUsers.remove")}
-                titleStyle={styles.buttonTitleStyle}
-                onPress={removeHandler}
-                buttonStyle={styles.sendButton}
-              />
-            </View>
-          </ImageBackground>
-        </View>
+    <ModalBase modalVisible={modalVisible} setModalVisible={setModalVisible}>
+      <Text style={styles.title}>{t("associatedUsers.removeUser")}</Text>
+      <Ionicons
+        name="person-remove"
+        size={DEVICE_WIDTH * 0.25}
+        color={colors.darkBlue}
+      />
+      <Text style={styles.mainText}>
+        {t("associatedUsers.confirmremoveUser", { name: name })}
+      </Text>
+      <View style={styles.buttonsList}>
+        <SquareButton
+          title={t("associatedUsers.cancel")}
+          titleStyle={styles.buttonTitleStyle}
+          onPress={() => setModalVisible(false)}
+          buttonStyle={styles.cancelButton}
+        />
+        <SquareButton
+          title={t("associatedUsers.remove")}
+          titleStyle={styles.buttonTitleStyle}
+          onPress={removeHandler}
+          buttonStyle={styles.sendButton}
+        />
       </View>
-    </Modal>
+    </ModalBase>
   );
 };
 

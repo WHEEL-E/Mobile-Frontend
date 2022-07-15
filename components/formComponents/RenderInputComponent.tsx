@@ -28,6 +28,7 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
         autoComplete="off"
         value={value}
         testId={`signIn${name}`}
+        secureText={name === "password"}
       />
       {meta.invalid && (
         <Text style={styles.validationText} testID="warningText">

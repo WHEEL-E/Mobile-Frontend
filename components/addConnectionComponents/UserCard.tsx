@@ -29,7 +29,10 @@ export const UserCard = (props: UserCardProps) => {
           overflow: "hidden",
         }}
       >
-        <Image source={{ uri: imageUri }} style={styles.image} />
+        <Image
+          source={require("../../assets/images/avatar.png")}
+          style={styles.image}
+        />
       </View>
       <Text style={styles.name}>{name}</Text>
     </TouchableOpacity>

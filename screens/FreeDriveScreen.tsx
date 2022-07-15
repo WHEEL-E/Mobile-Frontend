@@ -8,6 +8,7 @@ import { FreeDriveProps } from "../utilities/types/navigationTypes/mainNavigatio
 import { useDispatch } from "react-redux";
 import { initSocket } from "../store/actions/socket";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import { NormalText } from "../utilities/types/fontTypes";
 
 const FreeDriveScreen = (props: FreeDriveProps) => {
   const dispatch = useDispatch<any>();
@@ -52,14 +53,9 @@ const styles = StyleSheet.create({
     paddingTop: "50%",
     paddingBottom: "20%",
   },
-  title: {
-    fontSize: 35,
-    fontFamily: "Cairo-Bold",
-  },
   text: {
     color: colors.darkGreen,
-    fontFamily: fonts.CairoRegular,
-    lineHeight: 20,
+    ...NormalText,
   },
 });
 export default FreeDriveScreen;

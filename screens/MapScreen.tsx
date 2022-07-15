@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -8,288 +8,35 @@ import {
 import Svg, { Text } from "react-native-svg";
 import { Path } from "react-native-svg";
 import * as shape from "d3-shape";
-import colors from "../utilities/constants/colors";
+import data from "../data/mapData.json";
+import mapButtonsData from "../data/mapButtonsData.json";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import { NormalText } from "../utilities/types/fontTypes";
+import { lineData, mapButtondata } from "../utilities/types/mapTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { initSocket } from "../store/actions/socket";
+import { RootState } from "../store/reducers/rootReducer";
+import { Socket } from "socket.io-client";
+import colors from "../utilities/constants/colors";
 
 const MapScreen = () => {
   const width = DEVICE_WIDTH * 0.9;
   const height = DEVICE_HEIGHT * 0.26;
 
-  const lines: { color: string; width: number; line: [number, number][] }[] = [
-    // main borders
-    {
-      color: "black",
-      width: 1,
-      line: [
-        [0, -70],
-        [0, -600],
-      ],
-    },
-    {
-      color: "black",
-      width: 1,
-      line: [
-        [330, -70],
-        [330, -600],
-      ],
-    },
-    {
-      color: "black",
-      width: 1,
-      line: [
-        [0, -600],
-        [330, -600],
-      ],
-    },
-    {
-      color: "black",
-      width: 1,
-      line: [
-        [0, -70],
-        [330, -70],
-      ],
-    },
+  const lines: lineData[] = data.data as lineData[];
+  const buttonsData: mapButtondata[] = mapButtonsData.data as mapButtondata[];
 
-    //horizontal entrance lines
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [0, -200],
-        [110, -200],
-      ],
-    },
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [220, -200],
-        [330, -200],
-      ],
-    },
+  const dispatch = useDispatch<any>();
 
-    //vertical entrance lines
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [110, -200],
-        [110, -70],
-      ],
-    },
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [220, -200],
-        [220, -70],
-      ],
-    },
+  useEffect(() => {
+    dispatch(initSocket());
+  }, []);
 
-    // horizonal middle lines
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [0, -350],
-        [110, -350],
-      ],
-    },
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [220, -350],
-        [330, -350],
-      ],
-    },
-    //bathroom vertical lines
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [110, -600],
-        [110, -470],
-      ],
-    },
-    {
-      color: "black",
-      width: 2,
-      line: [
-        [220, -600],
-        [220, -470],
-      ],
-    },
-    //vertical red line
-    /*  {
-      color: "red",
-      width: 2,
-      line: [
-        [165, -400],
-        [165, -300],
-      ],
-    },
-    {
-      color: "red",
-      width: 2,
-      line: [
-        [165, -250],
-        [165, -150],
-      ],
-    },
-    //bedrooms red line
-    {
-      color: "red",
-      width: 2,
-      line: [
-        [200, -420],
-        [260, -420],
-      ],
-    },
-    {
-      color: "red",
-      width: 2,
-      line: [
-        [70, -420],
-        [130, -420],
-      ],
-    },
+  const socket = useSelector(
+    (state: RootState) => state.socket.socket
+  ) as Socket;
 
-    //living room red line
-    {
-      color: "red",
-      width: 2,
-      line: [
-        [200, -270],
-        [260, -270],
-      ],
-    },
-    {
-      color: "red",
-      width: 2,
-      line: [
-        [120, -270],
-        [130, -270],
-      ],
-    },
-    {
-      color: "red",
-      width: 2,
-      line: [
-        [70, -270],
-        [65, -270],
-      ],
-    },*/
-  ];
-
-  const buttonsData: {
-    name: string;
-    line: [number, number][];
-    text: { X: number; Y: number };
-  }[] = [
-    {
-      name: "Bathroom",
-      line: [
-        [113, -595],
-        [217, -595],
-        [217, -480],
-        [113, -480],
-        [113, -595],
-      ],
-      text: { X: 165, Y: -535 },
-    },
-    {
-      name: "Entrance",
-      line: [
-        [113, -80],
-        [217, -80],
-        [217, -200],
-        [113, -200],
-        [113, -80],
-      ],
-      text: { X: 165, Y: -135 },
-    },
-    {
-      name: "Hall 1",
-      line: [
-        [220, -200],
-        [110, -200],
-        [110, -357],
-        [220, -357],
-        [220, -200],
-      ],
-      text: { X: 165, Y: -265 },
-    },
-    {
-      name: "Hall 2",
-      line: [
-        [223, -357],
-        [107, -357],
-        [107, -480],
-        [223, -480],
-        [223, -357],
-      ],
-      text: { X: 165, Y: -415 },
-    },
-    {
-      name: `Dining`,
-      line: [
-        [110, -205],
-        [50, -205],
-        [50, -345],
-        [110, -345],
-        [110, -205],
-      ],
-      text: { X: 80, Y: -265 },
-    },
-    {
-      name: `Kitchen`,
-      line: [
-        [50, -205],
-        [2, -205],
-        [2, -345],
-        [50, -345],
-        [50, -205],
-      ],
-      text: { X: 25, Y: -265 },
-    },
-    {
-      name: `Living`,
-      line: [
-        [328, -205],
-        [220, -205],
-        [220, -345],
-        [328, -345],
-        [328, -205],
-      ],
-      text: { X: 295, Y: -265 },
-    },
-    {
-      name: `room 2`,
-      line: [
-        [328, -357],
-        [223, -357],
-        [223, -598],
-        [328, -598],
-        [328, -357],
-      ],
-      text: { X: 295, Y: -415 },
-    },
-    {
-      name: `room 1`,
-      line: [
-        [107, -355],
-        [2, -355],
-        [2, -598],
-        [107, -598],
-        [107, -355],
-      ],
-      text: { X: 35, Y: -415 },
-    },
-  ];
-
-  const [backgrounds, setBackgrounds] = React.useState([
+  const initialColors = [
     "#edebdf",
     "#edebdf",
     "#C2BCB9",
@@ -299,7 +46,9 @@ const MapScreen = () => {
     "#edebdf",
     "#dcd4bd",
     "#dcd4bd",
-  ]);
+  ];
+
+  const [backgrounds, setBackgrounds] = React.useState(initialColors);
 
   return (
     <View style={styles.container}>
@@ -324,7 +73,7 @@ const MapScreen = () => {
               key={index.toString()}
             />
           ))}
-          {buttonsData.map(({ name, line, text: { X, Y } }, index) => (
+          {buttonsData.map(({ name, line, text: { X, Y }, sentVal }, index) => (
             <View key={index.toString()}>
               <Path
                 d={shape
@@ -334,13 +83,14 @@ const MapScreen = () => {
                 fill={backgrounds[index]}
                 onPressIn={() => {
                   const newBackgrounds = [...backgrounds];
-                  newBackgrounds[index] = "black";
+                  newBackgrounds[index] = colors.darkGreen;
                   setBackgrounds(newBackgrounds);
+                  socket.emit("action", sentVal);
                 }}
                 onPress={() => console.log(name)}
                 onPressOut={() => {
                   const newBackgrounds = [...backgrounds];
-                  newBackgrounds[index] = "transparent";
+                  newBackgrounds[index] = initialColors[index];
                   setBackgrounds(newBackgrounds);
                 }}
               />

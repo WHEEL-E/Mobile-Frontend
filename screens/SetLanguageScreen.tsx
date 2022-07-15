@@ -16,7 +16,6 @@ const SetLanguageScreen = (props: ChangeLangugageProps) => {
 
   console.log(lang.language);
 
-  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -35,7 +34,6 @@ const SetLanguageScreen = (props: ChangeLangugageProps) => {
             lang.language === "ar" ? colors.darkPink : colors.darkGreen
           }
         />
-
         <RoundEdgedButton
           title="English"
           onPress={() => setLanguage("en")}
@@ -54,17 +52,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  title: {
-    fontFamily: "Cairo-Regular",
-    color: "black",
-    fontSize: 30,
-    backgroundColor: colors.darkPink,
-    textAlign: "center",
-    padding: 20,
-    borderRadius: 30,
-    width: "80%",
-    margin: 20,
   },
 });
 

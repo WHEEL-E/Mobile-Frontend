@@ -23,14 +23,12 @@ import {
 export const InvitationCard = (props: InvitationCardProps) => {
   const {
     invitaion: {
-      _id,
-      to_Name,
-      status,
-      updated_at,
-      to_id,
-      to_ProfilePhoto,
-      from_ProfilePhoto,
+      invitation: { _id, from_id, status, updated_at, to_id },
+      patient: { birthDate, gender, name, photo },
+      supervisorName,
+      supervisorPhoto,
     },
+
     backgroundColor,
     userRole,
   } = props;
@@ -41,7 +39,6 @@ export const InvitationCard = (props: InvitationCardProps) => {
   const [days, hours, minutes, seconds] = useCountdown(
     new Date(updated_at).getTime() + sevenDays
   );
-  const photo = userRole === "Patient" ? to_ProfilePhoto : from_ProfilePhoto;
 
   const textColor =
     backgroundColor === colors.darkBlue ? "white" : colors.darkBlue;
@@ -58,7 +55,9 @@ export const InvitationCard = (props: InvitationCardProps) => {
     >
       <View style={styles.content}>
         <View>
-          <Text style={{ ...styles.name, color: textColor }}>{to_Name}</Text>
+          <Text style={{ ...styles.name, color: textColor }}>
+            {supervisorName}
+          </Text>
           {userRole === "Patient" && (
             <Text style={{ ...styles.status, color: textColor }}>
               {t("sentInvitations.status")}
@@ -86,13 +85,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
           <Image
-            source={
-              photo
-                ? {
-                    uri: photo,
-                  }
-                : require("../../assets/images/avatar.png")
-            }
+            source={require("../../assets/images/avatar.png")}
             style={styles.image}
           />
         </View>

@@ -11,6 +11,8 @@ import { RootState } from "../store/reducers/rootReducer";
 import { UserTypes } from "../utilities/types/userTypes";
 import { DataStatus } from "../components/generalComponents/DataStatus";
 import { getReminders } from "../store/actions/reminders";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import { ImportantText } from "../utilities/types/fontTypes";
 
 const RemindersScreen = (props: RemindersProps) => {
   const {
@@ -51,20 +53,18 @@ const RemindersScreen = (props: RemindersProps) => {
         }}
       />
       <ImageBackground
-        source={require("../assets/images/cloud-background.png")}
+        source={require("../assets/images/Vector.png")}
         style={styles.background}
       >
         <DataStatus>
           <RemindersList enableEdit={enableEdit} receiver={receiver} />
           {enableEdit && (
-            <View style={styles.buttonContainer}>
-              <SquareButton
-                title={t("remindersScreen.addReminder")}
-                buttonStyle={styles.buttonStyle}
-                titleStyle={styles.titleStyle}
-                onPress={() => setModalVisible(true)}
-              />
-            </View>
+            <SquareButton
+              title={t("remindersScreen.addReminder")}
+              buttonStyle={styles.buttonStyle}
+              titleStyle={styles.titleStyle}
+              onPress={() => setModalVisible(true)}
+            />
           )}
         </DataStatus>
       </ImageBackground>
@@ -77,40 +77,28 @@ export default RemindersScreen;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    paddingHorizontal: 10,
+    flex: 1,
+    width: "100%",
+  },
+  background: {
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    flex: 1,
     paddingBottom: "20%",
     paddingTop: "35%",
-    flexDirection: "column",
-    flex: 1,
-  },
-  title: {
-    fontSize: 27,
-    fontFamily: "Cairo-Bold",
-  },
-  titleContainer: {
-    alignItems: "center",
-  },
-  background: { width: "100%", height: "100%" },
-  backButton: {
-    marginTop: "10%",
-    marginLeft: "10%",
   },
   buttonStyle: {
     backgroundColor: colors.lightGreen,
-    borderWidth: 2,
     borderColor: "white",
-    borderRadius: 30,
-    width: 300,
-    marginHorizontal: 50,
-    marginVertical: 5,
-    height: 70,
+    borderRadius: DEVICE_WIDTH * 0.1,
+    width: "90%",
+    marginVertical: "5%",
+    height: DEVICE_HEIGHT * 0.07,
   },
   titleStyle: {
-    fontFamily: "Cairo-Bold",
+    ...ImportantText,
     color: "white",
-    fontSize: 20,
-  },
-  buttonContainer: {
-    alignItems: "center",
   },
 });

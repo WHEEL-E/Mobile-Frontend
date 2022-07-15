@@ -40,8 +40,8 @@ export enum UserActionTypes {
 }
 
 export enum UserTypes {
-  SUPERVISOR = "SUPERVISOR",
-  PATIENT = "PATIENT",
+  SUPERVISOR = "Supervisor",
+  PATIENT = "Patient",
 }
 
 export interface UserState {

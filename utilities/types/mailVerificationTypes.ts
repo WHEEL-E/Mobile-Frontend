@@ -5,7 +5,7 @@ import { UserTypes } from "./userTypes";
 export interface VerifyEmailData {
   user_id: string;
   verificationToken: string;
-  userType: "Supervisor" | "Patient";
+  userType: UserTypes;
   signInData: {
     emailAddress: string;
     password: string;

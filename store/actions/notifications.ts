@@ -41,7 +41,6 @@ export const removeNotification = createAsyncThunk(
   async (notificationId: string, thunkAPI) => {
     try {
       const { user } = thunkAPI.getState() as RootState;
-      console.log(notificationId);
       const response = await axios.delete(
         `${EndPoints.notifications}/${notificationId}`,
         { headers: { token: user.userData?.token! } }
@@ -53,6 +52,7 @@ export const removeNotification = createAsyncThunk(
       }
       return notificationId;
     } catch (err) {
+      console.log(err);
       thunkAPI.dispatch(ShowModal("errorModal.deletingNotification"));
       throw err;
     }
