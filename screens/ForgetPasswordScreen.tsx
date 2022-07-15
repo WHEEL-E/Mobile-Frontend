@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     ...NoteText,
   },
   inputField: {
-    width: "80%",
+    width: "100%",
     backgroundColor: colors.lightPurple,
   },
   resetText: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   fieldTitle: {
     ...NormalText,
-    width: "80%",
+    width: "100%",
     marginBottom: SMALL_MARGIN_VERTICAL,
   },
 });

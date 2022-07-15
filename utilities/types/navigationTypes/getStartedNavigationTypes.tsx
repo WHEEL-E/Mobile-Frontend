@@ -1,9 +1,22 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackNavigationOptions } from "@react-navigation/stack";
+import { BackButton } from "../../../components/buttons/BackButton";
 
-export const mainStackOptions: StackNavigationOptions = {
-  headerShown: false,
-};
+export const mainStackOptions: (props: {
+  route: any;
+  navigation: any;
+}) => StackNavigationOptions = (navigation: any) => ({
+  headerTransparent: true,
+  headerShown: true,
+  headerTitleAlign: "center",
+  headerStyle: {
+    height: "10%",
+  },
+  title: "",
+  headerBackImage: () => {
+    return <BackButton onPress={() => navigation.goBack()} />;
+  },
+});
 
 export type GetStartedStackParamList = {
   GetStarted: undefined;

@@ -63,7 +63,7 @@ export const signIn = createAsyncThunk(
     const { navigation, emailAddress, password, type } = data;
 
     const response = await axios.post(EndPoints.login, {
-      email: emailAddress,
+      email: emailAddress.toLowerCase(),
       password: password,
       role: type,
     });

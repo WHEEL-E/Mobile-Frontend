@@ -36,13 +36,6 @@ const SettingScreen = (props: SettingProps) => {
       },
     },
     {
-      name: t("settings.sound"),
-      icon: "volume-high",
-      PressingFunction: () => {
-        navigation.navigate("SoundSettings");
-      },
-    },
-    {
       name: t("settings.language"),
       icon: "earth",
       PressingFunction: () => {

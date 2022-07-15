@@ -143,6 +143,7 @@ export default {
     form: {
       name: "Name",
       email: "Email Address",
+      emailAddress: "Email Address",
       password: "Password",
       address: "Address",
       phone: "PhoneNumber",

@@ -47,9 +47,6 @@ const SignUpScreen = (props: SignUpProps) => {
             source={require("../assets/images/logo-b-app.png")}
           />
           <Text style={styles.title}>{t("signUpScreen.createAccount")}</Text>
-          <View style={styles.backButton}>
-            <BackButton onPress={() => navigation.goBack()} />
-          </View>
           {Component}
           <View style={styles.signIn}>
             <Text style={styles.isMemberText}>
