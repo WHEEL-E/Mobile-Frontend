@@ -18,7 +18,7 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
     "url(#GradientFilling)",
   ]);
   const socket = useSelector(
-    (state: RootState) => state.socket.socket
+    (state: RootState) => state.healthMonitoring.socket
   ) as Socket;
 
   return (

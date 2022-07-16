@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startConnection } from "../store/actions/healthMonitoring";
+import { storeData } from "../store/actions/healthMonitoring";
 import { RootState } from "../store/reducers/rootReducer";
 import { Socket } from "socket.io-client";
 import { FlatList, StyleSheet, Text, View } from "react-native";
@@ -21,21 +21,13 @@ const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<any>();
 
-  const initialData: UserSensors[] = data.data;
-
-  const [sensorsData, setSensorsData] = React.useState(initialData);
-
-  const socket: Socket | undefined = useSelector(
-    (state: RootState) => state.healthMonitoring.socket
-  );
-
-  React.useEffect(() => {
-    dispatch(startConnection());
-  }, []);
+  const healthData = useSelector((state: RootState) => state.healthMonitoring);
+  const socket: Socket | undefined = healthData.socket;
+  const sensorsData: UserSensors[] = healthData.data;
 
   if (socket) {
     socket.on("data", (message) => {
-      setSensorsData([...sensorsData, message]);
+      dispatch(storeData(message));
     });
   }
 

@@ -15,10 +15,6 @@ const FreeDriveScreen = (props: FreeDriveProps) => {
   const { navigation } = props;
   const { t } = useTranslation();
 
-  useEffect(() => {
-    dispatch(initSocket());
-  }, []);
-
   return (
     <View style={styles.container}>
       <ImageBackground

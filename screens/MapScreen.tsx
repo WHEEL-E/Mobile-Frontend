@@ -28,12 +28,8 @@ const MapScreen = () => {
 
   const dispatch = useDispatch<any>();
 
-  useEffect(() => {
-    dispatch(initSocket());
-  }, []);
-
   const socket = useSelector(
-    (state: RootState) => state.socket.socket
+    (state: RootState) => state.healthMonitoring.socket
   ) as Socket;
 
   const initialColors = [

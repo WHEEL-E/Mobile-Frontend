@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { io, Socket } from "socket.io-client";
 import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
@@ -21,3 +21,5 @@ export const startConnection = createAsyncThunk(
     }
   }
 );
+
+export const storeData = createAction<any>("STORE_DATA");

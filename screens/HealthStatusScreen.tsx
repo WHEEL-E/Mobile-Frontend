@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Socket } from "socket.io-client";
 import { DataStatus } from "../components/generalComponents/DataStatus";
 import { SensorCard } from "../components/healthStatusComponents/SensorCard";
-import { startConnection } from "../store/actions/healthMonitoring";
+import { startConnection, storeData } from "../store/actions/healthMonitoring";
 import { RootState } from "../store/reducers/rootReducer";
 import { ImportantNote, NormalText } from "../utilities/types/fontTypes";
 import { HealthStatusScreenProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
@@ -24,25 +24,19 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
     (state: RootState) => state.user.userData?.userMainData._id
   );
 
-  const [sensorsData, setSensorsData] = React.useState({
-    SPO2: 97,
-    user_id,
-    Pulse: 90,
-    temp: 37,
-    time: "0:0:0",
-  });
+  const sensorsAllData = useSelector(
+    (state: RootState) => state.healthMonitoring.data
+  );
+
+  const sensorsData = sensorsAllData[sensorsAllData.length];
 
   const socket: Socket | undefined = useSelector(
     (state: RootState) => state.healthMonitoring.socket
   );
 
-  React.useEffect(() => {
-    dispatch(startConnection());
-  }, []);
-
   if (socket) {
     socket.on("data", (message) => {
-      setSensorsData(message);
+      dispatch(storeData(message));
     });
   }
 
