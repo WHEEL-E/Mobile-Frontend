@@ -100,7 +100,6 @@ export const addReminder = createAsyncThunk(
         supervisorName: user.userData?.userMainData.name!,
         patientName: newReminder.PatientName,
       };
-      console.log(resData);
 
       return reminder;
     } catch (err) {

@@ -7,6 +7,7 @@ import colors from "../utilities/constants/colors";
 import { MainButton } from "../components/buttons/MainButton";
 import { useDispatch } from "react-redux";
 import { signOut } from "../store/actions/user";
+import MainForm from "../components/profileComponents/MainForm";
 
 const ProfileScreen = (props: ProfileProps) => {
   const [inputVal, setInputVal] = useState("Hello Person!");
@@ -28,37 +29,8 @@ const ProfileScreen = (props: ProfileProps) => {
         imgSource={require("../assets/images/IdPlaceHolder.png")}
         name="Regina phalange"
       />
-      <Text style={styles.title}>Profile Screen</Text>
 
-      <EditableInputField
-        placeHolder=""
-        autoComplete="off"
-        fieldStyle={{}}
-        value={inputVal}
-        onChangeText={textHandler}
-        onSave={saveHandler}
-      />
-
-      <MainButton
-        title="Change language"
-        buttonStyle={{
-          ...styles.button,
-          backgroundColor: colors.darkGreen,
-        }}
-        titleStyle={styles.ButtonText}
-        onPress={() => navigation.navigate("ChangeLanguage")}
-        icon={{ name: "globe-outline", size: 40, color: "black" }}
-      />
-      <MainButton
-        title="SignOut"
-        buttonStyle={{
-          ...styles.button,
-          backgroundColor: colors.lightBrown,
-        }}
-        titleStyle={styles.ButtonText}
-        onPress={() => dispatch(signOut())}
-        icon={{ name: "log-out-outline", size: 40, color: "black" }}
-      />
+      <MainForm />
     </View>
   );
 };
@@ -69,6 +41,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: "30%",
+    paddingBottom: "25%",
   },
   title: {
     fontSize: 27,

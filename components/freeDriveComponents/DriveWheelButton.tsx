@@ -31,9 +31,6 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
         fill={color[index]}
         stroke={colors.offWhite}
         strokeWidth={5}
-        onPress={() => {
-          console.log(value);
-        }}
         onPressIn={() => {
           const newColors = [...color];
           newColors[index] = "white";

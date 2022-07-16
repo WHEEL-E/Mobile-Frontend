@@ -10,6 +10,9 @@ import {
   UserTypes,
 } from "../../utilities/types/userTypes";
 import { ShowModal, isLoading, notLoading } from "./dataStatus";
+import { ProfileProps } from "../../utilities/types/navigationTypes/mainNavigationTypes";
+import { RootState } from "../reducers/rootReducer";
+import { ProfileValues } from "../../components/profileComponents/MainForm";
 
 const prepareUserObj = (resData: any, type: UserTypes) => {
   let user: User;
@@ -24,6 +27,7 @@ const prepareUserObj = (resData: any, type: UserTypes) => {
         profile_picture: resData.profile_picture,
         gender: resData.gender,
         associatedUsers: resData.associatedUsers,
+        password: resData.password,
       },
       userType: type,
       token: resData.token,
@@ -31,6 +35,7 @@ const prepareUserObj = (resData: any, type: UserTypes) => {
   } else {
     user = {
       userMainData: {
+        password: resData.password,
         _id: resData._id,
         name: resData.name,
         email: resData.email,
@@ -159,6 +164,48 @@ export const signUp = createAsyncThunk(
       return user;
     } catch (e) {
       thunkAPi.dispatch(notLoading());
+      throw e;
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  UserActionTypes.UPDATE,
+  async (data: { mainData: ProfileValues; userType: UserTypes }, thunkAPi) => {
+    try {
+      const { user } = thunkAPi.getState() as RootState;
+      const { mainData, userType } = data;
+
+      let sentData: object = { ...mainData };
+
+      let endpoint = `${EndPoints.supervisor}/${user.userData?.userMainData._id}`;
+      if (userType === UserTypes.PATIENT) {
+        endpoint = `${EndPoints.patients}/${user.userData?.userMainData._id}`;
+        sentData = {
+          ...sentData,
+          password: user.userData?.userMainData.password!,
+          gender: user.userData?.userMainData.gender,
+          dob: user.userData?.patientExtraData?.dob,
+          patient_name: mainData.name,
+          smoking: mainData.smoking?.toString(),
+        };
+      }
+
+      const response = await axios.put(endpoint, sentData, {
+        headers: {
+          token: user.userData?.token!,
+        },
+      });
+
+      if (response.data.status !== "Success") {
+        throw new Error(response.statusText);
+      }
+
+      const returnUser: User = prepareUserObj(response.data.data, userType);
+      console.log(returnUser, response.data.data);
+      return returnUser;
+    } catch (e) {
+      console.log(e);
       throw e;
     }
   }

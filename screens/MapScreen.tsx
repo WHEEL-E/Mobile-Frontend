@@ -83,7 +83,6 @@ const MapScreen = () => {
                   setBackgrounds(newBackgrounds);
                   socket.emit("action", sentVal);
                 }}
-                onPress={() => console.log(name)}
                 onPressOut={() => {
                   const newBackgrounds = [...backgrounds];
                   newBackgrounds[index] = initialColors[index];

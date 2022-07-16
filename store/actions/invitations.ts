@@ -35,8 +35,6 @@ export const getInvitations = createAsyncThunk(
         throw new Error(response.statusText);
       }
 
-      console.log(response.data.data);
-
       const resData: InvitationData[] = await response.data.data;
       const invitations =
         type === "Supervisor"
