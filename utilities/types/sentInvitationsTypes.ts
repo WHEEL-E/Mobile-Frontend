@@ -28,6 +28,8 @@ export interface CardButtonsProps {
   timeOut: boolean;
   invitationId: string;
   userRole: "Patient" | "Supervisor";
+  to_id: string;
+  from_id: string;
 }
 
 export enum InvitationsActionTypes {

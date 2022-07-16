@@ -75,21 +75,34 @@ export const addReminder = createAsyncThunk(
   async (newReminder: SentReminder, thunkAPI) => {
     try {
       const { user } = thunkAPI.getState() as RootState;
-      const response = await axios.post(
-        `${EndPoints.Reminders}`,
-        { ...newReminder, due_date: new Date() },
-        {
-          headers: { token: user.userData?.token! },
-        }
-      );
+      const sentData = { ...newReminder.MainData, due_date: new Date() };
+      const response = await axios.post(`${EndPoints.Reminders}`, sentData, {
+        headers: { token: user.userData?.token! },
+      });
 
       if (response.data.status !== "Success") {
         throw new Error("can't add note");
       }
 
-      const resData = await response.data.data;
+      const resData: {
+        __v: 0;
+        _id: string;
+        description: string;
+        due_date: Date;
+        patient_id: string;
+        supervisor_id: string;
+        title: string;
+        updated_at: Date;
+      } = await response.data.data;
 
-      return resData;
+      const reminder: Reminder = {
+        reminder: resData,
+        supervisorName: user.userData?.userMainData.name!,
+        patientName: newReminder.PatientName,
+      };
+      console.log(resData);
+
+      return reminder;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.addingReminder"));
       throw err;
@@ -100,11 +113,18 @@ export const addReminder = createAsyncThunk(
 export const updateReminder = createAsyncThunk(
   RemindersActionTypes.UPDATE_REMINDER,
   async (
-    newReminder: { _id: string; title: string; description: string },
+    newReminder: {
+      reminder: { _id: string; title: string; description: string };
+      patientName: string;
+    },
     thunkAPI
   ) => {
     try {
-      const { _id, title, description } = newReminder;
+      const {
+        reminder: { _id, title, description },
+        patientName,
+      } = newReminder;
+
       const { user } = thunkAPI.getState() as RootState;
       const response = await axios.put(
         `${EndPoints.Reminders}/${_id}`,
@@ -118,8 +138,14 @@ export const updateReminder = createAsyncThunk(
         thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
         throw new Error("can't update note");
       }
-      console.log(response.data.data);
-      return response.data.data as SentReminder;
+
+      const resData = response.data.data;
+      const updatedReminder: Reminder = {
+        reminder: resData,
+        supervisorName: user.userData?.userMainData.name!,
+        patientName: patientName,
+      };
+      return updatedReminder;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
       throw err;

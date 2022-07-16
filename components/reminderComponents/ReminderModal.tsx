@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Modal, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../inputs/InputField";
@@ -9,16 +9,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { addReminder, updateReminder } from "../../store/actions/reminders";
 import { RootState } from "../../store/reducers/rootReducer";
 import { ModalBase } from "../generalComponents/ModalBase";
-import {
-  HeadingText,
-  NormalText,
-  TitleText,
-} from "../../utilities/types/fontTypes";
+import { NormalText, TitleText } from "../../utilities/types/fontTypes";
 import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
+import { sendNotification } from "../../store/actions/notifications";
+import {
+  NotificationDescriptions,
+  NotificationType,
+} from "../../utilities/types/notificationsTypes";
+import { UserTypes } from "../../utilities/types/userTypes";
 
 const ReminderModal = (props: ReminderModalProps) => {
   const { t } = useTranslation();
-  const { modalVisible, setModalVisible, reminderData, identifier } = props;
+  const {
+    modalVisible,
+    setModalVisible,
+    reminderData,
+    identifier,
+    patientName,
+  } = props;
   const dispatch = useDispatch<any>();
 
   const supervisorData = useSelector(
@@ -37,17 +45,36 @@ const ReminderModal = (props: ReminderModalProps) => {
 
   const submitHandler = () => {
     if (identifier) {
-      dispatch(updateReminder({ ...reminder, _id: identifier }));
+      dispatch(
+        updateReminder({
+          reminder: { ...reminder, _id: identifier },
+          patientName: patientName,
+        })
+      );
     } else {
       dispatch(
         addReminder({
-          ...reminder,
-          supervisor_id: supervisorData._id!,
-          patient_id: props.patientId!,
-          due_date: new Date(),
+          MainData: {
+            ...reminder,
+            supervisor_id: supervisorData._id!,
+            patient_id: props.patientId!,
+            due_date: new Date(),
+          },
+          PatientName: patientName,
         })
       );
     }
+
+    dispatch(
+      sendNotification({
+        title: NotificationType.NEW_REMINDER,
+        user_id: props.patientId!,
+        description: NotificationDescriptions.RECEIVED_NEW_REMINDER,
+        type: NotificationType.NEW_REMINDER,
+        userRole: UserTypes.PATIENT,
+      })
+    );
+
     setReminder({ title: "", description: "", due_date: new Date(0) });
     return setModalVisible(false);
   };

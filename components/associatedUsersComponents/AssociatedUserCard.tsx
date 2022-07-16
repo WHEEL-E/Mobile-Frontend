@@ -69,22 +69,14 @@ export const AssociatedUserCard = (props: AssociatedUserProps) => {
           )}
         </View>
       </View>
-      <View style={styles.buttonsList}>
-        {/* <SquareButton
-          title={t("associatedUsers.remove")}
+      {userType === UserTypes.SUPERVISOR && (
+        <SquareButton
+          title={t("associatedUsers.view")}
           titleStyle={styles.buttonTitleStyle}
-          onPress={removeHandler}
-          buttonStyle={styles.removeButton}
-        /> */}
-        {userType === UserTypes.SUPERVISOR && (
-          <SquareButton
-            title={t("associatedUsers.view")}
-            titleStyle={styles.buttonTitleStyle}
-            onPress={viewHandler}
-            buttonStyle={styles.viewButton}
-          />
-        )}
-      </View>
+          onPress={viewHandler}
+          buttonStyle={styles.viewButton}
+        />
+      )}
     </View>
   );
 };
@@ -130,21 +122,13 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     resizeMode: "cover",
   },
-  removeButton: {
-    backgroundColor: colors.darkPink,
-    flex: 1,
-    paddingVertical: "3%",
-    marginRight: BIG_MARGIN_HORIZONTAL,
-  },
   viewButton: {
     backgroundColor: colors.lightGreen,
     flex: 1,
+    height: "20%",
     marginLeft: BIG_MARGIN_HORIZONTAL,
-  },
-  buttonsList: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: BIG_MARGIN_VERTICAL,
+    marginVertical: "5%",
+    padding: "2%",
   },
   buttonTitleStyle: {
     ...NormalText,

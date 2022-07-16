@@ -11,6 +11,7 @@ import colors from "../utilities/constants/colors";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import fonts from "../utilities/constants/fonts";
 import { SMALL_MARGIN_VERTICAL } from "../utilities/constants/spacing";
+import { HeadingText, TitleText } from "../utilities/types/fontTypes";
 import { SupervisedPatientProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { User, UserTypes } from "../utilities/types/userTypes";
 
@@ -57,7 +58,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}
-                source={require("../assets/images/IdPlaceHolder.png")}
+                source={require("../assets/images/avatar.png")}
               />
             </View>
             <Text style={styles.patientName}>{patient.userMainData.name}</Text>
@@ -85,12 +86,6 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
                 titleStyle={styles.buttonsTitle}
                 image={{ url: require("../assets/images/health-state.png") }}
               />
-              {/* <SquareButton
-                title={t("settings.settings")}
-                onPress={() => {}}
-                buttonStyle={styles.profileButton}
-                titleStyle={{ ...styles.buttonsTitle, color: colors.darkGreen }}
-              /> */}
             </View>
             <MainButton
               title={t("supervisedPatientScreen.healthInfo")}
@@ -141,7 +136,7 @@ const styles = StyleSheet.create({
   },
   patientCard: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     marginVertical: 20,
     width: "100%",
@@ -155,8 +150,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   patientName: {
-    fontFamily: fonts.CairoBold,
-    fontSize: DEVICE_HEIGHT * 0.02,
+    ...HeadingText,
   },
   buttons: {
     flex: 1,

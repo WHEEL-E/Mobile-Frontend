@@ -3,7 +3,7 @@ import * as SecureStore from "expo-secure-store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SignInData } from "../../utilities/types/signInTypes";
 import { EndPoints } from "../../utilities/constants/endpoints";
-import { registerForPushNotificationsAsync } from "../../utilities/signUpUtils";
+import { registerForPushNotificationsAsync } from "../../utilities/notificationUtils";
 import {
   User,
   UserActionTypes,

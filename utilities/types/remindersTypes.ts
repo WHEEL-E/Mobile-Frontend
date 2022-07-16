@@ -4,6 +4,7 @@ export interface ReminderModalProps {
   identifier?: string;
   reminderData: { title: string; description: string; due_date: Date };
   patientId?: string;
+  patientName: string;
 }
 
 export interface ReminderCardProps {
@@ -26,24 +27,26 @@ export type Reminder = {
   patientName: string;
   reminder: {
     _id: string;
-    created_at: string;
     description: string;
     due_date: Date;
     patient_id: string;
     supervisor_id: string;
     title: string;
-    updated_at: string;
+    updated_at: Date;
   };
   supervisorName: string;
 };
 
 export interface SentReminder {
-  _id?: string;
-  patient_id: string;
-  supervisor_id: string;
-  due_date: Date;
-  title: string;
-  description: string;
+  MainData: {
+    _id?: string;
+    patient_id: string;
+    supervisor_id: string;
+    due_date: Date;
+    title: string;
+    description: string;
+  };
+  PatientName: string;
 }
 
 export interface RemindersState {

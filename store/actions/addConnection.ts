@@ -17,7 +17,10 @@ export const getResults = createAsyncThunk(
       const response = await axios.get(EndPoints.searchConnection + prefix, {
         headers: { token: user.userData?.token! },
       });
-
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("errorModal.fetchingMatchingPatients"));
+        throw new Error(response.statusText);
+      }
       const userId = user.userData?.userMainData._id!;
       const userType = user.userData?.userType!;
 

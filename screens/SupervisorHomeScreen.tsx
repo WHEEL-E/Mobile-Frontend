@@ -1,11 +1,13 @@
 import React from "react";
 import { RootState } from "../store/reducers/rootReducer";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
 import { SupervisorHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { MainButton } from "../components/buttons/MainButton";
 import colors from "../utilities/constants/colors";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { ImportantText, NormalText } from "../utilities/types/fontTypes";
+import { DEVICE_WIDTH } from "../utilities/constants/dimentions";
 
 const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
   const { navigation } = props;
@@ -16,9 +18,9 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../assets/images/Header.png")}
-        resizeMode="cover"
+      <Image
+        source={require("../assets/images/Doctor4.png")}
+        resizeMode="contain"
         style={styles.coverImage}
       />
       <View>
@@ -63,13 +65,6 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
               url: require("../assets/images/health-record.png"),
             }}
           />
-          <MainButton
-            title={t("supervisorHomeScreen.help")}
-            buttonStyle={styles.helpButtonStyle}
-            titleStyle={styles.helpTitleStyle}
-            onPress={() => navigation.navigate("PatientHome")}
-            icon={{ name: "ios-help-circle", size: 30, color: "white" }}
-          />
         </View>
       </View>
     </View>
@@ -78,105 +73,76 @@ const SupervisorHomeScreen = (props: SupervisorHomeProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.9,
+    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: "25%",
   },
   title: {
-    fontSize: 20,
-    fontFamily: "Cairo-Bold",
+    ...ImportantText,
     textAlign: "center",
   },
   normalText: {
-    fontSize: 15,
-    fontFamily: "Cairo-Regular",
+    ...NormalText,
     textAlign: "center",
   },
   buttons: {
     flexDirection: "row",
-    width: 200,
-    justifyContent: "space-evenly",
+    width: "80%",
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: 15,
   },
   buttonColContainer: {
-    flexDirection: "column",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: "1%",
   },
   coverImage: {
-    flex: 1,
-    width: 380,
-    height: 350,
+    flex: 2,
+    width: "150%",
   },
   profileButtonStyle: {
     backgroundColor: "#E7D9EA",
-    borderWidth: 2,
-    borderColor: "#E7D9EA",
-    borderRadius: 30,
+    borderRadius: DEVICE_WIDTH * 0.06,
     justifyContent: "center",
-    padding: 15,
-    height: 100,
-    width: 150,
-    marginHorizontal: 70,
-    marginVertical: 5,
+    padding: "5%",
+    flex: 1,
+    width: "100%",
+    marginVertical: "1%",
   },
   profileTitleStyle: {
-    fontFamily: "Cairo-Bold",
     color: colors.darkGreen,
-    fontSize: 15,
     textAlign: "center",
+    ...ImportantText,
   },
   patientButtonStyle: {
     backgroundColor: colors.darkGreen,
-    borderWidth: 2,
-    borderColor: colors.darkGreen,
-    borderRadius: 30,
+    borderRadius: DEVICE_WIDTH * 0.06,
     justifyContent: "center",
-    padding: 15,
-    height: 150,
-    width: 150,
-    marginHorizontal: 70,
-    marginVertical: 5,
+    padding: "5%",
+    flex: 2,
+    width: "100%",
+    marginVertical: "1%",
   },
   patientTitleStyle: {
-    fontFamily: "Cairo-Bold",
     color: "white",
-    fontSize: 18,
+    ...ImportantText,
     textAlign: "center",
   },
   statusButtonStyle: {
+    flex: 1,
     backgroundColor: colors.darkGreen,
-    borderWidth: 2,
-    borderColor: colors.darkGreen,
-    borderRadius: 30,
+    borderRadius: DEVICE_WIDTH * 0.06,
     justifyContent: "center",
-    padding: 15,
-    height: 150,
-    width: 150,
-    marginHorizontal: 70,
-    marginVertical: 5,
+    width: "100%",
+    padding: "5%",
   },
   statusTitleStyle: {
-    fontFamily: "Cairo-Bold",
-    color: "white",
-    fontSize: 18,
     textAlign: "center",
-  },
-  helpButtonStyle: {
-    backgroundColor: colors.darkPink,
-    borderWidth: 2,
-    borderColor: colors.darkPink,
-    borderRadius: 30,
-    justifyContent: "center",
-    padding: 15,
-    height: 100,
-    width: 150,
-    marginHorizontal: 70,
-    marginVertical: 5,
-  },
-  helpTitleStyle: {
-    fontFamily: "Cairo-Bold",
+    ...ImportantText,
     color: "white",
-    fontSize: 20,
-    textAlign: "center",
   },
 });
 

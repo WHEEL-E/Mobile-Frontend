@@ -37,18 +37,11 @@ const remindersReducer = createReducer(initialState, (builder) => {
       const updatedReminder = action.payload;
       const updatedReminders = [...state.allReminders];
       const updatedReminderIndex = updatedReminders.findIndex(
-        (reminder) => reminder.reminder._id === updatedReminder._id
+        (reminder) => reminder.reminder._id === updatedReminder.reminder._id
       );
-      console.log(updatedReminderIndex);
+
       if (updatedReminderIndex > -1) {
-        const oldreminder: Reminder = updatedReminders[updatedReminderIndex];
-        const newReminder: Reminder = {
-          reminder: { ...oldreminder.reminder, ...updatedReminder },
-          supervisorName: oldreminder.supervisorName,
-          patientName: oldreminder.patientName,
-        };
-        console.log(newReminder);
-        updatedReminders[updatedReminderIndex] = newReminder;
+        updatedReminders[updatedReminderIndex] = updatedReminder;
       }
 
       return {

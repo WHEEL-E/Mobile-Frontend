@@ -47,7 +47,8 @@ export const InvitationCard = (props: InvitationCardProps) => {
   const unsendable = userRole === "Patient" ? status === "Pending" : true;
   const reinvitable = userRole === "Patient" ? status === "Rejected" : true;
   const showCountDown = !timeOut && status !== "Accepted";
-  const age = 15;
+
+  const age = new Date(Date.now()).getFullYear() - birthDate.getFullYear();
   return (
     <View
       key={_id}
@@ -71,7 +72,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
             <Text style={{ ...styles.status, color: textColor }}>
               {t("RecievedInvitations.gender")}
               <Text style={{ ...NormalText, color: textColor }}>
-                {t(`RecievedInvitations.${"male"}`)}
+                {t(`RecievedInvitations.${gender}`)}
               </Text>
             </Text>
           )}
@@ -96,6 +97,8 @@ export const InvitationCard = (props: InvitationCardProps) => {
         timeOut={userRole === "Patient" ? timeOut : true}
         invitationId={_id}
         userRole={userRole}
+        to_id={to_id}
+        from_id={from_id}
       />
       {showCountDown && userRole === "Patient" && (
         <Text style={{ ...NoteText, color: textColor, textAlign: "center" }}>

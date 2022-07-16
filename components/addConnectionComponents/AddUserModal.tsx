@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: DEVICE_WIDTH * 0.06,
   },
-
   cancelButton: {
     backgroundColor: colors.darkPink,
     flex: 1,

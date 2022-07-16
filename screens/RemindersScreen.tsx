@@ -51,6 +51,7 @@ const RemindersScreen = (props: RemindersProps) => {
           description: "",
           due_date: new Date(),
         }}
+        patientName={receiver!}
       />
       <ImageBackground
         source={require("../assets/images/Vector.png")}

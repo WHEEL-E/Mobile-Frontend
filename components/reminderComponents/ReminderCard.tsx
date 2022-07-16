@@ -42,6 +42,7 @@ const ReminderCard = (props: ReminderCardProps) => {
         setModalVisible={setModalVisible}
         identifier={identifier}
         reminderData={{ title, description, due_date }}
+        patientName={receiver!}
       />
       <TouchableOpacity onPress={deleteReminderHandler} style={styles.close}>
         <Ionicons name="ios-close" color={textColor} size={25} />

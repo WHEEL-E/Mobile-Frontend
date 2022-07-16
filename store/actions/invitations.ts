@@ -30,6 +30,11 @@ export const getInvitations = createAsyncThunk(
         }
       );
 
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
+
       console.log(response.data.data);
 
       const resData: InvitationData[] = await response.data.data;
@@ -68,6 +73,12 @@ export const sendInvitation = createAsyncThunk(
           headers: { token: user.userData?.token! },
         }
       );
+
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
+
       const resData = await response.data.data;
       const invitation: InvitationData = resData;
 
@@ -102,6 +113,10 @@ export const unsendInvitation = createAsyncThunk(
         }
       );
 
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
       const resData = await response.data;
 
       return invitationId;
@@ -125,7 +140,10 @@ export const resendInvitation = createAsyncThunk(
           headers: { token: user.userData?.token! },
         }
       );
-
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
 
@@ -149,12 +167,15 @@ export const rejectInvitation = createAsyncThunk(
           headers: { token: user.userData?.token! },
         }
       );
-
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
       return invitationId;
     } catch (e) {
-      // thunkAPI.dispatch(ShowModal("errorModal"));
+      thunkAPI.dispatch(ShowModal("An Error occurred"));
       throw new Error();
     }
   }
