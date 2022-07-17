@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import colors from "../utilities/constants/colors";
-import RNImmediatePhoneCall from "react-native-immediate-phone-call";
+// import RNImmediatePhoneCall from "react-native-immediate-phone-call";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
 import { PatientHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
@@ -73,7 +73,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
             onPress={() => {
               setIsModalVisible(true);
-              RNImmediatePhoneCall.immediatePhoneCall(emergencyNumber);
+              // RNImmediatePhoneCall.immediatePhoneCall(emergencyNumber);
             }}
           />
           <SquareButton
