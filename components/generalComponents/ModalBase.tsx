@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     overflow: "hidden",
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2,

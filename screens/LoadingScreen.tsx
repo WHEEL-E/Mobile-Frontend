@@ -11,6 +11,7 @@ import { restoreUser } from "../store/actions/user";
 import { linking } from "../utilities/forgetPasswordUtils";
 import MapScreen from "./MapScreen";
 import { startConnection } from "../store/actions/healthMonitoring";
+import { AddIpAddresses } from "../components/generalComponents/AddIpAddresses";
 
 const getCurrentLanguage = async () => {
   return await SecureStore.getItemAsync("CurrentLang");
@@ -76,6 +77,7 @@ const App = () => {
 
   return (
     <NavigationContainer linking={linking}>
+      <AddIpAddresses />
       <VisibleNavigation />
     </NavigationContainer>
   );

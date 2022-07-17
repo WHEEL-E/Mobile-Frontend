@@ -132,6 +132,6 @@ const styles = StyleSheet.create({
   },
   buttonTitleStyle: {
     ...NormalText,
-    color: "#fff",
+    color: "white",
   },
 });

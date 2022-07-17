@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     paddingHorizontal: "5%",
     paddingBottom: "5%",
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
   },
   buttonTitleStyle: {
     ...NormalText,
-    color: "#fff",
+    color: "white",
   },
 });

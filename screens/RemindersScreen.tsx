@@ -77,7 +77,7 @@ export default RemindersScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     flex: 1,
     width: "100%",
   },

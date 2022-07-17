@@ -1,87 +1,52 @@
 import React from "react";
-import { StyleSheet, Modal, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../inputs/InputField";
 import colors from "../../utilities/constants/colors";
-import { addNote, updateNote } from "../../store/actions/notes";
 import { NormalText, TitleText } from "../../utilities/types/fontTypes";
 import { RootState } from "../../store/reducers/rootReducer";
-import {
-  DEVICE_HEIGHT,
-  DEVICE_WIDTH,
-} from "../../utilities/constants/dimentions";
-import {
-  BIG_MARGIN_VERTICAL,
-  SMALL_MARGIN_VERTICAL,
-} from "../../utilities/constants/spacing";
-import { NoteModalProps } from "../../utilities/types/notesTypes";
+import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
+import { SMALL_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
 import { ModalBase } from "../generalComponents/ModalBase";
+import { hideIpModal, setIpData } from "../../store/actions/addresses";
 
-const NoteModal = (props: NoteModalProps) => {
+export const AddIpAddresses = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<any>();
 
-  const { modalVisible, setModalVisible, noteId, noteTitle, noteDescription } =
-    props;
-
-  const userId = useSelector(
-    (state: RootState) => state.user.userData?.userMainData._id
+  const modalVisible = useSelector(
+    (state: RootState) => state.addressesReducer.isModalVisible
   );
 
-  const [note, setNote] = React.useState({
-    title: noteTitle,
-    description: noteDescription,
-  });
+  const [ip, setIp] = React.useState("");
 
-  const editTitleHandler = (title: string) => {
-    setNote({ ...note, title: title });
-  };
-
-  const editdescriptionHandler = (body: string) => {
-    setNote({ ...note, description: body });
+  const editHandler = (title: string) => {
+    setIp(title);
   };
 
   const submitHandler = () => {
-    if (noteId) {
-      dispatch(updateNote({ ...note, id: noteId }));
-    } else {
-      dispatch(
-        addNote({
-          title: note.title,
-          description: note.description,
-          user_id: userId!,
-        })
-      );
-    }
-    setNote({ title: "", description: "" });
-    return setModalVisible(false);
+    dispatch(setIpData(ip));
+    dispatch(hideIpModal());
   };
 
   return (
-    <ModalBase setModalVisible={setModalVisible} modalVisible={modalVisible}>
-      <Text style={styles.modalTitle}>{t("notesScreen.modalHeader")}</Text>
+    <ModalBase setModalVisible={() => {}} modalVisible={modalVisible}>
+      <Text style={styles.modalTitle}>Add your Ip addresses</Text>
       <InputField
-        placeHolder={t("notesScreen.enterTitle")}
-        value={note.title}
-        onChangeText={editTitleHandler}
+        placeHolder="Backend"
+        value={ip}
+        onChangeText={editHandler}
         fieldStyle={styles.titleFieldStyle}
-        autoComplete="off"
-      />
-      <InputField
-        placeHolder={t("notesScreen.enterDescription")}
-        value={note.description}
-        fieldStyle={styles.descriptionFieldStyle}
-        onChangeText={editdescriptionHandler}
         autoComplete="off"
       />
       <View style={styles.buttonsList}>
         <SquareButton
           title={t("notesScreen.cancel")}
           titleStyle={styles.buttonTitleStyle}
-          onPress={() => setModalVisible(false)}
+          onPress={() => dispatch(hideIpModal())}
           buttonStyle={styles.cancelButton}
         />
         <SquareButton
@@ -133,5 +98,3 @@ const styles = StyleSheet.create({
     marginTop: "9%",
   },
 });
-
-export default NoteModal;

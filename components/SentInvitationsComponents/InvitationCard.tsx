@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: DEVICE_HEIGHT * 0.05,
     padding: "10%",
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2,

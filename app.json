@@ -9,7 +9,7 @@
         "splash": {
             "image": "./assets/images/logo-b.png",
             "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
+            "backgroundColor": "white"
         },
         "updates": {
             "fallbackToCacheTimeout": 0
@@ -23,9 +23,9 @@
             "versionCode": 1,
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/logo-b.png",
-                "backgroundColor": "#FFFFFF"
+                "backgroundColor": "white"
             },
-            "package": "com.wheele.wheelemobileapp",
+            "package": "com.wheel.e.mobileApp",
             "googleServicesFile": "./data/google-services.json"
         },
         "web": {

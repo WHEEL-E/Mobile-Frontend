@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   buttonTitle: {
     ...NormalText,
-    color: "#fff",
+    color: "white",
   },
   cancelButton: {
     backgroundColor: colors.darkPink,

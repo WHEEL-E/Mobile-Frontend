@@ -21,7 +21,6 @@ export const submitSignUpMainForm = (
     Supervisor.addMainFormData(values);
     const user = Supervisor.prepareUserObject();
     dispatch(signUp(user));
-    navigation.navigate("MailVerification");
   } else {
     Patient.addMainFormData(values);
     setScreen("SecondPage");
@@ -38,5 +37,4 @@ export const submitSignUpAdditionalData = (
   Patient.addAdditionalFormData(values);
   const user = Patient.prepareUserObject();
   dispatch(signUp(user));
-  navigation.navigate("MailVerification");
 };

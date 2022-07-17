@@ -149,10 +149,12 @@ export const signUp = createAsyncThunk(
       if (userType === UserTypes.PATIENT) {
         endpoint = EndPoints.patients;
       }
-
+      console.log(formData);
       const response = await axios.post(endpoint, formData, {
         headers: { "content-type": "multipart/form-data" },
       });
+
+      console.log(response);
 
       if (response.data.status !== "Success") {
         thunkAPi.dispatch(notLoading());
@@ -163,6 +165,7 @@ export const signUp = createAsyncThunk(
 
       return user;
     } catch (e) {
+      console.log(e);
       thunkAPi.dispatch(notLoading());
       throw e;
     }
@@ -202,7 +205,7 @@ export const updateUser = createAsyncThunk(
       }
 
       const returnUser: User = prepareUserObj(response.data.data, userType);
-      console.log(returnUser, response.data.data);
+
       return returnUser;
     } catch (e) {
       console.log(e);

@@ -14,8 +14,6 @@ const SetLanguageScreen = (props: ChangeLangugageProps) => {
     await SecureStore.setItemAsync("CurrentLang", language);
   };
 
-  console.log(lang.language);
-
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -49,7 +47,7 @@ const SetLanguageScreen = (props: ChangeLangugageProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },
