@@ -22,6 +22,7 @@ import {
 import { useDispatch } from "react-redux";
 import { signOut } from "../../store/actions/user";
 import { SignOutModalProps } from "../../utilities/types/signOutTypes";
+import { ModalBase } from "../generalComponents/ModalBase";
 
 export const SignOutModal = (props: SignOutModalProps) => {
   const { t } = useTranslation();
@@ -37,77 +38,34 @@ export const SignOutModal = (props: SignOutModalProps) => {
   };
 
   return (
-    <Modal animationType="slide" transparent={true} visible={modalVisible}>
-      <View style={styles.container}>
-        <View style={styles.modalView}>
-          <ImageBackground
-            source={require("../../assets/images/Union.png")}
-            style={styles.background}
-          >
-            <Image
-              source={require("../../assets/images/logo-b-app.png")}
-              style={styles.logo}
-            />
-            <Text style={styles.confirmText}>{t("signOut.confirmText")}</Text>
-            <Text style={styles.noteText}>{t("signOut.noteText")}</Text>
-            <View style={styles.buttonsList}>
-              <SquareButton
-                title={t("signOut.cancel")}
-                titleStyle={styles.buttonTitle}
-                onPress={cancelHandler}
-                buttonStyle={styles.cancelButton}
-              />
-              <SquareButton
-                title={t("signOut.confirm")}
-                titleStyle={styles.buttonTitle}
-                onPress={submitHandler}
-                buttonStyle={styles.confirmButton}
-              />
-            </View>
-          </ImageBackground>
-        </View>
+    <ModalBase modalVisible={modalVisible} setModalVisible={setModalVisible}>
+      <Image
+        source={require("../../assets/images/logo-b-app.png")}
+        style={styles.logo}
+      />
+      <Text style={styles.confirmText}>{t("signOut.confirmText")}</Text>
+      <Text style={styles.noteText}>{t("signOut.noteText")}</Text>
+      <View style={styles.buttonsList}>
+        <SquareButton
+          title={t("signOut.cancel")}
+          titleStyle={styles.buttonTitle}
+          onPress={cancelHandler}
+          buttonStyle={styles.cancelButton}
+        />
+        <SquareButton
+          title={t("signOut.confirm")}
+          titleStyle={styles.buttonTitle}
+          onPress={submitHandler}
+          buttonStyle={styles.confirmButton}
+        />
       </View>
-    </Modal>
+    </ModalBase>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    width: "80%",
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  modalView: {
-    width: "100%",
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "white",
-    borderRadius: 50,
-    overflow: "hidden",
-    borderWidth: 2,
-    paddingHorizontal: "5%",
-    paddingBottom: "5%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  background: {
-    width: DEVICE_WIDTH * 0.8,
-    height: DEVICE_HEIGHT * 0.5,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "10%",
-  },
   logo: {
-    flex: 1,
+    height: DEVICE_HEIGHT * 0.1,
     resizeMode: "center",
     width: "80%",
   },
@@ -126,16 +84,16 @@ const styles = StyleSheet.create({
   },
   buttonTitle: {
     ...NormalText,
-    color: "#fff",
+    color: "white",
   },
   cancelButton: {
     backgroundColor: colors.darkPink,
     flex: 1,
-    height: 50,
+    height: DEVICE_HEIGHT * 0.06,
   },
   confirmButton: {
     backgroundColor: colors.lightGreen,
     flex: 1,
-    height: 50,
+    height: DEVICE_HEIGHT * 0.06,
   },
 });

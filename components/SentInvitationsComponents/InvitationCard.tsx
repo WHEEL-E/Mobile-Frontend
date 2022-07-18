@@ -23,14 +23,12 @@ import {
 export const InvitationCard = (props: InvitationCardProps) => {
   const {
     invitaion: {
-      _id,
-      to_Name,
-      status,
-      updated_at,
-      to_id,
-      to_ProfilePhoto,
-      from_ProfilePhoto,
+      invitation: { _id, from_id, status, updated_at, to_id },
+      patient: { birthDate, gender, name, photo },
+      supervisorName,
+      supervisorPhoto,
     },
+
     backgroundColor,
     userRole,
   } = props;
@@ -41,7 +39,6 @@ export const InvitationCard = (props: InvitationCardProps) => {
   const [days, hours, minutes, seconds] = useCountdown(
     new Date(updated_at).getTime() + sevenDays
   );
-  const photo = userRole === "Patient" ? to_ProfilePhoto : from_ProfilePhoto;
 
   const textColor =
     backgroundColor === colors.darkBlue ? "white" : colors.darkBlue;
@@ -50,7 +47,8 @@ export const InvitationCard = (props: InvitationCardProps) => {
   const unsendable = userRole === "Patient" ? status === "Pending" : true;
   const reinvitable = userRole === "Patient" ? status === "Rejected" : true;
   const showCountDown = !timeOut && status !== "Accepted";
-  const age = 15;
+
+  const age = new Date(Date.now()).getFullYear() - birthDate.getFullYear();
   return (
     <View
       key={_id}
@@ -58,7 +56,9 @@ export const InvitationCard = (props: InvitationCardProps) => {
     >
       <View style={styles.content}>
         <View>
-          <Text style={{ ...styles.name, color: textColor }}>{to_Name}</Text>
+          <Text style={{ ...styles.name, color: textColor }}>
+            {supervisorName}
+          </Text>
           {userRole === "Patient" && (
             <Text style={{ ...styles.status, color: textColor }}>
               {t("sentInvitations.status")}
@@ -72,7 +72,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
             <Text style={{ ...styles.status, color: textColor }}>
               {t("RecievedInvitations.gender")}
               <Text style={{ ...NormalText, color: textColor }}>
-                {t(`RecievedInvitations.${"male"}`)}
+                {t(`RecievedInvitations.${gender}`)}
               </Text>
             </Text>
           )}
@@ -86,13 +86,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
           <Image
-            source={
-              photo
-                ? {
-                    uri: photo,
-                  }
-                : require("../../assets/images/avatar.png")
-            }
+            source={require("../../assets/images/avatar.png")}
             style={styles.image}
           />
         </View>
@@ -103,6 +97,8 @@ export const InvitationCard = (props: InvitationCardProps) => {
         timeOut={userRole === "Patient" ? timeOut : true}
         invitationId={_id}
         userRole={userRole}
+        to_id={to_id}
+        from_id={from_id}
       />
       {showCountDown && userRole === "Patient" && (
         <Text style={{ ...NoteText, color: textColor, textAlign: "center" }}>
@@ -120,7 +116,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: DEVICE_HEIGHT * 0.05,
     padding: "10%",
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2,

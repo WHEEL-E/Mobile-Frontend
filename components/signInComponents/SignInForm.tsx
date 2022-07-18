@@ -53,11 +53,15 @@ const SignInForm = (props: InjectedFormProps<SignInData, SignInFormProps>) => {
           warn={validateNotEmpty}
         />
       </ScrollView>
-      <RoundEdgedButton
-        title={t("signInScreen.logIn")}
-        onPress={handleSubmit(submitLoginForm)}
-        backgroundColor={colors.darkGreen}
-      />
+      <View
+        style={{ width: "90%", justifyContent: "center", alignSelf: "center" }}
+      >
+        <RoundEdgedButton
+          title={t("signInScreen.logIn")}
+          onPress={handleSubmit(submitLoginForm)}
+          backgroundColor={colors.darkGreen}
+        />
+      </View>
     </View>
   );
 };

@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Socket } from "socket.io-client";
 import { DataStatus } from "../components/generalComponents/DataStatus";
 import { SensorCard } from "../components/healthStatusComponents/SensorCard";
-import { startConnection } from "../store/actions/healthMonitoring";
+import { startConnection, storeData } from "../store/actions/healthMonitoring";
 import { RootState } from "../store/reducers/rootReducer";
 import { ImportantNote, NormalText } from "../utilities/types/fontTypes";
 import { HealthStatusScreenProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
@@ -19,24 +19,24 @@ import { HealthStatusScreenProps } from "../utilities/types/navigationTypes/main
 const HealthStatusScreen = (props: HealthStatusScreenProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<any>();
-  const [sensorsData, setSensorsData] = React.useState({
-    SPO2: 0,
-    user_id: 0,
-    Pulse: 0,
-    time: "0:0:0",
-  });
+
+  const user_id = useSelector(
+    (state: RootState) => state.user.userData?.userMainData._id
+  );
+
+  const sensorsAllData = useSelector(
+    (state: RootState) => state.healthMonitoring.data
+  );
+
+  const sensorsData = sensorsAllData[sensorsAllData.length];
 
   const socket: Socket | undefined = useSelector(
     (state: RootState) => state.healthMonitoring.socket
   );
 
-  React.useEffect(() => {
-    dispatch(startConnection());
-  }, []);
-
   if (socket) {
     socket.on("data", (message) => {
-      setSensorsData(message);
+      dispatch(storeData(message));
     });
   }
 
@@ -45,13 +45,19 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
       sensorName: t("healthStatus.oxygenSaturation"),
       image: require("../assets/images/bloodDrop.png"),
       value: sensorsData.SPO2,
-      unit: t("healthStatus.mmhg"),
+      unit: "%",
     },
     {
       sensorName: t("healthStatus.heartRate"),
       image: require("../assets/images/heart.png"),
       value: sensorsData.Pulse,
       unit: t("healthStatus.bpm"),
+    },
+    {
+      sensorName: t("healthStatus.temprature"),
+      image: require("../assets/images/temprature.png"),
+      value: sensorsData.temp,
+      unit: t("healthStatus.celsius"),
     },
   ];
 
@@ -84,7 +90,7 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },

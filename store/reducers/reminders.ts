@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { RemindersState } from "../../utilities/types/remindersTypes";
+import { Reminder, RemindersState } from "../../utilities/types/remindersTypes";
 import {
   addReminder,
   getReminders,
@@ -27,7 +27,7 @@ const remindersReducer = createReducer(initialState, (builder) => {
     .addCase(removeReminder.fulfilled, (state, action) => {
       const removedReminder = action.payload;
       const newReminders = [...state.allReminders].filter(
-        (reminder) => reminder._id !== removedReminder
+        (reminder) => reminder.reminder._id !== removedReminder
       );
       return {
         allReminders: newReminders,
@@ -37,14 +37,13 @@ const remindersReducer = createReducer(initialState, (builder) => {
       const updatedReminder = action.payload;
       const updatedReminders = [...state.allReminders];
       const updatedReminderIndex = updatedReminders.findIndex(
-        (reminder) => reminder._id === updatedReminder._id
+        (reminder) => reminder.reminder._id === updatedReminder.reminder._id
       );
+
       if (updatedReminderIndex > -1) {
-        updatedReminders[updatedReminderIndex] = {
-          ...updatedReminders[updatedReminderIndex],
-          ...updatedReminder,
-        };
+        updatedReminders[updatedReminderIndex] = updatedReminder;
       }
+
       return {
         allReminders: updatedReminders,
       };

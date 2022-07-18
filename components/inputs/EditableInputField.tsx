@@ -33,7 +33,7 @@ const EditableInputField = (props: EditableInputFieldProps) => {
         onPress={() => setAtEditing(true)}
         style={styles.button}
       >
-        <Ionicons name="ios-create-outline" color={"#fff"} size={25} />
+        <Ionicons name="ios-create-outline" color="white" size={25} />
       </TouchableOpacity>
     </View>
   );

@@ -9,7 +9,10 @@ import { NoteText } from "../../utilities/types/fontTypes";
 import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
 
 export const RenderInputComponent = (props: WrappedFieldProps) => {
-  const { input, meta } = props;
+  const {
+    input,
+    meta: { initial, invalid, warning },
+  } = props;
   const { onChange, name, value } = input;
   const { t } = useTranslation();
 
@@ -28,10 +31,11 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
         autoComplete="off"
         value={value}
         testId={`signIn${name}`}
+        secureText={name == "password"}
       />
-      {meta.invalid && (
+      {invalid && (
         <Text style={styles.validationText} testID="warningText">
-          {t(meta.warning, { name: t(`form.${name}`) })}
+          {t(warning, { name: t(`form.${name}`) })}
         </Text>
       )}
     </View>

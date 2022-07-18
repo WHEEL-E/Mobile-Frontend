@@ -5,9 +5,9 @@ import colors from "../../utilities/constants/colors";
 import { BIG_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
 import { ScreenNameText, TitleText } from "../../utilities/types/fontTypes";
 
-export const NoData = () => {
+export const NoData = (props: { screen: string }) => {
   const { t } = useTranslation();
-
+  const { screen } = props;
   return (
     <View style={styles.container}>
       <Image
@@ -19,10 +19,8 @@ export const NoData = () => {
           marginVertical: BIG_MARGIN_VERTICAL,
         }}
       />
-      <Text style={styles.mainText}>
-        {t("addConnection.noMatchingMainText")}
-      </Text>
-      <Text style={styles.text}>{t("addConnection.noMatchingText")}</Text>
+      <Text style={styles.mainText}>{t(`dataStatus.${screen}MainText`)}</Text>
+      <Text style={styles.text}>{t(`dataStatus.${screen}Text`)}</Text>
     </View>
   );
 };
@@ -32,6 +30,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "80%",
+    flex: 1,
   },
   mainText: {
     ...ScreenNameText,

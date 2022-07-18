@@ -11,7 +11,7 @@ export function VisibleNavigation() {
 
   const isLoggedIn = useSelector((store: RootState) => store.user.isLoggedIn);
 
-  if (!isLoggedIn || !isVerified) {
+  if (!isLoggedIn) {
     return <GetStartedNavigation />;
   }
 

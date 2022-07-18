@@ -8,8 +8,10 @@ import { DataStatus } from "../components/generalComponents/DataStatus";
 import { getUserById } from "../store/actions/associatedUsers";
 import { RootState } from "../store/reducers/rootReducer";
 import colors from "../utilities/constants/colors";
-import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
 import fonts from "../utilities/constants/fonts";
+import { SMALL_MARGIN_VERTICAL } from "../utilities/constants/spacing";
+import { HeadingText, TitleText } from "../utilities/types/fontTypes";
 import { SupervisedPatientProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { User, UserTypes } from "../utilities/types/userTypes";
 
@@ -56,7 +58,7 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}
-                source={require("../assets/images/IdPlaceHolder.png")}
+                source={require("../assets/images/avatar.png")}
               />
             </View>
             <Text style={styles.patientName}>{patient.userMainData.name}</Text>
@@ -65,12 +67,14 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
             <MainButton
               title={t("supervisedPatientScreen.map")}
               image={{ url: require("../assets/images/map.png") }}
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate("Map");
+              }}
               buttonStyle={styles.mapButton}
               titleStyle={styles.buttonsTitle}
             />
             <View style={styles.smallButtonsContainer}>
-              <SquareButton
+              <MainButton
                 title={t("supervisedPatientScreen.reminders")}
                 onPress={() => {
                   navigation.navigate("Reminders", {
@@ -80,18 +84,15 @@ const SupervisedPatientScreen = (props: SupervisedPatientProps) => {
                 }}
                 buttonStyle={styles.remindersButton}
                 titleStyle={styles.buttonsTitle}
-              />
-              <SquareButton
-                title={t("settings.settings")}
-                onPress={() => {}}
-                buttonStyle={styles.profileButton}
-                titleStyle={{ ...styles.buttonsTitle, color: colors.darkGreen }}
+                image={{ url: require("../assets/images/health-state.png") }}
               />
             </View>
             <MainButton
               title={t("supervisedPatientScreen.healthInfo")}
-              image={{ url: require("../assets/images/health-state.png") }}
-              onPress={() => {}}
+              image={{ url: require("../assets/images/hospital.png") }}
+              onPress={() => {
+                navigation.navigate("HealthMonitoring");
+              }}
               buttonStyle={styles.healthButton}
               titleStyle={styles.buttonsTitle}
             />
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   },
   patientCard: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     marginVertical: 20,
     width: "100%",
@@ -149,8 +150,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   patientName: {
-    fontFamily: fonts.CairoBold,
-    fontSize: DEVICE_HEIGHT * 0.02,
+    ...HeadingText,
   },
   buttons: {
     flex: 1,
@@ -166,10 +166,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   remindersButton: {
+    alignItems: "center",
     backgroundColor: colors.lightGreen,
-    borderRadius: 20,
+    borderRadius: DEVICE_WIDTH * 0.04,
     flex: 1,
-    margin: 5,
+    margin: SMALL_MARGIN_VERTICAL,
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    paddingHorizontal: "10%",
   },
   profileButton: {
     backgroundColor: colors.lightPurple,

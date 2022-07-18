@@ -6,6 +6,7 @@ import { RootState } from "../reducers/rootReducer";
 import {
   Reminder,
   RemindersActionTypes,
+  SentReminder,
 } from "../../utilities/types/remindersTypes";
 import { UserTypes } from "../../utilities/types/userTypes";
 
@@ -71,25 +72,36 @@ export const removeReminder = createAsyncThunk(
 
 export const addReminder = createAsyncThunk(
   RemindersActionTypes.ADD_REMINDER,
-  async (newReminder: Reminder, thunkAPI) => {
+  async (newReminder: SentReminder, thunkAPI) => {
     try {
       const { user } = thunkAPI.getState() as RootState;
-      const response = await axios.post(
-        `${EndPoints.Reminders}`,
-        { ...newReminder, due_date: new Date() },
-        {
-          headers: { token: user.userData?.token! },
-        }
-      );
+      const sentData = { ...newReminder.MainData, due_date: new Date() };
+      const response = await axios.post(`${EndPoints.Reminders}`, sentData, {
+        headers: { token: user.userData?.token! },
+      });
 
       if (response.data.status !== "Success") {
         throw new Error("can't add note");
       }
 
-      const resData = await response.data.data;
-      const note = { ...newReminder, _id: resData._id };
+      const resData: {
+        __v: 0;
+        _id: string;
+        description: string;
+        due_date: Date;
+        patient_id: string;
+        supervisor_id: string;
+        title: string;
+        updated_at: Date;
+      } = await response.data.data;
 
-      return note;
+      const reminder: Reminder = {
+        reminder: resData,
+        supervisorName: user.userData?.userMainData.name!,
+        patientName: newReminder.PatientName,
+      };
+
+      return reminder;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.addingReminder"));
       throw err;
@@ -99,9 +111,19 @@ export const addReminder = createAsyncThunk(
 
 export const updateReminder = createAsyncThunk(
   RemindersActionTypes.UPDATE_REMINDER,
-  async (newReminder: Partial<Reminder>, thunkAPI) => {
+  async (
+    newReminder: {
+      reminder: { _id: string; title: string; description: string };
+      patientName: string;
+    },
+    thunkAPI
+  ) => {
     try {
-      const { _id, title, description } = newReminder;
+      const {
+        reminder: { _id, title, description },
+        patientName,
+      } = newReminder;
+
       const { user } = thunkAPI.getState() as RootState;
       const response = await axios.put(
         `${EndPoints.Reminders}/${_id}`,
@@ -116,7 +138,13 @@ export const updateReminder = createAsyncThunk(
         throw new Error("can't update note");
       }
 
-      return newReminder;
+      const resData = response.data.data;
+      const updatedReminder: Reminder = {
+        reminder: resData,
+        supervisorName: user.userData?.userMainData.name!,
+        patientName: patientName,
+      };
+      return updatedReminder;
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.updatingNote"));
       throw err;

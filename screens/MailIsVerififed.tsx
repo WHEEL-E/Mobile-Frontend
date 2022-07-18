@@ -17,7 +17,7 @@ const MailIsVerififedScreen = (props: MailIsVerififedProps) => {
   const userdata = useSelector((state: RootState) => state.user.userData);
   const type = userdata?.userType!;
 
-  const userType = type === UserTypes.PATIENT ? "Patient" : "Supervisor";
+  const userType = type;
   const user_id = userdata?.userMainData._id!;
   const emailAddress = userdata?.userMainData.email!;
   const password = userdata?.userMainData.password!;
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },

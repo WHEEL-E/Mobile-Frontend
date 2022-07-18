@@ -1,13 +1,19 @@
 export interface InvitationData {
-  _id: string;
-  from_id: string;
-  status: "Pending" | "Accepted" | "Rejected";
-  to_id: string;
-  updated_at: string;
-  to_Name: string;
-  to_ProfilePhoto: string;
-  from_Name: string;
-  from_ProfilePhoto: string;
+  invitation: {
+    _id: string;
+    from_id: string;
+    to_id: string;
+    status: "Pending" | "Accepted" | "Rejected";
+    updated_at: Date;
+  };
+  patient: {
+    name: string;
+    photo: string;
+    gender: "female" | "male";
+    birthDate: Date;
+  };
+  supervisorName: string;
+  supervisorPhoto: string;
 }
 
 export interface InvitationCardProps {
@@ -22,6 +28,8 @@ export interface CardButtonsProps {
   timeOut: boolean;
   invitationId: string;
   userRole: "Patient" | "Supervisor";
+  to_id: string;
+  from_id: string;
 }
 
 export enum InvitationsActionTypes {

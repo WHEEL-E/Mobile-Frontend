@@ -15,10 +15,10 @@ import {
   DEVICE_WIDTH,
 } from "../../utilities/constants/dimentions";
 import fonts from "../../utilities/constants/fonts";
-import { SquareButton } from "../buttons/SquareButton";
 import { hideModal } from "../../store/actions/dataStatus";
 import { RootState } from "../../store/reducers/rootReducer";
 import { Ionicons } from "@expo/vector-icons";
+import { RoundEdgedButton } from "../buttons/RoundEdgedButton";
 
 export const ErrorModal = () => {
   const content = useSelector((store: RootState) => store.dataStatus.content);
@@ -49,10 +49,9 @@ export const ErrorModal = () => {
           </View>
         </ImageBackground>
         <Text style={styles.mainText}>{t(content)}</Text>
-        <SquareButton
+        <RoundEdgedButton
           title={t("errorModal.gotIt")}
-          buttonStyle={styles.button}
-          titleStyle={styles.buttonTitle}
+          backgroundColor={colors.darkPink}
           onPress={() => dispatch(hideModal())}
         />
       </View>
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     marginVertical: "50%",
-    borderRadius: 50,
+    borderRadius: DEVICE_WIDTH * 0.1,
     overflow: "hidden",
     borderWidth: 2,
     paddingHorizontal: "5%",
@@ -103,18 +102,5 @@ const styles = StyleSheet.create({
     fontSize: DEVICE_WIDTH * 0.04,
     textAlign: "center",
     lineHeight: DEVICE_WIDTH * 0.06,
-  },
-  button: {
-    backgroundColor: colors.darkPink,
-    width: "100%",
-    height: "20%",
-    borderRadius: 30,
-    marginVertical: "5%",
-  },
-  buttonTitle: {
-    fontSize: DEVICE_WIDTH * 0.08,
-    fontFamily: fonts.CairoBold,
-    textAlign: "center",
-    color: "white",
   },
 });

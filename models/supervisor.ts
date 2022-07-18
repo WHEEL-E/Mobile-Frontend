@@ -14,7 +14,7 @@ export class Supervisor {
       mainFormValues;
 
     this.userName = name;
-    this.mail = email;
+    this.mail = email.toLowerCase();
     this.password = password;
     this.phone = phone;
     this.profilePhoto = profile_picture;

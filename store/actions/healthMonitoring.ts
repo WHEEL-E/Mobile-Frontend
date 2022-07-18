@@ -1,5 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { io, Socket } from "socket.io-client";
+import { RootState } from "../reducers/rootReducer";
 import { ShowModal, isLoading, notLoading } from "./dataStatus";
 
 export const startConnection = createAsyncThunk(
@@ -7,7 +8,9 @@ export const startConnection = createAsyncThunk(
   async (undefined, thunkAPI) => {
     try {
       thunkAPI.dispatch(isLoading());
-      const socketEndpoint = "http://192.168.1.115:5000";
+      const { addressesReducer } = thunkAPI.getState() as RootState;
+      const address = addressesReducer.ipAddress;
+      const socketEndpoint = `http://${address}`;
 
       const socket: Socket = io(socketEndpoint, {
         transports: ["websocket"],
@@ -21,3 +24,5 @@ export const startConnection = createAsyncThunk(
     }
   }
 );
+
+export const storeData = createAction<any>("STORE_DATA");

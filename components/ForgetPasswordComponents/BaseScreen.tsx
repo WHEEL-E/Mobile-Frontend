@@ -1,6 +1,9 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
-import { BIG_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
+import {
+  BIG_MARGIN_VERTICAL,
+  PADDING_HORIZONTAL,
+} from "../../utilities/constants/spacing";
 import { ScreenNameText } from "../../utilities/types/fontTypes";
 
 export const BaseScreen = (props: {
@@ -24,7 +27,17 @@ export const BaseScreen = (props: {
           resizeMode="contain"
           style={styles.image}
         />
-        {children}
+        <View
+          style={{
+            width: "100%",
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            paddingHorizontal: "7%",
+          }}
+        >
+          {children}
+        </View>
       </ImageBackground>
     </View>
   );

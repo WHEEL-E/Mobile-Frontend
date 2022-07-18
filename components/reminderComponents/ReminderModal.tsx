@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Modal, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { SquareButton } from "../buttons/SquareButton";
 import InputField from "../inputs/InputField";
@@ -8,10 +8,25 @@ import { ReminderModalProps } from "../../utilities/types/remindersTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { addReminder, updateReminder } from "../../store/actions/reminders";
 import { RootState } from "../../store/reducers/rootReducer";
+import { ModalBase } from "../generalComponents/ModalBase";
+import { NormalText, TitleText } from "../../utilities/types/fontTypes";
+import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
+import { sendNotification } from "../../store/actions/notifications";
+import {
+  NotificationDescriptions,
+  NotificationType,
+} from "../../utilities/types/notificationsTypes";
+import { UserTypes } from "../../utilities/types/userTypes";
 
 const ReminderModal = (props: ReminderModalProps) => {
   const { t } = useTranslation();
-  const { modalVisible, setModalVisible, reminderData, identifier } = props;
+  const {
+    modalVisible,
+    setModalVisible,
+    reminderData,
+    identifier,
+    patientName,
+  } = props;
   const dispatch = useDispatch<any>();
 
   const supervisorData = useSelector(
@@ -30,114 +45,109 @@ const ReminderModal = (props: ReminderModalProps) => {
 
   const submitHandler = () => {
     if (identifier) {
-      dispatch(updateReminder({ ...reminder, _id: identifier }));
+      dispatch(
+        updateReminder({
+          reminder: { ...reminder, _id: identifier },
+          patientName: patientName,
+        })
+      );
     } else {
       dispatch(
         addReminder({
-          ...reminder,
-          _id: "",
-          supervisor_id: supervisorData._id!,
-          supervisorName: supervisorData.name,
-          patient_id: props.patientId!,
+          MainData: {
+            ...reminder,
+            supervisor_id: supervisorData._id!,
+            patient_id: props.patientId!,
+            due_date: new Date(),
+          },
+          PatientName: patientName,
         })
       );
     }
+
+    dispatch(
+      sendNotification({
+        title: NotificationType.NEW_REMINDER,
+        user_id: props.patientId!,
+        description: NotificationDescriptions.RECEIVED_NEW_REMINDER,
+        type: NotificationType.NEW_REMINDER,
+        userRole: UserTypes.PATIENT,
+      })
+    );
+
     setReminder({ title: "", description: "", due_date: new Date(0) });
     return setModalVisible(false);
   };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(false);
-      }}
-    >
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalTitle}>
-            {t("remindersScreen.addReminderIntro")}
-          </Text>
-          <InputField
-            placeHolder={t("remindersScreen.enterTitle")}
-            value={reminder.title}
-            onChangeText={editTitleHandler}
-            fieldStyle={{ width: "100%", marginBottom: 10 }}
-            autoComplete="off"
-          />
-          <InputField
-            placeHolder={t("remindersScreen.enterDescription")}
-            value={reminder.description}
-            onChangeText={editBodyHandler}
-            fieldStyle={{ width: "100%", height: 100, marginBottom: 10 }}
-            autoComplete="off"
-          />
-          <View style={styles.buttonsList}>
-            <SquareButton
-              title={t("remindersScreen.cancel")}
-              titleStyle={{ color: "#fff" }}
-              onPress={() => setModalVisible(false)}
-              buttonStyle={styles.cancelButton}
-            />
-            <SquareButton
-              title={t("remindersScreen.submit")}
-              titleStyle={{ color: "#fff" }}
-              onPress={() => submitHandler()}
-              buttonStyle={styles.sendButton}
-            />
-          </View>
-        </View>
+    <ModalBase modalVisible={modalVisible} setModalVisible={setModalVisible}>
+      <Text style={styles.modalTitle}>
+        {t("remindersScreen.addReminderIntro")}
+      </Text>
+      <InputField
+        placeHolder={t("remindersScreen.enterTitle")}
+        value={reminder.title}
+        onChangeText={editTitleHandler}
+        fieldStyle={styles.inputs}
+        autoComplete="off"
+      />
+      <InputField
+        placeHolder={t("remindersScreen.enterDescription")}
+        value={reminder.description}
+        onChangeText={editBodyHandler}
+        fieldStyle={{
+          ...styles.inputs,
+          height: DEVICE_HEIGHT * 0.15,
+        }}
+        autoComplete="off"
+      />
+      <View style={styles.buttonsList}>
+        <SquareButton
+          title={t("remindersScreen.cancel")}
+          titleStyle={{ color: "white", ...NormalText }}
+          onPress={() => {
+            setModalVisible(false);
+            setReminder({ title: "", description: "", due_date: new Date(0) });
+          }}
+          buttonStyle={styles.cancelButton}
+        />
+        <SquareButton
+          title={t("remindersScreen.submit")}
+          titleStyle={{ color: "white", ...NormalText }}
+          onPress={() => submitHandler()}
+          buttonStyle={styles.sendButton}
+        />
       </View>
-    </Modal>
+    </ModalBase>
   );
 };
 
 const styles = StyleSheet.create({
   modalTitle: {
-    fontFamily: "Cairo-SemiBold",
-    fontSize: 18,
+    ...TitleText,
     lineHeight: 22,
     textAlign: "center",
-    marginBottom: 15,
+    marginBottom: "5%",
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
+  inputs: {
     backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    width: 320,
+    width: "100%",
+    marginBottom: "3%",
   },
   cancelButton: {
     backgroundColor: colors.darkPink,
-    width: 100,
-    height: 50,
+    width: "30%",
+    height: DEVICE_HEIGHT * 0.06,
   },
   sendButton: {
     backgroundColor: colors.lightGreen,
-    width: 100,
-    height: 50,
+    width: "30%",
+    height: DEVICE_HEIGHT * 0.06,
   },
   buttonsList: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 25,
+    marginTop: "9%",
   },
 });
 

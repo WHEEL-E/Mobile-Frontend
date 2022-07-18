@@ -29,7 +29,6 @@ export const Curve = (props: CurveProps) => {
 
   React.useEffect(() => {
     const observable = subject.pipe(delay(1000)).subscribe((term) => {
-      console.log(term);
       setSensorsData([...sensorsData, term]);
       return sensorsData;
     });

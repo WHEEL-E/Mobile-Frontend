@@ -21,7 +21,7 @@ export const getInvitations = createAsyncThunk(
       thunkAPI.dispatch(isLoading());
       const { userId, userType } = data;
 
-      const type = userType === UserTypes.PATIENT ? "Patient" : "Supervisor";
+      const type = userType;
       const { user } = thunkAPI.getState() as RootState;
       const response = await axios.get(
         `${EndPoints.invitations}/userInvitations/${userId}?userType=${type}`,
@@ -30,26 +30,21 @@ export const getInvitations = createAsyncThunk(
         }
       );
 
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
+
       const resData: InvitationData[] = await response.data.data;
       const invitations =
         type === "Supervisor"
-          ? resData.filter((invitation) => invitation.status === "Pending")
+          ? resData.filter(
+              (invitation) => invitation.invitation.status === "Pending"
+            )
           : resData;
 
-      const finalInvitations: InvitationData[] = invitations.map((value) => {
-        return {
-          ...value,
-          to_Name: "Random Name",
-          to_ProfilePhoto:
-            "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-          from_Name: "Random Name",
-          from_ProfilePhoto:
-            "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-        };
-      });
-
       thunkAPI.dispatch(notLoading());
-      return finalInvitations;
+      return invitations;
     } catch (e) {
       thunkAPI.dispatch(notLoading());
       thunkAPI.dispatch(ShowModal("errorModal"));
@@ -76,29 +71,28 @@ export const sendInvitation = createAsyncThunk(
           headers: { token: user.userData?.token! },
         }
       );
-      const resData = await response.data.data;
 
-      const invitation: InvitationData = {
-        ...resData,
-        to_Name: "Random Name",
-        to_ProfilePhoto:
-          "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-        from_Name: "Random Name",
-        from_ProfilePhoto:
-          "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-      };
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
+
+      const resData = await response.data.data;
+      const invitation: InvitationData = resData;
 
       sendNotification({
         title: NotificationType.CONNECTIONS,
         user_id: data.to_id,
         description: NotificationDescriptions.RECEIVED_CONNECTION,
         type: NotificationType.CONNECTIONS,
-        from_name: data.user_name,
+        userRole:
+          user.userData?.userType === UserTypes.PATIENT
+            ? UserTypes.SUPERVISOR
+            : UserTypes.PATIENT,
       });
 
       return invitation;
     } catch (e) {
-      console.log(e);
       thunkAPI.dispatch(ShowModal("errorModal"));
       throw new Error();
     }
@@ -117,6 +111,10 @@ export const unsendInvitation = createAsyncThunk(
         }
       );
 
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
       const resData = await response.data;
 
       return invitationId;
@@ -132,7 +130,6 @@ export const resendInvitation = createAsyncThunk(
   async (invitationId: string, thunkAPI) => {
     try {
       const { user } = thunkAPI.getState() as RootState;
-      console.log(user.userData?.token);
 
       const response = await axios.put(
         `${EndPoints.invitations}/${invitationId}`,
@@ -141,7 +138,10 @@ export const resendInvitation = createAsyncThunk(
           headers: { token: user.userData?.token! },
         }
       );
-
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
 
@@ -165,13 +165,15 @@ export const rejectInvitation = createAsyncThunk(
           headers: { token: user.userData?.token! },
         }
       );
-
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
+      }
       const resData = await response.data.data;
       const updatedInvitation: InvitationData = resData;
       return invitationId;
     } catch (e) {
-      console.log(e);
-      // thunkAPI.dispatch(ShowModal("errorModal"));
+      thunkAPI.dispatch(ShowModal("An Error occurred"));
       throw new Error();
     }
   }
@@ -197,7 +199,6 @@ export const acceptInvitation = createAsyncThunk(
       return updatedInvitation;
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal"));
-      console.log(e);
       throw new Error();
     }
   }

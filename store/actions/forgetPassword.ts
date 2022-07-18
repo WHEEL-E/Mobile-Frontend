@@ -15,10 +15,9 @@ export const sendResetEmail = createAsyncThunk(
         resetUri: link,
       });
 
-      if (response.status / 100 !== 2) {
-        //TODO: we have two cases: error making the API call, user entering non-existing mailAddress.
-        //TODO: we need to handle them both depending on the status code returned
-        thunkAPI.dispatch(ShowModal("errorModal.notValidEmail"));
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
       }
     } catch (err) {
       thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));
@@ -40,9 +39,9 @@ export const changePassword = createAsyncThunk(
         body: JSON.stringify(data),
       });
 
-      if (response.status / 100 !== 2) {
-        thunkAPI.dispatch(ShowModal("errorModal.resetPassword"));
-        throw new Error("Can't change password");
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
+        throw new Error(response.statusText);
       }
 
       thunkAPI.dispatch(notLoading());

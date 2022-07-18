@@ -7,6 +7,7 @@ import {
 } from "../../utilities/types/addConnectionTypes";
 import { RootState } from "../reducers/rootReducer";
 import { ShowModal } from "./dataStatus";
+import { getInvitations } from "./invitations";
 
 export const getResults = createAsyncThunk(
   AddConnectionActionTypes.GET_RESULTS_PATIENTS,
@@ -16,20 +17,30 @@ export const getResults = createAsyncThunk(
       const response = await axios.get(EndPoints.searchConnection + prefix, {
         headers: { token: user.userData?.token! },
       });
+      if (response.data.status !== "Success") {
+        thunkAPI.dispatch(ShowModal("errorModal.fetchingMatchingPatients"));
+        throw new Error(response.statusText);
+      }
+      const userId = user.userData?.userMainData._id!;
+      const userType = user.userData?.userType!;
 
-      const matchingUsers: searchUser[] = response.data.data.map(
-        (data: searchUser) => {
-          return {
-            ...data,
-            profilePhoto:
-              "https://helostatus.com/wp-content/uploads/2021/09/2021-profile-WhatsApp-hd.jpg",
-          };
-        }
-      );
+      await thunkAPI.dispatch(getInvitations({ userId, userType }));
 
-      return matchingUsers;
+      const invitedUser = invitations.invitations;
+
+      const connectedUser = user.userData?.userMainData.associatedUsers;
+
+      const matchingUsers: searchUser[] = response.data.data;
+      const filteredUsers = matchingUsers.filter((field) => {
+        return (
+          connectedUser?.find((user) => user._id === field._id) === undefined &&
+          invitedUser.find((user) => user.invitation.to_id === field._id) ===
+            undefined
+        );
+      });
+
+      return filteredUsers;
     } catch (e) {
-      console.log(e);
       thunkAPI.dispatch(ShowModal("errorModal.fetchingMatchingPatients"));
       throw new Error("can't fetch matching patients");
     }

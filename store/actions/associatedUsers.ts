@@ -45,7 +45,7 @@ export const getUserById = createAsyncThunk(
       });
 
       if (response.data.status !== "Success") {
-        thunkAPI.dispatch(notLoading());
+        thunkAPI.dispatch(ShowModal("An Error occurred"));
         throw new Error(response.statusText);
       }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startConnection } from "../store/actions/healthMonitoring";
+import { storeData } from "../store/actions/healthMonitoring";
 import { RootState } from "../store/reducers/rootReducer";
 import { Socket } from "socket.io-client";
 import { FlatList, StyleSheet, Text, View } from "react-native";
@@ -14,30 +14,25 @@ import {
   UserSensors,
 } from "../utilities/types/healthMonitoringTypes";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import data from "../data/healthMonitoringDummydata.json";
+import { useTranslation } from "react-i18next";
 
 const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch<any>();
 
-  const initialData: UserSensors[] = [];
-
-  const [sensorsData, setSensorsData] = React.useState(initialData);
-
-  const socket: Socket | undefined = useSelector(
-    (state: RootState) => state.healthMonitoring.socket
-  );
-
-  React.useEffect(() => {
-    dispatch(startConnection());
-  }, []);
+  const healthData = useSelector((state: RootState) => state.healthMonitoring);
+  const socket: Socket | undefined = healthData.socket;
+  const sensorsData: UserSensors[] = healthData.data;
 
   if (socket) {
     socket.on("data", (message) => {
-      setSensorsData([...sensorsData, message]);
+      dispatch(storeData(message));
     });
   }
 
   const dataPulse: SensorData = {
-    name: "Heart Rate",
+    name: t("healthStatus.heartRate"),
     data: sensorsData.map((field) => {
       const split = field.time.split(":").map((a) => +a);
       const xAxis = +split.reduce((a, b) => a + b);
@@ -46,7 +41,7 @@ const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
   };
 
   const dataSaturation: SensorData = {
-    name: "Oxygen saturation",
+    name: t("healthStatus.oxygenSaturation"),
     data: sensorsData.map((field) => {
       const split = field.time.split(":").map((a) => +a);
       const xAxis = +split.reduce((a, b) => a + b);
@@ -54,7 +49,16 @@ const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
     }),
   };
 
-  const allData = [dataSaturation, dataPulse];
+  const temprature: SensorData = {
+    name: t("healthStatus.temprature"),
+    data: sensorsData.map((field) => {
+      const split = field.time.split(":").map((a) => +a);
+      const xAxis = +split.reduce((a, b) => a + b);
+      return [xAxis, field.temprature];
+    }),
+  };
+
+  const allData = [dataSaturation, dataPulse, temprature];
 
   return (
     <View style={styles.container}>
@@ -82,7 +86,7 @@ const HealthMonitoringScreen = (props: HealthMonitoringProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     paddingTop: "50%",

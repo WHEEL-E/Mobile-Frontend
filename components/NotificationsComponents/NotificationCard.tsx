@@ -1,6 +1,7 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { useDispatch } from "react-redux";
 import { removeNotification } from "../../store/actions/notifications";
@@ -32,40 +33,21 @@ export const NotificationCard = (props: NotificationCardProps) => {
     dispatch(removeNotification(_id));
   };
 
-  const [translationX, setTranslationX] = React.useState(0);
-
-  const [backgroundColor, setBackgroundColor] = React.useState(
-    NotificationColors.get(type)
-  );
+  const backgroundColor = NotificationColors.get(type);
 
   const textColor =
     backgroundColor === colors.lightPurple ? colors.darkBlue : "white";
 
-  const move = React.useCallback((speed: number) => {
-    deleteHandler();
-  }, []);
-
-  const onSwipe = (gestureState: any) => {
-    move(gestureState.vx);
-    setBackgroundColor(colors.lightGray);
-  };
-
-  const config = {
-    velocityThreshold: 0.3,
-    directionalOffsetThreshold: 80,
-  };
-
   return (
-    <GestureRecognizer
-      onSwipeLeft={onSwipe}
-      onSwipeRight={onSwipe}
-      config={config}
+    <View
       style={{
         ...styles.container,
         backgroundColor: backgroundColor,
-        transform: [{ translateX: translationX }],
       }}
     >
+      <TouchableOpacity onPress={deleteHandler} style={styles.close}>
+        <Ionicons name="ios-close" color={textColor} size={25} />
+      </TouchableOpacity>
       <Text style={{ ...styles.title, color: textColor }}>
         {t(`notifications.${title}`)}
       </Text>
@@ -76,7 +58,7 @@ export const NotificationCard = (props: NotificationCardProps) => {
         {t("notifications.receivedAt")}
         {new Date(updated_at).toLocaleDateString()}
       </Text>
-    </GestureRecognizer>
+    </View>
   );
 };
 
@@ -106,5 +88,9 @@ const styles = StyleSheet.create({
     textAlign: "right",
     width: "100%",
     color: "white",
+  },
+  close: {
+    width: "100%",
+    alignItems: "flex-end",
   },
 });

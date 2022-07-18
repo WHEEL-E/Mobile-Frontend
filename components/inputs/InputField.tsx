@@ -27,6 +27,7 @@ const InputField = (props: InputFieldProps) => {
       secureTextEntry={secureText}
       onBlur={onBlur}
       testID={testId}
+      multiline={!secureText}
     />
   );
 };

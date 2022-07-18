@@ -1,4 +1,5 @@
 import colors from "../constants/colors";
+import { UserTypes } from "./userTypes";
 
 export enum NotificationType {
   CONNECTIONS = "CONNECTIONS",
@@ -13,7 +14,7 @@ export interface sentNotification {
   title: string;
   description: string;
   type: NotificationType;
-  userRole: "Patient" | "Supervisor";
+  userRole: UserTypes;
 }
 
 export enum NotificationDescriptions {
@@ -22,9 +23,7 @@ export enum NotificationDescriptions {
   ACCEPTED_CONNECTION = "ACCEPTED_CONNECTION",
   NEW_UPDATE = "NEW_UPDATE",
   RECEIVED_NEW_REMINDER = "RECEIVED_NEW_REMINDER",
-  NEW_RECORD = "NEW_RECORD",
   UNHEALTHY_PATIENT = "UNHEALTHY_PATIENT",
-  RECEIVED_EMERGENCY_CALL = "RECEIVED_EMERGENCY_CALL",
 }
 
 export const NotificationColors = new Map<NotificationType, string>([
@@ -32,7 +31,6 @@ export const NotificationColors = new Map<NotificationType, string>([
   [NotificationType.APP_NEWS, colors.lightPurple],
   [NotificationType.NEW_REMINDER, colors.darkBlue],
   [NotificationType.PATIENT_UPDATES, colors.darkBlue],
-  [NotificationType.EMERGENCY_CALL, colors.darkPink],
 ]);
 
 export interface NotificationData {

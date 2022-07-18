@@ -18,7 +18,7 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
     "url(#GradientFilling)",
   ]);
   const socket = useSelector(
-    (state: RootState) => state.socket.socket
+    (state: RootState) => state.healthMonitoring.socket
   ) as Socket;
 
   return (
@@ -31,9 +31,6 @@ export const DriveWheelButton = (props: DriveWheelButtonProps) => {
         fill={color[index]}
         stroke={colors.offWhite}
         strokeWidth={5}
-        onPress={() => {
-          console.log(value);
-        }}
         onPressIn={() => {
           const newColors = [...color];
           newColors[index] = "white";

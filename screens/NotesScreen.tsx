@@ -11,6 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { getNotes } from "../store/actions/notes";
 import { DataStatus } from "../components/generalComponents/DataStatus";
+import { NoData } from "../components/generalComponents/NoData";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import { TitleText } from "../utilities/types/fontTypes";
 
 const NotesScreen = (props: NotesProps) => {
   const { t } = useTranslation();
@@ -22,8 +25,15 @@ const NotesScreen = (props: NotesProps) => {
     (state: RootState) => state.user.userData?.userMainData._id
   );
 
-  const backgroundColors = [colors.darkGreen, colors.lightPurple];
+  const backgroundColors = [
+    colors.darkGreen,
+    colors.darkGreen,
+    colors.lightPurple,
+    colors.lightPurple,
+  ];
   let colorIndex = 0;
+
+  const noData = notes.length == 0;
 
   React.useEffect(() => {
     dispatch(getNotes(userId!));
@@ -38,25 +48,27 @@ const NotesScreen = (props: NotesProps) => {
           noteTitle=""
           noteDescription=""
         />
-        <FlatList
-          data={notes}
-          keyExtractor={(info) => info._id!}
-          numColumns={2}
-          renderItem={(info) => {
-            if (info.index % 2 == 1) {
-              colorIndex = 1 - colorIndex;
-            }
-            return (
+        {noData && <NoData screen="notes" />}
+        {!noData && (
+          <FlatList
+            data={notes}
+            keyExtractor={(info) => info._id!}
+            numColumns={2}
+            renderItem={(info) => (
               <NoteCard
                 id={info.item._id!}
                 description={info.item.description}
                 title={info.item.title}
-                backgroundColor={backgroundColors[colorIndex]}
+                backgroundColor={
+                  info.index === 0
+                    ? colors.lightPurple
+                    : backgroundColors[(info.index - 1) % 4]
+                }
                 key={info.item._id}
               />
-            );
-          }}
-        />
+            )}
+          />
+        )}
 
         <SquareButton
           title={t("notesScreen.addNote")}
@@ -72,24 +84,23 @@ const NotesScreen = (props: NotesProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
-    paddingVertical: "20%",
+    paddingTop: "30%",
+    paddingBottom: "20%",
     justifyContent: "space-between",
   },
   buttonStyle: {
     backgroundColor: colors.lightGreen,
-    borderWidth: 2,
     borderColor: "white",
-    borderRadius: 30,
+    borderRadius: DEVICE_WIDTH * 0.1,
     width: "80%",
     marginVertical: SMALL_MARGIN_VERTICAL,
-    height: 70,
+    height: DEVICE_HEIGHT * 0.07,
   },
   titleStyle: {
-    fontFamily: "Cairo-Bold",
     color: "white",
-    fontSize: 20,
+    ...TitleText,
   },
 });
 

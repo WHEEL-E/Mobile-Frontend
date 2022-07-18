@@ -17,6 +17,7 @@ import {
   SMALL_MARGIN_VERTICAL,
 } from "../../utilities/constants/spacing";
 import { NoteModalProps } from "../../utilities/types/notesTypes";
+import { ModalBase } from "../generalComponents/ModalBase";
 
 const NoteModal = (props: NoteModalProps) => {
   const { t } = useTranslation();
@@ -60,117 +61,76 @@ const NoteModal = (props: NoteModalProps) => {
   };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(false);
-      }}
-    >
-      <View style={styles.modalView}>
-        <ImageBackground
-          source={require("../../assets/images/Union.png")}
-          style={styles.background}
-        >
-          <Text style={styles.modalTitle}>{t("notesScreen.modalHeader")}</Text>
-          <InputField
-            placeHolder={t("notesScreen.enterTitle")}
-            value={note.title}
-            onChangeText={editTitleHandler}
-            fieldStyle={styles.titleFieldStyle}
-            autoComplete="off"
-          />
-          <InputField
-            placeHolder={t("notesScreen.enterDescription")}
-            value={note.description}
-            fieldStyle={styles.descriptionFieldStyle}
-            onChangeText={editdescriptionHandler}
-            autoComplete="off"
-          />
-          <View style={styles.buttonsList}>
-            <SquareButton
-              title={t("notesScreen.cancel")}
-              titleStyle={styles.buttonTitleStyle}
-              onPress={() => setModalVisible(false)}
-              buttonStyle={styles.cancelButton}
-            />
-            <SquareButton
-              title={t("notesScreen.submit")}
-              titleStyle={styles.buttonTitleStyle}
-              onPress={() => submitHandler()}
-              buttonStyle={styles.sendButton}
-            />
-          </View>
-        </ImageBackground>
+    <ModalBase setModalVisible={setModalVisible} modalVisible={modalVisible}>
+      <Text style={styles.modalTitle}>{t("notesScreen.modalHeader")}</Text>
+      <InputField
+        placeHolder={t("notesScreen.enterTitle")}
+        value={note.title}
+        onChangeText={editTitleHandler}
+        fieldStyle={styles.titleFieldStyle}
+        autoComplete="off"
+      />
+      <InputField
+        placeHolder={t("notesScreen.enterDescription")}
+        value={note.description}
+        fieldStyle={styles.descriptionFieldStyle}
+        onChangeText={editdescriptionHandler}
+        autoComplete="off"
+      />
+      <View style={styles.buttonsList}>
+        <SquareButton
+          title={t("notesScreen.cancel")}
+          titleStyle={styles.buttonTitleStyle}
+          onPress={() => setModalVisible(false)}
+          buttonStyle={styles.cancelButton}
+        />
+        <SquareButton
+          title={t("notesScreen.submit")}
+          titleStyle={styles.buttonTitleStyle}
+          onPress={() => submitHandler()}
+          buttonStyle={styles.sendButton}
+        />
       </View>
-    </Modal>
+    </ModalBase>
   );
 };
 
 const styles = StyleSheet.create({
-  modalTitle: {
-    ...TitleText,
-    lineHeight: 22,
-    textAlign: "center",
-    marginBottom: BIG_MARGIN_VERTICAL,
-  },
   descriptionFieldStyle: {
-    width: "80%",
-    flex: 1,
+    width: "100%",
+    backgroundColor: "white",
+    height: DEVICE_HEIGHT * 0.15,
     marginBottom: SMALL_MARGIN_VERTICAL,
   },
   titleFieldStyle: {
-    width: "80%",
+    width: "100%",
+    backgroundColor: "white",
     marginBottom: SMALL_MARGIN_VERTICAL,
   },
   buttonTitleStyle: {
     ...NormalText,
-    color: "#fff",
+    color: "white",
   },
-  background: {
-    width: DEVICE_WIDTH * 0.8,
-    height: DEVICE_HEIGHT * 0.5,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: "10%",
-  },
-  modalView: {
-    width: "80%",
-    height: "50%",
-    alignSelf: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-    marginVertical: "50%",
-    borderRadius: 50,
-    overflow: "hidden",
-    borderWidth: 2,
-    paddingHorizontal: "5%",
-    paddingBottom: "5%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+  modalTitle: {
+    ...TitleText,
+    lineHeight: 22,
+    textAlign: "center",
+    marginBottom: "5%",
   },
   cancelButton: {
     backgroundColor: colors.darkPink,
-    flex: 1,
-    height: 50,
+    width: "30%",
+    height: DEVICE_HEIGHT * 0.06,
   },
   sendButton: {
     backgroundColor: colors.lightGreen,
-    flex: 1,
-    height: 50,
+    width: "30%",
+    height: DEVICE_HEIGHT * 0.06,
   },
   buttonsList: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 25,
-    paddingHorizontal: "10%",
+    marginTop: "9%",
   },
 });
 

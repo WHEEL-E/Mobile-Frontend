@@ -2,13 +2,20 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import colors from "../utilities/constants/colors";
-import fonts from "../utilities/constants/fonts";
+// import RNImmediatePhoneCall from "react-native-immediate-phone-call";
 import { MainButton } from "../components/buttons/MainButton";
 import { SquareButton } from "../components/buttons/SquareButton";
 import { PatientHomeProps } from "../utilities/types/navigationTypes/mainNavigationTypes";
 import { EmergencyCallModal } from "../components/homeScreenComponents/EmergencyCallModal";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../utilities/constants/dimentions";
+import {
+  HeadingText,
+  ImportantText,
+  ScreenNameText,
+  TitleText,
+} from "../utilities/types/fontTypes";
 
 const PatientHomeScreen = (props: PatientHomeProps) => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -18,6 +25,11 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
   const userName = useSelector(
     (state: RootState) => state.user.userData?.userMainData.name
   )?.split(" ")[0];
+
+  const emergencyNumber = useSelector(
+    (state: RootState) =>
+      state.user.userData?.patientExtraData?.emergency_number
+  );
 
   return (
     <View style={styles.container}>
@@ -41,16 +53,16 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
       <View style={styles.buttons}>
         <View style={styles.buttonsCol}>
           <MainButton
-            title={t("patientHomeScreen.associatedUsers")}
+            title={t("patientHomeScreen.map")}
             titleStyle={{ ...styles.bigButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.mainButton,
               backgroundColor: colors.darkGreen,
             }}
             onPress={() => {
-              navigation.navigate("AssociatedUsers");
+              navigation.navigate("Map");
             }}
-            image={{ url: require("../assets/images/new-patient.png") }}
+            image={{ url: require("../assets/images/map.png") }}
           />
           <SquareButton
             title={t("patientHomeScreen.emergencyCall")}
@@ -61,6 +73,7 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
             }}
             onPress={() => {
               setIsModalVisible(true);
+              // RNImmediatePhoneCall.immediatePhoneCall(emergencyNumber);
             }}
           />
           <SquareButton
@@ -132,23 +145,24 @@ const PatientHomeScreen = (props: PatientHomeProps) => {
               navigation.navigate("Reminders", {});
             }}
           />
-          <SquareButton
-            title={t("patientHomeScreen.myProfile")}
+          <MainButton
+            title={t("patientHomeScreen.associatedUsers")}
             titleStyle={styles.profileTitle}
             buttonStyle={styles.myProfileButton}
             onPress={() => {
-              navigation.navigate("Profile");
+              navigation.navigate("AssociatedUsers");
             }}
+            image={{ url: require("../assets/images/new-patient.png") }}
           />
           <SquareButton
-            title={t("patientHomeScreen.map")}
+            title={t("settings.settings")}
             titleStyle={{ ...styles.smallButtonTitle, color: "white" }}
             buttonStyle={{
               ...styles.smallButton,
               backgroundColor: colors.lightGreen,
             }}
             onPress={() => {
-              navigation.navigate("Map");
+              navigation.navigate("Settings");
             }}
           />
         </View>
@@ -161,26 +175,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    paddingHorizontal: 20,
+    paddingHorizontal: "5%",
     paddingTop: "10%",
+    paddingBottom: "20%",
   },
   logo: {
-    height: 40,
+    height: DEVICE_HEIGHT * 0.05,
     resizeMode: "center",
     width: "70%",
     alignSelf: "center",
   },
   mainText: {
-    fontFamily: fonts.CairoBold,
-    fontSize: 30,
+    ...HeadingText,
   },
   subText: {
-    fontFamily: fonts.CairoMedium,
     color: colors.darkGrey,
-    fontSize: 20,
+    ...TitleText,
   },
   buttons: {
-    marginBottom: 100,
     flex: 1,
     flexDirection: "row",
   },
@@ -188,36 +200,34 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainButton: {
-    borderRadius: 30,
+    borderRadius: DEVICE_WIDTH * 0.07,
     justifyContent: "center",
     flex: 3,
-    margin: 2,
+    margin: "1%",
+    padding: "1%",
   },
   smallButton: {
     flex: 1,
     backgroundColor: colors.darkGreen,
-    margin: 2,
+    margin: "1%",
   },
   myProfileButton: {
     backgroundColor: colors.darkGreen,
     justifyContent: "center",
     flex: 2,
-    borderRadius: 30,
-    margin: 2,
+    borderRadius: DEVICE_WIDTH * 0.07,
+    margin: "1%",
   },
   bigButtonTitle: {
-    fontFamily: fonts.CairoBold,
-    fontSize: 30,
+    ...ScreenNameText,
     lineHeight: 40,
     textAlign: "center",
   },
   smallButtonTitle: {
-    fontFamily: fonts.CairoSemiBold,
-    fontSize: 18,
+    ...TitleText,
   },
   profileTitle: {
-    fontFamily: fonts.CairoSemiBold,
-    fontSize: 20,
+    ...ImportantText,
     color: "white",
   },
 });

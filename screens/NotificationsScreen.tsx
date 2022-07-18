@@ -3,10 +3,18 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import { NewsProps } from "../utilities/types/navigationTypes/tabNavigationTypes";
 import { NotificationsList } from "../components/NotificationsComponents/NotificationsList";
 import { DataStatus } from "../components/generalComponents/DataStatus";
-import { getNotifications } from "../store/actions/notifications";
+import {
+  getNotifications,
+  sendNotification,
+} from "../store/actions/notifications";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
-import * as Notifications from "expo-notifications";
+import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
+import {
+  NotificationDescriptions,
+  NotificationType,
+} from "../utilities/types/notificationsTypes";
+import { UserTypes } from "../utilities/types/userTypes";
 
 const NotificationsScreen = (props: NewsProps) => {
   const dispatch = useDispatch<any>();
@@ -16,8 +24,6 @@ const NotificationsScreen = (props: NewsProps) => {
   );
 
   React.useEffect(() => {
-    Notifications.getExpoPushTokenAsync().then(({ data }) => console.log(data));
-
     dispatch(getNotifications(userId!));
   }, [dispatch, getNotifications]);
 
@@ -39,7 +45,7 @@ const NotificationsScreen = (props: NewsProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },

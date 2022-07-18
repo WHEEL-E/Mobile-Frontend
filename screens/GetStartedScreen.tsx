@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 import { GetStartedProps } from "../utilities/types/navigationTypes/getStartedNavigationTypes";
 import { RoundEdgedButton } from "../components/buttons/RoundEdgedButton";
 import colors from "../utilities/constants/colors";
+import { DEVICE_HEIGHT } from "../utilities/constants/dimentions";
+import { ImportantText, NormalText } from "../utilities/types/fontTypes";
 
 const GetStartedScreen = (props: GetStartedProps) => {
   const { navigation } = props;
@@ -18,74 +20,64 @@ const GetStartedScreen = (props: GetStartedProps) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require("../assets/images/Cover.jpg")}
-          style={styles.cover}
-        />
-      </View>
-      <Text style={styles.title}>{t("getStartedScreen.wheelE")}</Text>
-      <Text style={styles.slogan}>{t("getStartedScreen.wheelEFeautures")}</Text>
-      <RoundEdgedButton
-        title={t("getStartedScreen.getStarted")}
-        backgroundColor={colors.lightGreen}
-        onPress={() => navigation.navigate("SignIn")}
+      <Image
+        source={require("../assets/images/Cover.png")}
+        style={styles.cover}
+        resizeMode="cover"
       />
-      <View style={styles.signUpContainer}>
-        <Text>{t("getStartedScreen.notMember")} </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-          <Text style={{ color: colors.darkGreen }}>
-            {t("getStartedScreen.signUp")}
-          </Text>
-        </TouchableOpacity>
+      <View
+        style={{
+          width: "90%",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+        }}
+      >
+        <Text style={styles.title}>{t("getStartedScreen.wheelE")}</Text>
+        <Text style={styles.slogan}>
+          {t("getStartedScreen.wheelEFeautures")}
+        </Text>
+        <RoundEdgedButton
+          title={t("getStartedScreen.getStarted")}
+          backgroundColor={colors.lightGreen}
+          onPress={() => navigation.navigate("SignIn")}
+        />
+        <View style={styles.signUpContainer}>
+          <Text>{t("getStartedScreen.notMember")} </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <Text style={{ color: colors.darkGreen }}>
+              {t("getStartedScreen.signUp")}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
-GetStartedScreen.navigationOptions = {
-  headerTransparent: true,
-  headerStyle: {
-    borderBottomWidth: 0,
-  },
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center",
   },
   title: {
-    fontSize: 23,
-    fontFamily: "Cairo-Bold",
-  },
-  buttons: {
-    margin: 10,
-    width: 200,
-    alignItems: "center",
+    ...ImportantText,
   },
   cover: {
-    height: "100%",
     width: "100%",
-  },
-  imageContainer: {
-    width: "100%",
-    height: Platform.OS === "android" ? "75%" : "70%",
-    alignItems: "center",
+    height: "64%",
   },
   slogan: {
-    fontFamily: "Cairo-Light",
-    fontSize: 18,
+    ...NormalText,
     textAlign: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: "5%",
   },
   signUpContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 10,
+    paddingBottom: "5%",
   },
 });
 

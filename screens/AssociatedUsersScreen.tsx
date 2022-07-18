@@ -21,21 +21,23 @@ const AssociatedUsersScreen = (props: AssociatedPatientsProps) => {
         source={require("../assets/images/Vector.png")}
         style={styles.content}
       >
-        {noData && <NoData />}
-        <FlatList
-          data={associatedUsers}
-          renderItem={({ item, index }) => (
-            <AssociatedUserCard
-              userInfo={item}
-              backgroundColor={
-                index % 2 == 0 ? colors.darkGreen : colors.lightPurple
-              }
-              navigation={navigation}
-              key={item._id}
-            />
-          )}
-          style={styles.list}
-        />
+        {noData && <NoData screen="users" />}
+        {!noData && (
+          <FlatList
+            data={associatedUsers}
+            renderItem={({ item, index }) => (
+              <AssociatedUserCard
+                userInfo={item}
+                backgroundColor={
+                  index % 2 == 0 ? colors.darkGreen : colors.lightPurple
+                }
+                navigation={navigation}
+                key={item._id}
+              />
+            )}
+            style={styles.list}
+          />
+        )}
       </ImageBackground>
     </View>
   );

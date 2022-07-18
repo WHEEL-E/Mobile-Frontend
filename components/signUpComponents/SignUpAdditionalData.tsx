@@ -77,11 +77,13 @@ const SignUpAdditionalData = (
           warn={validateNotEmpty}
         />
       </ScrollView>
-      <RoundEdgedButton
-        title={t("signUpScreen.signUp")}
-        onPress={handleSubmit(submitSignUpAdditionalData)}
-        backgroundColor={colors.darkGreen}
-      />
+      <View style={{ width: "100%", paddingHorizontal: "5%" }}>
+        <RoundEdgedButton
+          title={t("signUpScreen.signUp")}
+          onPress={handleSubmit(submitSignUpAdditionalData)}
+          backgroundColor={colors.darkGreen}
+        />
+      </View>
     </View>
   );
 };

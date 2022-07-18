@@ -16,4 +16,5 @@ export interface UserSensors {
   user_id: number;
   Pulse: number;
   time: string;
+  temprature: number;
 }

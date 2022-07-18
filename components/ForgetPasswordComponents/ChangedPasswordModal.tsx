@@ -17,41 +17,28 @@ import {
 import { BIG_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
 import { RoundEdgedButton } from "../buttons/RoundEdgedButton";
 import { ChangedPasswordModalProps } from "../../utilities/forgetPasswordUtils";
+import { ModalBase } from "../generalComponents/ModalBase";
 
 const ChangedPasswordModal = (props: ChangedPasswordModalProps) => {
   const { t } = useTranslation();
   const { modalVisible, setModalVisible, navigation } = props;
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(false);
-      }}
-    >
-      <View style={styles.modalView}>
-        <ImageBackground
-          source={require("../../assets/images/Union.png")}
-          style={styles.background}
-        >
-          <Image
-            source={require("../../assets/images/logo-b-app.png")}
-            style={styles.image}
-          />
-          <Text style={styles.modalTitle}>{t("forgetPassword.modalText")}</Text>
-          <RoundEdgedButton
-            title={t("forgetPassword.backToLogin")}
-            onPress={() => {
-              navigation.navigate("SignIn");
-              setModalVisible(false);
-            }}
-            backgroundColor={colors.darkGreen}
-          />
-        </ImageBackground>
-      </View>
-    </Modal>
+    <ModalBase modalVisible={modalVisible} setModalVisible={setModalVisible}>
+      <Image
+        source={require("../../assets/images/logo-b-app.png")}
+        style={styles.image}
+      />
+      <Text style={styles.modalTitle}>{t("forgetPassword.modalText")}</Text>
+      <RoundEdgedButton
+        title={t("forgetPassword.backToLogin")}
+        onPress={() => {
+          navigation.navigate("SignIn");
+          setModalVisible(false);
+        }}
+        backgroundColor={colors.darkGreen}
+      />
+    </ModalBase>
   );
 };
 
@@ -86,7 +73,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     paddingHorizontal: "5%",
     paddingBottom: "5%",
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2,

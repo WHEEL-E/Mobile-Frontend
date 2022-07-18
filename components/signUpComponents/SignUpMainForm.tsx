@@ -91,15 +91,17 @@ const SignUpMainForm = (
           warn={validateNotEmpty}
         />
       </ScrollView>
-      <RoundEdgedButton
-        title={
-          type === UserTypes.SUPERVISOR
-            ? t("signUpScreen.signUp")
-            : t("signUpScreen.next")
-        }
-        onPress={handleSubmit(submitSignUpMainForm)}
-        backgroundColor={colors.darkGreen}
-      />
+      <View style={{ width: "100%", paddingHorizontal: "5%" }}>
+        <RoundEdgedButton
+          title={
+            type === UserTypes.SUPERVISOR
+              ? t("signUpScreen.signUp")
+              : t("signUpScreen.next")
+          }
+          onPress={handleSubmit(submitSignUpMainForm)}
+          backgroundColor={colors.darkGreen}
+        />
+      </View>
     </View>
   );
 };

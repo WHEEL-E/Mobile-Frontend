@@ -48,7 +48,9 @@ const SignInScreen = (props: SignInProps) => {
             </Text>
           </View>
           <SignInForm navigation={navigation} />
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ForgetPassword")}
+          >
             <Text style={styles.forgotPasswordText}>
               {t("signInScreen.forgotPassword")}
             </Text>

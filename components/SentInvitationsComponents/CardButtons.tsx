@@ -17,11 +17,64 @@ import {
   resendInvitation,
   unsendInvitation,
 } from "../../store/actions/invitations";
+import { sendNotification } from "../../store/actions/notifications";
+import {
+  NotificationDescriptions,
+  NotificationType,
+} from "../../utilities/types/notificationsTypes";
+import { UserTypes } from "../../utilities/types/userTypes";
 
 export const CardButtons = (props: CardButtonsProps) => {
-  const { reInvitable, unsendable, timeOut, invitationId, userRole } = props;
+  const {
+    reInvitable,
+    unsendable,
+    timeOut,
+    invitationId,
+    userRole,
+    to_id,
+    from_id,
+  } = props;
   const dispatch = useDispatch<any>();
   const { t } = useTranslation();
+
+  const rejectHandler = () => {
+    dispatch(rejectInvitation(invitationId));
+    dispatch(
+      sendNotification({
+        title: NotificationType.CONNECTIONS,
+        user_id: from_id,
+        description: NotificationDescriptions.REJECTED_CONNECTION,
+        type: NotificationType.CONNECTIONS,
+        userRole: UserTypes.PATIENT,
+      })
+    );
+  };
+
+  const acceptHandler = () => {
+    dispatch(acceptInvitation(invitationId));
+    dispatch(
+      sendNotification({
+        title: NotificationType.CONNECTIONS,
+        user_id: from_id,
+        description: NotificationDescriptions.ACCEPTED_CONNECTION,
+        type: NotificationType.CONNECTIONS,
+        userRole: UserTypes.PATIENT,
+      })
+    );
+  };
+
+  const inviteHandler = () => {
+    dispatch(resendInvitation(invitationId));
+    dispatch(
+      sendNotification({
+        title: NotificationType.CONNECTIONS,
+        user_id: to_id,
+        description: NotificationDescriptions.RECEIVED_CONNECTION,
+        type: NotificationType.CONNECTIONS,
+        userRole: UserTypes.PATIENT,
+      })
+    );
+  };
 
   return (
     <View
@@ -41,7 +94,7 @@ export const CardButtons = (props: CardButtonsProps) => {
           onPress={() => {
             userRole === "Patient"
               ? dispatch(unsendInvitation(invitationId))
-              : dispatch(rejectInvitation(invitationId));
+              : rejectHandler();
           }}
           buttonStyle={styles.cancelButton}
         />
@@ -59,9 +112,7 @@ export const CardButtons = (props: CardButtonsProps) => {
             color: timeOut ? "white" : "black",
           }}
           onPress={() => {
-            userRole === "Patient"
-              ? dispatch(resendInvitation(invitationId))
-              : dispatch(acceptInvitation(invitationId));
+            userRole === "Patient" ? inviteHandler() : acceptHandler();
           }}
           buttonStyle={{
             ...styles.sendButton,
