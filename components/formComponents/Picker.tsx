@@ -37,6 +37,10 @@ const PickerComponent = (props: PickerProps) => {
     }
   };
 
+  React.useEffect(() => {
+    if (labels === ["yes", "no"]) onChange(false);
+  }, []);
+
   return (
     <View style={styles.mainView}>
       <DropDownPicker

@@ -145,16 +145,13 @@ export const signUp = createAsyncThunk(
 
       formData.append("notification_token", `${notification_token}`);
 
-      let endpoint = EndPoints.supervisor;
+      let endpoint = `${EndPoints.supervisor}`;
       if (userType === UserTypes.PATIENT) {
-        endpoint = EndPoints.patients;
+        endpoint = `${EndPoints.patients}/signup`;
       }
-      console.log(formData);
       const response = await axios.post(endpoint, formData, {
         headers: { "content-type": "multipart/form-data" },
       });
-
-      console.log(response);
 
       if (response.data.status !== "Success") {
         thunkAPi.dispatch(notLoading());

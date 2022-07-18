@@ -20,8 +20,9 @@ import { Socket } from "socket.io-client";
 import colors from "../utilities/constants/colors";
 
 const MapScreen = () => {
-  const width = DEVICE_WIDTH * 0.9;
-  const height = DEVICE_HEIGHT * 0.26;
+  const width = DEVICE_WIDTH < 400 ? DEVICE_WIDTH : DEVICE_WIDTH * 0.9;
+  const height =
+    DEVICE_WIDTH < 400 ? DEVICE_HEIGHT * 0.3 : DEVICE_HEIGHT * 0.26;
 
   const lines: lineData[] = data.data as lineData[];
   const buttonsData: mapButtondata[] = mapButtonsData.data as mapButtondata[];
@@ -57,7 +58,6 @@ const MapScreen = () => {
           width={DEVICE_WIDTH}
           height={DEVICE_WIDTH * 1.2}
           viewBox={`-20 -150 ${width} ${height}`}
-          fill="red"
         >
           {lines.map(({ line, width, color }, index) => (
             <Path

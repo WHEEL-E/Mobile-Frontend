@@ -13,6 +13,7 @@ import {
 } from "../../utilities/types/notificationsTypes";
 import { RootState } from "../reducers/rootReducer";
 import { UserTypes } from "../../utilities/types/userTypes";
+import { signIn, updateUser } from "./user";
 
 export const getInvitations = createAsyncThunk(
   InvitationsActionTypes.GET_INVITATIONS,
@@ -34,7 +35,7 @@ export const getInvitations = createAsyncThunk(
         thunkAPI.dispatch(ShowModal("An Error occurred"));
         throw new Error(response.statusText);
       }
-
+      // console.log(response.data.data);
       const resData: InvitationData[] = await response.data.data;
       const invitations =
         type === "Supervisor"
@@ -46,8 +47,9 @@ export const getInvitations = createAsyncThunk(
       thunkAPI.dispatch(notLoading());
       return invitations;
     } catch (e) {
+      console.log(e);
       thunkAPI.dispatch(notLoading());
-      thunkAPI.dispatch(ShowModal("errorModal"));
+      thunkAPI.dispatch(ShowModal("An Error occurred"));
       throw new Error();
     }
   }
@@ -77,18 +79,41 @@ export const sendInvitation = createAsyncThunk(
         throw new Error(response.statusText);
       }
 
-      const resData = await response.data.data;
-      const invitation: InvitationData = resData;
+      const resData: {
+        __v: 0;
+        _id: "62d4fb0639576b0c435a3558";
+        created_at: "2022-07-18T06:17:42.759Z";
+        from_id: "62d4c667f39791a46c89458f";
+        status: "Pending";
+        to_id: "62d4f014637f46378ac68768";
+        updated_at: "2022-07-18T06:17:42.759Z";
+      } = await response.data.data;
+
+      console.log(resData);
+      const invitation: InvitationData = {
+        invitation: {
+          _id: resData._id,
+          from_id: resData.from_id,
+          to_id: resData.to_id,
+          status: resData.status,
+          updated_at: new Date(resData.updated_at),
+        },
+        supervisorName: data.user_name,
+        supervisorPhoto: "",
+        patient: {
+          name: user.userData?.userMainData.name!,
+          gender: user.userData?.userMainData.gender!,
+          birthDate: new Date(user.userData?.patientExtraData?.dob!),
+          photo: "",
+        },
+      };
 
       sendNotification({
         title: NotificationType.CONNECTIONS,
         user_id: data.to_id,
         description: NotificationDescriptions.RECEIVED_CONNECTION,
         type: NotificationType.CONNECTIONS,
-        userRole:
-          user.userData?.userType === UserTypes.PATIENT
-            ? UserTypes.SUPERVISOR
-            : UserTypes.PATIENT,
+        userRole: UserTypes.SUPERVISOR,
       });
 
       return invitation;
@@ -194,9 +219,19 @@ export const acceptInvitation = createAsyncThunk(
       );
 
       const resData = await response.data.data;
-      const updatedInvitation: InvitationData = resData;
 
-      return updatedInvitation;
+      const updatedInvitation: InvitationData = resData;
+      const userMaindata = user.userData?.userMainData;
+
+      thunkAPI.dispatch(
+        signIn({
+          type: UserTypes.SUPERVISOR,
+          emailAddress: user.userData?.userMainData.email!,
+          password: "11111111",
+        })
+      );
+
+      return invitationId;
     } catch (e) {
       thunkAPI.dispatch(ShowModal("errorModal"));
       throw new Error();

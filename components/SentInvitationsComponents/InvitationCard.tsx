@@ -19,6 +19,7 @@ import {
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
 } from "../../utilities/constants/dimentions";
+import { UserTypes } from "../../utilities/types/userTypes";
 
 export const InvitationCard = (props: InvitationCardProps) => {
   const {
@@ -48,41 +49,46 @@ export const InvitationCard = (props: InvitationCardProps) => {
   const reinvitable = userRole === "Patient" ? status === "Rejected" : true;
   const showCountDown = !timeOut && status !== "Accepted";
 
-  const age = new Date(Date.now()).getFullYear() - birthDate.getFullYear();
+  const shownName = userRole === UserTypes.PATIENT ? supervisorName : name;
+
+  const age =
+    new Date(Date.now()).getFullYear() - new Date(birthDate).getFullYear();
   return (
     <View
       key={_id}
       style={{ ...styles.container, backgroundColor: backgroundColor }}
     >
       <View style={styles.content}>
-        <View>
-          <Text style={{ ...styles.name, color: textColor }}>
-            {supervisorName}
-          </Text>
-          {userRole === "Patient" && (
-            <Text style={{ ...styles.status, color: textColor }}>
-              {t("sentInvitations.status")}
-              <Text style={{ ...NormalText, color: textColor }}>
-                {t(`sentInvitations.${status}`)}
+        <View style={{ flex: 1 }}>
+          <View>
+            <Text style={{ ...styles.name, color: textColor }}>
+              {shownName}
+            </Text>
+            {userRole === "Patient" && (
+              <Text style={{ ...styles.status, color: textColor }}>
+                {t("sentInvitations.status")}
+                <Text style={{ ...NormalText, color: textColor }}>
+                  {t(`sentInvitations.${status}`)}
+                </Text>
               </Text>
-            </Text>
-          )}
+            )}
 
-          {userRole === "Supervisor" && (
-            <Text style={{ ...styles.status, color: textColor }}>
-              {t("RecievedInvitations.gender")}
-              <Text style={{ ...NormalText, color: textColor }}>
-                {t(`RecievedInvitations.${gender}`)}
+            {userRole === "Supervisor" && (
+              <Text style={{ ...styles.status, color: textColor }}>
+                {t("RecievedInvitations.gender")}
+                <Text style={{ ...NormalText, color: textColor }}>
+                  {t(`RecievedInvitations.${gender}`)}
+                </Text>
               </Text>
-            </Text>
-          )}
+            )}
 
-          {userRole === "Supervisor" && (
-            <Text style={{ ...styles.status, color: textColor }}>
-              {t("RecievedInvitations.age")}
-              <Text style={{ ...NormalText, color: textColor }}>{age}</Text>
-            </Text>
-          )}
+            {userRole === "Supervisor" && (
+              <Text style={{ ...styles.status, color: textColor }}>
+                {t("RecievedInvitations.age")}
+                <Text style={{ ...NormalText, color: textColor }}>{age}</Text>
+              </Text>
+            )}
+          </View>
         </View>
         <View style={{ ...styles.circle, borderColor: textColor }}>
           <Image

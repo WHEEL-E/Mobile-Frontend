@@ -8,13 +8,18 @@ import { SMALL_MARGIN_VERTICAL } from "../../utilities/constants/spacing";
 import { NoteText } from "../../utilities/types/fontTypes";
 import { DEVICE_HEIGHT } from "../../utilities/constants/dimentions";
 
-export const RenderInputComponent = (props: WrappedFieldProps) => {
+export const RenderInputComponent = (props: any) => {
   const {
     input,
     meta: { initial, invalid, warning },
+    placeholder,
   } = props;
   const { onChange, name, value } = input;
   const { t } = useTranslation();
+
+  React.useEffect(() => {
+    onChange(placeholder);
+  }, []);
 
   return (
     <View
@@ -32,6 +37,7 @@ export const RenderInputComponent = (props: WrappedFieldProps) => {
         value={value}
         testId={`signIn${name}`}
         secureText={name == "password"}
+        initial={placeholder}
       />
       {invalid && (
         <Text style={styles.validationText} testID="warningText">

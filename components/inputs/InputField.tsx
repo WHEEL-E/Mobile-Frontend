@@ -15,6 +15,7 @@ const InputField = (props: InputFieldProps) => {
     secureText,
     onBlur,
     testId,
+    initial,
   } = props;
 
   return (

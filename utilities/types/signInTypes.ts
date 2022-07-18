@@ -16,7 +16,7 @@ export type SignInData = {
   emailAddress: string;
   password: string;
   type: UserTypes;
-  navigation:
+  navigation?:
     | NativeStackNavigationProp<GetStartedStackParamList, "SignIn", undefined>
     | NativeStackNavigationProp<
         GetStartedStackParamList,

@@ -36,6 +36,7 @@ export interface InputFieldProps {
   secureText?: boolean;
   onBlur?: () => void;
   testId?: string;
+  initial?: string;
 }
 
 export interface profileIdProps {

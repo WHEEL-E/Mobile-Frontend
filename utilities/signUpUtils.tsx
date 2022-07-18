@@ -16,6 +16,7 @@ export const submitSignUpMainForm = (
 ) => {
   const { setScreen, navigation } = props;
   const { type } = values;
+  console.log(type);
 
   if (type === UserTypes.SUPERVISOR) {
     Supervisor.addMainFormData(values);

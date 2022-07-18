@@ -28,7 +28,7 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
     (state: RootState) => state.healthMonitoring.data
   );
 
-  const sensorsData = sensorsAllData[sensorsAllData.length];
+  const sensorsData = sensorsAllData[sensorsAllData.length - 1];
 
   const socket: Socket | undefined = useSelector(
     (state: RootState) => state.healthMonitoring.socket
@@ -56,7 +56,7 @@ const HealthStatusScreen = (props: HealthStatusScreenProps) => {
     {
       sensorName: t("healthStatus.temprature"),
       image: require("../assets/images/temprature.png"),
-      value: sensorsData.temp,
+      value: sensorsData.temprature,
       unit: t("healthStatus.celsius"),
     },
   ];

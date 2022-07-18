@@ -53,7 +53,7 @@ export class Patient {
     formData.append("patient_name", this.userName);
     formData.append("password", this.password);
     formData.append("profile_picture", this.profilePhoto);
-    formData.append("email", this.mail);
+    formData.append("email", this.mail.toLowerCase());
     formData.append("phone", `${this.phone}`);
     formData.append("gender", this.gender);
     formData.append("smoking", `${this.smoking}`);

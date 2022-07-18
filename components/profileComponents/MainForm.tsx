@@ -19,7 +19,7 @@ import {
 } from "../../utilities/dataValidators";
 import { PADDING_VERTICAL } from "../../utilities/constants/spacing";
 import { UserTypes } from "../../utilities/types/userTypes";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import { updateUser } from "../../store/actions/user";
 
@@ -59,21 +59,23 @@ const MainForm = (props: InjectedFormProps<ProfileValues>) => {
           component={RenderInputComponent}
           validate={validateNotEmpty}
           warn={validateNotEmpty}
-          initial="Rania"
+          initial="PSSST"
+          placeholder={userData?.userMainData.name}
+          value={userData?.userMainData.name}
         />
         <Field
           name="email"
           component={RenderInputComponent}
           validate={validateMail}
           warn={validateMail}
-          initial="Rania"
+          placeholder={userData?.userMainData.email}
         />
         <Field
           name="phone"
           component={RenderInputComponent}
           validate={validateNotEmpty}
           warn={validateNotEmpty}
-          initial="Rania"
+          placeholder={userData?.userMainData.phone.toString()}
         />
         {isPatient && (
           <Field
@@ -81,6 +83,7 @@ const MainForm = (props: InjectedFormProps<ProfileValues>) => {
             component={RenderInputComponent}
             validate={validateThreeDigitNum}
             warn={validateThreeDigitNum}
+            placeholder={userData?.patientExtraData?.height.toString()}
           />
         )}
         {isPatient && (
@@ -89,6 +92,7 @@ const MainForm = (props: InjectedFormProps<ProfileValues>) => {
             component={RenderInputComponent}
             validate={validateThreeDigitNum}
             warn={validateThreeDigitNum}
+            placeholder={userData?.patientExtraData?.weight.toString()}
           />
         )}
         {isPatient && (
@@ -97,6 +101,7 @@ const MainForm = (props: InjectedFormProps<ProfileValues>) => {
             component={RenderInputComponent}
             validate={validatePhone}
             warn={validatePhone}
+            placeholder={userData?.patientExtraData?.emergency_number.toString()}
           />
         )}
         {isPatient && (
@@ -105,6 +110,7 @@ const MainForm = (props: InjectedFormProps<ProfileValues>) => {
             component={RenderInputComponent}
             validate={validateNotEmpty}
             warn={validateNotEmpty}
+            placeholder={userData?.patientExtraData?.address}
           />
         )}
         {isPatient && (
@@ -115,6 +121,7 @@ const MainForm = (props: InjectedFormProps<ProfileValues>) => {
             )}
             validate={validateNotEmpty}
             warn={validateNotEmpty}
+            placeholder={userData?.patientExtraData?.smoking}
           />
         )}
       </ScrollView>
@@ -143,16 +150,7 @@ const styles = StyleSheet.create({
 
 const Form = reduxForm<ProfileValues>({
   form: "MainForm",
-  initialValues: {
-    name: "rania",
-    email: "raniadaoud190@gmail.com",
-    address: "Tanta",
-    phone: "01016217825",
-    weight: "70",
-    height: "176",
-    emergency_number: "01060420483",
-    smoking: "false",
-  },
+  enableReinitialize: true,
 })(MainForm);
 
 export default Form;
