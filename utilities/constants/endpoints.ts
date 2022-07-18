@@ -4,7 +4,7 @@ export enum EndPoints {
   login = "http://18.134.95.141/api/users/",
   supervisor = "http://18.134.95.141/api/supervisor",
   patients = "http://18.134.95.141/api/patients",
-  forgetPassword = "http://18.134.95.141/api/resetPass",
+  forgetPassword = "http://18.134.95.141/api/resetPassword",
   searchConnection = "http://18.134.95.141/api/supervisor/search?name=",
   invitations = "http://18.134.95.141/api/invitations",
   sendConnection = "",
